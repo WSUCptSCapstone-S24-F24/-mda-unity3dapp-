@@ -1,0 +1,12 @@
+# Created by Polycam
+# object name: Feb 21, 2023
+newmtl Feb 21, 2023_0
+Ka 0.000 0.000 0.000
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+Tr 0.000000
+illum 1
+Ns 1.000000
+map_Kd Feb 21, 2023_0_tEsMwiOn.jpg
+normal Feb 21, 2023_0_norm_tEsMwiOn.jpg
+map_ao Feb 21, 2023_0_occl_tEsMwiOn.jpg
