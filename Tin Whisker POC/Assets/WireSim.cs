@@ -9,8 +9,11 @@ public class WireSim : MonoBehaviour
     public int cylinderCount = 10;
     public float spawnAreaSize = 5f;
     public float heightAboveCircuitBoard = 10f;
-    public float muIn = 0.5f;
-    public float sigmaIn = 0.5f;
+    public float LengthmuIn = 0.5f;
+    public float LengthsigmaIn = 0.5f;
+    public float WidthmuIn = 0.5f;
+    public float WidthsigmaIn = 0.5f;
+
 
     private void Start()
     {
@@ -18,19 +21,20 @@ public class WireSim : MonoBehaviour
         StreamWriter writer = new StreamWriter(Application.dataPath + "/../Data/cylinder_lengths.csv");
 
         // Write the header row
-        writer.WriteLine("Cylinder Index,Length");
-
+        writer.WriteLine("Cylinder Index,Length,Width");
+        Vector3 originalScale = cylinder.transform.localScale;
         for (int i = 0; i < cylinderCount; i++)
         {
             Vector3 spawnPosition = new Vector3(Random.Range(-spawnAreaSize, spawnAreaSize), heightAboveCircuitBoard, Random.Range(-spawnAreaSize, spawnAreaSize));
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
-            Vector3 originalScale = cylinder.transform.localScale;
-            float length = LognormalRandom(muIn, sigmaIn);
-            newCylinder.transform.localScale = new Vector3(originalScale.x, length, originalScale.z);
+
+            float lengthMultiplier = LognormalRandom(LengthmuIn, LengthsigmaIn);
+            float widthMultiplier = LognormalRandom(WidthmuIn, WidthsigmaIn);
+            newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
 
             // Write the cylinder index and length to the CSV file
-            writer.WriteLine(i + "," + length);
+            writer.WriteLine(i + "," + lengthMultiplier + "," + widthMultiplier);
         }
 
         // Close the CSV file
