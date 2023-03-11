@@ -17,7 +17,11 @@ public class WireSim : MonoBehaviour
 
     private void Start()
     {
-         // Open the CSV file for writing
+
+        //print current scene name
+        Debug.Log("Current scene is:" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+
+        // Open the CSV file for writing
         StreamWriter writer = new StreamWriter(Application.dataPath + "/../Data/cylinder_lengths.csv");
 
         // Write the header row
