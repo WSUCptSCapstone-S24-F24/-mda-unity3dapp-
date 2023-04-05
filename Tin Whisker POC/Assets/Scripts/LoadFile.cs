@@ -27,6 +27,7 @@ using SFB;
 using TMPro;
 using UnityEngine.Networking;
 using Dummiesman; //Load OBJ Model
+using SimInfo;
 
 public class LoadFile : MonoBehaviour
 {
@@ -78,7 +79,8 @@ public class LoadFile : MonoBehaviour
                 Destroy(model);
             }
             model = new OBJLoader().Load(textStream);
-            model.transform.localScale = new Vector3(-1, 1, 1); // set the position of parent model. Reverse X to show properly 
+            model.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f); // set the position of parent model. Reverse X to show properly 
+            
 
         }
     }

@@ -14,6 +14,7 @@ namespace SimInfo
         public float LengthSigma;
         public float WidthMu;
         public float WidthSigma;
+        public GameObject model;
 
         public SimState(){
             // Default values
