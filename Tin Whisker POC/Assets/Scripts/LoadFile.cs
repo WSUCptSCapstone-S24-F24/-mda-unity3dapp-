@@ -32,7 +32,8 @@ using SimInfo;
 public class LoadFile : MonoBehaviour
 {
     public TextMeshProUGUI textMeshPro;
-    public GameObject model; //Load OBJ Model
+    public GameObject Modle; //Load OBJ Model
+    public GameObject SceneManager;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
     // WebGL
@@ -74,14 +75,27 @@ public class LoadFile : MonoBehaviour
 
             //Load OBJ Model
             MemoryStream textStream = new MemoryStream(Encoding.UTF8.GetBytes(www.downloadHandler.text));
-            if (model != null)
+            if (Modle != null)
             {
-                Destroy(model);
+                Destroy(Modle);
             }
-            model = new OBJLoader().Load(textStream);
-            model.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f); // set the position of parent model. Reverse X to show properly 
+            Modle = new OBJLoader().Load(textStream);
+            Modle.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f); // set the position of parent Modle. Reverse X to show properly 
+            //Add a kinematic rigidbody to the Modle
+            Modle.AddComponent<Rigidbody>();
+            Modle.GetComponent<Rigidbody>().isKinematic = true;
+            //Add a mesh collider to the Modle
+            Modle.AddComponent<MeshCollider>();
+            //Modle.GetComponent<MeshCollider>().convex = true;
+            //Modle.GetComponent<MeshCollider>().isTrigger = true;
             
-
+            Modle.name = "MainCiruitBoard";
+            if(Modle){
+                SceneManager.GetComponent<SceneHandler>().UpdateModel(Modle);
+            }
+            else{
+                Debug.Log("Not MainCiruitBoard");
+            }
         }
     }
 }
