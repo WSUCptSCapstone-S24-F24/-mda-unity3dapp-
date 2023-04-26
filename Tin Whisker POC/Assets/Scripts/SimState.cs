@@ -14,22 +14,22 @@ namespace SimInfo
         public float LengthSigma;
         public float WidthMu;
         public float WidthSigma;
-        public int SimCount;
+        public int simNumber;
         public GameObject Model;
 
         public SimState(){
             // Default values
             this.WhiskerCount = 10;
             this.spawnAreaSize = 2f;
-            this.heightAboveCircuitBoard = 10f;
+            this.heightAboveCircuitBoard = 15f;
             this.LengthMu = 0.5f;
             this.LengthSigma = 0.5f;
             this.WidthMu = 0.5f;
             this.WidthSigma = 0.5f;
-            this.SimCount = -1;
+            this.simNumber = -1;
         }
 
-        public SimState(int WhiskerCount, float spawnAreaSize, float heightAboveCircuitBoard, float LengthMu, float LengthSigma, float WidthMu, float WidthSigma, int SimCount)
+        public SimState(int WhiskerCount, float spawnAreaSize, float heightAboveCircuitBoard, float LengthMu, float LengthSigma, float WidthMu, float WidthSigma, int simNumber)
         {
             this.WhiskerCount = WhiskerCount;
             this.spawnAreaSize = spawnAreaSize;
@@ -38,10 +38,24 @@ namespace SimInfo
             this.LengthSigma = LengthSigma;
             this.WidthMu = WidthMu;
             this.WidthSigma = WidthSigma;
-            this.SimCount = SimCount;
+            this.simNumber = simNumber;
         }
 
-        public IEnumerator SaveSimToJSON(string jsonPath)
+        public void SaveSimToJSON(string jsonPath)
+        {
+            Debug.Log("attempting to save sim to JSON");
+            // Serialize the simState to JSON
+            string jsonString = JsonUtility.ToJson(this);
+
+            Debug.Log("Saving -> JSON string:\n" + jsonString);
+            // Create a file path and file name for the JSON file
+            string filePath = jsonPath;
+
+            // Write the JSON string to a file synchronously
+            File.WriteAllText(filePath, jsonString);
+        }
+
+        public IEnumerator SaveSimToJSONasync(string jsonPath)
         {
             Debug.Log("attempting to save sim to JSON");
             // Serialize the simState to JSON

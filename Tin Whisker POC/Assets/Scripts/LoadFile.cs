@@ -56,6 +56,7 @@ public class LoadFile : MonoBehaviour
         string[] paths = StandaloneFileBrowser.OpenFilePanel("Open File", "", "obj", false);
         if (paths.Length > 0)
         {
+            Debug.Log("Selected File: " + paths[0]);
             StartCoroutine(OutputRoutineOpen(new System.Uri(paths[0]).AbsoluteUri));
         }
     }
@@ -63,6 +64,7 @@ public class LoadFile : MonoBehaviour
 
     private IEnumerator OutputRoutineOpen(string url)
     {
+        Debug.Log("File URI: " + url);
         UnityWebRequest www = UnityWebRequest.Get(url);
         yield return www.SendWebRequest();
         if (www.result != UnityWebRequest.Result.Success)
@@ -71,31 +73,40 @@ public class LoadFile : MonoBehaviour
         }
         else
         {
-            //textMeshPro.text = www.downloadHandler.text;
-
-            //Load OBJ Model
             MemoryStream textStream = new MemoryStream(Encoding.UTF8.GetBytes(www.downloadHandler.text));
             if (Modle != null)
             {
                 Destroy(Modle);
             }
             Modle = new OBJLoader().Load(textStream);
-            Modle.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f); // set the position of parent Modle. Reverse X to show properly 
-            //Add a kinematic rigidbody to the Modle
-            Modle.AddComponent<Rigidbody>();
-            Modle.GetComponent<Rigidbody>().isKinematic = true;
-            //Add a mesh collider to the Modle
-            Modle.AddComponent<MeshCollider>();
-            //Modle.GetComponent<MeshCollider>().convex = true;
-            //Modle.GetComponent<MeshCollider>().isTrigger = true;
-            
+            Modle.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
+            Modle.transform.Rotate(-90f, 0f, 0f, Space.Self);
             Modle.name = "MainCiruitBoard";
-            if(Modle){
+
+            // Iterate through all the children of the parent model
+            foreach (Transform child in Modle.transform)
+            {
+                // Add a kinematic rigidbody to the child
+                Rigidbody rb = child.gameObject.AddComponent<Rigidbody>();
+                rb.isKinematic = true;
+
+                // Add a mesh collider to the child
+                MeshCollider mc = child.gameObject.AddComponent<MeshCollider>();
+                mc.sharedMesh = child.GetComponent<MeshFilter>().sharedMesh;
+            }
+
+            if (Modle)
+            {
                 SceneManager.GetComponent<SceneHandler>().UpdateModel(Modle);
             }
-            else{
+            else
+            {
                 Debug.Log("Not MainCiruitBoard");
             }
+            SceneManager.GetComponent<SceneHandler>().filePath = url;
+            //SceneManager.GetComponent<SceneHandler>().fileName = Path.GetFileName(url);
+            SceneManager.GetComponent<SceneHandler>().fileOpened = true;
         }
     }
+
 }

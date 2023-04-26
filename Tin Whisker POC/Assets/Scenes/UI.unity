@@ -1372,8 +1372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efde55fac2da0cb46876b30f466b40af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSimulations: 10
-  unityAppPath: path/to/your/built/unity/application
+  numSimulations: 2
+  unityAppPath: C:/Users/Gage Unruh/Tin Whisker POC/Builds/Beta/Tin Whisker POC.exe
 --- !u!1 &650699124
 GameObject:
   m_ObjectHideFlags: 0
@@ -5918,8 +5918,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMeshPro: {fileID: 0}
-  Modle: {fileID: 0}
-  SceneManager: {fileID: 0}
+  Modle: {fileID: 21696088}
+  SceneManager: {fileID: 1193138106}
 --- !u!1 &1993107616
 GameObject:
   m_ObjectHideFlags: 0

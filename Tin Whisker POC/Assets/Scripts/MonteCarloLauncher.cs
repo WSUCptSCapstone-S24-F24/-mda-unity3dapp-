@@ -5,8 +5,8 @@ using System.IO;
 
 public class MonteCarloLauncher : MonoBehaviour
 {
-    public int numSimulations = 10;
-    public string unityAppPath = "path/to/your/built/unity/application";
+    public int numSimulations = 2;
+    public string unityAppPath = "C:/Users/Gage Unruh/Tin Whisker POC/Builds/Beta/Tin Whisker POC.exe";
 
     void Start()
     {
@@ -16,13 +16,15 @@ public class MonteCarloLauncher : MonoBehaviour
 
     void OnClick()
     {
-        for (int i = 0; i < numSimulations; i++)
+        unityAppPath = Application.persistentDataPath + "/Builds/Tin Whisker POC.exe";
+        for (int i = 1; i <= numSimulations; i++)
         {
             Process process = new Process();
             process.StartInfo.FileName = unityAppPath;
             process.StartInfo.Arguments = "-batchmode -nographics -simNumber " + i;
+            //process.StartInfo.Arguments = "-simNumber " + i;
             process.StartInfo.UseShellExecute = false;
-            process.StartInfo.CreateNoWindow = true;
+            //process.StartInfo.CreateNoWindow = true;
             process.Start();
         }
     }

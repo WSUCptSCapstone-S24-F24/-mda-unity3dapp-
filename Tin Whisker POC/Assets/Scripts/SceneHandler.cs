@@ -11,8 +11,11 @@ public class SceneHandler : MonoBehaviour
     
     private Scene loadedScene;
     public string sceneName;
-    public int sceneNum;
+    public int sceneNum = 1;
     private bool isSceneLoaded = false;
+    private bool argsParsed = false;
+    public bool fileOpened = false;
+    private int mySimNumber = -1;
 
     public TMP_InputField WhiskerCounteText;
     public TMP_InputField LengthSigmaText;
@@ -21,24 +24,52 @@ public class SceneHandler : MonoBehaviour
     public TMP_InputField WidthMuText;
     public TMP_InputField SpawnAreaSizeText;
     public SimState simState;
+    public string filePath;
 
-    string jsonPath;
+
+    private string rootJsonPath;
+    private string myJsonPath;
 
     public void Start()
     {
-        jsonPath = Application.persistentDataPath + "/SimState.json";
+        rootJsonPath = Application.persistentDataPath + "/SimState.JSON";
+        ParseArgs();
 
-        if (System.IO.File.Exists(jsonPath))
+        if(mySimNumber == 0){
+            Debug.Log("Root Sim Start");
+            RootSimStart();
+        }else{
+            MonteCarloSimStart();
+        }
+        if(simState == null){
+            Debug.LogError("SimState not found");
+        }
+
+        
+        LoadScene(sceneNum);
+    }
+
+    private void RootSimStart(){
+        myJsonPath = rootJsonPath;
+        if (System.IO.File.Exists(rootJsonPath))
         {
             // JSON folder exists, read data from file and initialize SimState object
-            string jsonString = System.IO.File.ReadAllText(jsonPath);
+            string jsonString = System.IO.File.ReadAllText(rootJsonPath);
             simState = JsonUtility.FromJson<SimState>(jsonString);
         }
         else
         {
             // JSON folder doesn't exist, create SimState object with default constructor
+            Debug.Log("root JSON not found\nSaving class to JSON");
             simState = new SimState();
-            simState.SaveSimToJSON(jsonPath);
+            if(simState == null){
+                Debug.LogError("SimState class not found");
+            }else{
+                Debug.Log("SimState class found\nsimState: " + simState.ToString());
+                Debug.Log("rootJsonPath: " + rootJsonPath);
+            }
+            simState.simNumber = 0;
+            simState.SaveSimToJSON(rootJsonPath);
         }
 
         WhiskerCounteText.text =simState.WhiskerCount.ToString();
@@ -47,14 +78,25 @@ public class SceneHandler : MonoBehaviour
         WidthSigmaText.text = simState.WidthSigma.ToString();
         WidthMuText.text = simState.WidthMu.ToString();
         SpawnAreaSizeText.text = simState.spawnAreaSize.ToString();
-        
-        LoadScene(sceneNum);
-        // Set the default value of the text field
-
 
         // Get the float value from the text field
-        getSimInputs(); 
+        getSimInputs();
+        simState.simNumber = 0;
+        simState.SaveSimToJSON(rootJsonPath);
+    }
 
+    private void MonteCarloSimStart(){
+        myJsonPath = Application.persistentDataPath + "/SimState" + mySimNumber + ".JSON";
+        if (System.IO.File.Exists(rootJsonPath))
+        {
+            // JSON folder exists, read data from file and initialize SimState object
+            string jsonString = System.IO.File.ReadAllText(rootJsonPath);
+            simState = JsonUtility.FromJson<SimState>(jsonString);
+            simState.simNumber = mySimNumber;
+            simState.SaveSimToJSON(myJsonPath);
+        }else{
+            Debug.LogError("Root Sim JSON file does not exist");
+        }
     }
 
 
@@ -121,7 +163,7 @@ public class SceneHandler : MonoBehaviour
     public void LoadScene(int buildnum)
     {
         getSimInputs();
-        StartCoroutine(simState.SaveSimToJSON(jsonPath));
+        simState.SaveSimToJSON(myJsonPath);
         if (!isSceneLoaded)
         {
             StartCoroutine(LoadSceneAsync(buildnum));
@@ -170,20 +212,27 @@ public class SceneHandler : MonoBehaviour
 
     public void MonteCarlosim(){
         getSimInputs();
-        StartCoroutine(simState.SaveSimToJSON(jsonPath));
+        StartCoroutine(simState.SaveSimToJSONasync(rootJsonPath));
         LoadScene(2);
     }
 
     public void ParseArgs()
     {
+        if (argsParsed) {
+            return;
+        }
         string[] args = System.Environment.GetCommandLineArgs();
         for (int i = 0; i < args.Length; i++) {
             if (args[i] == "-simNumber" && args.Length > i + 1) {
                 int simNumber;
                 if (int.TryParse(args[i + 1], out simNumber)) {
-                    // Do something with simNumber
+                    mySimNumber = simNumber;
                 }
             }
         }
+        if(mySimNumber == -1){
+            mySimNumber = 0;
+        }
+        argsParsed = true;
     }
 }
