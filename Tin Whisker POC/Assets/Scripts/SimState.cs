@@ -7,8 +7,10 @@ namespace SimInfo
 {
     public class SimState
     {
-        public int WhiskerCount;
-        public float spawnAreaSize;
+        public int whiskerDensity;
+        public float spawnAreaSizeX;
+        public float spawnAreaSizeY;
+        public float spawnAreaSizeZ;
         public float heightAboveCircuitBoard;
         public float LengthMu;
         public float LengthSigma;
@@ -19,8 +21,10 @@ namespace SimInfo
 
         public SimState(){
             // Default values
-            this.WhiskerCount = 10;
-            this.spawnAreaSize = 2f;
+            this.whiskerDensity = 10;
+            this.spawnAreaSizeX = 2f;
+            this.spawnAreaSizeY = 2f;
+            this.spawnAreaSizeZ = 2f;
             this.heightAboveCircuitBoard = 15f;
             this.LengthMu = 0.5f;
             this.LengthSigma = 0.5f;
@@ -29,10 +33,12 @@ namespace SimInfo
             this.simNumber = -1;
         }
 
-        public SimState(int WhiskerCount, float spawnAreaSize, float heightAboveCircuitBoard, float LengthMu, float LengthSigma, float WidthMu, float WidthSigma, int simNumber)
+        public SimState(int whiskerDensity, float spawnAreaSizeX, float spawnAreaSizeY, float spawnAreaSizeZ, float heightAboveCircuitBoard, float LengthMu, float LengthSigma, float WidthMu, float WidthSigma, int simNumber)
         {
-            this.WhiskerCount = WhiskerCount;
-            this.spawnAreaSize = spawnAreaSize;
+            this.whiskerDensity = whiskerDensity;
+            this.spawnAreaSizeX = spawnAreaSizeX;
+            this.spawnAreaSizeY = spawnAreaSizeY;
+            this.spawnAreaSizeZ = spawnAreaSizeZ;
             this.heightAboveCircuitBoard = heightAboveCircuitBoard;
             this.LengthMu = LengthMu;
             this.LengthSigma = LengthSigma;

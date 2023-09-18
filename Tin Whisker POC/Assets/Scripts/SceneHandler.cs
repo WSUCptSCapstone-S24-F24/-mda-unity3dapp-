@@ -17,12 +17,14 @@ public class SceneHandler : MonoBehaviour
     public bool fileOpened = false;
     private int mySimNumber = -1;
 
-    public TMP_InputField WhiskerCounteText;
+    public TMP_InputField WhiskerDensityText;
     public TMP_InputField LengthSigmaText;
     public TMP_InputField LengthMuText;
     public TMP_InputField WidthSigmaText;
     public TMP_InputField WidthMuText;
-    public TMP_InputField SpawnAreaSizeText;
+    public TMP_InputField SpawnAreaSizeXText;
+    public TMP_InputField SpawnAreaSizeYText;
+    public TMP_InputField SpawnAreaSizeZText;
     public SimState simState;
     public string filePath;
 
@@ -72,12 +74,17 @@ public class SceneHandler : MonoBehaviour
             simState.SaveSimToJSON(rootJsonPath);
         }
 
-        WhiskerCounteText.text =simState.WhiskerCount.ToString();
+        WhiskerDensityText.text = simState.whiskerDensity.ToString();
         LengthSigmaText.text = simState.LengthSigma.ToString();
         LengthMuText.text = simState.LengthMu.ToString();
         WidthSigmaText.text = simState.WidthSigma.ToString();
         WidthMuText.text = simState.WidthMu.ToString();
-        SpawnAreaSizeText.text = simState.spawnAreaSize.ToString();
+        SpawnAreaSizeXText.text = "10";
+        SpawnAreaSizeYText.text = "10";
+        SpawnAreaSizeZText.text = "10";
+        // SpawnAreaSizeXText.text = simState.spawnAreaSizeX.ToString();
+        // SpawnAreaSizeYText.text = simState.spawnAreaSizeY.ToString();
+        // SpawnAreaSizeZText.text = simState.spawnAreaSizeZ.ToString();
 
         // Get the float value from the text field
         getSimInputs();
@@ -101,9 +108,9 @@ public class SceneHandler : MonoBehaviour
 
 
     public void getSimInputs(){
-        if (int.TryParse(WhiskerCounteText.text, out int result))
+        if (int.TryParse(WhiskerDensityText.text, out int result))
         {
-            simState.WhiskerCount = result;
+            simState.whiskerDensity = result;
         } else
         {
             Debug.Log("Whisker Count is not a float");
@@ -145,9 +152,27 @@ public class SceneHandler : MonoBehaviour
             Debug.Log("Width Mu is not a float");
         }
 
-        if (float.TryParse(SpawnAreaSizeText.text, out float result6))
+        if (float.TryParse(SpawnAreaSizeXText.text, out float result6))
         {
-            simState.spawnAreaSize = result6;
+            simState.spawnAreaSizeX = result6;
+        }
+        else
+        {
+            Debug.Log("Spawn Area Size is not a float");
+        }
+
+                if (float.TryParse(SpawnAreaSizeYText.text, out float result7))
+        {
+            simState.spawnAreaSizeY = result6;
+        }
+        else
+        {
+            Debug.Log("Spawn Area Size is not a float");
+        }
+
+                if (float.TryParse(SpawnAreaSizeZText.text, out float result8))
+        {
+            simState.spawnAreaSizeZ = result6;
         }
         else
         {

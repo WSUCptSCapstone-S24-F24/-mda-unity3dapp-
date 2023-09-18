@@ -73,9 +73,15 @@ public class WireSim : MonoBehaviour
         // // Write the header row
         // writer.WriteLine("Cylinder Index,Length,Width");
         Vector3 originalScale = cylinder.transform.localScale;
-        for (int i = 0; i < simState.WhiskerCount; i++)
+        float WhiskerCount = (simState.spawnAreaSizeX * simState.spawnAreaSizeY * simState.spawnAreaSizeZ) * simState.whiskerDensity;
+        if (WhiskerCount > 1000)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSize, simState.spawnAreaSize), simState.heightAboveCircuitBoard, Random.Range(-simState.spawnAreaSize, simState.spawnAreaSize));
+            WhiskerCount = 1000;
+            Debug.LogError("Whisker count is too high\nWhisker count: " + WhiskerCount);
+        }
+        for (int i = 0; i < WhiskerCount; i++)
+        {
+            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX/2f, simState.spawnAreaSizeX/2f), Random.Range(-simState.spawnAreaSizeY/2f, simState.spawnAreaSizeY/2f), Random.Range(-simState.spawnAreaSizeZ/2f, simState.spawnAreaSizeZ/2f));
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
             cylinder_clone.Add(newCylinder);

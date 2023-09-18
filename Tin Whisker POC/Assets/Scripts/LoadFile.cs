@@ -83,6 +83,9 @@ public class LoadFile : MonoBehaviour
             Modle.transform.Rotate(-90f, 0f, 0f, Space.Self);
             Modle.name = "MainCiruitBoard";
 
+            //Temp sine wave movement
+            Modle.AddComponent<SineWaveMovement>();
+
             // Iterate through all the children of the parent model
             foreach (Transform child in Modle.transform)
             {
