@@ -61,7 +61,7 @@ public class WireSim : MonoBehaviour
 
 
         // Get the game object that the user loaded and attach it to the cylinder colorchanger script
-        cylinder.GetComponent<ColorChanger>().object1 = simState.Model;
+        //cylinder.GetComponent<ColorChanger>().object1 = simState.Model;
 
         //print current scene name
         Debug.Log("Current scene is:" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
@@ -74,6 +74,11 @@ public class WireSim : MonoBehaviour
         // writer.WriteLine("Cylinder Index,Length,Width");
         Vector3 originalScale = cylinder.transform.localScale;
         float WhiskerCount = (simState.spawnAreaSizeX * simState.spawnAreaSizeY * simState.spawnAreaSizeZ) * simState.whiskerDensity;
+
+        //!!!!!!!!!!!!!!!!!!!!!!!!
+        //WhiskerCount = 10;
+        //!!!!!!!!!!!!!!!!!!!!!!!
+
         if (WhiskerCount > 1000)
         {
             WhiskerCount = 1000;
@@ -81,7 +86,7 @@ public class WireSim : MonoBehaviour
         }
         for (int i = 0; i < WhiskerCount; i++)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX/2f, simState.spawnAreaSizeX/2f), Random.Range(-simState.spawnAreaSizeY/2f, simState.spawnAreaSizeY/2f), Random.Range(-simState.spawnAreaSizeZ/2f, simState.spawnAreaSizeZ/2f));
+            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX/2f, simState.spawnAreaSizeX/2f), Random.Range(1, simState.spawnAreaSizeY+1), Random.Range(-simState.spawnAreaSizeZ/2f, simState.spawnAreaSizeZ/2f));
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
             cylinder_clone.Add(newCylinder);

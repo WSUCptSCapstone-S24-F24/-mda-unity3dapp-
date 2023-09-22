@@ -29,6 +29,9 @@ using UnityEngine.Networking;
 using Dummiesman; //Load OBJ Model
 using SimInfo;
 
+
+
+
 public class LoadFile : MonoBehaviour
 {
     public TextMeshProUGUI textMeshPro;
@@ -61,7 +64,20 @@ public class LoadFile : MonoBehaviour
         }
     }
 #endif
+    private static void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        if (obj == null)
+            return;
+        
+        obj.layer = newLayer;
 
+        foreach (Transform child in obj.transform)
+        {
+            if (child == null)
+                continue;
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
+    }
     private IEnumerator OutputRoutineOpen(string url)
     {
         Debug.Log("File URI: " + url);
@@ -83,8 +99,21 @@ public class LoadFile : MonoBehaviour
             Modle.transform.Rotate(-90f, 0f, 0f, Space.Self);
             Modle.name = "MainCiruitBoard";
 
-            //Temp sine wave movement
+            // Usage:
+            SetLayerRecursively(Modle, LayerMask.NameToLayer("Attachables"));
+
+
+            // Add sine wave movement to the loaded model
             Modle.AddComponent<SineWaveMovement>();
+
+            // set Gravity off for Modle rigidbody
+            Modle.GetComponent<Rigidbody>().useGravity = false;
+
+            //change rigid body collision detection to continuous
+            Modle.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+
+            //Change the behavior to extrapolate
+            Modle.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Extrapolate;
 
             // Iterate through all the children of the parent model
             foreach (Transform child in Modle.transform)
@@ -92,12 +121,16 @@ public class LoadFile : MonoBehaviour
                 // Add a kinematic rigidbody to the child
                 Rigidbody rb = child.gameObject.AddComponent<Rigidbody>();
                 rb.isKinematic = true;
+                rb.useGravity = false;  // Turn off gravity
+                rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+                rb.interpolation = RigidbodyInterpolation.Extrapolate;
 
                 // Add a mesh collider to the child
                 MeshCollider mc = child.gameObject.AddComponent<MeshCollider>();
                 mc.sharedMesh = child.GetComponent<MeshFilter>().sharedMesh;
             }
 
+            // Update the SceneManager
             if (Modle)
             {
                 SceneManager.GetComponent<SceneHandler>().UpdateModel(Modle);
@@ -113,3 +146,4 @@ public class LoadFile : MonoBehaviour
     }
 
 }
+

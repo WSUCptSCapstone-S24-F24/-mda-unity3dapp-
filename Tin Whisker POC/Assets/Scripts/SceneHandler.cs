@@ -79,9 +79,9 @@ public class SceneHandler : MonoBehaviour
         LengthMuText.text = simState.LengthMu.ToString();
         WidthSigmaText.text = simState.WidthSigma.ToString();
         WidthMuText.text = simState.WidthMu.ToString();
-        SpawnAreaSizeXText.text = "10";
-        SpawnAreaSizeYText.text = "10";
-        SpawnAreaSizeZText.text = "10";
+        SpawnAreaSizeXText.text = "5";
+        SpawnAreaSizeYText.text = "2";
+        SpawnAreaSizeZText.text = "5";
         // SpawnAreaSizeXText.text = simState.spawnAreaSizeX.ToString();
         // SpawnAreaSizeYText.text = simState.spawnAreaSizeY.ToString();
         // SpawnAreaSizeZText.text = simState.spawnAreaSizeZ.ToString();
