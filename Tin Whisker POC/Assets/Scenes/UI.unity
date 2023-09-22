@@ -7609,6 +7609,7 @@ GameObject:
   - component: {fileID: 1574890785}
   - component: {fileID: 1574890784}
   - component: {fileID: 1574890783}
+  - component: {fileID: 1574890786}
   m_Layer: 5
   m_Name: Start Vibration
   m_TagString: Untagged
@@ -7680,7 +7681,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1574890784}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1574890786}
+        m_TargetAssemblyTypeName: Vibration, Assembly-CSharp
+        m_MethodName: Awake
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1574890786}
+        m_TargetAssemblyTypeName: Vibration, Assembly-CSharp
+        m_MethodName: StartV
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1574890784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7719,6 +7744,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574890781}
   m_CullTransparentMesh: 1
+--- !u!114 &1574890786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574890781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d058a615fb59345b5e292ccd4fef91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Board: {fileID: 0}
+  speed: {fileID: 0}
+  magnitude: {fileID: 0}
 --- !u!1 &1577287056
 GameObject:
   m_ObjectHideFlags: 0

@@ -102,6 +102,7 @@ public class LoadFile : MonoBehaviour
             // Usage:
             SetLayerRecursively(Modle, LayerMask.NameToLayer("Attachables"));
 
+            Modle.tag = "Board";
 
             // Add sine wave movement to the loaded model
             Modle.AddComponent<SineWaveMovement>();
