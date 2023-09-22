@@ -75,6 +75,9 @@ public class WireSim : MonoBehaviour
         Vector3 originalScale = cylinder.transform.localScale;
         float WhiskerCount = (simState.spawnAreaSizeX * simState.spawnAreaSizeY * simState.spawnAreaSizeZ) * simState.whiskerDensity;
 
+        LognormalRandom lognormalRandomLength = new LognormalRandom(simState.LengthMu, simState.LengthSigma);
+        LognormalRandom lognormalRandomWidth = new LognormalRandom(simState.WidthMu, simState.WidthSigma);
+
         //!!!!!!!!!!!!!!!!!!!!!!!!
         //WhiskerCount = 10;
         //!!!!!!!!!!!!!!!!!!!!!!!
@@ -91,8 +94,8 @@ public class WireSim : MonoBehaviour
             GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
             cylinder_clone.Add(newCylinder);
 
-            float lengthMultiplier = LognormalRandom(simState.LengthMu, simState.LengthSigma);
-            float widthMultiplier = LognormalRandom(simState.WidthMu, simState.WidthSigma);
+            float lengthMultiplier = (float)lognormalRandomLength.NextDouble();
+            float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
             newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
 
             // Write the cylinder index and length to the CSV file
@@ -111,16 +114,6 @@ public class WireSim : MonoBehaviour
             Debug.Log("Ending simulation and saving results");
             StartCoroutine(EndSimulationAfterDuration());
         } 
-    }
-
-    public static float LognormalRandom(float mean, float stdDev)
-    {
-        System.Random rnd = new System.Random();
-        float mu = Mathf.Log((mean * mean) / Mathf.Sqrt((stdDev * stdDev) + (mean * mean)));
-        float sigma = Mathf.Sqrt(Mathf.Log((stdDev * stdDev) / (mean * mean) + 1));
-        float random = (float)rnd.NextDouble();
-        float lognormal = Mathf.Exp(mu + sigma * Mathf.Sqrt(-2 * Mathf.Log(random)));
-        return lognormal;
     }
 
      IEnumerator EndSimulationAfterDuration()
@@ -163,4 +156,31 @@ public class WireSim : MonoBehaviour
         Application.Quit();
     }
 
+}
+
+public class LognormalRandom
+{
+    private readonly System.Random rand;
+    private readonly double mu;
+    private readonly double sigma;
+
+    public LognormalRandom(double mu, double sigma, int? seed = null)
+    {
+        this.mu = mu;
+        this.sigma = sigma;
+        rand = seed.HasValue ? new System.Random(seed.Value) : new System.Random();
+    }
+
+    public double NextDouble()
+    {
+        // Generate a random number from a normal distribution
+        double u1 = rand.NextDouble();
+        double u2 = rand.NextDouble();
+        double randStdNormal = System.Math.Sqrt(-2.0 * System.Math.Log(u1)) * System.Math.Sin(2.0 * System.Math.PI * u2);
+
+        // Convert the standard normal number to a lognormal number
+        double randLogNormal = System.Math.Exp(mu + sigma * randStdNormal);
+
+        return randLogNormal;
+    }
 }
