@@ -8,6 +8,7 @@ public class ColorChanger : MonoBehaviour
     public GameObject object2;
     public Color targetColor;
 
+
     private MeshRenderer objectRenderer;
     private bool hasCollidedWithObject1;
     private bool hasCollidedWithObject2;
@@ -24,12 +25,23 @@ public class ColorChanger : MonoBehaviour
         Debug.Log("Collision detected");
         if (collision.gameObject == object1)
         {
-            hasCollidedWithObject1 = true;
+            //Renderer renderer = object1.GetComponent<Renderer>();
+            //Material uniqueMaterial = renderer.material;
+           // if (uniqueMaterial.getColor() == "gray")
+            //{
+                hasCollidedWithObject1 = true;
+            //}
+           
         }
 
         if (collision.gameObject == object2)
         {
+            // Renderer renderer = object1.GetComponent<Renderer>();
+            // Material uniqueMaterial = renderer.material;
+            // if (uniqueMaterial.getColor() == "gray")
+            // {
             hasCollidedWithObject2 = true;
+            //}
         }
 
         if (hasCollidedWithObject1 && hasCollidedWithObject2)

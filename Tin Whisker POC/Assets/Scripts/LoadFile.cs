@@ -54,18 +54,20 @@ public class LoadFile : MonoBehaviour
     public void OnClickOpen()
     {
         string[] paths = StandaloneFileBrowser.OpenFilePanel("Open File", "", "obj", false);
+        string[] MTLPath = StandaloneFileBrowser.OpenFilePanel("Open File", "", "mtl", false);
         if (paths.Length > 0)
         {
             Debug.Log("Selected File: " + paths[0]);
-            StartCoroutine(OutputRoutineOpen(new System.Uri(paths[0]).AbsoluteUri));
+            StartCoroutine(OutputRoutineOpen(new System.Uri(paths[0]).AbsoluteUri, new System.Uri(MTLPath[0]).AbsoluteUri ));
         }
     }
 #endif
 
-    private IEnumerator OutputRoutineOpen(string url)
+    private IEnumerator OutputRoutineOpen(string url, string mtl)
     {
         Debug.Log("File URI: " + url);
         UnityWebRequest www = UnityWebRequest.Get(url);
+        UnityWebRequest mmm = UnityWebRequest.Get(mtl);
         yield return www.SendWebRequest();
         if (www.result != UnityWebRequest.Result.Success)
         {
@@ -74,13 +76,14 @@ public class LoadFile : MonoBehaviour
         else
         {
             MemoryStream textStream = new MemoryStream(Encoding.UTF8.GetBytes(www.downloadHandler.text));
+            MemoryStream MTLStream = new MemoryStream(Encoding.UTF8.GetBytes(mmm.downloadHandler.text));
             if (Modle != null)
             {
                 Destroy(Modle);
             }
-            Modle = new OBJLoader().Load(textStream);
-            Modle.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
-            Modle.transform.Rotate(-90f, 0f, 0f, Space.Self);
+            Modle = new OBJLoader().Load(textStream,MTLStream);
+            Modle.transform.localScale = new Vector3(150f, 150f, 150f);
+            Modle.transform.Rotate(0f, 0f, 0f, Space.Self);
             Modle.name = "MainCiruitBoard";
 
             // Iterate through all the children of the parent model
