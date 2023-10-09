@@ -97,7 +97,7 @@ public class LoadFile : MonoBehaviour
                 MeshCollider mc = child.gameObject.AddComponent<MeshCollider>();
                 mc.sharedMesh = child.GetComponent<MeshFilter>().sharedMesh;
             }
-
+            //Destroy(Modle.GetComponent<MeshCollider>());
             if (Modle)
             {
                 SceneManager.GetComponent<SceneHandler>().UpdateModel(Modle);
