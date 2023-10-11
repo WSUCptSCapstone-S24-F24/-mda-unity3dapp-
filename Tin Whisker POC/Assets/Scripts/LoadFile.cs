@@ -85,17 +85,22 @@ public class LoadFile : MonoBehaviour
             Modle.transform.localScale = new Vector3(150f, 150f, 150f);
             Modle.transform.Rotate(0f, 0f, 0f, Space.Self);
             Modle.name = "MainCiruitBoard";
-
+            int i = 0;
             // Iterate through all the children of the parent model
             foreach (Transform child in Modle.transform)
             {
+              
                 // Add a kinematic rigidbody to the child
                 Rigidbody rb = child.gameObject.AddComponent<Rigidbody>();
+                child.gameObject.name = "CO"+i.ToString();
+                child.gameObject.tag = "Part";
                 rb.isKinematic = true;
 
                 // Add a mesh collider to the child
                 MeshCollider mc = child.gameObject.AddComponent<MeshCollider>();
                 mc.sharedMesh = child.GetComponent<MeshFilter>().sharedMesh;
+                i++;
+                child.gameObject.layer = 10;
             }
             //Destroy(Modle.GetComponent<MeshCollider>());
             if (Modle)

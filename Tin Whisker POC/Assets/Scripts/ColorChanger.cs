@@ -24,7 +24,7 @@ public class ColorChanger : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Collision detected");
-        if (collision.gameObject == object1)
+        if (collision.gameObject == object1 )
         {
            
            hasCollidedWithObject1 = true;
