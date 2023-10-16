@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 595336185}
   - component: {fileID: 595336184}
   - component: {fileID: 595336183}
+  - component: {fileID: 595336188}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -155,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5f69d2a02943147abd92b31afadcbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shortDetector: {fileID: 595336188}
   cylinder: {fileID: 761828300}
   simulationDuration: 0
   cylinder_clone: []
@@ -236,6 +238,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &595336188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595336182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9e3f8b40deb4d42a94d6098e131eda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whiskers: []
+  maxBridgingWhiskers: 10
 --- !u!1 &761828300
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,12 +377,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 761828300}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad3dea2db7a7a554797250f93a0ae590, type: 3}
+  m_Script: {fileID: 11500000, guid: c92446b5f4347df449a6ca1a4bead193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  object1: {fileID: 0}
-  object2: {fileID: 0}
-  targetColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!1 &1313930585
 GameObject:
   m_ObjectHideFlags: 0

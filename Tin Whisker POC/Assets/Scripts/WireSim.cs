@@ -6,6 +6,7 @@ using SimInfo;
 
 public class WireSim : MonoBehaviour
 {
+    public ShortDetector shortDetector;
     public SimState simState;
     public GameObject cylinder;
     public float simulationDuration;
@@ -79,6 +80,11 @@ public class WireSim : MonoBehaviour
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
             cylinder_clone.Add(newCylinder);
+            WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
+                if (whiskerCollider && shortDetector) 
+                {
+                    shortDetector.whiskers.Add(whiskerCollider);
+                }
 
             float lengthMultiplier = LognormalRandom(simState.LengthMu, simState.LengthSigma);
             float widthMultiplier = LognormalRandom(simState.WidthMu, simState.WidthSigma);
