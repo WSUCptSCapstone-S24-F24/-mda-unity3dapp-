@@ -10,7 +10,7 @@ public class Vibration : MonoBehaviour
     public float amplitude = 1.0f;      // Amplitude of the sine wave.
     public float speed = 2.0f;  // Speed of the movement.
     private Vector3 initialPosition;     // Initial position of the GameObject.
-    private bool status = false;
+    private bool status = true;
 
     public void Start()
     {
