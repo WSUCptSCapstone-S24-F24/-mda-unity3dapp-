@@ -12,34 +12,35 @@ public class ShortDetector : MonoBehaviour
     private HashSet<(GameObject, GameObject)> bridgedComponentPairs = new HashSet<(GameObject, GameObject)>();
     private Coroutine whiskerCheckCoroutine;
 
-    private void Start()
-    {
-        whiskerCheckCoroutine = StartCoroutine(CheckWhiskersRoutine());
-    }
+    // private void Start()
+    // {
+    //     whiskerCheckCoroutine = StartCoroutine(CheckWhiskersRoutine());
+    // }
 
     private IEnumerator CheckWhiskersRoutine()
     {
-        while (true)
-        {
-            for (int i = 0; i < whiskers.Count; i++)
-            {
-                if (whiskers[i].IsBridgingComponents())
-                {
-                    // Get the two components the whisker is bridging
-                    GameObject[] components = whiskers[i].GetBridgedComponents();
+        // while (true)
+        // {
+        //     for (int i = 0; i < whiskers.Count; i++)
+        //     {
+        //         if (whiskers[i].IsBridgingComponents())
+        //         {
+        //             // Get the two components the whisker is bridging
+        //             GameObject[] components = whiskers[i].GetBridgedComponents();
 
-                    // Store the components in a normalized order (smallest instance ID first)
-                    (GameObject, GameObject) pair = NormalizePair(components[0], components[1]);
-                    bridgedComponentPairs.Add(pair);
-                }
+        //             // Store the components in a normalized order (smallest instance ID first)
+        //             (GameObject, GameObject) pair = NormalizePair(components[0], components[1]);
+        //             bridgedComponentPairs.Add(pair);
+        //         }
 
-                // Wait for next frame after checking a few whiskers (you can adjust this number)
-                if (i % 100 == 0)
-                {
-                    yield return null;
-                }
-            }
-        }
+        //         // Wait for next frame after checking a few whiskers (you can adjust this number)
+        //         if (i % 100 == 0)
+        //         {
+        //             yield return null;
+        //         }
+        //     }
+        // }
+        return null;
     }
 
     

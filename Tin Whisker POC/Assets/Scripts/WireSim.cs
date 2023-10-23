@@ -62,7 +62,7 @@ public class WireSim : MonoBehaviour
 
 
         // Get the game object that the user loaded and attach it to the cylinder colorchanger script
-        cylinder.GetComponent<ColorChanger>().object1 = simState.Model;
+        // cylinder.GetComponent<ColorChanger>().object1 = simState.Model;
 
         //print current scene name
         Debug.Log("Current scene is:" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
@@ -80,11 +80,11 @@ public class WireSim : MonoBehaviour
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
             cylinder_clone.Add(newCylinder);
-            WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
-                if (whiskerCollider && shortDetector) 
-                {
-                    shortDetector.whiskers.Add(whiskerCollider);
-                }
+            // WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
+            //     if (whiskerCollider && shortDetector) 
+            //     {
+            //         shortDetector.whiskers.Add(whiskerCollider);
+            //     }
 
             float lengthMultiplier = LognormalRandom(simState.LengthMu, simState.LengthSigma);
             float widthMultiplier = LognormalRandom(simState.WidthMu, simState.WidthSigma);
