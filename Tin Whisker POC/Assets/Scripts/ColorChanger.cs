@@ -7,6 +7,8 @@ public class ColorChanger : MonoBehaviour
     public GameObject object1;
     public GameObject object2;
     public Color targetColor;
+    
+
 
     private MeshRenderer objectRenderer;
     private bool hasCollidedWithObject1;
@@ -22,14 +24,16 @@ public class ColorChanger : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Collision detected");
-        if (collision.gameObject == object1)
+        if (collision.gameObject == object1 )
         {
-            hasCollidedWithObject1 = true;
+           
+           hasCollidedWithObject1 = true;
+           
         }
 
         if (collision.gameObject == object2)
         {
-            hasCollidedWithObject2 = true;
+           hasCollidedWithObject2 = true;
         }
 
         if (hasCollidedWithObject1 && hasCollidedWithObject2)
