@@ -85,6 +85,7 @@ public class LoadFile : MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Get(url);
         UnityWebRequest mmm = UnityWebRequest.Get(mtl);
         yield return www.SendWebRequest();
+        yield return mmm.SendWebRequest();
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.Log("WWW ERROR: " + www.error);
