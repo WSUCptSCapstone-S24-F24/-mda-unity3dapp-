@@ -7,10 +7,12 @@ public class Vibration : MonoBehaviour
 {
     public GameObject Board;
 
-    public float amplitude = 1.0f;      // Amplitude of the sine wave.
-    public float speed = 2.0f;  // Speed of the movement.
+    public float amplitude;      // Amplitude of the sine wave.
+    public float speed;  // Speed of the movement.
     private Vector3 initialPosition;     // Initial position of the GameObject.
     private bool status = true;
+
+    private float t;
 
     public void Start()
     {
@@ -21,11 +23,12 @@ public class Vibration : MonoBehaviour
             status = false;
         else
             status = true;
+            t = Time.time;
     }
 
     void Update()
     {
-        float verticalPosition = initialPosition.y + amplitude * Mathf.Sin(speed * Time.time);
+        float verticalPosition = initialPosition.y + amplitude * Mathf.Sin(speed * (Time.time - t));
 
         if (status)
         {

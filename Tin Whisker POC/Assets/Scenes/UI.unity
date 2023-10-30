@@ -2041,7 +2041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button1: {fileID: 1574890781}
   textBox1: {fileID: 1494976104}
-  textBox2: {fileID: 0}
+  textBox2: {fileID: 405299954}
 --- !u!1 &405299954
 GameObject:
   m_ObjectHideFlags: 0
@@ -3143,7 +3143,7 @@ GameObject:
   - component: {fileID: 610154733}
   - component: {fileID: 610154732}
   - component: {fileID: 610154731}
-  - component: {fileID: 610154730}
+  - component: {fileID: 610154734}
   m_Layer: 5
   m_Name: Start Shocker
   m_TagString: Untagged
@@ -3172,21 +3172,6 @@ RectTransform:
   m_AnchoredPosition: {x: 126.2, y: -151}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &610154730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610154728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29d058a615fb59345b5e292ccd4fef91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Board: {fileID: 0}
-  amplitude: 1
-  speed: 1
 --- !u!114 &610154731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3231,20 +3216,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610154730}
-        m_TargetAssemblyTypeName: Vibration, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 610154730}
-        m_TargetAssemblyTypeName: Vibration, Assembly-CSharp
+      - m_Target: {fileID: 610154734}
+        m_TargetAssemblyTypeName: Shock, Assembly-CSharp
         m_MethodName: Start
         m_Mode: 1
         m_Arguments:
@@ -3293,6 +3266,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 610154728}
   m_CullTransparentMesh: 1
+--- !u!114 &610154734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610154728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ec20bde24212c469317bb11d67d284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Board: {fileID: 0}
+  amplitude: 1
+  speed: 10
 --- !u!1 &624816597
 GameObject:
   m_ObjectHideFlags: 0
@@ -9496,8 +9484,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Board: {fileID: 0}
-  amplitude: 1
-  speed: 1
+  amplitude: 0.01
+  speed: 25
 --- !u!1 &1577287056
 GameObject:
   m_ObjectHideFlags: 0
