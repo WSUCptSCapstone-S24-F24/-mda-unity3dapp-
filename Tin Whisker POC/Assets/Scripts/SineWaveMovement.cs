@@ -36,17 +36,20 @@ public class SineWaveMovement : MonoBehaviour
     private Vector3 startPosition;
     private Rigidbody rb;
 
-    void Start()
+    public void Start()
     {
         startPosition = transform.position;
         rb = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
-    {
-        float newYPosition = startPosition.y + Mathf.Sin(Time.time * speed) * magnitude;
-        Vector3 newPos = new Vector3(startPosition.x, newYPosition, startPosition.z);
-        
-        rb.MovePosition(newPos);
-    }
+    //void FixedUpdate()
+    //{
+    //    if(status)
+    //    {
+    //        float newYPosition = startPosition.y + Mathf.Sin(Time.time * speed) * magnitude;
+    //        Vector3 newPos = new Vector3(startPosition.x, newYPosition, startPosition.z);
+
+    //        rb.MovePosition(newPos);
+    //    }
+    //}
 }
