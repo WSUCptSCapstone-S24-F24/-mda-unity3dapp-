@@ -12,35 +12,42 @@ public class ShortDetector : MonoBehaviour
     private HashSet<(GameObject, GameObject)> bridgedComponentPairs = new HashSet<(GameObject, GameObject)>();
     private Coroutine whiskerCheckCoroutine;
 
-    // private void Start()
-    // {
-    //     whiskerCheckCoroutine = StartCoroutine(CheckWhiskersRoutine());
-    // }
+    private void Start()
+    {
+        whiskerCheckCoroutine = StartCoroutine(CheckWhiskersRoutine());
+    }
 
     private IEnumerator CheckWhiskersRoutine()
     {
-        // while (true)
-        // {
-        //     for (int i = 0; i < whiskers.Count; i++)
-        //     {
-        //         if (whiskers[i].IsBridgingComponents())
-        //         {
-        //             // Get the two components the whisker is bridging
-        //             GameObject[] components = whiskers[i].GetBridgedComponents();
+        while (true)
+        {
+            if (whiskers.Count == 0)
+            {
+                Debug.LogError("No whiskers assigned to ShortDetector");
+                yield return new WaitForSeconds(1.0f);
+                continue; // Continue the while loop if no whiskers are found
+            }
 
-        //             // Store the components in a normalized order (smallest instance ID first)
-        //             (GameObject, GameObject) pair = NormalizePair(components[0], components[1]);
-        //             bridgedComponentPairs.Add(pair);
-        //         }
+            for (int i = 0; i < whiskers.Count; i++)
+            {
+                if (whiskers[i].IsBridgingComponents())
+                {
+                    // Get the two components the whisker is bridging
+                    GameObject[] components = whiskers[i].GetBridgedComponents();
 
-        //         // Wait for next frame after checking a few whiskers (you can adjust this number)
-        //         if (i % 100 == 0)
-        //         {
-        //             yield return null;
-        //         }
-        //     }
-        // }
-        return null;
+                    // Store the components in a normalized order (smallest instance ID first)
+                    (GameObject, GameObject) pair = NormalizePair(components[0], components[1]);
+                    bridgedComponentPairs.Add(pair);
+                }
+
+                // Wait for next frame after checking a few whiskers (you can adjust this number)
+                if (i % 100 == 0)
+                {
+                    yield return null;
+                }
+            }
+        }
+        //return null;
     }
 
     
@@ -56,7 +63,7 @@ public class ShortDetector : MonoBehaviour
         }
     }
 
-    private void StopWhiskerChecks()
+    public void StopWhiskerChecks()
     {
         if (whiskerCheckCoroutine != null)
         {
@@ -75,10 +82,12 @@ public class ShortDetector : MonoBehaviour
 
         // Use StringBuilder for efficient string manipulations
         StringBuilder stringBuilder = new StringBuilder();
-
+        stringBuilder.AppendLine("Bridged Component Pairs:");
+        
+        // Write the number of bridged component pairs
         foreach (var pair in bridgedComponentPairs)
         {
-            string line = "Bridged Components: " + pair.Item1.name + " and " + pair.Item2.name;
+            string line = "(" + pair.Item1.name + "," + pair.Item2.name + ")";
             stringBuilder.AppendLine(line);
         }
 

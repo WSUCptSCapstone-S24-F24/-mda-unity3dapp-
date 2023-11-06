@@ -79,10 +79,6 @@ public class WireSim : MonoBehaviour
         LognormalRandom lognormalRandomLength = new LognormalRandom(simState.LengthMu, simState.LengthSigma);
         LognormalRandom lognormalRandomWidth = new LognormalRandom(simState.WidthMu, simState.WidthSigma);
 
-        //!!!!!!!!!!!!!!!!!!!!!!!!
-        //WhiskerCount = 10;
-        //!!!!!!!!!!!!!!!!!!!!!!!
-
         if (WhiskerCount > 1000)
         {
             WhiskerCount = 1000;
@@ -94,11 +90,18 @@ public class WireSim : MonoBehaviour
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
             cylinder_clone.Add(newCylinder);
-            // WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
-            //     if (whiskerCollider && shortDetector) 
-            //     {
-            //         shortDetector.whiskers.Add(whiskerCollider);
-            //     }
+            WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
+            if (whiskerCollider && shortDetector) 
+            {
+                Debug.Log("Adding whisker collider to the list, count is now: " + shortDetector.whiskers.Count);
+                shortDetector.whiskers.Add(whiskerCollider);
+            }else{
+                Debug.LogError("Whisker collider or short detector not found");
+                if (!shortDetector)
+                {
+                    Debug.LogError("Short detector not found");
+                }
+            }
 
             float lengthMultiplier = (float)lognormalRandomLength.NextDouble();
             float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
@@ -138,15 +141,10 @@ public class WireSim : MonoBehaviour
         }
     }
 
-    void SaveResults()
+    public void SaveResults()
     {   
         simState.SaveSimToJSON(myjsonPath);
-        StreamWriter writer = new StreamWriter(Application.persistentDataPath + "/Sim_Output_" + simState.simNumber + ".txt");
-        int pinsBridged = 0;
-        pinsBridged = Random.Range(0, 5);
-        writer.WriteLine("Pins Briged: " + pinsBridged);
-
-        writer.Close();
+        shortDetector.StopWhiskerChecks();
     }
 
     void QuitApplication()

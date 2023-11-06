@@ -16,6 +16,7 @@ public class SceneHandler : MonoBehaviour
     private bool argsParsed = false;
     public bool fileOpened = false;
     private int mySimNumber = -1;
+    private WireSim wireSim;
 
     public TMP_InputField WhiskerDensityText;
     public TMP_InputField LengthSigmaText;
@@ -259,5 +260,15 @@ public class SceneHandler : MonoBehaviour
             mySimNumber = 0;
         }
         argsParsed = true;
+    }
+
+    public void GetResultsForward(){
+        if (!wireSim) {
+            //Get object with sim tag then get its wire sim script
+            wireSim = GameObject.FindGameObjectWithTag("Sim").GetComponent<WireSim>();
+        }
+
+        //Get the results from the wire sim script
+        wireSim.SaveResults();
     }
 }

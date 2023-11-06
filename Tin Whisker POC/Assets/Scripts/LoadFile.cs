@@ -103,6 +103,7 @@ public class LoadFile : MonoBehaviour
             Modle.transform.Rotate(0f, 0f, 0f, Space.Self);
             Modle.name = "MainCiruitBoard";
 
+            
             // Usage:
             SetLayerRecursively(Modle, LayerMask.NameToLayer("Attachables"));
 
