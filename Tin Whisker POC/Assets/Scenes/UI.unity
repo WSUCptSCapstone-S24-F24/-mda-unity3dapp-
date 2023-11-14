@@ -556,7 +556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 145, y: -94}
+  m_AnchoredPosition: {x: 145, y: -74.8}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &195303472
@@ -730,7 +730,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -154.3, y: -14.199921}
+  m_AnchoredPosition: {x: -154.3, y: -14.199951}
   m_SizeDelta: {x: 212.8687, y: 66.7496}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &238418629
@@ -4719,7 +4719,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 13.3000145, y: -28.99997}
+  m_AnchoredPosition: {x: 13.3000145, y: -29}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &788810977
@@ -5280,7 +5280,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 42.70819, y: -14.531982}
+  m_AnchoredPosition: {x: 42.708252, y: -14.531982}
   m_SizeDelta: {x: 215.4431, y: 73.977905}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &868539159
@@ -5620,7 +5620,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 42.70819, y: -74.03198}
+  m_AnchoredPosition: {x: 42.708252, y: -74.03198}
   m_SizeDelta: {x: 215.4431, y: 73.977905}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &901359194
@@ -7457,7 +7457,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -162.7633, y: 22.600006}
+  m_AnchoredPosition: {x: -162.7633, y: 22.599976}
   m_SizeDelta: {x: 212.86871, y: 66.7496}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1164819318
@@ -9333,7 +9333,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 145.00002, y: -74}
+  m_AnchoredPosition: {x: 145.00002, y: -94.9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1560443713
