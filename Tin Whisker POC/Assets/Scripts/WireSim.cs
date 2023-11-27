@@ -118,11 +118,12 @@ public class WireSim : MonoBehaviour
             Debug.LogError("Sim number mismatch\nSim number: " + simState.simNumber + "\nMy sim number: " + mySimNumber);
         }
         
-        Debug.Log("Sim number: " + simState.simNumber + "\nMy sim number: " + mySimNumber + "\n trying to end simulation");
-        if (simState.simNumber >= 1 || mySimNumber >= 1){
-            Debug.Log("Ending simulation and saving results");
-            StartCoroutine(EndSimulationAfterDuration());
-        } 
+        
+        // Debug.Log("Sim number: " + simState.simNumber + "\nMy sim number: " + mySimNumber + "\n trying to end simulation");
+        // if (simState.simNumber >= 1 || mySimNumber >= 1){
+        //     Debug.Log("Ending simulation and saving results");
+        //     StartCoroutine(EndSimulationAfterDuration());
+        // } 
     }
 
      IEnumerator EndSimulationAfterDuration()
@@ -144,10 +145,16 @@ public class WireSim : MonoBehaviour
     public void SaveResults()
     {   
         simState.SaveSimToJSON(myjsonPath);
-        shortDetector.StopWhiskerChecks();
+        shortDetector.StopWhiskerChecks(mySimNumber);
     }
 
-    void QuitApplication()
+    public void SaveResults(int simNumber)
+    {
+        simState.SaveSimToJSON(myjsonPath);
+        shortDetector.StopWhiskerChecks(simNumber);
+    }
+
+    public void QuitApplication()
     {
         Debug.Log("Quitting application");
         Debug.Log("Sim number: " + simState.simNumber);

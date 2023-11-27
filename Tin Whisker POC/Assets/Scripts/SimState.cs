@@ -17,7 +17,11 @@ namespace SimInfo
         public float WidthMu;
         public float WidthSigma;
         public int simNumber;
-        public GameObject Model;
+        public float simDuration;
+        public string objfilePath;
+        public string mtlfilePath;
+        public bool fileOpened;
+
 
         public SimState(){
             // Default values

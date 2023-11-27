@@ -57,6 +57,7 @@ public class LoadFile : MonoBehaviour
     public void OnClickOpen()
     {
         string[] paths = StandaloneFileBrowser.OpenFilePanel("Open File", "", "obj", false);
+        Debug.Log(string.Join("Paths Returned: ", paths));
         string[] MTLPath = StandaloneFileBrowser.OpenFilePanel("Open File", "", "mtl", false);
         if (paths.Length > 0)
         {
@@ -65,6 +66,12 @@ public class LoadFile : MonoBehaviour
         }
     }
 #endif
+
+    public void LoadFromPath(string objPath, string mtlPath)
+    {
+        StartCoroutine(OutputRoutineOpen(objPath, mtlPath));
+    }
+    
     private static void SetLayerRecursively(GameObject obj, int newLayer)
     {
         if (obj == null)
@@ -128,7 +135,7 @@ public class LoadFile : MonoBehaviour
                 // Add a kinematic rigidbody to the child
                 Rigidbody rb = child.gameObject.AddComponent<Rigidbody>();
                 child.gameObject.name = "CO"+i.ToString();
-                child.gameObject.tag = "Part";
+                if(i != 0) { child.gameObject.tag = "Part"; }
                 rb.isKinematic = true;
                 rb.useGravity = false;  // Turn off gravity
                 rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
@@ -140,17 +147,10 @@ public class LoadFile : MonoBehaviour
                 i++;
                 child.gameObject.layer = 10;
             }
-            //Destroy(Modle.GetComponent<MeshCollider>());
-            // Update the SceneManager
-            if (Modle)
-            {
-                SceneManager.GetComponent<SceneHandler>().UpdateModel(Modle);
-            }
-            else
-            {
-                Debug.Log("Not MainCiruitBoard");
-            }
-            SceneManager.GetComponent<SceneHandler>().filePath = url;
+
+            // Save the file path to the scene handler, to be used in the Monte Carlo simulation
+            SceneManager.GetComponent<SceneHandler>().objfilePath = url;
+            SceneManager.GetComponent<SceneHandler>().mtlfilePath = mtl;
             //SceneManager.GetComponent<SceneHandler>().fileName = Path.GetFileName(url);
             SceneManager.GetComponent<SceneHandler>().fileOpened = true;
         }

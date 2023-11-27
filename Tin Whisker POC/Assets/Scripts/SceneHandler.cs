@@ -17,6 +17,7 @@ public class SceneHandler : MonoBehaviour
     public bool fileOpened = false;
     private int mySimNumber = -1;
     private WireSim wireSim;
+    public MonteCarloLauncher monteCarloLauncher;
 
     public TMP_InputField WhiskerDensityText;
     public TMP_InputField LengthSigmaText;
@@ -26,8 +27,11 @@ public class SceneHandler : MonoBehaviour
     public TMP_InputField SpawnAreaSizeXText;
     public TMP_InputField SpawnAreaSizeYText;
     public TMP_InputField SpawnAreaSizeZText;
+    public TMP_InputField SimDurationText;
+    public TMP_InputField SimQuantityText;
     public SimState simState;
-    public string filePath;
+    public string objfilePath;
+    public string mtlfilePath;
 
 
     private string rootJsonPath;
@@ -50,6 +54,7 @@ public class SceneHandler : MonoBehaviour
 
         
         LoadScene(sceneNum);
+
     }
 
     private void RootSimStart(){
@@ -102,6 +107,18 @@ public class SceneHandler : MonoBehaviour
             simState = JsonUtility.FromJson<SimState>(jsonString);
             simState.simNumber = mySimNumber;
             simState.SaveSimToJSON(myJsonPath);
+
+            if(simState.fileOpened){
+                objfilePath = simState.objfilePath;
+                mtlfilePath = simState.mtlfilePath;
+                fileOpened = simState.fileOpened;
+
+                //Get File Browser object in scene by name and call load from file path
+                GameObject fileBrowser = GameObject.Find("FileBrowser");
+                fileBrowser.GetComponent<LoadFile>().LoadFromPath(objfilePath, mtlfilePath);
+            }
+            StartCoroutine(EndSimulationAfterDuration());
+
         }else{
             Debug.LogError("Root Sim JSON file does not exist");
         }
@@ -164,31 +181,49 @@ public class SceneHandler : MonoBehaviour
 
                 if (float.TryParse(SpawnAreaSizeYText.text, out float result7))
         {
-            simState.spawnAreaSizeY = result6;
+            simState.spawnAreaSizeY = result7;
         }
         else
         {
             Debug.Log("Spawn Area Size is not a float");
         }
 
-                if (float.TryParse(SpawnAreaSizeZText.text, out float result8))
+        if (float.TryParse(SpawnAreaSizeZText.text, out float result8))
         {
-            simState.spawnAreaSizeZ = result6;
+            simState.spawnAreaSizeZ = result8;
         }
         else
         {
             Debug.Log("Spawn Area Size is not a float");
         }
-    }
 
-    public void UpdateModel(GameObject userModle)
-    {
-        simState.Model = userModle;
+        if (float.TryParse(SimDurationText.text, out float result9))
+        {
+            simState.simDuration = result9;
+        }
+        else
+        {
+            Debug.Log("Sim Duration is not a float");
+        }
+
+        if (int.TryParse(SimQuantityText.text, out int result10))
+        {
+            monteCarloLauncher.numSimulations = result10;
+        }
+        else
+        {
+            Debug.Log("Sim Quantity is not a float");
+        }
     }
 
     public void LoadScene(int buildnum)
     {
         getSimInputs();
+        if(fileOpened){
+            simState.objfilePath = objfilePath;
+            simState.mtlfilePath = mtlfilePath;
+            simState.fileOpened = fileOpened;
+        }
         simState.SaveSimToJSON(myJsonPath);
         if (!isSceneLoaded)
         {
@@ -238,8 +273,9 @@ public class SceneHandler : MonoBehaviour
 
     public void MonteCarlosim(){
         getSimInputs();
-        StartCoroutine(simState.SaveSimToJSONasync(rootJsonPath));
         LoadScene(2);
+        StartCoroutine(simState.SaveSimToJSONasync(rootJsonPath));
+        
     }
 
     public void ParseArgs()
@@ -269,6 +305,25 @@ public class SceneHandler : MonoBehaviour
         }
 
         //Get the results from the wire sim script
-        wireSim.SaveResults();
+        wireSim.SaveResults(mySimNumber);
+    }
+
+    IEnumerator EndSimulationAfterDuration()
+    {
+        float simulationDuration;
+        if(simState != null && simState.simDuration > 0){
+            simulationDuration = simState.simDuration;
+        }else{
+            simulationDuration = 10f;
+        }
+        yield return new WaitForSeconds(simulationDuration);
+        if(wireSim != null){
+            wireSim.SaveResults(mySimNumber);
+            wireSim.QuitApplication();
+        }else{
+            Debug.LogError("WireSim not found");
+            GetResultsForward();
+            wireSim.QuitApplication();
+        }
     }
 }
