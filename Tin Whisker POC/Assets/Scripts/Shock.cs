@@ -4,38 +4,43 @@ using UnityEngine;
 
 public class Shock : MonoBehaviour
 {
-    public GameObject Board;
+    private float intensity = 0.05f; // How high the object moves
+    private float duration = 0.025f; // Total duration of the effect (up and down)
 
-    public float amplitude;      // Amplitude of the sine wave.
-    public float speed;  // Speed of the movement.
-    private Vector3 initialPosition;     // Initial position of the GameObject.
-    private bool status = true;
-
-    private float t;
-
-    public void Start()
+    // Public method to start the shock effect
+    public void StartShock()
     {
-        Board = GameObject.FindWithTag("Board");
-        initialPosition = Board.transform.position; // Store the initial position of the GameObject.
-
-        if (status)
-            status = false;
-        else {
-                status = true;
-                t = Time.time;
-            }
+        GameObject boardObject = GameObject.FindGameObjectWithTag("Board");
+        if (boardObject != null)
+        {
+            StartCoroutine(iShock(boardObject));
+        }
     }
 
-    void Update()
+    IEnumerator iShock(GameObject target)
     {
-        if (Time.time - t > (speed/(3.14*2))) {
-            status = false;
-            return;
-        }
-        
-        float verticalPosition = initialPosition.y + amplitude * Mathf.Sin(speed * (Time.time - t));
+        Vector3 originalPosition = target.transform.position;
+        Vector3 targetPosition = originalPosition + Vector3.up * intensity; // Move up
 
-        if (status)
-            Board.transform.position = Vector3.MoveTowards(Board.transform.position, new Vector3(0f, verticalPosition, 0f), 1.0f);
+        // First half of the duration: move up
+        float elapsedTime = 0;
+        while (elapsedTime < duration / 2)
+        {
+            target.transform.position = Vector3.Lerp(originalPosition, targetPosition, (elapsedTime / (duration / 2)));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Second half of the duration: move down
+        elapsedTime = 0;
+        while (elapsedTime < duration / 2)
+        {
+            target.transform.position = Vector3.Lerp(targetPosition, originalPosition, (elapsedTime / (duration / 2)));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the object is exactly at its original position after the shock
+        target.transform.position = originalPosition;
     }
 }
