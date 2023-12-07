@@ -53,7 +53,7 @@ namespace SimInfo
 
         public void SaveSimToJSON(string jsonPath)
         {
-            Debug.Log("attempting to save sim to JSON");
+            Debug.Log("attempting to save sim to JSON | Path: " + jsonPath);
             // Serialize the simState to JSON
             string jsonString = JsonUtility.ToJson(this);
 
