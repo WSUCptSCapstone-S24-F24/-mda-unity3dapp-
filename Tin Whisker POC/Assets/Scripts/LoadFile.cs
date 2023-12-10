@@ -151,7 +151,7 @@ public class LoadFile : MonoBehaviour
             // Save the file path to the scene handler, to be used in the Monte Carlo simulation
             SceneManager.GetComponent<SceneHandler>().objfilePath = url;
             SceneManager.GetComponent<SceneHandler>().mtlfilePath = mtl;
-            //SceneManager.GetComponent<SceneHandler>().fileName = Path.GetFileName(url);
+            
             SceneManager.GetComponent<SceneHandler>().fileOpened = true;
         }
     }

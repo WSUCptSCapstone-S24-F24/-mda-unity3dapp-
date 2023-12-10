@@ -61,8 +61,7 @@ public class WireSim : MonoBehaviour
         }
 
 
-        // Get the game object that the user loaded and attach it to the cylinder colorchanger script
-        //cylinder.GetComponent<ColorChanger>().object1 = simState.Model;
+        
 
         //print current scene name
         Debug.Log("Current scene is:" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
@@ -72,7 +71,7 @@ public class WireSim : MonoBehaviour
 
         //Test the dimensions of the cylinder
         // // Write the header row
-        // writer.WriteLine("Cylinder Index,Length,Width");
+        
         Vector3 originalScale = cylinder.transform.localScale;
         float WhiskerCount = (simState.spawnAreaSizeX * simState.spawnAreaSizeY * simState.spawnAreaSizeZ) * simState.whiskerDensity;
 
@@ -107,23 +106,15 @@ public class WireSim : MonoBehaviour
             float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
             newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
 
-            // Write the cylinder index and length to the CSV file
-            //writer.WriteLine(i + "," + lengthMultiplier + "," + widthMultiplier);
+            
         }
 
-        // // Close the CSV file
-        // writer.Close();
+       
         if (simState.simNumber != mySimNumber)
         {
             Debug.LogError("Sim number mismatch\nSim number: " + simState.simNumber + "\nMy sim number: " + mySimNumber);
         }
         
-        
-        // Debug.Log("Sim number: " + simState.simNumber + "\nMy sim number: " + mySimNumber + "\n trying to end simulation");
-        // if (simState.simNumber >= 1 || mySimNumber >= 1){
-        //     Debug.Log("Ending simulation and saving results");
-        //     StartCoroutine(EndSimulationAfterDuration());
-        // } 
     }
 
      IEnumerator EndSimulationAfterDuration()

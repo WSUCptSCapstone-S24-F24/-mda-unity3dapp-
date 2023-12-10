@@ -88,9 +88,7 @@ public class SceneHandler : MonoBehaviour
         SpawnAreaSizeXText.text = "5";
         SpawnAreaSizeYText.text = "2";
         SpawnAreaSizeZText.text = "5";
-        // SpawnAreaSizeXText.text = simState.spawnAreaSizeX.ToString();
-        // SpawnAreaSizeYText.text = simState.spawnAreaSizeY.ToString();
-        // SpawnAreaSizeZText.text = simState.spawnAreaSizeZ.ToString();
+        
 
         // Get the float value from the text field
         getSimInputs();

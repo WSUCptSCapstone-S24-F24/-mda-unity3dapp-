@@ -44,7 +44,7 @@ public class MonteCarloLauncher : MonoBehaviour
             Process process = new Process();
             process.StartInfo.FileName = unityAppPath;
             process.StartInfo.Arguments = "-batchmode -nographics -simNumber " + i;
-            //process.StartInfo.Arguments = "-simNumber " + i;
+            
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
             process.Start();

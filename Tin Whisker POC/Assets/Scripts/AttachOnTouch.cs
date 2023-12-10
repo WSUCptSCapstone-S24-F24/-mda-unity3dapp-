@@ -17,10 +17,7 @@ public class AttachOnTouch : MonoBehaviour
             {
                 AttachFirstPoint(collision);
             }
-            // else if (contactPoints == 2)
-            // {
-            //     AttachToSecondObject(collision);
-            // }
+            
         }
     }
 
