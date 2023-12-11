@@ -4,9 +4,9 @@ Tin Whiskers group repository
 Matthew Sienkiewich - 011685126 | Gage Unruh - 11678602 | Trevor Wakefield - 11693919
 
 # To Run Program
-  ## Start Program
+   Start Program
     In order to start the simulation, simply double click on the start batch file, this will launch Unity
-  ## In simulation
+   In simulation
     Once in the simulation, click the load button to load in a PCB (printed circuit board). The load button will ask for two files, an OBJ and MTL file. Make sure these files are the same PCB or issues will occure.
     After the PCB has been loaded in, it will be visible in the simulation. This is where changes to the parameters in the simulation may be change. This includes the spawn area size, the denisty of the whiskers in that spawn area, sigma and mu for the lengths and widths of the whiskers.
     By clicking the "Get Results" button, an output will be generated from the current parameters and called sim_0.
@@ -16,5 +16,5 @@ Matthew Sienkiewich - 011685126 | Gage Unruh - 11678602 | Trevor Wakefield - 116
     To produce a heat map from the results, a valid python install must be downloaded. After this, use the pip command to install the requirements.txt: pip install -r requirements.txt.
     After calling pip install, in the same console, call: python heatmap.py. This will open a popup asking for the location of the simulation outputs. The outputs should be located in the "BridgedComponentsResults" folder.
     Once the folder is found, select it. This will open a window containing the heatmap. *IMPORTANT* The heatmap is not automatically saved so be sure to save the heatmap to a desired location.
-  ## To close program
+   To close program
     Alt-F4
