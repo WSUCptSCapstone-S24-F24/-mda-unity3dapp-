@@ -7,6 +7,13 @@ Gage Unruh - 11678602
 
 Trevor Wakefield - 11693919
 
+# To Build from Source
+   To build off of the simulation, you must clone the repo to a local repo on your device. Once this is done, open the Unity Hub app and click open project.
+
+   This will open a a pop up asking for a folder location for the Unity app. The Unity app is called Tin Whisker POC.
+
+   *IMPORANT* Make sure your version of Unity is 2021.3.21f1 or newer. If not, this might cause build errors.
+
 # To Run Program
    Start Program
 
