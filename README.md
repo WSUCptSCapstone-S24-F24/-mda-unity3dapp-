@@ -1,46 +1,68 @@
-# MDA_TWAG
-Tin Whiskers group repository
+Update your `README.md` using the template below. We are specifically interested in the installation instructions (e.g., all the gems, how to load real or seed data, etc.). This sample README was developed for a Rails project, so you can swap the "Gems" section of the "Installation" instructions to include add-ons that are relevant to you.
 
-Matthew Sienkiewich - 011685126
+If any of the sections in this template grows to more than one screen, consider placing it in its own file and linking to it from this file. Those files could live in a subdirectory called `docs`.
 
-Gage Unruh - 11678602
+**Make sure to check out the repo anew and test your installation instructions.**
 
-Trevor Wakefield - 11693919
+Provide a README file with the following information:
 
-# To Build from Source
-   To build off of the simulation, you must clone the repo to a local repo on your device. Once this is done, open the Unity Hub app and click open project.
+# Project Name
 
-   This will open a a pop up asking for a folder location for the Unity app. The Unity app is called Tin Whisker POC.
+## Project summary
 
-   *IMPORANT* Make sure your version of Unity is 2021.3.21f1 or newer. If not, this might cause build errors.
+### One-sentence description of the project
 
-# To Run Program
-   Start Program
+TODO: A 20-second elevator pitch of your project - its core idea summarized in one sentence.
 
-    In order to start the simulation, simply double click on the start batch file, this will launch Unity
+### Additional information about the project
 
+TODO: Write a compelling/creative/informative project description / summary
 
-   In simulation
+## Installation
 
-    Once in the simulation, click the load button to load in a PCB (printed circuit board). The load button will ask for two files, an OBJ and MTL file. Make sure these files are the same PCB or issues will occure.
+### Prerequisites
 
-    After the PCB has been loaded in, it will be visible in the simulation. This is where changes to the parameters in the simulation may be change. This includes the spawn area size, the denisty of the whiskers in that spawn area, sigma and mu for the lengths and widths of the whiskers.
+TODO: List what a user needs to have installed before running the installation instructions below (e.g., git, which versions of Ruby/Rails)
 
-    By clicking the "Get Results" button, an output will be generated from the current parameters and called sim_0.
+### Add-ons
 
-    Once satisfied by the parameters, click the start button, this will lock in the parameters to be used in the monte carlo simulation.
+TODO: List which add-ons are included in the project, and the purpose each add-on serves in your app.
 
-    To start the Monte Carlo, look at the bottom right to see the two input boxes. These inputs represent how many simulations are to be ran and how long these simulations run for.
+### Installation Steps
 
-    Once all the simulations have completed, the outputs will be sent to the "BridgedComponentsResults" folder and will be numbered starting from sim_1 to sim_n where n is the number of simulations set by the user.
-
-    To produce a heat map from the results, a valid python install must be downloaded. After this, use the pip command to install the requirements.txt: pip install -r requirements.txt.
-
-    After calling pip install, in the same console, call: python heatmap.py. This will open a popup asking for the location of the simulation outputs. The outputs should be located in the "BridgedComponentsResults" folder.
-
-    Once the folder is found, select it. This will open a window containing the heatmap. *IMPORTANT* The heatmap is not automatically saved so be sure to save the heatmap to a desired location.
+TODO: Describe the installation process (making sure you mention `bundle install`).
+Instructions need to be such that a user can just copy/paste the commands to get things set up and running. 
 
 
-   To close program
+## Functionality
 
-    Alt-F4
+TODO: Write usage instructions. Structuring it as a walkthrough can help structure this section,
+and showcase your features.
+
+
+## Known Problems
+
+TODO: Describe any known issues, bugs, odd behaviors or code smells. 
+Provide steps to reproduce the problem and/or name a file or a function where the problem lives.
+
+
+## Contributing
+
+TODO: Leave the steps below if you want others to contribute to your project.
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
+
+## Additional Documentation
+
+TODO: Provide links to additional documentation that may exist in the repo, e.g.,
+  * Sprint reports
+  * User links
+
+## License
+
+If you haven't already, add a file called `LICENSE.txt` with the text of the appropriate license.
+We recommend using the MIT license: <https://choosealicense.com/licenses/mit/>
