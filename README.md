@@ -1,68 +1,56 @@
-Update your `README.md` using the template below. We are specifically interested in the installation instructions (e.g., all the gems, how to load real or seed data, etc.). This sample README was developed for a Rails project, so you can swap the "Gems" section of the "Installation" instructions to include add-ons that are relevant to you.
-
-If any of the sections in this template grows to more than one screen, consider placing it in its own file and linking to it from this file. Those files could live in a subdirectory called `docs`.
-
-**Make sure to check out the repo anew and test your installation instructions.**
-
-Provide a README file with the following information:
-
-# Project Name
+# Tin Whiskers Unity 3D App
 
 ## Project summary
 
-### One-sentence description of the project
-
-TODO: A 20-second elevator pitch of your project - its core idea summarized in one sentence.
+It is this project's goal to develop a software tool that can capture a 3D model of a printed circuit board (PCB), identify its exposed conductors, simulate a storm of detached metal whiskers landing on the PCB, and provide analysis for recorded data.
 
 ### Additional information about the project
 
-TODO: Write a compelling/creative/informative project description / summary
+Our team’s primary objective with this project is to develop a software tool that will aid in preventing failures caused by tin whiskers. To do this we will use the Unity 3D Engine to map virtual a model of a printed circuit board (PCB). Then we will identify the exposed conductors on the PCB. Lastly, we can then simulate a problematic event of many detached metal whiskers being scattered about on the PCB and moving around due to airflow, vibrations, or current. The user will be able to define the composition of the whiskers; selecting from different materials such as tin, zinc, and cadmium. The user will also be able to specify simulation characteristics such as the number of whiskers, and the whisker’s length and thickness distributions. Additionally, the user will also have control over the “storm” event that causes the movement of the tin whiskers. Once the simulation is run, the tool will show all conductor pairs that became bridged by a whisker during the event. The probability of bridging or conductor pairs can be found using Monte Carlo simulations. Enhancements of the tool will add time-dependent forces such as gravity, zero gravity, air flow, vacuum, vibration, shock, and electrostatic forces (E-fields) all of which can affect the motion of the detached metal whiskers.
 
 ## Installation
 
 ### Prerequisites
 
-TODO: List what a user needs to have installed before running the installation instructions below (e.g., git, which versions of Ruby/Rails)
+* Unity (version 2021.3.21f1 or newer)
 
 ### Add-ons
 
-TODO: List which add-ons are included in the project, and the purpose each add-on serves in your app.
+* Python heat map generator
 
 ### Installation Steps
 
-TODO: Describe the installation process (making sure you mention `bundle install`).
-Instructions need to be such that a user can just copy/paste the commands to get things set up and running. 
-
+* Clone the repository with 'git clone https://github.com/WSUCptSCapstone-S24-F24/-mda-unity3dapp-.git'
+* Open Unity Hub and click on 'Add'
+* Navigate to folder with cloned repository and find and open the folder labeled 'Tin Whisker POC'
 
 ## Functionality
 
-TODO: Write usage instructions. Structuring it as a walkthrough can help structure this section,
-and showcase your features.
+Open a scene and start a simulation. Once in the simulation, click the load button to load in a PCB (printed circuit board). The load button will ask for two files, an OBJ and MTL file. Make sure these files are the same PCB or issues will occure.
 
+After the PCB has been loaded in, it will be visible in the simulation. This is where changes to the parameters in the simulation may be change. This includes the spawn area size, the denisty of the whiskers in that spawn area, sigma and mu for the lengths and widths of the whiskers.
+
+By clicking the "Get Results" button, an output will be generated from the current parameters and called sim_0.
+
+Once satisfied by the parameters, click the start button, this will lock in the parameters to be used in the monte carlo simulation.
+
+To start the Monte Carlo, look at the bottom right to see the two input boxes. These inputs represent how many simulations are to be ran and how long these simulations run for.
+
+Once all the simulations have completed, the outputs will be sent to the "BridgedComponentsResults" folder and will be numbered starting from sim_1 to sim_n where n is the number of simulations set by the user.
+
+To produce a heat map from the results, a valid python install must be downloaded. After this, use the pip command to install the requirements.txt: pip install -r requirements.txt.
+
+After calling pip install, in the same console, call: python heatmap.py. This will open a popup asking for the location of the simulation outputs. The outputs should be located in the "BridgedComponentsResults" folder.
+
+Once the folder is found, select it. This will open a window containing the heatmap. *IMPORTANT* The heatmap is not automatically saved so be sure to save the heatmap to a desired location.
+
+FUNCTIONALITY DIRECTIONS SOURCE: [WSUCapstoneS2023-MDA_TWAG](https://github.com/WSUCapstoneS2023/MDA_TWAG)
 
 ## Known Problems
 
-TODO: Describe any known issues, bugs, odd behaviors or code smells. 
-Provide steps to reproduce the problem and/or name a file or a function where the problem lives.
-
-
-## Contributing
-
-TODO: Leave the steps below if you want others to contribute to your project.
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+If the program will not close, press Alt-F4.
 
 ## Additional Documentation
-
-TODO: Provide links to additional documentation that may exist in the repo, e.g.,
-  * Sprint reports
-  * User links
-
-## License
-
-If you haven't already, add a file called `LICENSE.txt` with the text of the appropriate license.
-We recommend using the MIT license: <https://choosealicense.com/licenses/mit/>
+  * [LICENSE](LICENSE.txt)
+  * [Client Reports](ClientReports.md)
+  * [Sprint 1 Report](Sprint1Report.md)
