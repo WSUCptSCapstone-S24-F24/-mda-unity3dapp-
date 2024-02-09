@@ -1,5 +1,8 @@
 # Sprint 1 Report (1/8/2024 - 2/4/2024)
 
+## Demo Video
+Sprint 1 Demo Video: [Demo Video](https://youtu.be/HgCC78tZCsM)
+
 ## What's New (User Facing)
  * No new relevant elements added
 

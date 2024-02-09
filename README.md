@@ -4,9 +4,10 @@
 
 It is this project's goal to develop a software tool that can capture a 3D model of a printed circuit board (PCB), identify its exposed conductors, simulate a storm of detached metal whiskers landing on the PCB, and provide analysis for recorded data.
 
-### Additional information about the project
-
 Our team’s primary objective with this project is to develop a software tool that will aid in preventing failures caused by tin whiskers. To do this we will use the Unity 3D Engine to map virtual a model of a printed circuit board (PCB). Then we will identify the exposed conductors on the PCB. Lastly, we can then simulate a problematic event of many detached metal whiskers being scattered about on the PCB and moving around due to airflow, vibrations, or current. The user will be able to define the composition of the whiskers; selecting from different materials such as tin, zinc, and cadmium. The user will also be able to specify simulation characteristics such as the number of whiskers, and the whisker’s length and thickness distributions. Additionally, the user will also have control over the “storm” event that causes the movement of the tin whiskers. Once the simulation is run, the tool will show all conductor pairs that became bridged by a whisker during the event. The probability of bridging or conductor pairs can be found using Monte Carlo simulations. Enhancements of the tool will add time-dependent forces such as gravity, zero gravity, air flow, vacuum, vibration, shock, and electrostatic forces (E-fields) all of which can affect the motion of the detached metal whiskers.
+
+## Demo Videos
+Sprint 1 Demo Video: [Demo Video](https://youtu.be/HgCC78tZCsM)
 
 ## Installation
 
