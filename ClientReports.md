@@ -50,3 +50,33 @@ Here are changes we plan to implement as soon as possible:
    * Plan/layout for the goals of this project
 ---
 ---
+
+
+
+## Agenda (2/8/2024)
+ * Project Description Edit
+ * Tin Whisker
+ * Progress status check
+
+## Minutes (2/8/2024)
+
+During this meeting, the main topic of discussion was discuss our status on the Project Description and what potential edits we can make
+to make the document more accurate and presentable. Then the clients explained the Tin Whiskers to the team. 
+
+## Retrospective Summary (2/8/2024)
+Here's what went well:
+  * Asking questions about the Project Description and solving them
+  * Learn more about Tin Whiskers
+ 
+Here's what we'd like to improve:
+   * Our own implementation on the project
+   * Layout of future tasks
+   * Understanding clients' requirements 
+  
+Here are changes we plan to implement as soon as possible:
+   * Set up the repo and get going on coding
+   * Complete the solution approach
+
+
+---
+---
