@@ -4,13 +4,16 @@ using UnityEngine;
 using System.IO;
 using SimInfo;
 
+/// <summary>
+/// TODO: Fill
+/// </summary>
 public class WireSim : MonoBehaviour
 {
     public ShortDetector shortDetector;
     public SimState simState;
     public GameObject cylinder;
     public float simulationDuration;
-    //list of all the cylinders
+
     private string myjsonPath;
     private int mySimNumber;
     public List<GameObject> cylinder_clone = new List<GameObject>();
@@ -92,7 +95,7 @@ public class WireSim : MonoBehaviour
             WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
             if (whiskerCollider && shortDetector) 
             {
-                Debug.Log("Adding whisker collider to the list, count is now: " + shortDetector.whiskers.Count);
+                //Debug.Log("Adding whisker collider to the list, count is now: " + shortDetector.whiskers.Count);
                 shortDetector.whiskers.Add(whiskerCollider);
             }else{
                 Debug.LogError("Whisker collider or short detector not found");

@@ -16,16 +16,16 @@ public class MonteCarloLauncher : MonoBehaviour
         string[] args = System.Environment.GetCommandLineArgs();
         launchButton.onClick.AddListener(OnClick);
         
-        UnityEngine.Debug.Log("Command line argument length:" + args.Length);
+        //UnityEngine.Debug.Log("Command line argument length:" + args.Length);
         if (args.Length > 1)
         {
             for (int i = 1; i < args.Length; i++)
             {
-                UnityEngine.Debug.Log("Command line argument: " + args[i]);
+                //UnityEngine.Debug.Log("Command line argument: " + args[i]);
                 if (args[i] == "-filePath" && i + 1 < args.Length)
                 {
                     unityAppPath = args[i + 1];
-                    UnityEngine.Debug.Log("Unity app path: " + unityAppPath);
+                    //UnityEngine.Debug.Log("Unity app path: " + unityAppPath);
                     break;
                 }
             }

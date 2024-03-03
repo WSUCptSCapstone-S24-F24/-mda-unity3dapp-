@@ -59,13 +59,15 @@ public class LoadFile : MonoBehaviour
         string[] paths = StandaloneFileBrowser.OpenFilePanel("Open File", "", "obj", false);
         Debug.Log(string.Join("Paths Returned: ", paths));
         string[] MTLPath = StandaloneFileBrowser.OpenFilePanel("Open File", "", "mtl", false);
+
         if (paths.Length > 0)
         {
             Debug.Log("Selected File: " + paths[0]);
-            StartCoroutine(OutputRoutineOpen(new System.Uri(paths[0]).AbsoluteUri, new System.Uri(MTLPath[0]).AbsoluteUri ));
+            StartCoroutine(OutputRoutineOpen(new System.Uri(paths[0]).AbsoluteUri, new System.Uri(MTLPath[0]).AbsoluteUri));
         }
     }
 #endif
+
 
     public void LoadFromPath(string objPath, string mtlPath)
     {
@@ -86,6 +88,7 @@ public class LoadFile : MonoBehaviour
             SetLayerRecursively(child.gameObject, newLayer);
         }
     }
+
     private IEnumerator OutputRoutineOpen(string url, string mtl)
     {
         Debug.Log("File URI: " + url);
@@ -105,7 +108,7 @@ public class LoadFile : MonoBehaviour
             {
                 Destroy(Modle);
             }
-            Modle = new OBJLoader().Load(textStream,MTLStream);
+            Modle = new OBJLoader().Load(textStream, MTLStream);
             Modle.transform.localScale = new Vector3(150f, 150f, 150f);
             Modle.transform.Rotate(0f, 0f, 0f, Space.Self);
             Modle.name = "MainCiruitBoard";
