@@ -1,7 +1,7 @@
 # Sprint 2 Report (2/4/2024 - 3/4/2024)
 
 ## Demo Video
-Sprint 2 Demo Video: [Demo Video](https://youtu.be/)   
+Sprint 2 Demo Video: [Demo Video](https://youtu.be/hJ81NFluXlo)   
 
 ## What's New (User Facing)
  * Tin Whisker Simulation Tool: Introduction of a virtual model of a printed circuit board (PCB) within the Unity 3D Engine from the previous team.
@@ -27,7 +27,10 @@ Material Selection for Simulation: Users select from different whisker materials
      * Size of whiskers and PCB are specified and known
  
  ## Incomplete Issues/User Stories
-No issues or user stories for sprint 2
+  * Node system and correct naming 
+     * Each component has a name
+     * Each component has nodes
+     * Each node belongs to component and has a name
 
 ## Code Files for Review
 All of the code files for this project can be found here
