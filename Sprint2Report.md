@@ -1,37 +1,53 @@
 # Sprint 2 Report (2/4/2024 - 3/4/2024)
 
 ## Demo Video
-Sprint 2 Demo Video: [Demo Video](https://youtu.be/HgCC78tZCsM)
+Sprint 2 Demo Video: [Demo Video](https://youtu.be/hJ81NFluXlo)   
 
 ## What's New (User Facing)
- * No new relevant elements added
+ * Tin Whisker Simulation Tool: Introduction of a virtual model of a printed circuit board (PCB) within the Unity 3D Engine from the previous team.
+ * Enhanced Simulation Controls: refactoring, reorganizing, and understanding the code from the previous team (As well as a few user centered optimizations).
 
 ## Work Summary (Developer Facing)
-In Sprint 2, our team introduced ourselves to our client partners with a Team Inventory. We then met with our clients. One of NASA's tin whisker experts, Jay Brusse, gave us an overview of what tin whiskers are, how they cause problems, and a general overview of the goal of our project. We then set up two meetings with the previous capstone team for this project. We also created a TEAMS group to easily communicate. They gave us a run-through of the project software. They also provided what they had left of the documentation from their project. Lastly, we set up our GitHub repo with the previous team's project.
+During this sprint, our team officially merged the code from previous teams. Utilizing the Unity 3D Engine, we successfully mapped a virtual model of a PCB and implemented features to identify exposed conductors. We encountered challenges in accurately modeling the whisker materials and their interactions. However, through collaborative problem-solving and leveraging advanced Monte Carlo simulation techniques, we have made substantial progress. This work not only advances our tool's capabilities but also enriches our team's understanding of complex simulation environments.
 
 ## Unfinished Work
-Our group has not yet had the opportunity to discuss with our clients the plan of the completion goals for each sprint. We plan to lay out the goals in our next meeting, but at this time we are waiting to hear more. 
+Material Selection for Simulation: Users select from different whisker materials such as tin, zinc, and cadmium for more accurate simulation results.
 
 ## Completed Issues/User Stories
-No issues or user stories for sprint 2
+  * Size/scale is shown to user 
+  * Multiple OS system file openers 
+  * Node system and correct naming 
+     * Each component has a name
+     * Each component has nodes
+     * Each node belongs to component and has a name
+  * Remove unnecessary files and code 
+  * Reorganize files and directories 
+  * More refined simulation runner 
+     * UI
+     * Size of whiskers and PCB are specified and known
  
  ## Incomplete Issues/User Stories
-No issues or user stories for sprint 2
+  * Node system and correct naming 
+     * Each component has a name
+     * Each component has nodes
+     * Each node belongs to component and has a name
 
 ## Code Files for Review
-All of the code files for this project were cloned from the previous team's work. Their work can be found here:
+All of the code files for this project can be found here
  [WSUCapstoneS2023-MDA_TWAG](https://github.com/WSUCapstoneS2023/MDA_TWAG).
  
 ## Retrospective Summary
 Here's what went well:
-  * Familiarized our team with our clients and mentors
-  * Became familiar with the previous Tin Whiskers Unity 3D App Team
-  * Gained understanding of tin (and other metal) whiskers
-  * Understanding of the long-term goals of the project
+  * Successful mapping of a virtual PCB model within Unity.
+  * Implementation of user-selectable whisker materials.
+  * Development of an interactive interface for simulation parameters.
  
 Here's what we'd like to improve:
-   * Understanding of the short-term goals of the project
-   * Planning of the work for each spring and what is expected of our team
+   * Accuracy of environmental force simulations.
+   * Efficiency of the Monte Carlo simulation for predicting conductor bridging.
+   * User experience in defining complex simulation scenarios.
   
 Here are changes we plan to implement in the next sprint:
-   * Create a detailed layout for our to-do's each sprint
+   * Integrate more accurate models for gravity and other environmental forces.
+   * Enhance the Monte Carlo simulation for faster and more accurate predictions.
+   * Improve the UI/UX for easier setup and control of simulation parameters.
