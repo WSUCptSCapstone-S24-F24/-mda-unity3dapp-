@@ -1,6 +1,7 @@
 Shader "Custom/GridShader" {
     Properties {
         _Color ("Color", Color) = (1,1,1,1)
+        _FadeDistance ("Fade Distance", Float) = 10
         _GridSpacing ("Grid Spacing", Float) = 1
         _LineThickness ("Line Thickness", Range(0.001, 0.1)) = 0.01
         _DashLength ("Dash Length", Float) = 0.05
@@ -32,11 +33,11 @@ Shader "Custom/GridShader" {
                 float4 worldPos : TEXCOORD1; // Pass world position to fragment shader
             };
             
-            sampler2D _MainTex;
             fixed4 _Color;
             float _GridSpacing;
             float _LineThickness;
             float _DashLength;
+            float _FadeDistance;
             
             v2f vert (appdata v) {
                 v2f o;
@@ -53,31 +54,38 @@ Shader "Custom/GridShader" {
                 
                 // Calculate distance from camera
                 float distanceToCamera = distance(worldPos, _WorldSpaceCameraPos);
-            
+                
                 // Calculate fade factor based on distance
-                float fadeFactor = saturate(1.0 - distanceToCamera / _FadeDistance);
-            
+                float fadeFactor = saturate((1.0 - distanceToCamera / _FadeDistance));
+                
                 // Calculate grid UV coordinates
                 float2 gridUV = i.uv * _GridSpacing;
-            
+                
                 // Calculate grid lines
                 float2 gridLines = frac(gridUV);
+
+                // Determine the length of a single dash and gap
+                float dashLength = _DashLength;
+                float gapLength = 0.1;
                 
+                // Calculate the position within a single dash-gap segment
+                float dashPosX = gridLines.x - floor(gridLines.x / (dashLength + gapLength)) * (dashLength + gapLength);
+                float dashPosY = gridLines.y - floor(gridLines.y / (dashLength + gapLength)) * (dashLength + gapLength);
+
                 // Determine if the current position falls within a dash or a gap
-                float dashPosX = gridLines.x - floor(gridLines.x / (_DashLength + _GapLength)) * (_DashLength + _GapLength);
-                float dashPosY = gridLines.y - floor(gridLines.y / (_DashLength + _GapLength)) * (_DashLength + _GapLength);
-                float isDashX = (dashPosX < _DashLength) ? 1.0 : 0.0;
-                float isDashY = (dashPosY < _DashLength) ? 1.0 : 0.0;
-            
+                float isDashX = (dashPosX < dashLength) ? 1.0 : 0.0;
+                float isDashY = (dashPosY < dashLength) ? 1.0 : 0.0;
+                
                 // Adjust the thickness of the dashed lines
                 float2 offset = abs(gridLines - 0.5);
                 float lineThickness = 0.5 - _LineThickness;
                 float2 thickness = clamp((lineThickness - offset) / _LineThickness, 0, 1);
                 float gridLine = min(thickness.x, thickness.y);
-            
+                
                 // Invert the grid line to color the lines instead of spaces between
                 return _Color * (1 - gridLine) * isDashX * isDashY * fadeFactor;
-            }        
+            }
+                 
             
             ENDCG
         }
