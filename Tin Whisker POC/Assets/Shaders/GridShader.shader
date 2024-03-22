@@ -10,7 +10,9 @@ Shader "Custom/GridShader" {
         LOD 200
         
         Pass {
-            ZWrite Off
+            ZWrite On
+            ZTest Always // Always render the grid regardless of depth
+            
             Blend SrcAlpha OneMinusSrcAlpha
             Cull Off // Disable backface culling to render both sides of the geometry
             
@@ -44,33 +46,38 @@ Shader "Custom/GridShader" {
                 return o;
             }
             
+            
             fixed4 frag (v2f i) : SV_Target {
+                // Calculate world space position from the interpolated vertex position
+                float3 worldPos = i.worldPos.xyz / i.worldPos.w;
+                
+                // Calculate distance from camera
+                float distanceToCamera = distance(worldPos, _WorldSpaceCameraPos);
+            
+                // Calculate fade factor based on distance
+                float fadeFactor = saturate(1.0 - distanceToCamera / _FadeDistance);
+            
+                // Calculate grid UV coordinates
                 float2 gridUV = i.uv * _GridSpacing;
+            
+                // Calculate grid lines
                 float2 gridLines = frac(gridUV);
                 
-                // Determine the length of a single dash and gap
-                float dashLength = _DashLength;
-                float gapLength = 0.1;
-                
-                // Calculate the position within a single dash-gap segment
-                float dashPosX = gridLines.x - floor(gridLines.x / (dashLength + gapLength)) * (dashLength + gapLength);
-                float dashPosY = gridLines.y - floor(gridLines.y / (dashLength + gapLength)) * (dashLength + gapLength);
-
                 // Determine if the current position falls within a dash or a gap
-                float isDashX = (dashPosX < dashLength) ? 1.0 : 0.0;
-                float isDashY = (dashPosY < dashLength) ? 1.0 : 0.0;
-                
+                float dashPosX = gridLines.x - floor(gridLines.x / (_DashLength + _GapLength)) * (_DashLength + _GapLength);
+                float dashPosY = gridLines.y - floor(gridLines.y / (_DashLength + _GapLength)) * (_DashLength + _GapLength);
+                float isDashX = (dashPosX < _DashLength) ? 1.0 : 0.0;
+                float isDashY = (dashPosY < _DashLength) ? 1.0 : 0.0;
+            
                 // Adjust the thickness of the dashed lines
                 float2 offset = abs(gridLines - 0.5);
                 float lineThickness = 0.5 - _LineThickness;
                 float2 thickness = clamp((lineThickness - offset) / _LineThickness, 0, 1);
-                
-                // Combine thickness for horizontal and vertical lines
                 float gridLine = min(thickness.x, thickness.y);
-                
+            
                 // Invert the grid line to color the lines instead of spaces between
-                return _Color * (1 - gridLine) * isDashX * isDashY;
-            }           
+                return _Color * (1 - gridLine) * isDashX * isDashY * fadeFactor;
+            }        
             
             ENDCG
         }
