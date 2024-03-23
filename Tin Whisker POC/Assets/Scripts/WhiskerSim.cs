@@ -7,7 +7,7 @@ using SimInfo;
 /// <summary>
 /// TODO: Fill
 /// </summary>
-public class WireSim : MonoBehaviour
+public class WhiskerSim : MonoBehaviour
 {
     public ShortDetector shortDetector;
     public SimState simState;

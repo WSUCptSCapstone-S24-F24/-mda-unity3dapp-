@@ -16,7 +16,7 @@ public class SceneHandler : MonoBehaviour
     private bool argsParsed = false;
     public bool fileOpened = false;
     private int mySimNumber = -1;
-    private WireSim wireSim;
+    private WhiskerSim whiskerSim;
     public MonteCarloLauncher monteCarloLauncher;
 
     public TMP_InputField WhiskerDensityText;
@@ -56,7 +56,7 @@ public class SceneHandler : MonoBehaviour
             Debug.LogError("SimState not found");
         }
 
-        LoadScene(sceneNum);
+        // LoadScene(sceneNum);
     }
 
     private void InitializeSimulation()
@@ -317,14 +317,14 @@ public class SceneHandler : MonoBehaviour
 
     public void GetResultsForward()
     {
-        if (!wireSim)
+        if (!whiskerSim)
         {
-            //Get object with sim tag then get its wire sim script
-            wireSim = GameObject.FindGameObjectWithTag("Sim").GetComponent<WireSim>();
+            //Get object with sim tag then get its whisker sim script
+            whiskerSim = GameObject.FindGameObjectWithTag("Sim").GetComponent<WhiskerSim>();
         }
 
-        //Get the results from the wire sim script
-        wireSim.SaveResults(mySimNumber);
+        //Get the results from the whisker sim script
+        whiskerSim.SaveResults(mySimNumber);
     }
 
     IEnumerator EndSimulationAfterDuration()
@@ -339,16 +339,16 @@ public class SceneHandler : MonoBehaviour
             simulationDuration = 10f;
         }
         yield return new WaitForSeconds(simulationDuration);
-        if (wireSim != null)
+        if (whiskerSim != null)
         {
-            wireSim.SaveResults(mySimNumber);
-            wireSim.QuitApplication();
+            whiskerSim.SaveResults(mySimNumber);
+            whiskerSim.QuitApplication();
         }
         else
         {
-            Debug.LogError("WireSim not found");
+            Debug.LogError("Whisker Sim not found");
             GetResultsForward();
-            wireSim.QuitApplication();
+            whiskerSim.QuitApplication();
         }
     }
 }
