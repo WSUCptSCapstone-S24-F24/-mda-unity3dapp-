@@ -1,10 +1,10 @@
 Shader "Custom/GridShader" {
     Properties {
         _Color ("Color", Color) = (1,1,1,1)
-        _FadeDistance ("Fade Distance", Float) = 10
-        _GridSpacing ("Grid Spacing", Float) = 1
-        _LineThickness ("Line Thickness", Range(0.001, 0.1)) = 0.01
-        _DashLength ("Dash Length", Float) = 0.05
+        _FadeDistance ("Fade Distance", Float) = 100
+        _GridSpacing ("Grid Spacing", Float) = 100
+        _LineThickness ("Line Thickness", Range(0.001, 0.1)) = 0.003
+        _DashLength ("Dash Length", Float) = 0.02
     }
     SubShader {
         Tags { "Queue" = "Overlay" "IgnoreProjector" = "True" "RenderType"="Opaque" }
