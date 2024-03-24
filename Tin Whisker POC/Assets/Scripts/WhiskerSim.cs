@@ -4,16 +4,13 @@ using UnityEngine;
 using System.IO;
 using SimInfo;
 
-/// <summary>
-/// TODO: Fill
-/// </summary>
 public class WhiskerSim : MonoBehaviour
 {
     public ShortDetector shortDetector;
     public SimState simState;
     public GameObject cylinder;
     public float simulationDuration;
-
+    //list of all the cylinders
     private string myjsonPath;
     private int mySimNumber;
     public List<GameObject> cylinder_clone = new List<GameObject>();
@@ -91,11 +88,18 @@ public class WhiskerSim : MonoBehaviour
             Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX/2f, simState.spawnAreaSizeX/2f), Random.Range(1, simState.spawnAreaSizeY+1), Random.Range(-simState.spawnAreaSizeZ/2f, simState.spawnAreaSizeZ/2f));
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
+            // Make cylinder/whisker visable
+            newCylinder.GetComponent<MeshRenderer>().enabled = true;
+            // Enable cylinder/whisker collisions
+            Collider collider = newCylinder.GetComponent<Collider>();
+            if (collider != null)
+                collider.enabled = true; // Enable collisions
+
             cylinder_clone.Add(newCylinder);
             WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
             if (whiskerCollider && shortDetector) 
             {
-                //Debug.Log("Adding whisker collider to the list, count is now: " + shortDetector.whiskers.Count);
+                Debug.Log("Adding whisker collider to the list, count is now: " + shortDetector.whiskers.Count);
                 shortDetector.whiskers.Add(whiskerCollider);
             }else{
                 Debug.LogError("Whisker collider or short detector not found");
