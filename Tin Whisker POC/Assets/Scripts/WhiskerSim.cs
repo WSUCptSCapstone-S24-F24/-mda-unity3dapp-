@@ -5,20 +5,40 @@ using System.IO;
 using SimInfo;
 
 /// <summary>
-/// TODO: Fill
+/// Whisker simulation
 /// </summary>
 public class WhiskerSim : MonoBehaviour
 {
     public ShortDetector shortDetector;
     public SimState simState;
-    public GameObject cylinder;
+    public GameObject whisker;
     public float simulationDuration;
 
     private string myjsonPath;
     private int mySimNumber;
-    public List<GameObject> cylinder_clone = new List<GameObject>();
+    public List<GameObject> whisker_clones = new List<GameObject>();
 
+    /// <summary>
+    /// Set up a whisker simulation
+    /// </summary>
     private void Start()
+    {
+
+    }
+
+    /// <summary>
+    /// Runs a whisker falling simulation
+    /// </summary>
+    public void RunSimulation(int Duration)
+    {
+        StartSimulation();
+        StartCoroutine(EndSimulationAfterDuration(Duration));
+    }
+
+    /// <summary>
+    /// Performs the logic and directions for starting a simulation (dropping whiskers)
+    /// </summary>
+    private void StartSimulation()
     {
         mySimNumber = -1;
         string[] args = System.Environment.GetCommandLineArgs();
@@ -31,7 +51,7 @@ public class WhiskerSim : MonoBehaviour
                 break;
             }
         }
-        
+
         if (mySimNumber == -1)
         {
             Debug.LogError("Sim number not found");
@@ -64,18 +84,18 @@ public class WhiskerSim : MonoBehaviour
         }
 
 
-        
+
 
         //print current scene name
         Debug.Log("Current scene is:" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
 
         // Open the CSV file for writing
-        //StreamWriter writer = new StreamWriter(Application.persistentDataPath + "/cylinder_lengths.csv");
+        //StreamWriter writer = new StreamWriter(Application.persistentDataPath + "/whisker_lengths.csv");
 
-        //Test the dimensions of the cylinder
+        //Test the dimensions of the whisker
         // // Write the header row
-        
-        Vector3 originalScale = cylinder.transform.localScale;
+
+        Vector3 originalScale = whisker.transform.localScale;
         float WhiskerCount = (simState.spawnAreaSizeX * simState.spawnAreaSizeY * simState.spawnAreaSizeZ) * simState.whiskerDensity;
 
         LognormalRandom lognormalRandomLength = new LognormalRandom(simState.LengthMu, simState.LengthSigma);
@@ -88,16 +108,27 @@ public class WhiskerSim : MonoBehaviour
         }
         for (int i = 0; i < WhiskerCount; i++)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX/2f, simState.spawnAreaSizeX/2f), Random.Range(1, simState.spawnAreaSizeY+1), Random.Range(-simState.spawnAreaSizeZ/2f, simState.spawnAreaSizeZ/2f));
+            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX / 2f, simState.spawnAreaSizeX / 2f), Random.Range(1, simState.spawnAreaSizeY + 1), Random.Range(-simState.spawnAreaSizeZ / 2f, simState.spawnAreaSizeZ / 2f));
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
-            GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
-            cylinder_clone.Add(newCylinder);
-            WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
-            if (whiskerCollider && shortDetector) 
+            GameObject newWhisker = Instantiate(whisker, spawnPosition, spawnRotation);
+            // Enable Visibility
+            newWhisker.GetComponent<MeshRenderer>().enabled = true;
+
+            // Enable Collider component for the clone (if it exists)
+            Collider collider = newWhisker.GetComponent<Collider>();
+            if (collider != null)
+            {
+                collider.enabled = true; // Enable collisions
+            }
+            whisker_clones.Add(newWhisker);
+            WhiskerCollider whiskerCollider = newWhisker.GetComponent<WhiskerCollider>();
+            if (whiskerCollider && shortDetector)
             {
                 //Debug.Log("Adding whisker collider to the list, count is now: " + shortDetector.whiskers.Count);
                 shortDetector.whiskers.Add(whiskerCollider);
-            }else{
+            }
+            else
+            {
                 Debug.LogError("Whisker collider or short detector not found");
                 if (!shortDetector)
                 {
@@ -107,37 +138,42 @@ public class WhiskerSim : MonoBehaviour
 
             float lengthMultiplier = (float)lognormalRandomLength.NextDouble();
             float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
-            newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
-
-            
+            newWhisker.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
         }
 
-       
+
         if (simState.simNumber != mySimNumber)
         {
             Debug.LogError("Sim number mismatch\nSim number: " + simState.simNumber + "\nMy sim number: " + mySimNumber);
         }
-        
     }
 
-     IEnumerator EndSimulationAfterDuration()
+    private IEnumerator EndSimulationAfterDuration(int Duration)
     {
-        simulationDuration = 10;
+        if (Duration <= 0)
+        {
+            Debug.LogError("Simulation duration time out of bounds, default value used (10) \n");
+            simulationDuration = 10;
+        }
+        else
+        {
+            simulationDuration = Duration;
+        }
         yield return new WaitForSeconds(simulationDuration);
         SaveResults();
-        QuitApplication();
+        ClearWhiskers();
     }
 
-    void ClearCylinders()
+    void ClearWhiskers()
     {
-        foreach (GameObject cylinder in cylinder_clone)
+        foreach (GameObject a_whisker in whisker_clones)
         {
-            Destroy(cylinder);
+            Destroy(a_whisker);
         }
     }
 
     public void SaveResults()
-    {   
+    {
         simState.SaveSimToJSON(myjsonPath);
         shortDetector.StopWhiskerChecks(mySimNumber);
     }
@@ -153,11 +189,11 @@ public class WhiskerSim : MonoBehaviour
         Debug.Log("Quitting application");
         Debug.Log("Sim number: " + simState.simNumber);
         // Quit the application
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
             Application.Quit();
-        #endif
+#endif
         Application.Quit();
     }
 

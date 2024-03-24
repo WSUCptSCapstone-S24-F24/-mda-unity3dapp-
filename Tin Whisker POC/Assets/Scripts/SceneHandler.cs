@@ -56,7 +56,7 @@ public class SceneHandler : MonoBehaviour
             Debug.LogError("SimState not found");
         }
 
-        // LoadScene(sceneNum);
+        LoadScene(sceneNum);
     }
 
     private void InitializeSimulation()
@@ -91,9 +91,9 @@ public class SceneHandler : MonoBehaviour
         LengthMuText.text = simState.LengthMu.ToString();
         WidthSigmaText.text = simState.WidthSigma.ToString();
         WidthMuText.text = simState.WidthMu.ToString();
-        SpawnAreaSizeXText.text = "5";
-        SpawnAreaSizeYText.text = "2";
-        SpawnAreaSizeZText.text = "5";
+        SpawnAreaSizeXText.text = "25";
+        SpawnAreaSizeYText.text = "1";
+        SpawnAreaSizeZText.text = "25";
 
 
         // Get the float value from the text field
@@ -349,6 +349,22 @@ public class SceneHandler : MonoBehaviour
             Debug.LogError("Whisker Sim not found");
             GetResultsForward();
             whiskerSim.QuitApplication();
+        }
+    }
+
+    /// <summary>
+    /// Starts a whisker simulation
+    /// </summary>
+    /// <param name="duration"></param>
+    public void StartWhiskerSimulation(int duration)
+    {
+        if (whiskerSim != null)
+        {
+            whiskerSim.RunSimulation(duration);
+        }
+        else
+        {
+            Debug.LogError("Whisker Sim not found");
         }
     }
 }
