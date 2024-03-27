@@ -51,10 +51,6 @@ public class SceneHandler : MonoBehaviour
         if(simState == null){
             Debug.LogError("SimState not found");
         }
-
-        
-        LoadScene(sceneNum);
-
     }
 
     private void RootSimStart(){

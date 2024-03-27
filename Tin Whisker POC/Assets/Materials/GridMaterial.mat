@@ -63,7 +63,7 @@ Material:
     - _DashLength: 0.2
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FadeDistance: 100
+    - _FadeDistance: 500
     - _GapLength: 0.74
     - _GapSpacing: 2.38
     - _GlossMapScale: 1
