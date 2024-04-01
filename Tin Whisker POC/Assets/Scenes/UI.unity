@@ -8679,6 +8679,7 @@ MonoBehaviour:
   LengthMuText: {fileID: 1008457480}
   WidthSigmaText: {fileID: 195303474}
   WidthMuText: {fileID: 1560443715}
+  SpawnHeight: {fileID: 1696374721}
   SpawnAreaSizeXText: {fileID: 571793374}
   SpawnAreaSizeYText: {fileID: 788810977}
   SpawnAreaSizeZText: {fileID: 1539852950}
