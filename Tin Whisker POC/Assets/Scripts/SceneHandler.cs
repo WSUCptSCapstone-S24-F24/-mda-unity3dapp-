@@ -24,6 +24,7 @@ public class SceneHandler : MonoBehaviour
     public TMP_InputField LengthMuText;
     public TMP_InputField WidthSigmaText;
     public TMP_InputField WidthMuText;
+    public TMP_InputField SpawnHeight;
     public TMP_InputField SpawnAreaSizeXText;
     public TMP_InputField SpawnAreaSizeYText;
     public TMP_InputField SpawnAreaSizeZText;
@@ -81,6 +82,7 @@ public class SceneHandler : MonoBehaviour
         LengthMuText.text = simState.LengthMu.ToString();
         WidthSigmaText.text = simState.WidthSigma.ToString();
         WidthMuText.text = simState.WidthMu.ToString();
+        SpawnHeight.text = simState.SpawnHeight.ToString();
         SpawnAreaSizeXText.text = "50";
         SpawnAreaSizeYText.text = "2";
         SpawnAreaSizeZText.text = "50";
