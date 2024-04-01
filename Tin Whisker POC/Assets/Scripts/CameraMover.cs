@@ -6,7 +6,7 @@ public class CameraMover : MonoBehaviour
 {
     public GameObject Camera;
     public float moveDuration = 2.0f;
-    public float heightAboveObject = 5.0f;
+    public float heightAboveObject = 10.0f;
     public TMP_InputField targetInputField;
 
     private bool isMoving = false;

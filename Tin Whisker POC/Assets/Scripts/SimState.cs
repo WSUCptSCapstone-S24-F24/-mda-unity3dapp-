@@ -11,7 +11,7 @@ namespace SimInfo
         public float spawnAreaSizeX;
         public float spawnAreaSizeY;
         public float spawnAreaSizeZ;
-        public float heightAboveCircuitBoard;
+        public float SpawnHeight;
         public float LengthMu;
         public float LengthSigma;
         public float WidthMu;
@@ -29,7 +29,7 @@ namespace SimInfo
             this.spawnAreaSizeX = 2f;
             this.spawnAreaSizeY = 2f;
             this.spawnAreaSizeZ = 2f;
-            this.heightAboveCircuitBoard = 15f;
+            this.SpawnHeight = 20f;
             this.LengthMu = 0.5f;
             this.LengthSigma = 0.5f;
             this.WidthMu = 0.5f;
@@ -43,7 +43,7 @@ namespace SimInfo
             this.spawnAreaSizeX = spawnAreaSizeX;
             this.spawnAreaSizeY = spawnAreaSizeY;
             this.spawnAreaSizeZ = spawnAreaSizeZ;
-            this.heightAboveCircuitBoard = heightAboveCircuitBoard;
+            this.SpawnHeight = heightAboveCircuitBoard;
             this.LengthMu = LengthMu;
             this.LengthSigma = LengthSigma;
             this.WidthMu = WidthMu;

@@ -85,7 +85,7 @@ public class WhiskerSim : MonoBehaviour
         }
         for (int i = 0; i < WhiskerCount; i++)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX/2f, simState.spawnAreaSizeX/2f), Random.Range(1, simState.spawnAreaSizeY+1), Random.Range(-simState.spawnAreaSizeZ/2f, simState.spawnAreaSizeZ/2f));
+            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX/2f, simState.spawnAreaSizeX/2f), Random.Range(1, simState.spawnAreaSizeY+1) + simState.SpawnHeight, Random.Range(-simState.spawnAreaSizeZ/2f, simState.spawnAreaSizeZ/2f));
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
             // Make cylinder/whisker visable
@@ -113,7 +113,6 @@ public class WhiskerSim : MonoBehaviour
             float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
             newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
 
-            
         }
 
        
