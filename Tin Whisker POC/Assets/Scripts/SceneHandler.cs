@@ -123,93 +123,37 @@ public class SceneHandler : MonoBehaviour
 
     public void getSimInputs(){
         if (int.TryParse(WhiskerDensityText.text, out int result))
-        {
             simState.whiskerDensity = result;
-        } else
-        {
-            Debug.Log("Whisker Count is not a float");
-        }
 
         if (float.TryParse(LengthSigmaText.text, out float result2))
-        {
             simState.LengthSigma = result2;
-        }
-        else
-        {
-            Debug.Log("Length Sigma is not a float");
-        }
 
         if (float.TryParse(LengthMuText.text, out float result3))
-        {
             simState.LengthMu = result3;
-        }
-        else
-        {
-            Debug.Log("Length Mu is not a float");
-        }
 
         if (float.TryParse(WidthSigmaText.text, out float result4))
-        {
             simState.WidthSigma = result4;
-        }
-        else
-        {
-            Debug.Log("Width Sigma is not a float");
-        }
 
         if (float.TryParse(WidthMuText.text, out float result5))
-        {
             simState.WidthMu = result5;
-        }
-        else
-        {
-            Debug.Log("Width Mu is not a float");
-        }
 
-        if (float.TryParse(SpawnAreaSizeXText.text, out float result6))
-        {
-            simState.spawnAreaSizeX = result6;
-        }
-        else
-        {
-            Debug.Log("Spawn Area Size is not a float");
-        }
+        if(float.TryParse(SpawnHeight.text, out float result6))
+            simState.SpawnHeight = result6;
 
-                if (float.TryParse(SpawnAreaSizeYText.text, out float result7))
-        {
-            simState.spawnAreaSizeY = result7;
-        }
-        else
-        {
-            Debug.Log("Spawn Area Size is not a float");
-        }
+        if (float.TryParse(SpawnAreaSizeXText.text, out float result7))
+            simState.spawnAreaSizeX = result7;
 
-        if (float.TryParse(SpawnAreaSizeZText.text, out float result8))
-        {
-            simState.spawnAreaSizeZ = result8;
-        }
-        else
-        {
-            Debug.Log("Spawn Area Size is not a float");
-        }
+        if (float.TryParse(SpawnAreaSizeYText.text, out float result8))
+            simState.spawnAreaSizeY = result8;
 
-        if (float.TryParse(SimDurationText.text, out float result9))
-        {
-            simState.simDuration = result9;
-        }
-        else
-        {
-            Debug.Log("Sim Duration is not a float");
-        }
+        if (float.TryParse(SpawnAreaSizeZText.text, out float result9))
+            simState.spawnAreaSizeZ = result9;
 
-        if (int.TryParse(SimQuantityText.text, out int result10))
-        {
-            monteCarloLauncher.numSimulations = result10;
-        }
-        else
-        {
-            Debug.Log("Sim Quantity is not a float");
-        }
+        if (float.TryParse(SimDurationText.text, out float result10))
+            simState.simDuration = result10;
+
+        if (int.TryParse(SimQuantityText.text, out int result11))
+            monteCarloLauncher.numSimulations = result11;
     }
 
     public void LoadScene(int buildnum)

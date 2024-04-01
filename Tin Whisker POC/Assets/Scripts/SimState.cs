@@ -37,13 +37,13 @@ namespace SimInfo
             this.simNumber = -1;
         }
 
-        public SimState(int whiskerDensity, float spawnAreaSizeX, float spawnAreaSizeY, float spawnAreaSizeZ, float heightAboveCircuitBoard, float LengthMu, float LengthSigma, float WidthMu, float WidthSigma, int simNumber)
+        public SimState(int whiskerDensity, float spawnAreaSizeX, float spawnAreaSizeY, float spawnAreaSizeZ, float spawnHeight, float LengthMu, float LengthSigma, float WidthMu, float WidthSigma, int simNumber)
         {
             this.whiskerDensity = whiskerDensity;
             this.spawnAreaSizeX = spawnAreaSizeX;
             this.spawnAreaSizeY = spawnAreaSizeY;
             this.spawnAreaSizeZ = spawnAreaSizeZ;
-            this.SpawnHeight = heightAboveCircuitBoard;
+            this.SpawnHeight = spawnHeight;
             this.LengthMu = LengthMu;
             this.LengthSigma = LengthSigma;
             this.WidthMu = WidthMu;
