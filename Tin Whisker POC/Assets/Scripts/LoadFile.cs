@@ -89,6 +89,17 @@ public class LoadFile : MonoBehaviour
         }
     }
 
+    // Function to change the height of the loaded object
+    private void ChangeHeight(float heightPos)
+    {
+        if (Modle != null)
+        {
+            Vector3 newPosition = Modle.transform.position;
+            newPosition.y = heightPos;
+            Modle.transform.position = newPosition;
+        }
+    }
+
     private IEnumerator OutputRoutineOpen(string url, string mtl)
     {
         Debug.Log("File URI: " + url);
@@ -109,7 +120,8 @@ public class LoadFile : MonoBehaviour
                 Destroy(Modle);
             }
             Modle = new OBJLoader().Load(textStream, MTLStream);
-            Modle.transform.localScale = new Vector3(150f, 150f, 150f);
+            ChangeHeight(-13.7f);
+            Modle.transform.localScale = new Vector3(150f, 50f, 150f);
             Modle.transform.Rotate(0f, 0f, 0f, Space.Self);
             Modle.name = "MainCiruitBoard";
 

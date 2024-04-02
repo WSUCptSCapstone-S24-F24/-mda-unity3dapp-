@@ -1,7 +1,7 @@
 Shader "Custom/GridShader" {
     Properties {
         _Color ("Color", Color) = (1,1,1,1)
-        _FadeDistance ("Fade Distance", Float) = 100
+        _FadeAmount ("Fade Amount", Range(0, 1)) = 0.5
         _GridSpacing ("Grid Spacing", Float) = 100
         _LineThickness ("Line Thickness", Range(0.001, 0.1)) = 0.003
         _DashLength ("Dash Length", Float) = 0.02
@@ -30,34 +30,23 @@ Shader "Custom/GridShader" {
             struct v2f {
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
-                float4 worldPos : TEXCOORD1; // Pass world position to fragment shader
             };
             
             fixed4 _Color;
             float _GridSpacing;
             float _LineThickness;
             float _DashLength;
-            float _FadeDistance;
+            float _FadeAmount;
             
             v2f vert (appdata v) {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.worldPos = v.vertex; // Store world position
                 o.uv = v.uv;
                 return o;
             }
             
             
             fixed4 frag (v2f i) : SV_Target {
-                // Calculate world space position from the interpolated vertex position
-                float3 worldPos = i.worldPos.xyz / i.worldPos.w;
-                
-                // Calculate distance from camera
-                float distanceToCamera = distance(worldPos, _WorldSpaceCameraPos);
-                
-                // Calculate fade factor based on distance
-                float fadeFactor = saturate((1.0 - distanceToCamera / _FadeDistance));
-                
                 // Calculate grid UV coordinates
                 float2 gridUV = i.uv * _GridSpacing;
                 
@@ -83,7 +72,7 @@ Shader "Custom/GridShader" {
                 float gridLine = min(thickness.x, thickness.y);
                 
                 // Invert the grid line to color the lines instead of spaces between
-                return _Color * (1 - gridLine) * isDashX * isDashY * fadeFactor;
+                return _Color * (1 - gridLine) * isDashX * isDashY * _FadeAmount;
             }
                  
             
