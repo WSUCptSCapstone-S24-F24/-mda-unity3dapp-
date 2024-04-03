@@ -67,11 +67,9 @@ namespace SimInfo
 
         public IEnumerator SaveSimToJSONasync(string jsonPath)
         {
-            Debug.Log("attempting to save sim to JSON");
             // Serialize the simState to JSON
             string jsonString = JsonUtility.ToJson(this);
-
-            Debug.Log("Saving -> JSON string:\n" + jsonString);
+            
             // Create a file path and file name for the JSON file
             string filePath = jsonPath;
 

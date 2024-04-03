@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using SimInfo;
+using UnityEngine.SceneManagement;
 
 public class WhiskerSim : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class WhiskerSim : MonoBehaviour
                 break;
             }
         }
-        
+
         if (mySimNumber == -1)
         {
             Debug.LogError("Sim number not found");
@@ -60,9 +61,6 @@ public class WhiskerSim : MonoBehaviour
             simState.SaveSimToJSON(myjsonPath);
         }
 
-
-        
-
         //print current scene name
         Debug.Log("Current scene is:" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
 
@@ -71,7 +69,7 @@ public class WhiskerSim : MonoBehaviour
 
         //Test the dimensions of the cylinder
         // // Write the header row
-        
+
         Vector3 originalScale = cylinder.transform.localScale;
         float WhiskerCount = (simState.spawnAreaSizeX * simState.spawnAreaSizeY * simState.spawnAreaSizeZ) * simState.whiskerDensity;
 
@@ -85,7 +83,7 @@ public class WhiskerSim : MonoBehaviour
         }
         for (int i = 0; i < WhiskerCount; i++)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX/2f, simState.spawnAreaSizeX/2f), Random.Range(1, simState.spawnAreaSizeY+1) + simState.SpawnHeight, Random.Range(-simState.spawnAreaSizeZ/2f, simState.spawnAreaSizeZ/2f));
+            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX / 2f, simState.spawnAreaSizeX / 2f), Random.Range(1, simState.spawnAreaSizeY + 1) + simState.SpawnHeight, Random.Range(-simState.spawnAreaSizeZ / 2f, simState.spawnAreaSizeZ / 2f));
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
             // Make cylinder/whisker visable
@@ -97,11 +95,13 @@ public class WhiskerSim : MonoBehaviour
 
             cylinder_clone.Add(newCylinder);
             WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
-            if (whiskerCollider && shortDetector) 
+            if (whiskerCollider && shortDetector)
             {
                 Debug.Log("Adding whisker collider to the list, count is now: " + shortDetector.whiskers.Count);
                 shortDetector.whiskers.Add(whiskerCollider);
-            }else{
+            }
+            else
+            {
                 Debug.LogError("Whisker collider or short detector not found");
                 if (!shortDetector)
                 {
@@ -113,22 +113,22 @@ public class WhiskerSim : MonoBehaviour
             float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
             newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
 
+            StartCoroutine(EndSimulationAfterDuration());
         }
 
-       
+
         if (simState.simNumber != mySimNumber)
         {
             Debug.LogError("Sim number mismatch\nSim number: " + simState.simNumber + "\nMy sim number: " + mySimNumber);
         }
-        
     }
 
-     IEnumerator EndSimulationAfterDuration()
+    IEnumerator EndSimulationAfterDuration()
     {
-        simulationDuration = 10;
+        simulationDuration = 5;
         yield return new WaitForSeconds(simulationDuration);
         SaveResults();
-        QuitApplication();
+        ClearCylinders();
     }
 
     void ClearCylinders()
@@ -140,7 +140,7 @@ public class WhiskerSim : MonoBehaviour
     }
 
     public void SaveResults()
-    {   
+    {
         simState.SaveSimToJSON(myjsonPath);
         shortDetector.StopWhiskerChecks(mySimNumber);
     }
@@ -149,19 +149,6 @@ public class WhiskerSim : MonoBehaviour
     {
         simState.SaveSimToJSON(myjsonPath);
         shortDetector.StopWhiskerChecks(simNumber);
-    }
-
-    public void QuitApplication()
-    {
-        Debug.Log("Quitting application");
-        Debug.Log("Sim number: " + simState.simNumber);
-        // Quit the application
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
-            Application.Quit();
-        #endif
-        Application.Quit();
     }
 
 }
