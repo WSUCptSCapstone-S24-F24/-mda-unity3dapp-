@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using System.IO;
 using SimInfo;
 using UnityEngine.SceneManagement;
@@ -112,8 +114,6 @@ public class WhiskerSim : MonoBehaviour
             float lengthMultiplier = (float)lognormalRandomLength.NextDouble();
             float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
             newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
-
-            StartCoroutine(EndSimulationAfterDuration());
         }
 
 
@@ -123,15 +123,8 @@ public class WhiskerSim : MonoBehaviour
         }
     }
 
-    IEnumerator EndSimulationAfterDuration()
-    {
-        simulationDuration = 5;
-        yield return new WaitForSeconds(simulationDuration);
-        SaveResults();
-        ClearCylinders();
-    }
 
-    void ClearCylinders()
+    public void ClearCylinders()
     {
         foreach (GameObject cylinder in cylinder_clone)
         {

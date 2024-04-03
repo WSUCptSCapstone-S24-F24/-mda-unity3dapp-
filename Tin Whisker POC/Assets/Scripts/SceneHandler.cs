@@ -186,7 +186,8 @@ public class SceneHandler : MonoBehaviour
         {
             ReloadScene(buildnum);
         }
-        // RegularEndSimulationAfterDuration();
+
+        StartCoroutine(RegularEndSimulationAfterDuration());
     }
 
     IEnumerator LoadSceneAsync(int buildnum)
@@ -321,26 +322,52 @@ public class SceneHandler : MonoBehaviour
 
     IEnumerator RegularEndSimulationAfterDuration()
     {
-        float simulationDuration;
-        if (simState != null && simState.simDuration > 0)
-        {
-            simulationDuration = simState.simDuration;
-        }
-        else
-        {
-            simulationDuration = 10f;
-        }
+        // Check if simState and its duration are set, otherwise use a default value
+        float simulationDuration = (simState != null && simState.simDuration > 0) ? simState.simDuration : 10f;
+
+        // Wait for the specified simulation duration
         yield return new WaitForSeconds(simulationDuration);
+
+        // Ensure whiskerSim is available; find it if not already referenced
+        if (whiskerSim == null)
+        {
+            whiskerSim = FindObjectOfType<WhiskerSim>();
+        }
+
         if (whiskerSim != null)
         {
-            whiskerSim.SaveResults(mySimNumber);
+            // Assuming SaveResults and ClearCylinders are operations that can complete immediately
+            whiskerSim.SaveResults();
+            whiskerSim.ClearCylinders();
+
+            // Optional: wait a frame to ensure operations have completed if they involve Unity's messaging system
+            yield return null;
         }
         else
         {
-            Debug.LogError("WireSim not found");
-            GetResultsForward();
-            whiskerSim.SaveResults();
+            Debug.LogError("WhiskerSim not found. Unable to save results or clear cylinders.");
         }
+
+        // Proceed to call cleanup for all WhiskerCollider instances
+        foreach (WhiskerCollider whiskerCollider in FindObjectsOfType<WhiskerCollider>())
+        {
+            whiskerCollider.Cleanup();
+        }
+
+        // Finally, unload the scene
+        UnloadScene(sceneNum);
+    }
+
+    // This callback method will be called by WhiskerSim when the simulation ends and it's time to unload the scene
+    private void OnSimulationEnded()
+    {
+        // Call the Cleanup on all WhiskerCollider instances before unloading the scene
+        foreach (WhiskerCollider whiskerCollider in FindObjectsOfType<WhiskerCollider>())
+        {
+            whiskerCollider.Cleanup();
+        }
+
+        // Now you can unload the scene
         UnloadScene(sceneNum);
     }
 

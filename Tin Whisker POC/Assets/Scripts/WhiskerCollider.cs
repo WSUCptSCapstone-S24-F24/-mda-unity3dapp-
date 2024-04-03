@@ -29,10 +29,22 @@ public class WhiskerCollider : MonoBehaviour
 
     public GameObject[] GetBridgedComponents()
     {
-        //HashSet to List
+        // HashSet to List
         List<GameObject> bridgedComponents = new List<GameObject>(currentlyCollidingObjects);
-        //List to Array
+        // List to Array
         return bridgedComponents.ToArray();
+    }
+
+    // Cleanup method to be called when clearing the scene or resetting the collider
+    public void Cleanup()
+    {
+        currentlyCollidingObjects.Clear();
+    }
+
+    // Optionally, you could call Cleanup in OnDestroy if you want it to automatically clean up when destroyed
+    private void OnDestroy()
+    {
+        Cleanup();
     }
 }
 

@@ -11,7 +11,7 @@ public class ShortDetector : MonoBehaviour
 
     private HashSet<(GameObject, GameObject)> bridgedComponentPairs = new HashSet<(GameObject, GameObject)>();
     private Coroutine whiskerCheckCoroutine;
-
+  
     private void Start()
     {
         whiskerCheckCoroutine = StartCoroutine(CheckWhiskersRoutine());
