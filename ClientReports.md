@@ -96,13 +96,13 @@ Here's what went well:
  
 Here's what we'd like to improve:
    * Further research into the simulation of physical phenomena to enhance realism and accuracy.
-   *Development of a more detailed project timeline to account for potential setbacks.
-   *Increase in communication channels between the team and the client for continuous feedback.
+   * Development of a more detailed project timeline to account for potential setbacks.
+   * Increase in communication channels between the team and the client for continuous feedback.
   
 Here are changes we plan to implement as soon as possible:
-  *Conducting in-depth research into Unity 3D Engine capabilities for simulating physical forces.
-  *Developing a detailed project plan with flexible milestones to accommodate research findings and feedback.
-  *Establishing a regular meeting schedule with the client for updates and feedback.
+  * Conducting in-depth research into Unity 3D Engine capabilities for simulating physical forces.
+  * Developing a detailed project plan with flexible milestones to accommodate research findings and feedback.
+  * Establishing a regular meeting schedule with the client for updates and feedback.
 
 
 	
@@ -157,6 +157,105 @@ Here are changes we plan to implement as soon as possible:
    * Organize files and code
    * Optimization of the simulation engine to handle larger datasets and more complex simulations more efficiently.
 
+
+---
+---
+## Agenda (3/7/2024)
+ * Talking to the client about goals for the current sprint.
+ * Organizing our work board for future use.
+ * Understanding the expectations of the UI improvements.
+
+## Minutes (3/7/2024)
+
+The meeting provided an update on the project's progress, setting up the work board. The client provided valuable feedback on what should our goals be for this sprint. 
+
+## Retrospective Summary (3/7/2024)
+Here's what went well:
+  * Demonstrated the progress update from Sprint 2.
+  * Explored goals and possibilities for Sprint 3.
+ 
+Here's what we'd like to improve:
+   * User interface and expected outcomes of particular buttons need improvement.
+   * Increase the efficiency of the simulation process, more than one simulation is running currently.
+  
+Here are changes we plan to implement as soon as possible:
+   * Refactor code for the initialization of the simulation.
+   * Optimization of the simulation engine to handle larger datasets and more complex simulations more efficiently.
+
+
+---
+---
+## Agenda (3/20/2024)
+ * Have the client review the application.
+ * Show case of the improved grid system.
+ * Review of project timeline and next steps.
+
+## Minutes (3/20/2024)
+
+The meeting provided an update on the project's progress, showcasing the grid systems updates and well as discussion on scaling the simulation to the correct degree.
+
+## Retrospective Summary (3/20/2024)
+Here's what went well:
+  * Grid system is a positive addition.
+  * Learned in more detail the importance of the whisker's scale and how the changes might be implimented.
+ 
+Here's what we'd like to improve:
+   * Grid system is disorientating, this issue is mostly located from the PCB spawn location and it's alignment with said grid.
+   * Whiskers are far too large to be considered useful, the way the whiskers are created and the calculations the computer is using might be flawed.
+  
+Here are changes we plan to implement as soon as possible:
+   * Grid corrections.
+   * Spawning locations as well as object deallocation.
+
+
+---
+---
+
+## Agenda (3/27/2024)
+ * Demo of current program
+ * Feedback from clients based on demo
+ * Review of clients plans/requests
+
+## Minutes (3/27/2024)
+
+The meeting primarily showed our clients what the product looked like in its current state. The clients provided feedback.
+
+## Retrospective Summary (3/27/2024)
+Here's what went well:
+  * Progress update was well recieved.
+  * Visuals of the systems are optimistic
+  * User interface usability is improving
+ 
+Here's what we'd like to improve:
+   * The whiskers mu and sigma are unclear in the simulation
+   * Allow the user to better specify the spawn location of the whiskers
+  
+Here are changes we plan to implement as soon as possible:
+   * Spawn location of the whiskers
+
+
+---
+---
+
+## Agenda (4/1/2024)
+ * End of sprint, so plan for future sprint
+ * Overview of sprint (sprint 3)
+ * Team liaison and meetings updates
+
+## Minutes (4/1/2024)
+
+This meeting was a short meeting where we discussed the progress made durring sprint 3, and the plans for sprint 4. We also went over updates concerning the team liaison (new team liaison) and meetings. 
+
+## Retrospective Summary (4/1/2024)
+Here's what went well:
+  * Sprint 3 summary
+  * Solid plan for future meetings
+ 
+Here's what we'd like to improve:
+   * Plan for WSU's caspstone requirements
+  
+Here are changes we plan to implement as soon as possible:
+   * Schedule/plan for upcoming deadlines
 
 ---
 ---
