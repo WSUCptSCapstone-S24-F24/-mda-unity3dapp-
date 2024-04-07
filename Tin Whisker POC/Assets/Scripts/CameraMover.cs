@@ -17,6 +17,7 @@ public class CameraMover : MonoBehaviour
 
     public void MoveBasedOnInputField()
     {
+
         string targetName = ("CO" + targetInputField.text);
         Debug.Log("Target name: " + targetName);
 
@@ -45,7 +46,7 @@ public class CameraMover : MonoBehaviour
     {
         if (!cameraFound)
         {
-            Camera = GameObject.Find("Main Camera");
+            Camera = GameObject.Find("MainCamera");
             if (Camera == null)
             {
                 Debug.LogError("No camera found!");
@@ -67,14 +68,26 @@ public class CameraMover : MonoBehaviour
 
     private IEnumerator MoveAndRotate(Vector3 endPosition)
     {
+        // Calculate the direction towards the target
+        Vector3 directionToTarget = (endPosition - Camera.transform.position).normalized;
+        Debug.Log("Moving camera to target");
         while (isMoving)
         {
-            Debug.Log("Moving camera to target");
             float elapsedTime = Time.time - startTime;
             float fraction = elapsedTime / moveDuration;
 
-            Camera.transform.position = Vector3.Lerp(startPosition, endPosition, fraction);
-            Camera.transform.LookAt(targetCenter);  // Use targetCenter instead of targetObject.position
+            // Calculate the new position to move towards
+            Vector3 targetPosition = Vector3.Lerp(startPosition, endPosition, fraction);
+
+            // Calculate the direction of movement
+            Vector3 directionOfMovement = (targetPosition - Camera.transform.position).normalized;
+
+            // Rotate the camera to face the direction of movement
+            Quaternion targetRotation = Quaternion.LookRotation(directionOfMovement);
+            Camera.transform.rotation = Quaternion.Slerp(Camera.transform.rotation, targetRotation, fraction);
+
+            // Move the camera towards the target position
+            Camera.transform.position = targetPosition;
 
             if (fraction >= 1.0f)
             {

@@ -78,9 +78,9 @@ public class WhiskerSim : MonoBehaviour
         LognormalRandom lognormalRandomLength = new LognormalRandom(simState.LengthMu, simState.LengthSigma);
         LognormalRandom lognormalRandomWidth = new LognormalRandom(simState.WidthMu, simState.WidthSigma);
 
-        if (WhiskerCount > 1000)
+        if (WhiskerCount > 2000)
         {
-            WhiskerCount = 1000;
+            WhiskerCount = 2000;
             Debug.LogError("Whisker count is too high\nWhisker count: " + WhiskerCount);
         }
         for (int i = 0; i < WhiskerCount; i++)
@@ -99,7 +99,6 @@ public class WhiskerSim : MonoBehaviour
             WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
             if (whiskerCollider && shortDetector)
             {
-                Debug.Log("Adding whisker collider to the list, count is now: " + shortDetector.whiskers.Count);
                 shortDetector.whiskers.Add(whiskerCollider);
             }
             else

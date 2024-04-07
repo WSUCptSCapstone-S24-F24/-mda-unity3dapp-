@@ -58,6 +58,7 @@ public class SceneHandler : MonoBehaviour
         }
     }
 
+
     private void RootSimSetup()
     {
         myJsonPath = rootJsonPath;
@@ -170,24 +171,32 @@ public class SceneHandler : MonoBehaviour
 
     public void LoadScene(int buildnum)
     {
-        getSimInputs();
         if (fileOpened)
         {
-            simState.objfilePath = objfilePath;
-            simState.mtlfilePath = mtlfilePath;
-            simState.fileOpened = fileOpened;
-        }
-        simState.SaveSimToJSON(myJsonPath);
-        if (!isSceneLoaded)
-        {
-            StartCoroutine(LoadSceneAsync(buildnum));
+            getSimInputs();
+            if (fileOpened)
+            {
+                simState.objfilePath = objfilePath;
+                simState.mtlfilePath = mtlfilePath;
+                simState.fileOpened = fileOpened;
+            }
+            simState.SaveSimToJSON(myJsonPath);
+            if (!isSceneLoaded)
+            {
+                StartCoroutine(LoadSceneAsync(buildnum));
+            }
+            else
+            {
+                ReloadScene(buildnum);
+            }
+
+            StartCoroutine(RegularEndSimulationAfterDuration());
         }
         else
         {
-            ReloadScene(buildnum);
+            // TODO: Flash message
+            Debug.Log("No loaded PCB");
         }
-
-        StartCoroutine(RegularEndSimulationAfterDuration());
     }
 
     IEnumerator LoadSceneAsync(int buildnum)

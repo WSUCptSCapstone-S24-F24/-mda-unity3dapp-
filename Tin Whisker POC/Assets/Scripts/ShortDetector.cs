@@ -23,7 +23,6 @@ public class ShortDetector : MonoBehaviour
         {
             if (whiskers.Count == 0)
             {
-                Debug.LogError("No whiskers assigned to ShortDetector");
                 yield return new WaitForSeconds(1.0f);
                 continue; // Continue the while loop if no whiskers are found
             }
@@ -47,7 +46,8 @@ public class ShortDetector : MonoBehaviour
                 }
             }
         }
-        
+        if (whiskers.Count == 0)
+            Debug.LogError("No whiskers assigned to ShortDetector");
     }
 
     
