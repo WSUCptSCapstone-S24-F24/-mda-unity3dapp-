@@ -14,6 +14,7 @@ Sprint 1 Demo Video: [Demo Video](https://youtu.be/HgCC78tZCsM)
 ### Prerequisites
 
 * Unity (version 2021.3.21f1 or newer)
+* All python libraries in requirements.txt
 
 ### Add-ons
 
@@ -24,6 +25,7 @@ Sprint 1 Demo Video: [Demo Video](https://youtu.be/HgCC78tZCsM)
 * Clone the repository with 'git clone https://github.com/WSUCptSCapstone-S24-F24/-mda-unity3dapp-.git'
 * Open Unity Hub and click on 'Add'
 * Navigate to folder with cloned repository and find and open the folder labeled 'Tin Whisker POC'
+* pip install -r requirements.txt in the terminal (recommended to do it in a virtual enviroment locally)
 
 ## Functionality
 
@@ -31,9 +33,9 @@ Open a scene and start a simulation. Once in the simulation, click the load butt
 
 After the PCB has been loaded in, it will be visible in the simulation. This is where changes to the parameters in the simulation may be change. This includes the spawn area size, the denisty of the whiskers in that spawn area, sigma and mu for the lengths and widths of the whiskers.
 
-By clicking the "Get Results" button, an output will be generated from the current parameters and called sim_0.
-
 Once satisfied by the parameters, click the start button, this will lock in the parameters to be used in the monte carlo simulation.
+
+By clicking the "Show Results" button, an output will be generated from the current parameters and called sim_0.
 
 To start the Monte Carlo, look at the bottom right to see the two input boxes. These inputs represent how many simulations are to be ran and how long these simulations run for.
 
