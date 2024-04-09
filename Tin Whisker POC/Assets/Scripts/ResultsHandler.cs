@@ -1,18 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using SimInfo;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
 
-public class ResultsHandler : MonoBehaviour {
+public class ResultsHandler : MonoBehaviour
+{
     // Reference to the RawImage and blur image GameObject
     public GameObject heatmapImageObject;
     public GameObject blurImageObject;
 
-    public void GenerateHeatmapResults() {
-        
+    public void GenerateHeatmapResults()
+    {
+        // Path to the Python executable
+        string pythonExePath = Path.Combine(Application.dataPath.Replace("Assets", ".venv/bin/python"));
+
+        // Path to the Python script
+        string pythonScriptPath = Path.Combine(Application.dataPath, "Heatmap.py");
+
+        // Enclose script path in double quotes
+        pythonScriptPath = $"\"{pythonScriptPath}\"";
+
+        // Create process info
+        ProcessStartInfo psi = new ProcessStartInfo();
+        psi.FileName = pythonExePath;
+        psi.Arguments = pythonScriptPath;
+        psi.RedirectStandardOutput = true;
+        psi.RedirectStandardError = true;
+        psi.UseShellExecute = false;
+
+        // Start the process
+        Process process = Process.Start(psi);
+
+        // Capture standard output and standard error
+        string stdout = process.StandardOutput.ReadToEnd();
+        string stderr = process.StandardError.ReadToEnd();
+
+        // Wait for the process to exit
+        process.WaitForExit();
+
+        // Check the exit code
+        if (process.ExitCode == 0)
+        {
+            UnityEngine.Debug.Log("Heatmap generation completed successfully.");
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("Error generating heatmap. Exit code: " + process.ExitCode);
+            UnityEngine.Debug.LogError("Standard Error: " + stderr);
+        }
     }
+
+    // UnityEngine.
 
     public void ShowResults()
     {
@@ -20,6 +62,9 @@ public class ResultsHandler : MonoBehaviour {
             heatmapImageObject.SetActive(true);
         if (blurImageObject != null)
             blurImageObject.SetActive(true);
+
+        // Generate results
+        GenerateHeatmapResults();
 
         // Get current working directory
         string workingDirectory = Application.dataPath + "/BridgedComponentsResults";
