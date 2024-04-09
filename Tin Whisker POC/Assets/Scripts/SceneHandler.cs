@@ -1,14 +1,13 @@
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine;
-using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using SimInfo;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneHandler : MonoBehaviour
 {
-
     private Scene loadedScene;
     public string sceneName;
     public int sceneNum = 1;
@@ -18,10 +17,6 @@ public class SceneHandler : MonoBehaviour
     private int mySimNumber = -1;
     private WhiskerSim whiskerSim;
     public MonteCarloLauncher monteCarloLauncher;
-
-    // Reference to the RawImage and blur image GameObject
-    public GameObject heatmapImageObject;
-    public GameObject blurImageObject;
 
     public TMP_InputField WhiskerDensityText;
     public TMP_InputField LengthSigmaText;
@@ -37,7 +32,6 @@ public class SceneHandler : MonoBehaviour
     public SimState simState;
     public string objfilePath;
     public string mtlfilePath;
-
 
     private string rootJsonPath;
     private string myJsonPath;
@@ -61,7 +55,6 @@ public class SceneHandler : MonoBehaviour
             Debug.LogError("SimState not found");
         }
     }
-
 
     private void RootSimSetup()
     {
@@ -100,7 +93,6 @@ public class SceneHandler : MonoBehaviour
         SpawnAreaSizeYText.text = simState.spawnAreaSizeY.ToString();
         SpawnAreaSizeZText.text = simState.spawnAreaSizeZ.ToString();
 
-
         // Get the float value from the text field
         getSimInputs();
         simState.simNumber = 0;
@@ -135,7 +127,6 @@ public class SceneHandler : MonoBehaviour
             Debug.LogError("Root Sim JSON file does not exist");
         }
     }
-
 
     public void getSimInputs()
     {
@@ -239,7 +230,6 @@ public class SceneHandler : MonoBehaviour
         isSceneLoaded = false;
     }
 
-
     public void ReloadScene(int buildnum)
     {
         loadedScene = SceneManager.GetSceneByBuildIndex(buildnum);
@@ -253,7 +243,10 @@ public class SceneHandler : MonoBehaviour
 
     IEnumerator ReloadSceneAsync()
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(loadedScene.name, LoadSceneMode.Additive);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(
+            loadedScene.name,
+            LoadSceneMode.Additive
+        );
         while (!asyncLoad.isDone)
         {
             yield return null;
@@ -268,7 +261,6 @@ public class SceneHandler : MonoBehaviour
         getSimInputs();
         LoadScene(2);
         StartCoroutine(simState.SaveSimToJSONasync(rootJsonPath));
-
     }
 
     public void ParseArgs()
@@ -308,59 +300,6 @@ public class SceneHandler : MonoBehaviour
         whiskerSim.SaveResults(mySimNumber);
     }
 
-    public void ShowResults()
-    {
-        // Get current working directory 
-        string workingDirectory = Application.dataPath + "/BridgedComponentsResults";
-
-        // Load the heatmap image from the file
-        string imagePath = $"{workingDirectory}/heatmap_image.png";
-        Texture2D heatmapTexture = LoadTexture(imagePath);
-
-        // Display the heatmap image
-        if (heatmapTexture != null && heatmapImageObject != null)
-        {
-            RawImage rawImage = heatmapImageObject.GetComponent<RawImage>();
-            RawImage blurImage = blurImageObject.GetComponent<RawImage>();
-            if (rawImage != null)
-            {
-                rawImage.texture = heatmapTexture;
-
-                // Get the Canvas size
-                RectTransform canvasRectTransform = heatmapImageObject.transform.parent.GetComponent<RectTransform>();
-                Vector2 canvasSize = canvasRectTransform.sizeDelta;
-
-                // Stretch the RawImage to fill the Canvas
-                RectTransform rectTransform = rawImage.rectTransform;
-                rectTransform.sizeDelta = canvasSize;
-                rectTransform.sizeDelta -= new Vector2(300, 50);
-
-                // Stretch the RawImage to fill the Canvas
-                RectTransform rectTransform2 = blurImage.rectTransform;
-                rectTransform2.sizeDelta = canvasSize;
-                rectTransform2.sizeDelta += new Vector2(300, 300);
-
-                // Set alpha to full
-                rawImage.color = new Color(rawImage.color.r, rawImage.color.g, rawImage.color.b, 1.0f);
-                blurImage.color = new Color(blurImage.color.r, blurImage.color.g, blurImage.color.b, 0.8f);
-
-                // Ensure RawImage is drawn over other elements by setting its sibling index
-                blurImage.transform.SetAsLastSibling();
-                rawImage.transform.SetAsLastSibling();
-            }
-        }
-    }
-
-    // Function to load a texture from a file path
-    private Texture2D LoadTexture(string path)
-    {
-        byte[] fileData = System.IO.File.ReadAllBytes(path);
-        Texture2D texture = new Texture2D(2, 2);
-        texture.LoadImage(fileData);
-        return texture;
-    }
-
-
     IEnumerator MonteCarloEndSimulationAfterDuration()
     {
         float simulationDuration;
@@ -389,7 +328,8 @@ public class SceneHandler : MonoBehaviour
     IEnumerator RegularEndSimulationAfterDuration()
     {
         // Check if simState and its duration are set, otherwise use a default value
-        float simulationDuration = (simState != null && simState.simDuration > 0) ? simState.simDuration : 10f;
+        float simulationDuration =
+            (simState != null && simState.simDuration > 0) ? simState.simDuration : 10f;
 
         // Wait for the specified simulation duration
         yield return new WaitForSeconds(simulationDuration);
@@ -443,7 +383,7 @@ public class SceneHandler : MonoBehaviour
         Debug.Log("Sim number: " + simState.simNumber);
         // Quit the application
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 #endif
