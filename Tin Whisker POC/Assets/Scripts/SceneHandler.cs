@@ -19,8 +19,9 @@ public class SceneHandler : MonoBehaviour
     private WhiskerSim whiskerSim;
     public MonteCarloLauncher monteCarloLauncher;
 
-    // Reference to the RawImage GameObject
+    // Reference to the RawImage and blur image GameObject
     public GameObject heatmapImageObject;
+    public GameObject blurImageObject;
 
     public TMP_InputField WhiskerDensityText;
     public TMP_InputField LengthSigmaText;
@@ -320,19 +321,31 @@ public class SceneHandler : MonoBehaviour
         if (heatmapTexture != null && heatmapImageObject != null)
         {
             RawImage rawImage = heatmapImageObject.GetComponent<RawImage>();
+            RawImage blurImage = blurImageObject.GetComponent<RawImage>();
             if (rawImage != null)
             {
                 rawImage.texture = heatmapTexture;
 
+                // Get the Canvas size
+                RectTransform canvasRectTransform = heatmapImageObject.transform.parent.GetComponent<RectTransform>();
+                Vector2 canvasSize = canvasRectTransform.sizeDelta;
+
                 // Stretch the RawImage to fill the Canvas
-                rawImage.SetNativeSize(); // Ensure the image fills the entire space without stretching
                 RectTransform rectTransform = rawImage.rectTransform;
-                rectTransform.sizeDelta -= new Vector2(100, 160);
+                rectTransform.sizeDelta = canvasSize;
+                rectTransform.sizeDelta -= new Vector2(300, 50);
+
+                // Stretch the RawImage to fill the Canvas
+                RectTransform rectTransform2 = blurImage.rectTransform;
+                rectTransform2.sizeDelta = canvasSize;
+                rectTransform2.sizeDelta += new Vector2(300, 300);
 
                 // Set alpha to full
                 rawImage.color = new Color(rawImage.color.r, rawImage.color.g, rawImage.color.b, 1.0f);
+                blurImage.color = new Color(blurImage.color.r, blurImage.color.g, blurImage.color.b, 0.8f);
 
                 // Ensure RawImage is drawn over other elements by setting its sibling index
+                blurImage.transform.SetAsLastSibling();
                 rawImage.transform.SetAsLastSibling();
             }
         }
