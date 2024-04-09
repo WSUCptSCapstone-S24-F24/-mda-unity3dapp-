@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Diagnostics;
 using System.IO;
@@ -13,12 +14,21 @@ public class ResultsHandler : MonoBehaviour
     // Function to display the results
     public void ShowResults()
     {
-        // Activate the dim effect
+        // Generate heatmap results
+        StartHeatMapGen(() =>
+        {
+            StartCoroutine(GenerateHeatmapResultsAsync());
+        });
+
+        // Turn on dim while waiting
         TurnOnDim();
 
-        // Generate heatmap results
-        StartCoroutine(GenerateHeatmapResultsAsync());
+        // Call method to listen for key press to hide the image
+        StartCoroutine(WaitForKeyPress());
+    }
 
+    private void ShowHeapMap()
+    {
         // Get current working directory
         string workingDirectory = Application.dataPath + "/BridgedComponentsResults";
 
@@ -55,13 +65,27 @@ public class ResultsHandler : MonoBehaviour
 
                 // Ensure RawImage is drawn over other elements by setting its sibling index
                 rawImage.transform.SetAsLastSibling();
-            }
-            // Activate the heatmap image object
-            if (heatmapImageObject != null)
+
+                // Activate the heatmap image object
                 heatmapImageObject.SetActive(true);
+            }           
         }
-        // Call method to listen for key press to hide the image
-        StartCoroutine(WaitForKeyPress());
+    }
+
+    private void StartHeatMapGen(Action callback)
+    {
+        // Wait for a short duration before invoking the callback
+        StartCoroutine(DelayedCallback(callback));
+    }
+
+    // Coroutine to introduce a delay before invoking the callback
+    private IEnumerator DelayedCallback(Action callback)
+    {
+        // Wait for a short duration
+        yield return new WaitForSeconds(0.1f);
+
+        // Invoke the callback function
+        callback?.Invoke();
     }
 
     // Alerts user that results are being calculated and dims background
@@ -135,9 +159,8 @@ public class ResultsHandler : MonoBehaviour
             UnityEngine.Debug.LogError("Standard Error: " + stderr);
         }
 
-        // Activate the heatmap image after generation
-        if (heatmapImageObject != null)
-            heatmapImageObject.SetActive(true);
+        // Show Heat Map
+        ShowHeapMap();
     }
 
     // Coroutine to wait for any key press to hide the image
