@@ -1,11 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
-using SimInfo;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using System.IO;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class ResultsHandler : MonoBehaviour
 {
@@ -13,10 +10,97 @@ public class ResultsHandler : MonoBehaviour
     public GameObject heatmapImageObject;
     public GameObject blurImageObject;
 
-    public void GenerateHeatmapResults()
+    // Function to display the results
+    public void ShowResults()
+    {
+        TurnOnBlur();
+
+        // Get the Canvas size
+        RectTransform canvasRectTransform =
+            heatmapImageObject.transform.parent.GetComponent<RectTransform>();
+        Vector2 canvasSize = canvasRectTransform.sizeDelta;
+
+        // Generate heatmap results
+        GenerateHeatmapResults();
+
+        // Get current working directory
+        string workingDirectory = Application.dataPath + "/BridgedComponentsResults";
+
+        // Load the heatmap image from the file
+        string imagePath = $"{workingDirectory}/heatmap_image.png";
+        Texture2D heatmapTexture = LoadTexture(imagePath);
+
+        // Display the heatmap image
+        if (heatmapTexture != null && heatmapImageObject != null)
+        {
+            RawImage rawImage = heatmapImageObject.GetComponent<RawImage>();
+            if (rawImage != null)
+            {
+                // Assign the texture to the raw image
+                rawImage.texture = heatmapTexture;
+
+                // Stretch the RawImage to fill the Canvas
+                RectTransform rectTransform = rawImage.rectTransform;
+                rectTransform.sizeDelta = canvasSize;
+                rectTransform.sizeDelta -= new Vector2(300, 50);
+
+                // Set alpha to full for raw image
+                rawImage.color = new Color(
+                    rawImage.color.r,
+                    rawImage.color.g,
+                    rawImage.color.b,
+                    1.0f
+                );
+
+                // Ensure RawImage is drawn over other elements by setting its sibling index
+                rawImage.transform.SetAsLastSibling();
+            }
+            // Activate the heatmap image object
+            if (heatmapImageObject != null)
+                heatmapImageObject.SetActive(true);
+
+            // Call method to listen for key press to hide the image
+            StartCoroutine(WaitForKeyPress());
+        }
+    }
+
+    // Alerts user that results are being calculated and dims background
+    private void TurnOnBlur()
+    {
+        // Get the Canvas size
+        RectTransform canvasRectTransform =
+            heatmapImageObject.transform.parent.GetComponent<RectTransform>();
+        Vector2 canvasSize = canvasRectTransform.sizeDelta;
+
+        if (blurImageObject != null)
+        {
+            blurImageObject.SetActive(true);
+            RawImage blurImage = blurImageObject.GetComponent<RawImage>();
+
+            // Stretch the Blur Image to fill the Canvas
+            RectTransform rectTransform2 = blurImage.rectTransform;
+            rectTransform2.sizeDelta = canvasSize;
+            rectTransform2.sizeDelta += new Vector2(300, 300);
+
+            // Set alpha to 0.8 for blur image
+            blurImage.color = new Color(
+                blurImage.color.r,
+                blurImage.color.g,
+                blurImage.color.b,
+                0.8f
+            );
+            // Draw blur over
+            blurImage.transform.SetAsLastSibling();
+        }
+    }
+
+        // Function to generate heatmap results
+    private void GenerateHeatmapResults()
     {
         // Path to the Python executable
-        string pythonExePath = Path.Combine(Application.dataPath.Replace("Assets", ".venv/bin/python"));
+        string pythonExePath = Path.Combine(
+            Application.dataPath.Replace("Assets", ".venv/bin/python")
+        );
 
         // Path to the Python script
         string pythonScriptPath = Path.Combine(Application.dataPath, "Heatmap.py");
@@ -51,72 +135,6 @@ public class ResultsHandler : MonoBehaviour
         {
             UnityEngine.Debug.LogError("Error generating heatmap. Exit code: " + process.ExitCode);
             UnityEngine.Debug.LogError("Standard Error: " + stderr);
-        }
-    }
-
-    // UnityEngine.
-
-    public void ShowResults()
-    {
-        if (heatmapImageObject != null)
-            heatmapImageObject.SetActive(true);
-        if (blurImageObject != null)
-            blurImageObject.SetActive(true);
-
-        // Generate results
-        GenerateHeatmapResults();
-
-        // Get current working directory
-        string workingDirectory = Application.dataPath + "/BridgedComponentsResults";
-
-        // Load the heatmap image from the file
-        string imagePath = $"{workingDirectory}/heatmap_image.png";
-        Texture2D heatmapTexture = LoadTexture(imagePath);
-
-        // Display the heatmap image
-        if (heatmapTexture != null && heatmapImageObject != null)
-        {
-            RawImage rawImage = heatmapImageObject.GetComponent<RawImage>();
-            RawImage blurImage = blurImageObject.GetComponent<RawImage>();
-            if (rawImage != null)
-            {
-                rawImage.texture = heatmapTexture;
-
-                // Get the Canvas size
-                RectTransform canvasRectTransform =
-                    heatmapImageObject.transform.parent.GetComponent<RectTransform>();
-                Vector2 canvasSize = canvasRectTransform.sizeDelta;
-
-                // Stretch the RawImage to fill the Canvas
-                RectTransform rectTransform = rawImage.rectTransform;
-                rectTransform.sizeDelta = canvasSize;
-                rectTransform.sizeDelta -= new Vector2(300, 50);
-
-                // Stretch the RawImage to fill the Canvas
-                RectTransform rectTransform2 = blurImage.rectTransform;
-                rectTransform2.sizeDelta = canvasSize;
-                rectTransform2.sizeDelta += new Vector2(300, 300);
-
-                // Set alpha to full
-                rawImage.color = new Color(
-                    rawImage.color.r,
-                    rawImage.color.g,
-                    rawImage.color.b,
-                    1.0f
-                );
-                blurImage.color = new Color(
-                    blurImage.color.r,
-                    blurImage.color.g,
-                    blurImage.color.b,
-                    0.8f
-                );
-
-                // Ensure RawImage is drawn over other elements by setting its sibling index
-                blurImage.transform.SetAsLastSibling();
-                rawImage.transform.SetAsLastSibling();
-            }
-            // Call method to listen for key press to hide the image
-            StartCoroutine(WaitForKeyPress());
         }
     }
 
