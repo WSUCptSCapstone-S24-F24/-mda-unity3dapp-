@@ -2687,7 +2687,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Get Results
+  m_text: Show Results
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8748,6 +8748,7 @@ MonoBehaviour:
   sceneNum: 1
   fileOpened: 0
   monteCarloLauncher: {fileID: 648039643}
+  heatmapImageObject: {fileID: 799654826}
   WhiskerDensityText: {fileID: 1363293969}
   LengthSigmaText: {fileID: 1016260905}
   LengthMuText: {fileID: 1008457480}
@@ -11500,7 +11501,7 @@ GameObject:
   - component: {fileID: 1656392256}
   - component: {fileID: 1656392255}
   m_Layer: 5
-  m_Name: Get results
+  m_Name: Show results
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11573,7 +11574,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1193138109}
         m_TargetAssemblyTypeName: SceneHandler, Assembly-CSharp
-        m_MethodName: GetResultsForward
+        m_MethodName: ShowResults
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

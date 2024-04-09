@@ -324,15 +324,10 @@ public class SceneHandler : MonoBehaviour
             {
                 rawImage.texture = heatmapTexture;
 
-                // Get the Canvas size
-                RectTransform canvasRectTransform = heatmapImageObject.transform.parent.GetComponent<RectTransform>();
-                Vector2 canvasSize = canvasRectTransform.sizeDelta;
-
                 // Stretch the RawImage to fill the Canvas
-                RectTransform rectTransform = rawImage.rectTransform;
-                rectTransform.sizeDelta = canvasSize;
-                rectTransform.anchoredPosition = Vector2.zero; // Center the image
                 rawImage.SetNativeSize(); // Ensure the image fills the entire space without stretching
+                RectTransform rectTransform = rawImage.rectTransform;
+                rectTransform.sizeDelta -= new Vector2(100, 160);
 
                 // Set alpha to full
                 rawImage.color = new Color(rawImage.color.r, rawImage.color.g, rawImage.color.b, 1.0f);
