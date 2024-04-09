@@ -6,22 +6,18 @@ using UnityEngine.UI;
 
 public class ResultsHandler : MonoBehaviour
 {
-    // Reference to the RawImage and blur image GameObject
+    // Reference to the RawImage and dim image GameObject
     public GameObject heatmapImageObject;
-    public GameObject blurImageObject;
+    public GameObject dimImageObject;
 
     // Function to display the results
     public void ShowResults()
     {
-        TurnOnBlur();
-
-        // Get the Canvas size
-        RectTransform canvasRectTransform =
-            heatmapImageObject.transform.parent.GetComponent<RectTransform>();
-        Vector2 canvasSize = canvasRectTransform.sizeDelta;
+        // Activate the dim effect
+        TurnOnDim();
 
         // Generate heatmap results
-        GenerateHeatmapResults();
+        StartCoroutine(GenerateHeatmapResultsAsync());
 
         // Get current working directory
         string workingDirectory = Application.dataPath + "/BridgedComponentsResults";
@@ -38,6 +34,11 @@ public class ResultsHandler : MonoBehaviour
             {
                 // Assign the texture to the raw image
                 rawImage.texture = heatmapTexture;
+
+                // Get the Canvas size
+                RectTransform canvasRectTransform =
+                    heatmapImageObject.transform.parent.GetComponent<RectTransform>();
+                Vector2 canvasSize = canvasRectTransform.sizeDelta;
 
                 // Stretch the RawImage to fill the Canvas
                 RectTransform rectTransform = rawImage.rectTransform;
@@ -58,44 +59,38 @@ public class ResultsHandler : MonoBehaviour
             // Activate the heatmap image object
             if (heatmapImageObject != null)
                 heatmapImageObject.SetActive(true);
-
-            // Call method to listen for key press to hide the image
-            StartCoroutine(WaitForKeyPress());
         }
+        // Call method to listen for key press to hide the image
+        StartCoroutine(WaitForKeyPress());
     }
 
     // Alerts user that results are being calculated and dims background
-    private void TurnOnBlur()
+    private void TurnOnDim()
     {
         // Get the Canvas size
         RectTransform canvasRectTransform =
             heatmapImageObject.transform.parent.GetComponent<RectTransform>();
         Vector2 canvasSize = canvasRectTransform.sizeDelta;
 
-        if (blurImageObject != null)
+        if (dimImageObject != null)
         {
-            blurImageObject.SetActive(true);
-            RawImage blurImage = blurImageObject.GetComponent<RawImage>();
+            dimImageObject.SetActive(true);
+            RawImage dimImage = dimImageObject.GetComponent<RawImage>();
 
-            // Stretch the Blur Image to fill the Canvas
-            RectTransform rectTransform2 = blurImage.rectTransform;
+            // Stretch the dim Image to fill the Canvas
+            RectTransform rectTransform2 = dimImage.rectTransform;
             rectTransform2.sizeDelta = canvasSize;
             rectTransform2.sizeDelta += new Vector2(300, 300);
 
-            // Set alpha to 0.8 for blur image
-            blurImage.color = new Color(
-                blurImage.color.r,
-                blurImage.color.g,
-                blurImage.color.b,
-                0.8f
-            );
-            // Draw blur over
-            blurImage.transform.SetAsLastSibling();
+            // Set alpha to 0.8 for dim image
+            dimImage.color = new Color(dimImage.color.r, dimImage.color.g, dimImage.color.b, 0.8f);
+            // Draw dim over
+            dimImage.transform.SetAsLastSibling();
         }
     }
 
-        // Function to generate heatmap results
-    private void GenerateHeatmapResults()
+    // Function to generate heatmap results asynchronously
+    private IEnumerator GenerateHeatmapResultsAsync()
     {
         // Path to the Python executable
         string pythonExePath = Path.Combine(
@@ -119,6 +114,9 @@ public class ResultsHandler : MonoBehaviour
         // Start the process
         Process process = Process.Start(psi);
 
+        // Wait for the process to finish
+        yield return new WaitForEndOfFrame();
+
         // Capture standard output and standard error
         string stdout = process.StandardOutput.ReadToEnd();
         string stderr = process.StandardError.ReadToEnd();
@@ -136,6 +134,10 @@ public class ResultsHandler : MonoBehaviour
             UnityEngine.Debug.LogError("Error generating heatmap. Exit code: " + process.ExitCode);
             UnityEngine.Debug.LogError("Standard Error: " + stderr);
         }
+
+        // Activate the heatmap image after generation
+        if (heatmapImageObject != null)
+            heatmapImageObject.SetActive(true);
     }
 
     // Coroutine to wait for any key press to hide the image
@@ -147,8 +149,8 @@ public class ResultsHandler : MonoBehaviour
         // Hide the image
         if (heatmapImageObject != null)
             heatmapImageObject.SetActive(false);
-        if (blurImageObject != null)
-            blurImageObject.SetActive(false);
+        if (dimImageObject != null)
+            dimImageObject.SetActive(false);
     }
 
     // Function to load a texture from a file path

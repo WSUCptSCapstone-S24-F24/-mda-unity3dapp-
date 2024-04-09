@@ -10286,7 +10286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heatmapImageObject: {fileID: 799654826}
-  blurImageObject: {fileID: 1947426415}
+  dimImageObject: {fileID: 1947426415}
 --- !u!4 &1545934947
 Transform:
   m_ObjectHideFlags: 0
@@ -13305,7 +13305,7 @@ GameObject:
   - component: {fileID: 1947426418}
   - component: {fileID: 1947426417}
   m_Layer: 5
-  m_Name: BlurBackground
+  m_Name: DimBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
