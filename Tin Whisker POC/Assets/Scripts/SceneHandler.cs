@@ -19,6 +19,9 @@ public class SceneHandler : MonoBehaviour
     private WhiskerSim whiskerSim;
     public MonteCarloLauncher monteCarloLauncher;
 
+    // Reference to the RawImage GameObject
+    public GameObject heatmapImageObject;
+
     public TMP_InputField WhiskerDensityText;
     public TMP_InputField LengthSigmaText;
     public TMP_InputField LengthMuText;
@@ -303,6 +306,52 @@ public class SceneHandler : MonoBehaviour
         //Get the results from the wire sim script
         whiskerSim.SaveResults(mySimNumber);
     }
+
+    public void ShowResults()
+    {
+        // Get current working directory 
+        string workingDirectory = Application.dataPath + "/BridgedComponentsResults";
+
+        // Load the heatmap image from the file
+        string imagePath = $"{workingDirectory}/heatmap_image.png";
+        Texture2D heatmapTexture = LoadTexture(imagePath);
+
+        // Display the heatmap image
+        if (heatmapTexture != null && heatmapImageObject != null)
+        {
+            RawImage rawImage = heatmapImageObject.GetComponent<RawImage>();
+            if (rawImage != null)
+            {
+                rawImage.texture = heatmapTexture;
+
+                // Get the Canvas size
+                RectTransform canvasRectTransform = heatmapImageObject.transform.parent.GetComponent<RectTransform>();
+                Vector2 canvasSize = canvasRectTransform.sizeDelta;
+
+                // Stretch the RawImage to fill the Canvas
+                RectTransform rectTransform = rawImage.rectTransform;
+                rectTransform.sizeDelta = canvasSize;
+                rectTransform.anchoredPosition = Vector2.zero; // Center the image
+                rawImage.SetNativeSize(); // Ensure the image fills the entire space without stretching
+
+                // Set alpha to full
+                rawImage.color = new Color(rawImage.color.r, rawImage.color.g, rawImage.color.b, 1.0f);
+
+                // Ensure RawImage is drawn over other elements by setting its sibling index
+                rawImage.transform.SetAsLastSibling();
+            }
+        }
+    }
+
+    // Function to load a texture from a file path
+    private Texture2D LoadTexture(string path)
+    {
+        byte[] fileData = System.IO.File.ReadAllBytes(path);
+        Texture2D texture = new Texture2D(2, 2);
+        texture.LoadImage(fileData);
+        return texture;
+    }
+
 
     IEnumerator MonteCarloEndSimulationAfterDuration()
     {
