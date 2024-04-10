@@ -12,11 +12,14 @@ public class SceneHandler : MonoBehaviour
     public string sceneName;
     public int sceneNum = 1;
     private bool isSceneLoaded = false;
+    private bool isSceneRunning = false;
     private bool argsParsed = false;
     public bool fileOpened = false;
     private int mySimNumber = -1;
     private WhiskerSim whiskerSim;
     public MonteCarloLauncher monteCarloLauncher;
+
+    public Button startButton;
 
     public TMP_InputField WhiskerDensityText;
     public TMP_InputField LengthSigmaText;
@@ -40,6 +43,7 @@ public class SceneHandler : MonoBehaviour
     {
         rootJsonPath = Application.persistentDataPath + "/SimState.JSON";
         ParseArgs();
+        startButton = GameObject.Find("Start_Button").GetComponent<Button>();
 
         if (mySimNumber == 0)
         {
@@ -166,6 +170,12 @@ public class SceneHandler : MonoBehaviour
 
     public void LoadScene(int buildnum)
     {
+        if (isSceneRunning)
+        {
+            Debug.Log("Simulation is already running.");
+            return; // Exit if the simulation is already running
+        }
+
         if (fileOpened)
         {
             getSimInputs();
@@ -175,6 +185,10 @@ public class SceneHandler : MonoBehaviour
                 simState.mtlfilePath = mtlfilePath;
                 simState.fileOpened = fileOpened;
             }
+
+            isSceneRunning = true;
+            startButton.interactable = false;
+
             simState.SaveSimToJSON(myJsonPath);
             if (!isSceneLoaded)
             {
@@ -362,6 +376,8 @@ public class SceneHandler : MonoBehaviour
 
         // Finally, unload the scene
         UnloadScene(sceneNum);
+        isSceneRunning = false;
+        startButton.interactable = true;
     }
 
     // This callback method will be called by WhiskerSim when the simulation ends and it's time to unload the scene
