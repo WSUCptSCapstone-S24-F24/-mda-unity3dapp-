@@ -20,6 +20,7 @@ public class SceneHandler : MonoBehaviour
     public MonteCarloLauncher monteCarloLauncher;
 
     public Button startButton;
+    private PopupManager popupManager;
 
     public TMP_InputField WhiskerDensityText;
     public TMP_InputField LengthSigmaText;
@@ -44,6 +45,8 @@ public class SceneHandler : MonoBehaviour
         rootJsonPath = Application.persistentDataPath + "/SimState.JSON";
         ParseArgs();
         startButton = GameObject.Find("Start_Button").GetComponent<Button>();
+        popupManager = FindObjectOfType<PopupManager>();
+        popupManager.ShowPopup("This is a popup message!");
 
         if (mySimNumber == 0)
         {
@@ -56,7 +59,19 @@ public class SceneHandler : MonoBehaviour
         }
         if (simState == null)
         {
-            Debug.LogError("SimState not found");
+            ShowDebugMessage("SimState not found");
+        }
+    }
+
+    public void ShowDebugMessage(string message)
+    {
+        if (popupManager != null)
+        {
+            popupManager.ShowPopup(message);
+        }
+        else
+        {
+            Debug.LogError("PopupManager is not assigned. Cannot show popup.");
         }
     }
 
@@ -76,7 +91,7 @@ public class SceneHandler : MonoBehaviour
             simState = new SimState();
             if (simState == null)
             {
-                Debug.LogError("SimState class not found");
+                ShowDebugMessage("SimState class not found");
             }
             else
             {
@@ -128,7 +143,7 @@ public class SceneHandler : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Root Sim JSON file does not exist");
+            ShowDebugMessage("Root Sim JSON file does not exist");
         }
     }
 
@@ -172,7 +187,7 @@ public class SceneHandler : MonoBehaviour
     {
         if (isSceneRunning)
         {
-            Debug.Log("Simulation is already running.");
+            ShowDebugMessage("Simulation is already running.");
             return; // Exit if the simulation is already running
         }
 
@@ -204,7 +219,7 @@ public class SceneHandler : MonoBehaviour
         else
         {
             // TODO: Flash message
-            Debug.Log("No loaded PCB");
+            ShowDebugMessage("No loaded PCB");
         }
     }
 
@@ -333,7 +348,7 @@ public class SceneHandler : MonoBehaviour
         }
         else
         {
-            Debug.LogError("WireSim not found");
+            ShowDebugMessage("WireSim not found");
             GetResultsForward();
             QuitApplication();
         }
@@ -341,6 +356,7 @@ public class SceneHandler : MonoBehaviour
 
     IEnumerator RegularEndSimulationAfterDuration()
     {
+        ShowDebugMessage("Simulation starting.");
         // Check if simState and its duration are set, otherwise use a default value
         float simulationDuration =
             (simState != null && simState.simDuration > 0) ? simState.simDuration : 10f;
@@ -365,7 +381,7 @@ public class SceneHandler : MonoBehaviour
         }
         else
         {
-            Debug.LogError("WhiskerSim not found. Unable to save results or clear cylinders.");
+            ShowDebugMessage("WhiskerSim not found. Unable to save results or clear cylinders.");
         }
 
         // Proceed to call cleanup for all WhiskerCollider instances
@@ -375,6 +391,7 @@ public class SceneHandler : MonoBehaviour
         }
 
         // Finally, unload the scene
+        ShowDebugMessage("Simulation ended.");
         UnloadScene(sceneNum);
         isSceneRunning = false;
         startButton.interactable = true;
@@ -390,6 +407,7 @@ public class SceneHandler : MonoBehaviour
         }
 
         // Now you can unload the scene
+
         UnloadScene(sceneNum);
     }
 
