@@ -1,14 +1,13 @@
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine;
-using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using SimInfo;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneHandler : MonoBehaviour
 {
-
     private Scene loadedScene;
     public string sceneName;
     public int sceneNum = 1;
@@ -33,7 +32,6 @@ public class SceneHandler : MonoBehaviour
     public SimState simState;
     public string objfilePath;
     public string mtlfilePath;
-
 
     private string rootJsonPath;
     private string myJsonPath;
@@ -95,7 +93,6 @@ public class SceneHandler : MonoBehaviour
         SpawnAreaSizeYText.text = simState.spawnAreaSizeY.ToString();
         SpawnAreaSizeZText.text = simState.spawnAreaSizeZ.ToString();
 
-
         // Get the float value from the text field
         getSimInputs();
         simState.simNumber = 0;
@@ -130,7 +127,6 @@ public class SceneHandler : MonoBehaviour
             Debug.LogError("Root Sim JSON file does not exist");
         }
     }
-
 
     public void getSimInputs()
     {
@@ -170,24 +166,32 @@ public class SceneHandler : MonoBehaviour
 
     public void LoadScene(int buildnum)
     {
-        getSimInputs();
         if (fileOpened)
         {
-            simState.objfilePath = objfilePath;
-            simState.mtlfilePath = mtlfilePath;
-            simState.fileOpened = fileOpened;
-        }
-        simState.SaveSimToJSON(myJsonPath);
-        if (!isSceneLoaded)
-        {
-            StartCoroutine(LoadSceneAsync(buildnum));
+            getSimInputs();
+            if (fileOpened)
+            {
+                simState.objfilePath = objfilePath;
+                simState.mtlfilePath = mtlfilePath;
+                simState.fileOpened = fileOpened;
+            }
+            simState.SaveSimToJSON(myJsonPath);
+            if (!isSceneLoaded)
+            {
+                StartCoroutine(LoadSceneAsync(buildnum));
+            }
+            else
+            {
+                ReloadScene(buildnum);
+            }
+
+            StartCoroutine(RegularEndSimulationAfterDuration());
         }
         else
         {
-            ReloadScene(buildnum);
+            // TODO: Flash message
+            Debug.Log("No loaded PCB");
         }
-
-        StartCoroutine(RegularEndSimulationAfterDuration());
     }
 
     IEnumerator LoadSceneAsync(int buildnum)
@@ -226,7 +230,6 @@ public class SceneHandler : MonoBehaviour
         isSceneLoaded = false;
     }
 
-
     public void ReloadScene(int buildnum)
     {
         loadedScene = SceneManager.GetSceneByBuildIndex(buildnum);
@@ -240,7 +243,10 @@ public class SceneHandler : MonoBehaviour
 
     IEnumerator ReloadSceneAsync()
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(loadedScene.name, LoadSceneMode.Additive);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(
+            loadedScene.name,
+            LoadSceneMode.Additive
+        );
         while (!asyncLoad.isDone)
         {
             yield return null;
@@ -255,7 +261,6 @@ public class SceneHandler : MonoBehaviour
         getSimInputs();
         LoadScene(2);
         StartCoroutine(simState.SaveSimToJSONasync(rootJsonPath));
-
     }
 
     public void ParseArgs()
@@ -323,7 +328,8 @@ public class SceneHandler : MonoBehaviour
     IEnumerator RegularEndSimulationAfterDuration()
     {
         // Check if simState and its duration are set, otherwise use a default value
-        float simulationDuration = (simState != null && simState.simDuration > 0) ? simState.simDuration : 10f;
+        float simulationDuration =
+            (simState != null && simState.simDuration > 0) ? simState.simDuration : 10f;
 
         // Wait for the specified simulation duration
         yield return new WaitForSeconds(simulationDuration);
@@ -377,7 +383,7 @@ public class SceneHandler : MonoBehaviour
         Debug.Log("Sim number: " + simState.simNumber);
         // Quit the application
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 #endif

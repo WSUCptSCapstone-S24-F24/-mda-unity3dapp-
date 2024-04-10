@@ -4,8 +4,6 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from collections import Counter
-import tkinter as tk
-from tkinter import filedialog
 
 def create_heatmap(directory_path):
     total_pair_counts = Counter()
@@ -43,14 +41,15 @@ def create_heatmap(directory_path):
     ax = sns.heatmap(frequency_df, annot=annotations, fmt="s", cmap="YlGnBu", vmin=0, vmax=100, linewidths=0.5, annot_kws={"fontsize": 8})
     ax.set_title('Percentage Heatmap of Bridged Component Pairs Across Multiple Files')
 
-    # plt.tight_layout()  # Adjust the layout
-    plt.show()
+    # Save the heatmap as an image file in the same directory as the provided directory path
+    output_file = os.path.join(directory_path, "heatmap_image.png")
+    plt.savefig(output_file)
+
+    plt.close()  # Close the plot to free up memory
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    root.withdraw()  # Hide the main window
-    directory_path = filedialog.askdirectory(title="Select Directory Containing Bridged Component Files")
-    if directory_path:
+    directory_path = "Assets/BridgedComponentsResults"
+    if os.path.isdir(directory_path):
         create_heatmap(directory_path)
     else:
-        print("No directory selected. Exiting.")
+        print(f"Directory {directory_path} does not exist")

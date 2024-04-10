@@ -60,10 +60,15 @@ public class LoadFile : MonoBehaviour
         Debug.Log(string.Join("Paths Returned: ", paths));
         string[] MTLPath = StandaloneFileBrowser.OpenFilePanel("Open File", "", "mtl", false);
 
-        if (paths.Length > 0)
+        // Check if both paths and MTLPath arrays have at least one element
+        if (paths.Length > 0 && MTLPath.Length > 0)
         {
             Debug.Log("Selected File: " + paths[0]);
             StartCoroutine(OutputRoutineOpen(new System.Uri(paths[0]).AbsoluteUri, new System.Uri(MTLPath[0]).AbsoluteUri));
+        }
+        else
+        {
+            Debug.Log("No file selected.");
         }
     }
 #endif
@@ -120,6 +125,12 @@ public class LoadFile : MonoBehaviour
                 Destroy(Modle);
             }
             Modle = new OBJLoader().Load(textStream, MTLStream);
+            if (Modle == null)
+            {
+                // TODO: Flash message to user
+                Debug.Log("Error loading OBJ model.");
+                yield break; // Exit the coroutine early if loading OBJ model fails
+            }
             ChangeHeight(-13.7f);
             Modle.transform.localScale = new Vector3(150f, 50f, 150f);
             Modle.transform.Rotate(0f, 0f, 0f, Space.Self);
