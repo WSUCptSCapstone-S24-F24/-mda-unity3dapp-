@@ -23,10 +23,12 @@ public class SceneHandler : MonoBehaviour
     public TMP_InputField LengthMuText;
     public TMP_InputField WidthSigmaText;
     public TMP_InputField WidthMuText;
-    public TMP_InputField SpawnHeight;
     public TMP_InputField SpawnAreaSizeXText;
     public TMP_InputField SpawnAreaSizeYText;
     public TMP_InputField SpawnAreaSizeZText;
+    public TMP_InputField SpawnPositionXText;
+    public TMP_InputField SpawnPositionYText;
+    public TMP_InputField SpawnPositionZText;
     public TMP_InputField SimDurationText;
     public TMP_InputField SimQuantityText;
     public SimState simState;
@@ -88,15 +90,42 @@ public class SceneHandler : MonoBehaviour
         LengthMuText.text = simState.LengthMu.ToString();
         WidthSigmaText.text = simState.WidthSigma.ToString();
         WidthMuText.text = simState.WidthMu.ToString();
-        SpawnHeight.text = simState.SpawnHeight.ToString();
         SpawnAreaSizeXText.text = simState.spawnAreaSizeX.ToString();
         SpawnAreaSizeYText.text = simState.spawnAreaSizeY.ToString();
         SpawnAreaSizeZText.text = simState.spawnAreaSizeZ.ToString();
+
+        SpawnPositionXText.text = simState.spawnPositionX.ToString();
+        SpawnPositionYText.text = simState.spawnPositionY.ToString();
+        SpawnPositionZText.text = simState.spawnPositionZ.ToString();
+
 
         // Get the float value from the text field
         getSimInputs();
         simState.simNumber = 0;
         simState.SaveSimToJSON(rootJsonPath);
+        SetUpSpawnBox();
+    }
+
+    private void SetUpSpawnBox()
+    {
+        GameObject spawnBoxObject = GameObject.Find("WhiskerSpawnBox");
+        if (spawnBoxObject != null)
+        {
+            SpawnBoxController spawnBoxController = spawnBoxObject.GetComponent<SpawnBoxController>();
+            if (spawnBoxController != null)
+            {
+                // Call UpdateCubeProperties on the SpawnBoxController instance
+                spawnBoxController.UpdateCubeProperties();
+            }
+            else
+            {
+                Debug.LogError("SpawnBoxController component not found on GameObject 'WhiskerSpawnBox'.");
+            }
+        }
+        else
+        {
+            Debug.LogError("GameObject 'WhiskerSpawnBox' not found in the scene.");
+        }
     }
 
     private void MonteCarloSimStart()
@@ -145,23 +174,29 @@ public class SceneHandler : MonoBehaviour
         if (float.TryParse(WidthMuText.text, out float result5))
             simState.WidthMu = result5;
 
-        if (float.TryParse(SpawnHeight.text, out float result6))
-            simState.SpawnHeight = result6;
+        if (float.TryParse(SpawnAreaSizeXText.text, out float result6))
+            simState.spawnAreaSizeX = result6;
 
-        if (float.TryParse(SpawnAreaSizeXText.text, out float result7))
-            simState.spawnAreaSizeX = result7;
+        if (float.TryParse(SpawnAreaSizeYText.text, out float result7))
+            simState.spawnAreaSizeY = result7;
 
-        if (float.TryParse(SpawnAreaSizeYText.text, out float result8))
-            simState.spawnAreaSizeY = result8;
+        if (float.TryParse(SpawnAreaSizeZText.text, out float result8))
+            simState.spawnAreaSizeZ = result8;
 
-        if (float.TryParse(SpawnAreaSizeZText.text, out float result9))
-            simState.spawnAreaSizeZ = result9;
+        if (float.TryParse(SpawnPositionXText.text, out float result9))
+            simState.spawnPositionX = result9;
 
-        if (float.TryParse(SimDurationText.text, out float result10))
-            simState.simDuration = result10;
+        if (float.TryParse(SpawnPositionYText.text, out float result10))
+            simState.spawnPositionY = result10;
 
-        if (int.TryParse(SimQuantityText.text, out int result11))
-            monteCarloLauncher.numSimulations = result11;
+        if (float.TryParse(SpawnPositionZText.text, out float result11))
+            simState.spawnPositionZ = result11;
+
+        if (float.TryParse(SimDurationText.text, out float result12))
+            simState.simDuration = result12;
+
+        if (int.TryParse(SimQuantityText.text, out int result13))
+            monteCarloLauncher.numSimulations = result13;
     }
 
     public void LoadScene(int buildnum)
