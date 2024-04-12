@@ -103,6 +103,29 @@ public class SceneHandler : MonoBehaviour
         getSimInputs();
         simState.simNumber = 0;
         simState.SaveSimToJSON(rootJsonPath);
+        SetUpSpawnBox();
+    }
+
+    private void SetUpSpawnBox()
+    {
+        GameObject spawnBoxObject = GameObject.Find("WhiskerSpawnBox");
+        if (spawnBoxObject != null)
+        {
+            SpawnBoxController spawnBoxController = spawnBoxObject.GetComponent<SpawnBoxController>();
+            if (spawnBoxController != null)
+            {
+                // Call UpdateCubeProperties on the SpawnBoxController instance
+                spawnBoxController.UpdateCubeProperties();
+            }
+            else
+            {
+                Debug.LogError("SpawnBoxController component not found on GameObject 'WhiskerSpawnBox'.");
+            }
+        }
+        else
+        {
+            Debug.LogError("GameObject 'WhiskerSpawnBox' not found in the scene.");
+        }
     }
 
     private void MonteCarloSimStart()
