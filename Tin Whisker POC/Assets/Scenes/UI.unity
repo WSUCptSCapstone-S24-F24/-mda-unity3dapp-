@@ -787,7 +787,7 @@ GameObject:
   - component: {fileID: 180213570}
   - component: {fileID: 180213569}
   m_Layer: 5
-  m_Name: SpawnVolumeSizeXInputField
+  m_Name: SpawnVolumeXInputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1409,7 +1409,7 @@ GameObject:
   - component: {fileID: 229052469}
   - component: {fileID: 229052468}
   m_Layer: 5
-  m_Name: WhiskerSpawnHeightTitile
+  m_Name: WhiskerSpawnPosZTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1432,7 +1432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 303, y: 165}
+  m_AnchoredPosition: {x: 305, y: 165}
   m_SizeDelta: {x: 587.5, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &229052468
@@ -1455,7 +1455,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Spawn Height
+  m_text: Z Position
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1544,7 +1544,7 @@ GameObject:
   - component: {fileID: 238418630}
   - component: {fileID: 238418629}
   m_Layer: 5
-  m_Name: Spawn Volume Size Title Text
+  m_Name: Spawn Volume Title Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2543,7 +2543,7 @@ GameObject:
   - component: {fileID: 343428986}
   - component: {fileID: 343428985}
   m_Layer: 5
-  m_Name: SpawnAreaSizeZInputField
+  m_Name: SpawnVolumeZInputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10046,10 +10046,12 @@ MonoBehaviour:
   LengthMuText: {fileID: 1008457480}
   WidthSigmaText: {fileID: 195303474}
   WidthMuText: {fileID: 1560443715}
-  SpawnHeight: {fileID: 1813485770}
   SpawnAreaSizeXText: {fileID: 180213569}
   SpawnAreaSizeYText: {fileID: 1471845603}
   SpawnAreaSizeZText: {fileID: 343428985}
+  SpawnPositionXText: {fileID: 146355754}
+  SpawnPositionYText: {fileID: 69088423}
+  SpawnPositionZText: {fileID: 1813485770}
   SimDurationText: {fileID: 1104860683}
   SimQuantityText: {fileID: 1648703171}
   objfilePath: C:\Users\Gene\Desktop\Tin Whiskers\-mda-unity3dapp--main\Tin Whisker
@@ -11309,7 +11311,7 @@ GameObject:
   - component: {fileID: 1471845604}
   - component: {fileID: 1471845603}
   m_Layer: 5
-  m_Name: SpawnVolumeSizeYInputField
+  m_Name: SpawnVolumeYInputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11695,12 +11697,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c39329348584f76b524be48b593425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VolumeX: {fileID: 180213567}
-  VolumeY: {fileID: 1471845601}
-  VolumeZ: {fileID: 343428983}
-  PositionX: {fileID: 146355752}
-  PositionY: {fileID: 69088421}
-  PositionZ: {fileID: 1813485768}
+  VolumeX: {fileID: 180213569}
+  VolumeY: {fileID: 1471845603}
+  VolumeZ: {fileID: 343428985}
+  PositionX: {fileID: 146355754}
+  PositionY: {fileID: 69088423}
+  PositionZ: {fileID: 1813485770}
 --- !u!23 &1502100494
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13851,7 +13853,7 @@ GameObject:
   - component: {fileID: 1813485771}
   - component: {fileID: 1813485770}
   m_Layer: 5
-  m_Name: WhiskerSpawnHeightField
+  m_Name: WhiskerSpawnPosZField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

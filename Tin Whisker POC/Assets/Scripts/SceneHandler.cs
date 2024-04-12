@@ -160,11 +160,20 @@ public class SceneHandler : MonoBehaviour
         if (float.TryParse(SpawnAreaSizeZText.text, out float result8))
             simState.spawnAreaSizeZ = result8;
 
-        if (float.TryParse(SimDurationText.text, out float result10))
-            simState.simDuration = result10;
+        if (float.TryParse(SpawnPositionXText.text, out float result9))
+            simState.spawnPositionX = result9;
 
-        if (int.TryParse(SimQuantityText.text, out int result11))
-            monteCarloLauncher.numSimulations = result11;
+        if (float.TryParse(SpawnPositionYText.text, out float result10))
+            simState.spawnPositionY = result10;
+
+        if (float.TryParse(SpawnPositionZText.text, out float result11))
+            simState.spawnPositionZ = result11;
+
+        if (float.TryParse(SimDurationText.text, out float result12))
+            simState.simDuration = result12;
+
+        if (int.TryParse(SimQuantityText.text, out int result13))
+            monteCarloLauncher.numSimulations = result13;
     }
 
     public void LoadScene(int buildnum)

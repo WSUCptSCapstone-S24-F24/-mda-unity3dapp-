@@ -85,7 +85,7 @@ public class WhiskerSim : MonoBehaviour
         }
         for (int i = 0; i < WhiskerCount; i++)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX / 2f, simState.spawnAreaSizeX / 2f), Random.Range(1, simState.spawnAreaSizeY + 1) + simState.spawnPositionZ, Random.Range(-simState.spawnAreaSizeZ / 2f, simState.spawnAreaSizeZ / 2f));
+            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX / 2f, simState.spawnAreaSizeX / 2f) + simState.spawnPositionX, Random.Range(1, simState.spawnAreaSizeY + 1) + simState.spawnPositionY, Random.Range(-simState.spawnAreaSizeZ / 2f, simState.spawnAreaSizeZ / 2f) + simState.spawnPositionZ);
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
             // Make cylinder/whisker visable
