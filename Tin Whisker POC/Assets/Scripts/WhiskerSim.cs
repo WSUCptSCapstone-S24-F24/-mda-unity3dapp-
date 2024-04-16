@@ -11,9 +11,8 @@ public class WhiskerSim : MonoBehaviour
 {
     public ShortDetector shortDetector;
     public SimState simState;
-    public GameObject cylinder;
+    public GameObject cylinder; // Cylinder/whisker to clone
     public float simulationDuration;
-    //list of all the cylinders
     private string myjsonPath;
     private int mySimNumber;
     public List<GameObject> cylinder_clone = new List<GameObject>();
@@ -134,15 +133,16 @@ public class WhiskerSim : MonoBehaviour
     public void SaveResults()
     {
         simState.SaveSimToJSON(myjsonPath);
+        // simState.SaveToCSV(mySimNumber);
         shortDetector.StopWhiskerChecks(mySimNumber);
     }
 
     public void SaveResults(int simNumber)
     {
         simState.SaveSimToJSON(myjsonPath);
+        // simState.SaveToCSV(simNumber);
         shortDetector.StopWhiskerChecks(simNumber);
     }
-
 }
 
 public class LognormalRandom

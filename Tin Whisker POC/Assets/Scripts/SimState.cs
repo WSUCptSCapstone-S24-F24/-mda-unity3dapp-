@@ -25,7 +25,8 @@ namespace SimInfo
         public bool fileOpened;
 
 
-        public SimState(){
+        public SimState()
+        {
             // Default values
             this.whiskerDensity = 10;
             this.spawnAreaSizeX = 2f;
@@ -41,8 +42,8 @@ namespace SimInfo
             this.simNumber = -1;
         }
 
-        public SimState(int whiskerDensity, float spawnAreaSizeX, float spawnAreaSizeY, float spawnAreaSizeZ, 
-                        float spawnPositionX, float spawnPositionY, float spawnPositionZ, float LengthMu, 
+        public SimState(int whiskerDensity, float spawnAreaSizeX, float spawnAreaSizeY, float spawnAreaSizeZ,
+                        float spawnPositionX, float spawnPositionY, float spawnPositionZ, float LengthMu,
                         float LengthSigma, float WidthMu, float WidthSigma, int simNumber)
         {
             this.whiskerDensity = whiskerDensity;
@@ -77,7 +78,39 @@ namespace SimInfo
         {
             // Serialize the simState to JSON
             string jsonString = JsonUtility.ToJson(this);
-            
+
+            // Create a file path and file name for the JSON file
+            string filePath = jsonPath;
+
+            // Write the JSON string to a file asynchronously
+            var asyncRequest = File.WriteAllTextAsync(filePath, jsonString);
+
+            // Wait for the file writing to complete
+            while (!asyncRequest.IsCompleted)
+            {
+                yield return null;
+            }
+        }
+
+        public void SaveToCSV(string jsonPath)
+        {
+            Debug.Log("attempting to save sim to JSON | Path: " + jsonPath);
+            // Serialize the simState to JSON
+            string jsonString = JsonUtility.ToJson(this);
+
+            Debug.Log("Saving -> JSON string:\n" + jsonString);
+            // Create a file path and file name for the JSON file
+            string filePath = jsonPath;
+
+            // Write the JSON string to a file synchronously
+            File.WriteAllText(filePath, jsonString);
+        }
+
+        public IEnumerator SaveToCSVasync(string jsonPath)
+        {
+            // Serialize the simState to JSON
+            string jsonString = JsonUtility.ToJson(this);
+
             // Create a file path and file name for the JSON file
             string filePath = jsonPath;
 
@@ -91,5 +124,4 @@ namespace SimInfo
             }
         }
     }
-    
 }
