@@ -2,11 +2,30 @@ using System;
 using System.IO;
 using UnityEngine;
 using TMPro;
-
+using System.Collections.Generic;
+using SimInfo;
 public class CSVHandler : MonoBehaviour
 {
     public TextMeshProUGUI csvText;
     public int padding = 0; // Padding between columns
+
+    public void LogWhiskers(List<GameObject> whiskers, int simNumber)
+    {
+        // Create file path to inside /Users/trevorbuchanan/Desktop/Classes/CPTS421/-mda-unity3dapp-/Tin Whisker POC/SimulationResults
+        // string csvFilePath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"whisker_log_{simNumber}.csv"); // Make sure note monte carlo sim
+        // Check if file already exists
+        // if already exisits, then clear and write to file
+        // otherwise create the file and write the results
+    }
+
+    public void LogSimState(SimState simState, int simNumber)
+    {
+        // Create file path to inside /Users/trevorbuchanan/Desktop/Classes/CPTS421/-mda-unity3dapp-/Tin Whisker POC/SimulationResults
+        // string csvFilePath = Path.Combine(Application.dataPath, "..", "SimulationResults", "simState_log_{simNumber}.csv");
+        // Check if file already exists
+        // if already exisits, then clear and write to file
+        // otherwise create the file and write the results
+    }
 
     // Function to read and display CSV file given its path
     public void ShowCSVFile(string csvFileName)

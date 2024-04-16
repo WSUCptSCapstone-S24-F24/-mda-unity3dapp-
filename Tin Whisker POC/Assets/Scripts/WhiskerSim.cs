@@ -16,6 +16,7 @@ public class WhiskerSim : MonoBehaviour
     private string myjsonPath;
     private int mySimNumber;
     public List<GameObject> cylinder_clone = new List<GameObject>();
+    public CSVHandler ResultsLogger;
 
     private void Start()
     {
@@ -65,9 +66,6 @@ public class WhiskerSim : MonoBehaviour
         //print current scene name
         Debug.Log("Current scene is:" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
 
-        // Open the CSV file for writing
-        //StreamWriter writer = new StreamWriter(Application.persistentDataPath + "/cylinder_lengths.csv");
-
         //Test the dimensions of the cylinder
         // // Write the header row
 
@@ -113,6 +111,9 @@ public class WhiskerSim : MonoBehaviour
             float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
             newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
         }
+
+        // Log all whiskers to whisker_log_{simNumber}
+        ResultsLogger.LogWhiskers(cylinder_clone, mySimNumber);
 
 
         if (simState.simNumber != mySimNumber)
