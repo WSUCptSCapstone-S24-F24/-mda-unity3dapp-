@@ -8,12 +8,15 @@ using UnityEngine.UI;
 public class ResultsHandler : MonoBehaviour
 {
     public GameObject Preview;
+    public GameObject MainMenu;
     public CSVHandler ResultsShower;
 
-    public void Start()
+    void OnEnable()
     {
         if (Preview != null)
             Preview.SetActive(false);
+
+        StartCoroutine(WaitForEscape());
     }
 
     public void ShowWhiskerList()
@@ -63,9 +66,20 @@ public class ResultsHandler : MonoBehaviour
     {
         // Wait until any key is pressed
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Escape));
+        SwitchToMain();
+    }
 
-        // Hide the image
-        if (Preview != null)
-            Preview.SetActive(false);
+    private void SwitchToMain()
+    {
+        GameObject resultsMenu = GameObject.Find("ResultsCanvas");
+        if (MainMenu != null && resultsMenu != null)
+        {
+            MainMenu.SetActive(true);
+            resultsMenu.SetActive(false);
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("MainMenu or ResultsMenu not found in the scene!");
+        }
     }
 }

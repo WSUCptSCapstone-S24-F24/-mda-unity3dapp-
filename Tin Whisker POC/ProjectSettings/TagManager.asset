@@ -7,7 +7,6 @@ TagManager:
   - Part
   - Wisker
   - Board
-  - MainMenu
   layers:
   - Default
   - TransparentFX

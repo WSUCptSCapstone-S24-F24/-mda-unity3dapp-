@@ -337,9 +337,9 @@ public class SceneHandler : MonoBehaviour
 
     public void SwitchToResults()
     {
-        GameObject.FindGameObjectWithTag("MainMenu").SetActive(false);
         if (ResultsCanvas != null)
             ResultsCanvas.SetActive(true);
+        GameObject.Find("MainCanvas").SetActive(false);
     }
 
     IEnumerator MonteCarloEndSimulationAfterDuration()
