@@ -16,8 +16,8 @@ public class SceneHandler : MonoBehaviour
     public bool fileOpened = false;
     private int mySimNumber = -1;
     private WhiskerSim whiskerSim;
+    public GameObject ResultsCanvas;
     public MonteCarloLauncher monteCarloLauncher;
-
     public TMP_InputField WhiskerDensityText;
     public TMP_InputField LengthSigmaText;
     public TMP_InputField LengthMuText;
@@ -333,6 +333,13 @@ public class SceneHandler : MonoBehaviour
 
         //Get the results from the wire sim script
         whiskerSim.SaveResults(mySimNumber);
+    }
+
+    public void SwitchToResults()
+    {
+        GameObject.FindGameObjectWithTag("MainMenu").SetActive(false);
+        if (ResultsCanvas != null)
+            ResultsCanvas.SetActive(true);
     }
 
     IEnumerator MonteCarloEndSimulationAfterDuration()

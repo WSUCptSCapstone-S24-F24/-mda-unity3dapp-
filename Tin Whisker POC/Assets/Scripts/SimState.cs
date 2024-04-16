@@ -94,8 +94,8 @@ namespace SimInfo
 
         public void SaveToCSV(string jsonPath)
         {
-            Debug.Log("attempting to save sim to JSON | Path: " + jsonPath);
-            // Serialize the simState to JSON
+            Debug.Log("attempting to save sim to CSV | Path: " + jsonPath);
+            // Serialize the simState to CSV
             string jsonString = JsonUtility.ToJson(this);
 
             Debug.Log("Saving -> JSON string:\n" + jsonString);
