@@ -14,29 +14,29 @@ public class WhiskerSim : MonoBehaviour
     public GameObject cylinder; // Cylinder/whisker to clone
     public float simulationDuration;
     private string myjsonPath;
-    private int mySimNumber;
+    private int SimNumber;
     public List<GameObject> cylinder_clone = new List<GameObject>();
 
     private void Start()
     {
-        mySimNumber = -1;
+        SimNumber = GameObject.Find("SceneControl").GetComponent<SceneHandler>().SimNumber;
         string[] args = System.Environment.GetCommandLineArgs();
         for (int i = 0; i < args.Length; i++)
         {
             if (args[i] == "-simNumber" && i + 1 < args.Length)
             {
                 int.TryParse(args[i + 1], out int parsedSimNumber);
-                mySimNumber = parsedSimNumber;
+                SimNumber = parsedSimNumber;
                 break;
             }
         }
 
-        if (mySimNumber == -1) // Set sim number to 0 if no simNumber argument found
-                mySimNumber = 0;
-        Debug.Log("Sim number: " + mySimNumber);
+        if (SimNumber == -1) // Set sim number to 0 if no simNumber argument found
+                SimNumber = 0;
+        Debug.Log("Sim number: " + SimNumber);
 
 
-        myjsonPath = Application.persistentDataPath + "/SimState" + (mySimNumber >= 1 ? mySimNumber : "") + ".JSON";  // replace with your desired JSON folder path
+        myjsonPath = Application.persistentDataPath + "/SimState.JSON";  
 
 
         if (System.IO.File.Exists(myjsonPath))
@@ -47,6 +47,7 @@ public class WhiskerSim : MonoBehaviour
             Debug.Log("JSON path:\n" + myjsonPath);
             Debug.Log("JSON string:\n" + jsonString);
             simState = JsonUtility.FromJson<SimState>(jsonString);
+            simState.simNumber = SimNumber;
         }
         else
         {
@@ -54,6 +55,7 @@ public class WhiskerSim : MonoBehaviour
             simState = new SimState();
             Debug.Log("JSON not found\nSaving class to JSON");
             simState.SaveSimToJSON(myjsonPath);
+            simState.simNumber = SimNumber;
         }
 
         //print current scene name
@@ -110,12 +112,12 @@ public class WhiskerSim : MonoBehaviour
         }
 
         // Log all whiskers to whisker_log_{simNumber}
-        CSVHandler.LogWhiskers(cylinder_clone, mySimNumber);
+        CSVHandler.LogWhiskers(cylinder_clone, SimNumber);
 
 
-        if (simState.simNumber != mySimNumber)
+        if (simState.simNumber != SimNumber)
         {
-            Debug.LogError("Sim number mismatch\nSim number: " + simState.simNumber + "\nMy sim number: " + mySimNumber);
+            Debug.LogError("Sim number mismatch\nSim number: " + simState.simNumber + "\nMy sim number: " + SimNumber);
         }
     }
 
@@ -132,7 +134,7 @@ public class WhiskerSim : MonoBehaviour
     {
         simState.SaveSimToJSON(myjsonPath);
         // simState.SaveToCSV(mySimNumber);
-        shortDetector.StopWhiskerChecks(mySimNumber);
+        shortDetector.StopWhiskerChecks(SimNumber);
     }
 
     public void SaveResults(int simNumber)

@@ -14,7 +14,7 @@ public class SceneHandler : MonoBehaviour
     private bool isSceneLoaded = false;
     private bool argsParsed = false;
     public bool fileOpened = false;
-    private int mySimNumber = -1;
+    public int SimNumber = 0;    
     private WhiskerSim whiskerSim;
     public GameObject ResultsCanvas;
     public MonteCarloLauncher monteCarloLauncher;
@@ -43,7 +43,7 @@ public class SceneHandler : MonoBehaviour
         rootJsonPath = Application.persistentDataPath + "/SimState.JSON";
         ParseArgs();
 
-        if (mySimNumber == 0)
+        if (SimNumber == 0)
         {
             Debug.Log("Root Sim Start");
             RootSimSetup();
@@ -66,12 +66,14 @@ public class SceneHandler : MonoBehaviour
             // JSON folder exists, read data from file and initialize SimState object
             string jsonString = System.IO.File.ReadAllText(rootJsonPath);
             simState = JsonUtility.FromJson<SimState>(jsonString);
+            simState.simNumber = SimNumber;
         }
         else
         {
             // JSON folder doesn't exist, create SimState object with default constructor
             Debug.Log("root JSON not found\nSaving class to JSON");
             simState = new SimState();
+            simState.simNumber = SimNumber;
             if (simState == null)
             {
                 Debug.LogError("SimState class not found");
@@ -81,7 +83,6 @@ public class SceneHandler : MonoBehaviour
                 Debug.Log("SimState class found\nsimState: " + simState.ToString());
                 Debug.Log("rootJsonPath: " + rootJsonPath);
             }
-            simState.simNumber = 0;
             simState.SaveSimToJSON(rootJsonPath);
         }
 
@@ -101,7 +102,6 @@ public class SceneHandler : MonoBehaviour
 
         // Get the float value from the text field
         getSimInputs();
-        simState.simNumber = 0;
         simState.SaveSimToJSON(rootJsonPath);
         SetUpSpawnBox();
     }
@@ -130,13 +130,13 @@ public class SceneHandler : MonoBehaviour
 
     private void MonteCarloSimStart()
     {
-        myJsonPath = Application.persistentDataPath + "/SimState" + mySimNumber + ".JSON";
+        myJsonPath = Application.persistentDataPath + "/SimState.JSON";
         if (System.IO.File.Exists(rootJsonPath))
         {
             // JSON folder exists, read data from file and initialize SimState object
             string jsonString = System.IO.File.ReadAllText(rootJsonPath);
             simState = JsonUtility.FromJson<SimState>(jsonString);
-            simState.simNumber = mySimNumber;
+            simState.simNumber = SimNumber;
             simState.SaveSimToJSON(myJsonPath);
 
             if (simState.fileOpened)
@@ -203,6 +203,8 @@ public class SceneHandler : MonoBehaviour
     {
         if (fileOpened)
         {
+            simState.simNumber = SimNumber;
+            Debug.Log("Sim num: " + SimNumber);
             getSimInputs();
             if (fileOpened)
             {
@@ -221,6 +223,7 @@ public class SceneHandler : MonoBehaviour
             }
 
             StartCoroutine(RegularEndSimulationAfterDuration());
+            SimNumber++;
         }
         else
         {
@@ -312,13 +315,13 @@ public class SceneHandler : MonoBehaviour
                 int simNumber;
                 if (int.TryParse(args[i + 1], out simNumber))
                 {
-                    mySimNumber = simNumber;
+                    SimNumber = simNumber;
                 }
             }
         }
-        if (mySimNumber == -1)
+        if (SimNumber == -1)
         {
-            mySimNumber = 0;
+            SimNumber = 0;
         }
         argsParsed = true;
     }
@@ -332,7 +335,7 @@ public class SceneHandler : MonoBehaviour
         }
 
         //Get the results from the wire sim script
-        whiskerSim.SaveResults(mySimNumber);
+        whiskerSim.SaveResults(SimNumber);
     }
 
     public void SwitchToResults()
@@ -356,7 +359,7 @@ public class SceneHandler : MonoBehaviour
         yield return new WaitForSeconds(simulationDuration);
         if (whiskerSim != null)
         {
-            whiskerSim.SaveResults(mySimNumber);
+            whiskerSim.SaveResults(SimNumber);
             QuitApplication();
         }
         else

@@ -22,7 +22,7 @@ public class ResultsHandler : MonoBehaviour
             // Get the SceneHandler component and access sceneNum
             SceneHandler handler = sceneController.GetComponent<SceneHandler>();
             if (handler != null)
-                lastSimNum = handler.sceneNum - 1;
+                lastSimNum = handler.SimNumber;
             else
                 UnityEngine.Debug.LogError("SceneHandler component is not found on the SceneControl object!");
         }
