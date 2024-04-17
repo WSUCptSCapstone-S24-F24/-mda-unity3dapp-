@@ -35,7 +35,7 @@ public class ResultsHandler : MonoBehaviour
     {
         if (Preview != null)
             Preview.SetActive(true);
-        ResultsShower.ShowCSVFile($"whisker_log_{lastSimNum}.csv");
+        ResultsShower.ShowCSVFile($"whiskers_log_{lastSimNum}.csv");
 
         StartCoroutine(WaitForKeyPress());
     }
@@ -44,7 +44,7 @@ public class ResultsHandler : MonoBehaviour
     {
         if (Preview != null)
             Preview.SetActive(true);
-        ResultsShower.ShowCSVFile(""); // Provide the appropriate file name here
+        ResultsShower.ShowCSVFile($"simstate_log_{lastSimNum}.csv"); 
         StartCoroutine(WaitForKeyPress());
     }
 
@@ -52,7 +52,7 @@ public class ResultsHandler : MonoBehaviour
     {
         if (Preview != null)
             Preview.SetActive(true);
-        ResultsShower.ShowCSVFile(""); // Provide the appropriate file name here
+        ResultsShower.ShowCSVFile($"montecarlo_log_{lastSimNum}.csv"); 
         StartCoroutine(WaitForKeyPress());
     }
 
@@ -60,7 +60,7 @@ public class ResultsHandler : MonoBehaviour
     {
         if (Preview != null)
             Preview.SetActive(true);
-        ResultsShower.ShowCSVFile(""); // Provide the appropriate file name here
+        ResultsShower.ShowCSVFile($"bridgedwhiskers_log_{lastSimNum}.csv");
         StartCoroutine(WaitForKeyPress());
     }
 

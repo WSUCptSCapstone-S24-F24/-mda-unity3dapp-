@@ -9,11 +9,54 @@ public class CSVHandler : MonoBehaviour
     public TextMeshProUGUI csvText;
     public int padding = 2; // Padding between columns
 
+    private void Awake()
+    {
+        ClearSimulationResultsDirectory();
+    }
+
+    private void ClearSimulationResultsDirectory()
+    {
+        string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults");
+
+        try
+        {
+            // Check if the directory exists
+            if (Directory.Exists(directoryPath))
+            {
+                // Delete all files in the directory
+                DirectoryInfo directoryInfo = new DirectoryInfo(directoryPath);
+                foreach (FileInfo file in directoryInfo.GetFiles())
+                {
+                    file.Delete();
+                }
+
+                // Delete all subdirectories
+                foreach (DirectoryInfo subDirectory in directoryInfo.GetDirectories())
+                {
+                    subDirectory.Delete(true);
+                }
+
+                Debug.Log($"Successfully cleared SimulationResults directory at: {directoryPath}");
+            }
+            else
+            {
+                Debug.LogWarning($"SimulationResults directory not found at: {directoryPath}");
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Failed to clear SimulationResults directory: {ex.Message}");
+        }
+    }
+
     public static void LogWhiskers(List<GameObject> whiskers, int simNumber)
     {
+        // // Clear directory if not cleared
+        // if(!cleared)
+        
         // Creating the file path
         string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults"); // Make sure note monte carlo sim
-        string fileName = $"whisker_log_{simNumber}.csv";
+        string fileName = $"whiskers_log_{simNumber}.csv";
         string fullPath = Path.Combine(directoryPath, fileName);
 
         try

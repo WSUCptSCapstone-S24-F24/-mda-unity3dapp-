@@ -31,15 +31,9 @@ public class WhiskerSim : MonoBehaviour
             }
         }
 
-        if (mySimNumber == -1)
-        {
-            Debug.LogError("Sim number not found");
-            mySimNumber = 0;
-        }
-        else
-        {
-            Debug.Log("Sim number: " + mySimNumber);
-        }
+        if (mySimNumber == -1) // Set sim number to 0 if no simNumber argument found
+                mySimNumber = 0;
+        Debug.Log("Sim number: " + mySimNumber);
 
 
         myjsonPath = Application.persistentDataPath + "/SimState" + (mySimNumber >= 1 ? mySimNumber : "") + ".JSON";  // replace with your desired JSON folder path
@@ -74,14 +68,16 @@ public class WhiskerSim : MonoBehaviour
         LognormalRandom lognormalRandomLength = new LognormalRandom(simState.LengthMu, simState.LengthSigma);
         LognormalRandom lognormalRandomWidth = new LognormalRandom(simState.WidthMu, simState.WidthSigma);
 
-        if (WhiskerCount > 2000)
+        if (WhiskerCount > 5000)
         {
-            WhiskerCount = 2000;
+            WhiskerCount = 5000;
             Debug.LogError("Whisker count is too high\nWhisker count: " + WhiskerCount);
         }
         for (int i = 0; i < WhiskerCount; i++)
-        {
-            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX / 2f, simState.spawnAreaSizeX / 2f) + simState.spawnPositionX, Random.Range(1, simState.spawnAreaSizeY + 1) + simState.spawnPositionY, Random.Range(-simState.spawnAreaSizeZ / 2f, simState.spawnAreaSizeZ / 2f) + simState.spawnPositionZ);
+        {   
+            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX / 2f * 10f, simState.spawnAreaSizeX / 2f  * 10f) + simState.spawnPositionX * 10f + 5, 
+                                                Random.Range(-simState.spawnAreaSizeY / 2f * 10f, simState.spawnAreaSizeY / 2f * 10f) + simState.spawnPositionY * 10f + simState.spawnAreaSizeY * 10f / 2, 
+                                                Random.Range(-simState.spawnAreaSizeZ / 2f * 10f, simState.spawnAreaSizeZ / 2f * 10f) + simState.spawnPositionZ * 10f + 5);
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
             newCylinder.name = $"Whisker{i}";

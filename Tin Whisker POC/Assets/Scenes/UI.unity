@@ -3741,6 +3741,7 @@ MonoBehaviour:
   PositionX: {fileID: 146355754}
   PositionY: {fileID: 69088423}
   PositionZ: {fileID: 1813485770}
+  scaler: 10
 --- !u!1 &415690509
 GameObject:
   m_ObjectHideFlags: 0
