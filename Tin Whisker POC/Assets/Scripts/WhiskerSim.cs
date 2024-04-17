@@ -93,6 +93,11 @@ public class WhiskerSim : MonoBehaviour
                 collider.enabled = true; // Enable collisions
 
             cylinder_clone.Add(newCylinder);
+
+            float lengthMultiplier = (float)lognormalRandomLength.NextDouble();
+            float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
+            newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
+
             WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
             if (whiskerCollider && shortDetector)
             {
@@ -106,10 +111,6 @@ public class WhiskerSim : MonoBehaviour
                     Debug.LogError("Short detector not found");
                 }
             }
-
-            float lengthMultiplier = (float)lognormalRandomLength.NextDouble();
-            float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
-            newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
         }
 
         // Log all whiskers to whisker_log_{simNumber}

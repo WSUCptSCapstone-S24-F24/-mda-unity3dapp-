@@ -25,13 +25,30 @@ public class CSVHandler : MonoBehaviour
             using (StreamWriter writer = new StreamWriter(fullPath, false))
             {
                 // Write headers or any initial data if needed
-                writer.WriteLine("GameObjectName,PositionX,PositionY,PositionZ");
+                writer.WriteLine("GameObjectName,PositionX,PositionY,PositionZ,Length,Radius");
 
                 // Loop through each whisker and write its properties
                 foreach (GameObject whisker in whiskers)
                 {
                     Vector3 pos = whisker.transform.position;
-                    writer.WriteLine($"{whisker.name},{pos.x},{pos.y},{pos.z}");
+                    Vector3 localScale = whisker.transform.localScale;
+
+                    // Calculate the length using the magnitude of the local scale vector
+                    float length = localScale.magnitude;
+
+                    // Get the rotation of the whisker
+                    Quaternion rotation = whisker.transform.rotation;
+
+                    // Rotate the local Y axis to match the whisker's rotation
+                    Vector3 localYAxis = rotation * Vector3.up;
+
+                    // Calculate the diameter as the component of the local scale that aligns with the direction of the local Y axis after rotation
+                    float diameter = Vector3.Dot(localScale, localYAxis.normalized);
+
+                    // Calculate the radius by dividing the diameter by 2
+                    float radius = Mathf.Abs(diameter) / 2f; // Ensure radius is non-negative
+
+                    writer.WriteLine($"{whisker.name},{pos.x},{pos.y},{pos.z},{length},{radius}");
                 }
             }
 
@@ -42,6 +59,7 @@ public class CSVHandler : MonoBehaviour
             Debug.LogError($"Failed to write to {fullPath}: {ex.Message}");
         }
     }
+
 
     public void LogSimState(SimState simState, int simNumber)
     {
