@@ -8,13 +8,9 @@ public class CSVHandler : MonoBehaviour
 {
     public TextMeshProUGUI csvText;
     public int padding = 2; // Padding between columns
+    private static bool cleared = false;
 
-    private void Awake()
-    {
-        ClearSimulationResultsDirectory();
-    }
-
-    private void ClearSimulationResultsDirectory()
+    private static void ClearSimulationResultsDirectory()
     {
         string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults");
 
@@ -51,8 +47,11 @@ public class CSVHandler : MonoBehaviour
 
     public static void LogWhiskers(List<GameObject> whiskers, int simNumber)
     {
-        // // Clear directory if not cleared
-        // if(!cleared)
+        // Clear directory if not cleared
+        if(!cleared) {
+            ClearSimulationResultsDirectory();
+            cleared = true;
+        }
         
         // Creating the file path
         string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults"); // Make sure note monte carlo sim
