@@ -16,7 +16,6 @@ public class WhiskerSim : MonoBehaviour
     private string myjsonPath;
     private int mySimNumber;
     public List<GameObject> cylinder_clone = new List<GameObject>();
-    public CSVHandler ResultsLogger;
 
     private void Start()
     {
@@ -85,6 +84,7 @@ public class WhiskerSim : MonoBehaviour
             Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX / 2f, simState.spawnAreaSizeX / 2f) + simState.spawnPositionX, Random.Range(1, simState.spawnAreaSizeY + 1) + simState.spawnPositionY, Random.Range(-simState.spawnAreaSizeZ / 2f, simState.spawnAreaSizeZ / 2f) + simState.spawnPositionZ);
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
+            newCylinder.name = $"Whisker{i}";
             // Make cylinder/whisker visable
             newCylinder.GetComponent<MeshRenderer>().enabled = true;
             // Enable cylinder/whisker collisions
@@ -113,7 +113,7 @@ public class WhiskerSim : MonoBehaviour
         }
 
         // Log all whiskers to whisker_log_{simNumber}
-        ResultsLogger.LogWhiskers(cylinder_clone, mySimNumber);
+        CSVHandler.LogWhiskers(cylinder_clone, mySimNumber);
 
 
         if (simState.simNumber != mySimNumber)

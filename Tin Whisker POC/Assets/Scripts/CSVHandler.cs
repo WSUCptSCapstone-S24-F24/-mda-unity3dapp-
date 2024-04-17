@@ -7,15 +7,40 @@ using SimInfo;
 public class CSVHandler : MonoBehaviour
 {
     public TextMeshProUGUI csvText;
-    public int padding = 0; // Padding between columns
+    public int padding = 2; // Padding between columns
 
-    public void LogWhiskers(List<GameObject> whiskers, int simNumber)
+    public static void LogWhiskers(List<GameObject> whiskers, int simNumber)
     {
-        // Create file path to inside /Users/trevorbuchanan/Desktop/Classes/CPTS421/-mda-unity3dapp-/Tin Whisker POC/SimulationResults
-        // string csvFilePath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"whisker_log_{simNumber}.csv"); // Make sure note monte carlo sim
-        // Check if file already exists
-        // if already exisits, then clear and write to file
-        // otherwise create the file and write the results
+        // Creating the file path
+        string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults"); // Make sure note monte carlo sim
+        string fileName = $"whisker_log_{simNumber}.csv";
+        string fullPath = Path.Combine(directoryPath, fileName);
+
+        try
+        {
+            // Ensure the directory exists
+            Directory.CreateDirectory(directoryPath);
+
+            // Prepare to write to the file
+            using (StreamWriter writer = new StreamWriter(fullPath, false))
+            {
+                // Write headers or any initial data if needed
+                writer.WriteLine("GameObjectName,PositionX,PositionY,PositionZ");
+
+                // Loop through each whisker and write its properties
+                foreach (GameObject whisker in whiskers)
+                {
+                    Vector3 pos = whisker.transform.position;
+                    writer.WriteLine($"{whisker.name},{pos.x},{pos.y},{pos.z}");
+                }
+            }
+
+            Debug.Log($"Successfully wrote to {fullPath}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to write to {fullPath}: {ex.Message}");
+        }
     }
 
     public void LogSimState(SimState simState, int simNumber)
@@ -51,7 +76,7 @@ public class CSVHandler : MonoBehaviour
         foreach (string line in lines)
         {
             string[] fields = line.Split(','); // Split the line into fields using comma as delimiter
-            
+
             // Add fields for each column
             for (int i = 0; i < fields.Length; i++)
             {
@@ -62,7 +87,7 @@ public class CSVHandler : MonoBehaviour
                 // Add field and spaces for alignment
                 csvText.text += $" {fields[i]}{spaces}";
             }
-            
+
             csvText.text += "\n"; // New line for the next row
         }
     }

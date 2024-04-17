@@ -10,12 +10,24 @@ public class ResultsHandler : MonoBehaviour
     public GameObject Preview;
     public GameObject MainMenu;
     public CSVHandler ResultsShower;
+    private int lastSimNum;
 
     void OnEnable()
     {
         if (Preview != null)
             Preview.SetActive(false);
-
+        GameObject sceneController = GameObject.Find("SceneControl");
+        if (sceneController != null)
+        {
+            // Get the SceneHandler component and access sceneNum
+            SceneHandler handler = sceneController.GetComponent<SceneHandler>();
+            if (handler != null)
+                lastSimNum = handler.sceneNum - 1;
+            else
+                UnityEngine.Debug.LogError("SceneHandler component is not found on the SceneControl object!");
+        }
+        else
+            UnityEngine.Debug.LogError("SceneControl GameObject is not found!");
         StartCoroutine(WaitForEscape());
     }
 
@@ -23,7 +35,8 @@ public class ResultsHandler : MonoBehaviour
     {
         if (Preview != null)
             Preview.SetActive(true);
-        ResultsShower.ShowCSVFile("test.csv");
+        ResultsShower.ShowCSVFile($"whisker_log_{lastSimNum}.csv");
+
         StartCoroutine(WaitForKeyPress());
     }
 
