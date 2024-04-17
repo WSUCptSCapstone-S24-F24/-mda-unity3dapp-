@@ -46,7 +46,7 @@ public class SceneHandler : MonoBehaviour
         ParseArgs();
         startButton = GameObject.Find("Start_Button").GetComponent<Button>();
         popupManager = FindObjectOfType<PopupManager>();
-        popupManager.ShowPopup("This is a popup message!");
+        PopupManagerSingleton.Instance.ShowPopup("This is a popup message!");
 
         if (mySimNumber == 0)
         {
@@ -67,7 +67,7 @@ public class SceneHandler : MonoBehaviour
     {
         if (popupManager != null)
         {
-            popupManager.ShowPopup(message);
+            PopupManagerSingleton.Instance.ShowPopup(message);
         }
         else
         {
