@@ -46,7 +46,6 @@ public class SceneHandler : MonoBehaviour
         ParseArgs();
         startButton = GameObject.Find("Start_Button").GetComponent<Button>();
         popupManager = FindObjectOfType<PopupManager>();
-        PopupManagerSingleton.Instance.ShowPopup("This is a popup message!");
 
         if (mySimNumber == 0)
         {
@@ -218,7 +217,6 @@ public class SceneHandler : MonoBehaviour
         }
         else
         {
-            // TODO: Flash message
             ShowDebugMessage("No loaded PCB");
         }
     }
