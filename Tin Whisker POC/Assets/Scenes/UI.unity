@@ -10143,7 +10143,7 @@ MonoBehaviour:
   sceneNum: 1
   fileOpened: 0
   monteCarloLauncher: {fileID: 648039643}
-  startButton: {fileID: 0}
+  startButton: {fileID: 882808386}
   WhiskerDensityText: {fileID: 1363293969}
   LengthSigmaText: {fileID: 1016260905}
   LengthMuText: {fileID: 1008457480}
@@ -15403,7 +15403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea12b5df2245170459e012af750b4414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupPrefab: {fileID: 8088861003998864501, guid: b086eee675e586340bf326ecb53103ae, type: 3}
+  popupPrefab: {fileID: 8088861003998864501, guid: 0f80f76000a8f425f944c25337a5dd98, type: 3}
   displayTime: 3
 --- !u!4 &2075313676
 Transform:
@@ -15418,7 +15418,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2075313677
 MonoBehaviour:
@@ -15433,31 +15433,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupManager: {fileID: 2075313675}
---- !u!1 &2102975796
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2079001612}
-  - component: {fileID: 2079001614}
-  - component: {fileID: 2079001613}
-  m_Layer: 5
-  m_Name: WhiskerSpawnPosXTitile
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!224 &2079001612
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079001611}
+  m_GameObject: {fileID: 2102975796}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.28856814, y: 0.27160195, z: 0.67892}
@@ -15477,7 +15459,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079001611}
+  m_GameObject: {fileID: 2102975796}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -15568,8 +15550,26 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079001611}
+  m_GameObject: {fileID: 2102975796}
   m_CullTransparentMesh: 1
+--- !u!1 &2102975796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2079001612}
+  - component: {fileID: 2079001614}
+  - component: {fileID: 2079001613}
+  m_Layer: 5
+  m_Name: WhiskerSpawnPosXTitile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &2113649982
 GameObject:
   m_ObjectHideFlags: 0
