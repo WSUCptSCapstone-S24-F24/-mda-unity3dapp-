@@ -34,7 +34,6 @@ using SimInfo;
 
 public class LoadFile : MonoBehaviour
 {
-    public TextMeshProUGUI textMeshPro;
     public GameObject Modle; //Load OBJ Model
     public GameObject SceneManager;
 

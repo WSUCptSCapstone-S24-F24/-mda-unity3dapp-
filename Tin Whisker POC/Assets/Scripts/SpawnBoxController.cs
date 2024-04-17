@@ -9,6 +9,7 @@ public class SpawnBoxController : MonoBehaviour
     public TMP_InputField PositionX;
     public TMP_InputField PositionY;
     public TMP_InputField PositionZ;
+    public float scaler = 10;
 
     private GameObject cube;
 
@@ -75,9 +76,9 @@ public class SpawnBoxController : MonoBehaviour
         }
 
         // Update cube scale
-        cube.transform.localScale = new Vector3(volumeX, volumeY, volumeZ);
+        cube.transform.localScale = new Vector3(volumeX * scaler, volumeY * scaler, volumeZ * scaler);
 
         // Update cube position
-        cube.transform.position = new Vector3(positionX, positionY, positionZ);
+        cube.transform.position = new Vector3(positionX * scaler - 5f, positionY * scaler + volumeY * scaler / 2, positionZ * scaler - 5f);
     }
 }

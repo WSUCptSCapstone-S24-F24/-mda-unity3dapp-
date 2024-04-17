@@ -1,0 +1,4 @@
+Bridged Component Pairs:
+(CO1452,CO1035)
+(CO1451,CO1035)
+(CO1452,CO1451)
