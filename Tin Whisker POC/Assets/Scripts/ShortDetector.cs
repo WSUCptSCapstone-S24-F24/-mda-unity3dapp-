@@ -9,7 +9,7 @@ public class ShortDetector : MonoBehaviour
     public List<WhiskerCollider> whiskers;  // Assign all whiskers to this list
     public int maxBridgingWhiskers = 10; // Replace with your desired stop condition
 
-    private HashSet<(GameObject, GameObject)> bridgedComponentPairs = new HashSet<(GameObject, GameObject)>();
+    private HashSet<(int, GameObject, GameObject)> bridgedComponentSets = new HashSet<(int, GameObject, GameObject)>();
     private Coroutine whiskerCheckCoroutine;
   
     private void Start()
@@ -35,8 +35,8 @@ public class ShortDetector : MonoBehaviour
                     GameObject[] components = whiskers[i].GetBridgedComponents();
 
                     // Store the components in a normalized order (smallest instance ID first)
-                    (GameObject, GameObject) pair = NormalizePair(components[0], components[1]);
-                    bridgedComponentPairs.Add(pair);
+                    (int, GameObject, GameObject) set = NormalizeSet(whiskers[i].WhiskerNum, components[0], components[1]);
+                    bridgedComponentSets.Add(set);
                 }
 
                 // Wait for next frame after checking a few whiskers (you can adjust this number)
@@ -51,15 +51,15 @@ public class ShortDetector : MonoBehaviour
     }
 
     
-    private (GameObject, GameObject) NormalizePair(GameObject a, GameObject b)
+    private (int, GameObject, GameObject) NormalizeSet(int a, GameObject b, GameObject c)
     {
-        if (a.GetInstanceID() < b.GetInstanceID())
+        if (b.GetInstanceID() < c.GetInstanceID())
         {
-            return (a, b);
+            return (a, b, c);
         }
         else
         {
-            return (b, a);
+            return (a, c, b);
         }
     }
 
@@ -71,32 +71,6 @@ public class ShortDetector : MonoBehaviour
         }
 
         // Aggregate and process the results
-        AggregateResults(sim_id);
-    }
-
-    private void AggregateResults(int sim_id)
-    {
-        // Define the path where you want to save the results
-        string path = Application.dataPath + "/BridgedComponentsResults/sim_" + sim_id + "_bridged_components.txt";
-        Debug.Log("Saving results to: " + path);
-
-        // Use StringBuilder for efficient string manipulations
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.AppendLine("Bridged Component Pairs:");
-
-        // Write the number of bridged component pairs
-        foreach (var pair in bridgedComponentPairs)
-        {
-            string line = "(" + pair.Item1.name + "," + pair.Item2.name + ")";
-            stringBuilder.AppendLine(line);
-        }
-
-        // Create the directory if it doesn't exist
-        Directory.CreateDirectory(Path.GetDirectoryName(path));
-
-        // Write all lines to the file
-        File.WriteAllText(path, stringBuilder.ToString());
-
-        Debug.Log("Results saved to: " + path);
+        CSVHandler.LogBridgedWhiskers(bridgedComponentSets, sim_id);
     }
 }

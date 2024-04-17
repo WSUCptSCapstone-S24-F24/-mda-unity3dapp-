@@ -60,7 +60,7 @@ public class ResultsHandler : MonoBehaviour
     {
         if (Preview != null)
             Preview.SetActive(true);
-        ResultsShower.ShowCSVFile($"bridgedwhiskers_log_{lastSimNum}.csv");
+        ResultsShower.ShowCSVFile($"bridgedcomponents_log_{lastSimNum}.csv");
         StartCoroutine(WaitForKeyPress());
     }
 

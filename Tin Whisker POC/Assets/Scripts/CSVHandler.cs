@@ -67,7 +67,7 @@ public class CSVHandler : MonoBehaviour
             // Prepare to write to the file
             using (StreamWriter writer = new StreamWriter(fullPath, false))
             {
-                // Write headers or any initial data if needed
+                // Write headers or any initial data 
                 writer.WriteLine("GameObjectName,PositionX,PositionY,PositionZ,Length,Radius");
 
                 // Loop through each whisker and write its properties
@@ -140,9 +140,44 @@ public class CSVHandler : MonoBehaviour
         }
     }
 
-    public static void LogBridgedWhiskers(int simNumber)
+    public static void LogBridgedWhiskers(HashSet<(int, GameObject, GameObject)> bridgedComponentSets, int simNumber)
     {
+        // Clear directory if not cleared
+        if (!cleared)
+        {
+            ClearSimulationResultsDirectory();
+            cleared = true;
+        }
 
+        // Define the path where you want to save the results
+        string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults");
+        string fileName = $"bridgedcomponents_log_{simNumber}.csv";
+        string fullPath = Path.Combine(directoryPath, fileName);
+
+        try
+        {
+            // Ensure the directory exists
+            Directory.CreateDirectory(directoryPath);
+
+            // Prepare to write to the file
+            using (StreamWriter writer = new StreamWriter(fullPath, false))
+            {
+                // Write headers or any initial data 
+                writer.WriteLine("Whisker,Component1,Component2");
+
+                // Write the number of bridged component pairs
+                foreach (var set in bridgedComponentSets)
+                {
+                    writer.WriteLine($"{set.Item1},{set.Item2.name},{set.Item3.name}");
+                }
+            }
+
+            Debug.Log($"Successfully wrote to {fullPath}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to write to {fullPath}: {ex.Message}");
+        }
     }
 
     // Function to read and display CSV file given its path
