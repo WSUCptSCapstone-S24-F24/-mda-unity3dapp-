@@ -3876,7 +3876,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5fb6da6bad32544f18891704014c6f9e, type: 2}
+  - {fileID: 2100000, guid: 7470ebc88a3754cf885ce9d45e1240e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11752,6 +11752,7 @@ MonoBehaviour:
   sceneName: Sim
   sceneNum: 1
   fileOpened: 0
+  SimNumber: 0
   ResultsCanvas: {fileID: 1309027517}
   monteCarloLauncher: {fileID: 648039643}
   startButton: {fileID: 882808386}
@@ -17612,7 +17613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 8088861003998864501, guid: 0f80f76000a8f425f944c25337a5dd98, type: 3}
-  displayTime: 3
+  displayTime: 2
 --- !u!4 &2075313676
 Transform:
   m_ObjectHideFlags: 0
