@@ -15,10 +15,11 @@ public class ResetTextBoxPos : MonoBehaviour
         RectTransform textBoxRectTransform = textBox.GetComponent<RectTransform>();
 
         // Calculate the desired position based on the size of the text content
+        float desiredXPosition = CalculateDesiredXPosition(textBoxRectTransform);
         float desiredYPosition = CalculateDesiredYPosition(textBoxRectTransform);
 
         // Update the position of the parent container to shift it downward
-        textBoxRectTransform.anchoredPosition = new Vector2(textBoxRectTransform.anchoredPosition.x, desiredYPosition);
+        textBoxRectTransform.anchoredPosition = new Vector2(desiredXPosition, desiredYPosition);
     }
 
     // This method calculates the desired Y position based on the size of the text content
@@ -31,5 +32,17 @@ public class ResetTextBoxPos : MonoBehaviour
         float desiredYPosition = textBoxRectTransform.anchoredPosition.y - halfHeight;
 
         return desiredYPosition;
+    }
+
+    // This method calculates the desired X position based on the size of the text content
+    private float CalculateDesiredXPosition(RectTransform textBoxRectTransform)
+    {
+        // Calculate the half width of the text box
+        float halfWidth = textBoxRectTransform.rect.width / 2f;
+
+        // Calculate the desired X position by adding half of the text box's width to its current position
+        float desiredXPosition = textBoxRectTransform.anchoredPosition.x + halfWidth;
+
+        return desiredXPosition;
     }
 }

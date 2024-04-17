@@ -48,11 +48,12 @@ public class CSVHandler : MonoBehaviour
     public static void LogWhiskers(List<GameObject> whiskers, int simNumber)
     {
         // Clear directory if not cleared
-        if(!cleared) {
+        if (!cleared)
+        {
             ClearSimulationResultsDirectory();
             cleared = true;
         }
-        
+
         // Creating the file path
         string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults"); // Make sure note monte carlo sim
         string fileName = $"whiskers_log_{simNumber}.csv";
@@ -102,14 +103,46 @@ public class CSVHandler : MonoBehaviour
         }
     }
 
-
-    public void LogSimState(SimState simState, int simNumber)
+    public static void LogSimState(SimState simState, int simNumber)
     {
-        // Create file path to inside /Users/trevorbuchanan/Desktop/Classes/CPTS421/-mda-unity3dapp-/Tin Whisker POC/SimulationResults
-        // string csvFilePath = Path.Combine(Application.dataPath, "..", "SimulationResults", "simState_log_{simNumber}.csv");
-        // Check if file already exists
-        // if already exisits, then clear and write to file
-        // otherwise create the file and write the results
+        // Clear directory if not cleared
+        if (!cleared)
+        {
+            ClearSimulationResultsDirectory();
+            cleared = true;
+        }
+
+        // Creating the file path
+        string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults");
+        string fileName = $"simstate_log_{simNumber}.csv";
+        string fullPath = Path.Combine(directoryPath, fileName);
+
+        try
+        {
+            // Ensure the directory exists
+            Directory.CreateDirectory(directoryPath);
+
+            // Prepare to write to the file
+            using (StreamWriter writer = new StreamWriter(fullPath, false))
+            {
+                // Write headers
+                writer.WriteLine("WhiskerDensity,SpawnAreaSizeX,SpawnAreaSizeY,SpawnAreaSizeZ,SpawnPositionX,SpawnPositionY,SpawnPositionZ,LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration");
+
+                // Write values of each property
+                writer.WriteLine($"{simState.whiskerDensity},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration}");
+            }
+
+            Debug.Log($"Successfully wrote sim state to {fullPath}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to write sim state to {fullPath}: {ex.Message}");
+        }
+    }
+
+    public static void LogBridgedWhiskers(int simNumber)
+    {
+
     }
 
     // Function to read and display CSV file given its path
@@ -121,6 +154,7 @@ public class CSVHandler : MonoBehaviour
         if (!File.Exists(csvFilePath))
         {
             Debug.LogError($"File not found: {csvFilePath}");
+            PopupManagerSingleton.Instance.ShowPopup("No simulation results found");
             return;
         }
 

@@ -113,6 +113,8 @@ public class WhiskerSim : MonoBehaviour
 
         // Log all whiskers to whisker_log_{simNumber}
         CSVHandler.LogWhiskers(cylinder_clone, SimNumber);
+        // Log the SimState to simstate_log_{simNumber}
+        CSVHandler.LogSimState(simState, SimNumber);
 
 
         if (simState.simNumber != SimNumber)
@@ -133,14 +135,12 @@ public class WhiskerSim : MonoBehaviour
     public void SaveResults()
     {
         simState.SaveSimToJSON(myjsonPath);
-        // simState.SaveToCSV(mySimNumber);
         shortDetector.StopWhiskerChecks(SimNumber);
     }
 
     public void SaveResults(int simNumber)
     {
         simState.SaveSimToJSON(myjsonPath);
-        // simState.SaveToCSV(simNumber);
         shortDetector.StopWhiskerChecks(simNumber);
     }
 }
