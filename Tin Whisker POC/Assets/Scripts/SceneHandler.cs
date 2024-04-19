@@ -21,6 +21,8 @@ public class SceneHandler : MonoBehaviour
     public MonteCarloLauncher monteCarloLauncher;
 
     public Button startButton;
+    public Button endButton;
+    private Coroutine regularEndSimCoroutine;
     private PopupManager popupManager;
 
     public TMP_InputField WhiskerDensityText;
@@ -48,7 +50,9 @@ public class SceneHandler : MonoBehaviour
         rootJsonPath = Application.persistentDataPath + "/SimState.JSON";
         ParseArgs();
         startButton = GameObject.Find("Start_Button").GetComponent<Button>();
+        endButton = GameObject.Find("End_Button").GetComponent<Button>();
         popupManager = FindObjectOfType<PopupManager>();
+        endButton.gameObject.SetActive(false);
 
         if (SimNumber == 0)
         {
@@ -240,6 +244,7 @@ public class SceneHandler : MonoBehaviour
 
             isSceneRunning = true;
             startButton.interactable = false;
+            endButton.gameObject.SetActive(true);
 
             simState.SaveSimToJSON(myJsonPath);
             if (!isSceneLoaded)
@@ -251,7 +256,7 @@ public class SceneHandler : MonoBehaviour
                 ReloadScene(buildnum);
             }
 
-            StartCoroutine(RegularEndSimulationAfterDuration());
+            regularEndSimCoroutine = StartCoroutine(RegularEndSimulationAfterDuration());
             SimNumber++;
         }
         else
@@ -439,6 +444,7 @@ public class SceneHandler : MonoBehaviour
         UnloadScene(sceneNum);
         isSceneRunning = false;
         startButton.interactable = true;
+        endButton.gameObject.SetActive(false);
     }
 
     // This callback method will be called by WhiskerSim when the simulation ends and it's time to unload the scene
@@ -453,6 +459,34 @@ public class SceneHandler : MonoBehaviour
         // Now you can unload the scene
 
         UnloadScene(sceneNum);
+    }
+
+    public void EndSimulationEarly()
+    {
+        Debug.Log("User ended simulation.");
+        ShowDebugMessage("User ended simulation.");
+        // Stop the coroutine that is waiting for the simulation to end
+        StopCoroutine(regularEndSimCoroutine);
+
+        if (whiskerSim == null)
+        {
+            whiskerSim = FindObjectOfType<WhiskerSim>();
+        }
+
+        // Perform any necessary cleanup, similar to what would happen at the end of the simulation
+        whiskerSim.SaveResults();
+        whiskerSim.ClearCylinders();
+
+        // Reactivate the Start button, hide the Exit button
+        startButton.interactable = true;
+        endButton.gameObject.SetActive(false);
+
+        // Set the simulation state to not running
+        isSceneRunning = false;
+
+        // Unload the scene or reset the simulation as needed
+        UnloadScene(sceneNum);
+        ShowDebugMessage("Simulation ended.");
     }
 
     public void QuitApplication()
