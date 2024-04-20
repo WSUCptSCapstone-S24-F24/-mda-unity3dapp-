@@ -105,50 +105,79 @@ public class CSVHandler : MonoBehaviour
 
     public static void LogSimState(SimState simState, int simNumber)
     {
-        // Clear directory if not cleared
-        if (!cleared)
-        {
-            ClearSimulationResultsDirectory();
-            cleared = true;
-        }
-
-        // Creating the file path
-        string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults");
-        string fileName = $"simstate_log_{simNumber}.csv";
-        string fullPath = Path.Combine(directoryPath, fileName);
+        // Creating the file paths for whiskers and bridged components logs
+        string whiskersLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"whiskers_log_{simNumber}.csv");
+        string bridgedLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"bridgedcomponents_log_{simNumber}.csv");
+        string simStateLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"simstate_log_{simNumber}.csv");
 
         try
         {
-            // Ensure the directory exists
-            Directory.CreateDirectory(directoryPath);
+            // Ensure the directories exist
+            Directory.CreateDirectory(Path.GetDirectoryName(whiskersLogPath));
+            Directory.CreateDirectory(Path.GetDirectoryName(bridgedLogPath));
+            Directory.CreateDirectory(Path.GetDirectoryName(simStateLogPath));
 
-            // Prepare to write to the file
-            using (StreamWriter writer = new StreamWriter(fullPath, false))
+            // Prepare new data to be written
+            string newData = $"WhiskerDensity,SpawnAreaSizeX,SpawnAreaSizeY,SpawnAreaSizeZ,SpawnPositionX,SpawnPositionY,SpawnPositionZ,LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration\n{simState.whiskerDensity},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration}\n";
+
+            // Read existing content of whiskers log file
+            List<string> whiskersLines = new List<string>();
+            if (File.Exists(whiskersLogPath))
             {
-                // Write headers
-                writer.WriteLine("WhiskerDensity,SpawnAreaSizeX,SpawnAreaSizeY,SpawnAreaSizeZ,SpawnPositionX,SpawnPositionY,SpawnPositionZ,LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration");
-
-                // Write values of each property
-                writer.WriteLine($"{simState.whiskerDensity},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration}");
+                whiskersLines.AddRange(File.ReadAllLines(whiskersLogPath));
             }
 
-            Debug.Log($"Successfully wrote sim state to {fullPath}");
+            // Read existing content of bridged components log file
+            List<string> bridgedLines = new List<string>();
+            if (File.Exists(bridgedLogPath))
+            {
+                bridgedLines.AddRange(File.ReadAllLines(bridgedLogPath));
+            }
+
+            // Prepare to write to the whiskers log file
+            using (StreamWriter whiskersWriter = new StreamWriter(whiskersLogPath, false)) // false to overwrite
+            {
+                // Write new data first
+                whiskersWriter.WriteLine(newData);
+
+                // Write back existing data
+                foreach (string line in whiskersLines)
+                {
+                    whiskersWriter.WriteLine(line);
+                }
+            }
+
+            // Prepare to write to the bridged components log file
+            using (StreamWriter bridgedWriter = new StreamWriter(bridgedLogPath, false)) // false to overwrite
+            {
+                // Write new data first
+                bridgedWriter.WriteLine(newData);
+
+                // Write back existing data
+                foreach (string line in bridgedLines)
+                {
+                    bridgedWriter.WriteLine(line);
+                }
+            }
+
+            // Prepare to write to the sim state log file
+            using (StreamWriter simStateWriter = new StreamWriter(simStateLogPath, false)) // false to overwrite
+            {
+                // Write new data first
+                simStateWriter.WriteLine(newData);
+            }
+
+            Debug.Log($"Successfully wrote sim state to the beginning of {whiskersLogPath}, {bridgedLogPath}, and {simStateLogPath}");
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Failed to write sim state to {fullPath}: {ex.Message}");
+            Debug.LogError($"Failed to write sim state to the beginning of {whiskersLogPath} or {bridgedLogPath} or {simStateLogPath}: {ex.Message}");
         }
     }
 
+
     public static void LogBridgedWhiskers(HashSet<(int, GameObject, GameObject)> bridgedComponentSets, int simNumber)
     {
-        // Clear directory if not cleared
-        if (!cleared)
-        {
-            ClearSimulationResultsDirectory();
-            cleared = true;
-        }
-
         // Define the path where you want to save the results
         string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults");
         string fileName = $"bridgedcomponents_log_{simNumber}.csv";
@@ -159,13 +188,29 @@ public class CSVHandler : MonoBehaviour
             // Ensure the directory exists
             Directory.CreateDirectory(directoryPath);
 
+            // Read existing content of bridged components log file
+            List<string> existingLines = new List<string>();
+            if (File.Exists(fullPath))
+            {
+                existingLines.AddRange(File.ReadAllLines(fullPath));
+            }
+
             // Prepare to write to the file
             using (StreamWriter writer = new StreamWriter(fullPath, false))
             {
-                // Write headers or any initial data 
-                writer.WriteLine("Whisker,Component1,Component2");
+                // Write headers if the file is new
+                if (existingLines.Count == 0)
+                {
+                    writer.WriteLine("Whisker,Component1,Component2");
+                }
 
-                // Write the number of bridged component pairs
+                // Write the existing content back first
+                foreach (string line in existingLines)
+                {
+                    writer.WriteLine(line);
+                }
+
+                // Write the new bridged component pairs
                 foreach (var set in bridgedComponentSets)
                 {
                     writer.WriteLine($"{set.Item1},{set.Item2.name},{set.Item3.name}");
