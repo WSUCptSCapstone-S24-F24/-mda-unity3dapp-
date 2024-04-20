@@ -68,7 +68,7 @@ public class ResultsHandler : MonoBehaviour
     IEnumerator WaitForKeyPress()
     {
         // Wait until any key is pressed
-        yield return new WaitUntil(() => Input.anyKeyDown && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonDown(1));
+        yield return new WaitUntil(() => Input.anyKeyDown && !Input.GetMouseButtonDown(0));
 
         if (Preview != null)
             Preview.SetActive(false);
