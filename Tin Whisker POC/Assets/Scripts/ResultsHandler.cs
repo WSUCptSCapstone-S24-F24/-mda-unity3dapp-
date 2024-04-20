@@ -67,7 +67,7 @@ public class ResultsHandler : MonoBehaviour
     // Coroutine to wait for any key press to hide the image
     IEnumerator WaitForKeyPress()
     {
-        // Wait until any key is pressed
+        // Wait until any key is pressed to exit
         yield return new WaitUntil(() => Input.anyKeyDown && !Input.GetMouseButtonDown(0));
 
         if (Preview != null)
