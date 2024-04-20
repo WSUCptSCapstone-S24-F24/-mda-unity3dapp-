@@ -44,7 +44,7 @@ public class ResultsHandler : MonoBehaviour
     {
         if (Preview != null)
             Preview.SetActive(true);
-        ResultsShower.ShowCSVFile($"simstate_log_{lastSimNum}.csv"); 
+        ResultsShower.ShowCSVFile($"simstate_log_{lastSimNum}.csv");
         StartCoroutine(WaitForKeyPress());
     }
 
@@ -52,7 +52,7 @@ public class ResultsHandler : MonoBehaviour
     {
         if (Preview != null)
             Preview.SetActive(true);
-        ResultsShower.ShowCSVFile($"montecarlo_log_{lastSimNum}.csv"); 
+        ResultsShower.ShowCSVFile($"montecarlo_log_{lastSimNum}.csv");
         StartCoroutine(WaitForKeyPress());
     }
 
@@ -68,7 +68,7 @@ public class ResultsHandler : MonoBehaviour
     IEnumerator WaitForKeyPress()
     {
         // Wait until any key is pressed
-        yield return new WaitUntil(() => Input.anyKeyDown);
+        yield return new WaitUntil(() => Input.anyKeyDown && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonDown(1));
 
         if (Preview != null)
             Preview.SetActive(false);
