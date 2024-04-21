@@ -67,12 +67,12 @@ public class WhiskerSim : MonoBehaviour
         Vector3 originalScale = cylinder.transform.localScale;
         float WhiskerCount = (simState.spawnAreaSizeX * simState.spawnAreaSizeY * simState.spawnAreaSizeZ) * simState.whiskerDensity;
 
-        LognormalRandom lognormalRandomLength = new LognormalRandom(simState.LengthMu, simState.LengthSigma);
-        LognormalRandom lognormalRandomWidth = new LognormalRandom(simState.WidthMu, simState.WidthSigma);
+        LognormalRandom lognormalRandomLength = new LognormalRandom(simState.LengthMu / 1000f, simState.LengthSigma / 1000f);
+        LognormalRandom lognormalRandomWidth = new LognormalRandom(simState.WidthMu / 1000f, simState.WidthSigma / 1000f);
 
-        if (WhiskerCount > 5000)
+        if (WhiskerCount > 2000)
         {
-            WhiskerCount = 5000;
+            WhiskerCount = 2000;
             Debug.LogError("Whisker count is too high\nWhisker count: " + WhiskerCount);
         }
         for (int i = 0; i < WhiskerCount; i++)
@@ -94,6 +94,11 @@ public class WhiskerSim : MonoBehaviour
 
             float lengthMultiplier = (float)lognormalRandomLength.NextDouble();
             float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
+
+            // Debug logging to check values
+            // Debug.Log($"Length Multiplier: {lengthMultiplier}");
+            // Debug.Log($"Width Multiplier: {widthMultiplier}");
+
             newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
 
             WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
