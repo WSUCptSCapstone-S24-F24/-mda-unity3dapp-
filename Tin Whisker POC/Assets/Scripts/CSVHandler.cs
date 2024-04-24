@@ -68,30 +68,18 @@ public class CSVHandler : MonoBehaviour
             using (StreamWriter writer = new StreamWriter(fullPath, false))
             {
                 // Write headers or any initial data 
-                writer.WriteLine("GameObjectName,PositionX (mm),PositionY (mm),PositionZ (mm),Length (µm),Diameter  (µm)");
+                writer.WriteLine("GameObjectName,PositionX (mm),PositionY (mm),PositionZ (mm),Length (µm),Diameter (µm)");
 
                 // Loop through each whisker and write its properties
                 foreach (GameObject whisker in whiskers)
                 {
                     Vector3 pos = whisker.transform.position;
                     Vector3 localScale = whisker.transform.localScale;
+                    float length = localScale.y; // Height is along the y-axis
+                    float diameter = Mathf.Max(localScale.x, localScale.z); // Diameter is the larger of x and z
 
-                    // Calculate the length using the magnitude of the local scale vector
-                    float length = localScale.magnitude;
-
-                    // Get the rotation of the whisker
-                    Quaternion rotation = whisker.transform.rotation;
-
-                    // Rotate the local Y axis to match the whisker's rotation
-                    Vector3 localYAxis = rotation * Vector3.up;
-
-                    // Calculate the diameter as the component of the local scale that aligns with the direction of the local Y axis after rotation
-                    float diameter = Vector3.Dot(localScale, localYAxis.normalized);
-
-                    // Calculate the radius by dividing the diameter by 2
-                    float radius = Mathf.Abs(diameter) / 2f; // Ensure radius is non-negative
-
-                    writer.WriteLine($"{whisker.name},{Math.Round(pos.x / 10f, 1)},{Math.Round(pos.y / 10f, 1)},{Math.Round(pos.z / 10f, 1)},{Math.Round(length * 100f, 1)},{Math.Round(radius * 100f * 2f, 1)}");
+                    // Write the properties to the file
+                    writer.WriteLine($"{whisker.name},{Math.Round(pos.x / 10f, 1)},{Math.Round(pos.y / 10f, 1)},{Math.Round(pos.z / 10f, 1)},{Math.Round(length * 100f, 2)},{Math.Round(diameter * 100f, 2)}");
                 }
             }
 
@@ -118,7 +106,7 @@ public class CSVHandler : MonoBehaviour
             Directory.CreateDirectory(Path.GetDirectoryName(simStateLogPath));
 
             // Prepare new data to be written
-            string newData = $"WhiskerDensity,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma (µm),WidthMu (µm),WidthSigma (µm),SimNumber (µm),SimDuration (sec)\n{simState.whiskerDensity},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration}\n";
+            string newData = $"WhiskerDensity,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu (mm),LengthSigma (µm),WidthMu (µm),WidthSigma (µm),SimNumber (µm),SimDuration (sec)\n{simState.whiskerDensity},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration}\n";
 
             // Read existing content of whiskers log file
             List<string> whiskersLines = new List<string>();

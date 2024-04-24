@@ -96,7 +96,7 @@ public class WhiskerSim : MonoBehaviour
             float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
 
             newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
-            ScaleCylinder(newCylinder, 0.1f, 0.1f);
+            ScaleCylinder(newCylinder, 1f, 0.1f);
             WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
             whiskerCollider.WhiskerNum = i;
             if (whiskerCollider && shortDetector)
