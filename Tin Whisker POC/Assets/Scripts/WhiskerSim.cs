@@ -32,11 +32,11 @@ public class WhiskerSim : MonoBehaviour
         }
 
         if (SimNumber == -1) // Set sim number to 0 if no simNumber argument found
-                SimNumber = 0;
+            SimNumber = 0;
         Debug.Log("Sim number: " + SimNumber);
 
 
-        myjsonPath = Application.persistentDataPath + "/SimState.JSON";  
+        myjsonPath = Application.persistentDataPath + "/SimState.JSON";
 
 
         if (System.IO.File.Exists(myjsonPath))
@@ -67,8 +67,8 @@ public class WhiskerSim : MonoBehaviour
         Vector3 originalScale = cylinder.transform.localScale;
         float WhiskerCount = (simState.spawnAreaSizeX * simState.spawnAreaSizeY * simState.spawnAreaSizeZ) * simState.whiskerDensity;
 
-        LognormalRandom lognormalRandomLength = new LognormalRandom(simState.LengthMu / 1000f, simState.LengthSigma / 1000f);
-        LognormalRandom lognormalRandomWidth = new LognormalRandom(simState.WidthMu / 1000f, simState.WidthSigma / 1000f);
+        LognormalRandom lognormalRandomLength = new LognormalRandom(simState.LengthMu, simState.LengthSigma);
+        LognormalRandom lognormalRandomWidth = new LognormalRandom(simState.WidthMu, simState.WidthSigma);
 
         if (WhiskerCount > 2000)
         {
@@ -76,9 +76,9 @@ public class WhiskerSim : MonoBehaviour
             Debug.LogError("Whisker count is too high\nWhisker count: " + WhiskerCount);
         }
         for (int i = 0; i < WhiskerCount; i++)
-        {   
-            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX / 2f * 10f, simState.spawnAreaSizeX / 2f  * 10f) + simState.spawnPositionX * 10f - 5f, 
-                                                Random.Range(-simState.spawnAreaSizeY / 2f * 10f, simState.spawnAreaSizeY / 2f * 10f) + simState.spawnPositionY * 10f + simState.spawnAreaSizeY * 10f / 2, 
+        {
+            Vector3 spawnPosition = new Vector3(Random.Range(-simState.spawnAreaSizeX / 2f * 10f, simState.spawnAreaSizeX / 2f * 10f) + simState.spawnPositionX * 10f - 5f,
+                                                Random.Range(-simState.spawnAreaSizeY / 2f * 10f, simState.spawnAreaSizeY / 2f * 10f) + simState.spawnPositionY * 10f + simState.spawnAreaSizeY * 10f / 2,
                                                 Random.Range(-simState.spawnAreaSizeZ / 2f * 10f, simState.spawnAreaSizeZ / 2f * 10f) + simState.spawnPositionZ * 10f - 5f);
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject newCylinder = Instantiate(cylinder, spawnPosition, spawnRotation);
@@ -95,12 +95,8 @@ public class WhiskerSim : MonoBehaviour
             float lengthMultiplier = (float)lognormalRandomLength.NextDouble();
             float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
 
-            // Debug logging to check values
-            // Debug.Log($"Length Multiplier: {lengthMultiplier}");
-            // Debug.Log($"Width Multiplier: {widthMultiplier}");
-
             newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
-
+            ScaleCylinder(newCylinder, 0.1f, 0.1f);
             WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
             whiskerCollider.WhiskerNum = i;
             if (whiskerCollider && shortDetector)
@@ -129,6 +125,32 @@ public class WhiskerSim : MonoBehaviour
         }
     }
 
+    // This method is called to scale the cylinder
+    public void ScaleCylinder(GameObject cylinderObject, float widthScale, float heightScale)
+    {
+        if (cylinderObject == null)
+        {
+            Debug.LogError("Cylinder object reference is not set.");
+            return;
+        }
+
+        // Get the current scale of the cylinder object
+        Vector3 currentScale = cylinderObject.transform.lossyScale;
+
+        // Calculate the width and height based on the current scale
+        float width = currentScale.x * widthScale;
+        float height = currentScale.y * heightScale;
+
+        // Calculate the new scale based on the scaled width and height
+        Vector3 newScale = new Vector3(
+            width, // Width
+            height, // Height
+            width  // Depth 
+        );
+
+        // Apply the new scale to the cylinder object
+        cylinderObject.transform.localScale = newScale;
+    }
 
     public void ClearCylinders()
     {
