@@ -287,3 +287,26 @@ Here are changes we plan to implement as soon as possible:
 ---
 ---
 
+
+## Agenda (4/17/2024)
+ * Check results for simulation
+ * Review whisker spawn mechanics and mathematics
+
+## Minutes (4/17/2024)
+
+During this meeting our team showed the changes made in the previous week, especially focussing on the whisker generation and scaling. 
+
+## Retrospective Summary (4/17/2024)
+Here's what went well:
+  * Whiskers are spawning correctly
+ 
+Here's what we'd like to improve:
+   * More clear UI input names
+   * Sim state details in all outputs
+  
+Here are changes we plan to implement as soon as possible:
+   * Final prototype refinements
+
+---
+---
+
