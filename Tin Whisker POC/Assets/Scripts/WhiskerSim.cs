@@ -92,8 +92,10 @@ public class WhiskerSim : MonoBehaviour
 
             cylinder_clone.Add(newCylinder);
 
-            float lengthMultiplier = (float)lognormalRandomLength.NextDouble();
-            float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
+            // float lengthMultiplier = (float)lognormalRandomLength.NextDouble();
+            // float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
+            float lengthMultiplier = (float)lognormalRandomLength.Next();
+            float widthMultiplier = (float)lognormalRandomWidth.Next();
 
             newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
             ScaleCylinder(newCylinder, 1f, 0.1f);
@@ -175,27 +177,39 @@ public class WhiskerSim : MonoBehaviour
 
 public class LognormalRandom
 {
+    // Fields to hold the random number generator, mean (mu), and standard deviation (sigma)
     private readonly System.Random rand;
     private readonly double mu;
     private readonly double sigma;
 
+    // Constructor to initialize the LognormalRandom object with specified mean, standard deviation, and optional seed for random number generation
     public LognormalRandom(double mu, double sigma, int? seed = null)
     {
+        // Assign mean (mu) and standard deviation (sigma) values provided during object creation
         this.mu = mu;
         this.sigma = sigma;
+        // Initialize the random number generator with the provided seed if available, otherwise use a default seed
         rand = seed.HasValue ? new System.Random(seed.Value) : new System.Random();
     }
 
-    public double NextDouble()
+    // Method to generate the next random lognormal value
+    public double Next()
     {
-        // Generate a random number from a normal distribution
-        double u1 = rand.NextDouble();
-        double u2 = rand.NextDouble();
-        double randStdNormal = System.Math.Sqrt(-2.0 * System.Math.Log(u1)) * System.Math.Sin(2.0 * System.Math.PI * u2);
+        // Generate a random standard normal variable (Z)
+        double z = RandomStandardNormal();
+        // Transform the standard normal variable to a lognormal variable using the formula X = exp(mu + sigma * Z)
+        double x = Math.Exp(mu + sigma * z);
+        return x;
+    }
 
-        // Convert the standard normal number to a lognormal number
-        double randLogNormal = System.Math.Exp(mu + sigma * randStdNormal);
-
-        return randLogNormal;
+    // Method to generate a random standard normal variable using the Box-Muller transform
+    private double RandomStandardNormal()
+    {
+        // Generate two random uniform variables (U1, U2) between 0 and 1
+        double u1 = 1.0 - rand.NextDouble();
+        double u2 = 1.0 - rand.NextDouble();
+        // Compute a random standard normal variable (Z) using the Box-Muller transform
+        double z = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
+        return z;
     }
 }
