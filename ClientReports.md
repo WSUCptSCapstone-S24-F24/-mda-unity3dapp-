@@ -310,3 +310,24 @@ Here are changes we plan to implement as soon as possible:
 ---
 ---
 
+
+## Agenda (4/24/2024)
+ * Final Client Demo
+
+## Minutes (4/24/2024)
+
+During this meeting our team gave our clients a comprehensive demonstration of the application. This included showing where the project started (from the previous team) to showing the advancements made during this semester. Lastly, we answered any questions that our clients had.
+
+## Retrospective Summary (4/24/2024)
+Here's what went well:
+  * Clients responded well to prototype application
+ 
+Here's what we'd like to improve:
+   * Full team attendance
+  
+Here are changes we plan to implement as soon as possible:
+   * Provide requested results to our clients
+
+---
+---
+
