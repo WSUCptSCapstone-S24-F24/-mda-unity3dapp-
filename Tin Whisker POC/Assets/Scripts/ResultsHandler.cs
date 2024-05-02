@@ -7,181 +7,92 @@ using UnityEngine.UI;
 
 public class ResultsHandler : MonoBehaviour
 {
-    // Reference to the RawImage and dim image GameObject
-    public GameObject heatmapImageObject;
-    public GameObject dimImageObject;
+    public GameObject Preview;
+    public GameObject MainMenu;
+    public CSVHandler ResultsShower;
+    private int lastSimNum;
 
-    // Function to display the results
-    public void ShowResults()
+    void OnEnable()
     {
-        // Generate heatmap results
-        StartHeatMapGen(() =>
+        if (Preview != null)
+            Preview.SetActive(false);
+        GameObject sceneController = GameObject.Find("SceneControl");
+        if (sceneController != null)
         {
-            StartCoroutine(GenerateHeatmapResultsAsync());
-        });
+            // Get the SceneHandler component and access sceneNum
+            SceneHandler handler = sceneController.GetComponent<SceneHandler>();
+            if (handler != null)
+                lastSimNum = handler.SimNumber;
+            else
+                UnityEngine.Debug.LogError("SceneHandler component is not found on the SceneControl object!");
+        }
+        else
+            UnityEngine.Debug.LogError("SceneControl GameObject is not found!");
+        StartCoroutine(WaitForEscape());
+    }
 
-        // Turn on dim while waiting
-        TurnOnDim();
+    public void ShowWhiskerList()
+    {
+        if (Preview != null)
+            Preview.SetActive(true);
+        ResultsShower.ShowCSVFile($"whiskers_log_{lastSimNum}.csv");
 
-        // Call method to listen for key press to hide the image
         StartCoroutine(WaitForKeyPress());
     }
 
-    private void ShowHeapMap()
+    public void ShowSimState()
     {
-        // Get current working directory
-        string workingDirectory = Application.dataPath + "/BridgedComponentsResults";
-
-        // Load the heatmap image from the file
-        string imagePath = $"{workingDirectory}/heatmap_image.png";
-        Texture2D heatmapTexture = LoadTexture(imagePath);
-
-        // Display the heatmap image
-        if (heatmapTexture != null && heatmapImageObject != null)
-        {
-            RawImage rawImage = heatmapImageObject.GetComponent<RawImage>();
-            if (rawImage != null)
-            {
-                // Assign the texture to the raw image
-                rawImage.texture = heatmapTexture;
-
-                // Get the Canvas size
-                RectTransform canvasRectTransform =
-                    heatmapImageObject.transform.parent.GetComponent<RectTransform>();
-                Vector2 canvasSize = canvasRectTransform.sizeDelta;
-
-                // Stretch the RawImage to fill the Canvas
-                RectTransform rectTransform = rawImage.rectTransform;
-                rectTransform.sizeDelta = canvasSize;
-                rectTransform.sizeDelta -= new Vector2(300, 50);
-
-                // Set alpha to full for raw image
-                rawImage.color = new Color(
-                    rawImage.color.r,
-                    rawImage.color.g,
-                    rawImage.color.b,
-                    1.0f
-                );
-
-                // Ensure RawImage is drawn over other elements by setting its sibling index
-                rawImage.transform.SetAsLastSibling();
-
-                // Activate the heatmap image object
-                heatmapImageObject.SetActive(true);
-            }           
-        }
+        if (Preview != null)
+            Preview.SetActive(true);
+        ResultsShower.ShowCSVFile($"simstate_log_{lastSimNum}.csv");
+        StartCoroutine(WaitForKeyPress());
     }
 
-    private void StartHeatMapGen(Action callback)
+    public void ShowMonteCarloReport()
     {
-        // Wait for a short duration before invoking the callback
-        StartCoroutine(DelayedCallback(callback));
+        if (Preview != null)
+            Preview.SetActive(true);
+        ResultsShower.ShowCSVFile($"montecarlo_log_{lastSimNum}.csv");
+        StartCoroutine(WaitForKeyPress());
     }
 
-    // Coroutine to introduce a delay before invoking the callback
-    private IEnumerator DelayedCallback(Action callback)
+    public void ShowBridgedWhiskersReport()
     {
-        // Wait for a short duration
-        yield return new WaitForSeconds(0.1f);
-
-        // Invoke the callback function
-        callback?.Invoke();
-    }
-
-    // Alerts user that results are being calculated and dims background
-    private void TurnOnDim()
-    {
-        // Get the Canvas size
-        RectTransform canvasRectTransform =
-            heatmapImageObject.transform.parent.GetComponent<RectTransform>();
-        Vector2 canvasSize = canvasRectTransform.sizeDelta;
-
-        if (dimImageObject != null)
-        {
-            dimImageObject.SetActive(true);
-            RawImage dimImage = dimImageObject.GetComponent<RawImage>();
-
-            // Stretch the dim Image to fill the Canvas
-            RectTransform rectTransform2 = dimImage.rectTransform;
-            rectTransform2.sizeDelta = canvasSize;
-            rectTransform2.sizeDelta += new Vector2(300, 300);
-
-            // Set alpha to 0.8 for dim image
-            dimImage.color = new Color(dimImage.color.r, dimImage.color.g, dimImage.color.b, 0.8f);
-            // Draw dim over
-            dimImage.transform.SetAsLastSibling();
-        }
-    }
-
-    // Function to generate heatmap results asynchronously
-    private IEnumerator GenerateHeatmapResultsAsync()
-    {
-        // Path to the Python executable
-        string pythonExePath = Path.Combine(
-            Application.dataPath.Replace("Assets", ".venv/bin/python")
-        );
-
-        // Path to the Python script
-        string pythonScriptPath = Path.Combine(Application.dataPath, "Heatmap.py");
-
-        // Enclose script path in double quotes
-        pythonScriptPath = $"\"{pythonScriptPath}\"";
-
-        // Create process info
-        ProcessStartInfo psi = new ProcessStartInfo();
-        psi.FileName = pythonExePath;
-        psi.Arguments = pythonScriptPath;
-        psi.RedirectStandardOutput = true;
-        psi.RedirectStandardError = true;
-        psi.UseShellExecute = false;
-
-        // Start the process
-        Process process = Process.Start(psi);
-
-        // Wait for the process to finish
-        yield return new WaitForEndOfFrame();
-
-        // Capture standard output and standard error
-        string stdout = process.StandardOutput.ReadToEnd();
-        string stderr = process.StandardError.ReadToEnd();
-
-        // Wait for the process to exit
-        process.WaitForExit();
-
-        // Check the exit code
-        if (process.ExitCode == 0)
-        {
-            UnityEngine.Debug.Log("Heatmap generation completed successfully.");
-        }
-        else
-        {
-            UnityEngine.Debug.LogError("Error generating heatmap. Exit code: " + process.ExitCode);
-            UnityEngine.Debug.LogError("Standard Error: " + stderr);
-        }
-
-        // Show Heat Map
-        ShowHeapMap();
+        if (Preview != null)
+            Preview.SetActive(true);
+        ResultsShower.ShowCSVFile($"bridgedcomponents_log_{lastSimNum}.csv");
+        StartCoroutine(WaitForKeyPress());
     }
 
     // Coroutine to wait for any key press to hide the image
     IEnumerator WaitForKeyPress()
     {
-        // Wait until any key is pressed
-        yield return new WaitUntil(() => Input.anyKeyDown);
+        // Wait until any key is pressed to exit
+        yield return new WaitUntil(() => Input.anyKeyDown && !Input.GetMouseButtonDown(0));
 
-        // Hide the image
-        if (heatmapImageObject != null)
-            heatmapImageObject.SetActive(false);
-        if (dimImageObject != null)
-            dimImageObject.SetActive(false);
+        if (Preview != null)
+            Preview.SetActive(false);
     }
 
-    // Function to load a texture from a file path
-    private Texture2D LoadTexture(string path)
+    // Coroutine to wait for any key press to hide the content
+    IEnumerator WaitForEscape()
     {
-        byte[] fileData = System.IO.File.ReadAllBytes(path);
-        Texture2D texture = new Texture2D(2, 2);
-        texture.LoadImage(fileData);
-        return texture;
+        // Wait until any key is pressed
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Escape));
+        SwitchToMain();
+    }
+
+    private void SwitchToMain()
+    {
+        GameObject resultsMenu = GameObject.Find("ResultsCanvas");
+        if (MainMenu != null && resultsMenu != null)
+        {
+            MainMenu.SetActive(true);
+            resultsMenu.SetActive(false);
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("MainMenu or ResultsMenu not found in the scene!");
+        }
     }
 }

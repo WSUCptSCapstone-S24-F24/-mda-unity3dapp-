@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WhiskerCollider : MonoBehaviour
 {
+    public int WhiskerNum = 0;
     private HashSet<GameObject> currentlyCollidingObjects = new HashSet<GameObject>();
 
     private void OnCollisionEnter(Collision collision)

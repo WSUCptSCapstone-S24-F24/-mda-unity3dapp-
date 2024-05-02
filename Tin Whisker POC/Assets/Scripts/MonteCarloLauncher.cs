@@ -34,6 +34,8 @@ public class MonteCarloLauncher : MonoBehaviour
 
     void OnClick()
     {
+        UnityEngine.Debug.Log("This application is not ready to run a Monte Carlo Simuation");
+        return; // Temp handler (application not ready to run Monte Carlo sim)
         if (unityAppPath == "not found")
         {
             UnityEngine.Debug.LogError("Unity app path not found");

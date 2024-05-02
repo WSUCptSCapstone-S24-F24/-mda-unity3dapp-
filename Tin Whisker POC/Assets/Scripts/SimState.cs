@@ -11,7 +11,9 @@ namespace SimInfo
         public float spawnAreaSizeX;
         public float spawnAreaSizeY;
         public float spawnAreaSizeZ;
-        public float SpawnHeight;
+        public float spawnPositionX;
+        public float spawnPositionY;
+        public float spawnPositionZ;
         public float LengthMu;
         public float LengthSigma;
         public float WidthMu;
@@ -23,13 +25,16 @@ namespace SimInfo
         public bool fileOpened;
 
 
-        public SimState(){
+        public SimState()
+        {
             // Default values
             this.whiskerDensity = 10;
             this.spawnAreaSizeX = 2f;
             this.spawnAreaSizeY = 2f;
             this.spawnAreaSizeZ = 2f;
-            this.SpawnHeight = 20f;
+            this.spawnPositionX = 0f;
+            this.spawnPositionY = 0f;
+            this.spawnPositionZ = 15f;
             this.LengthMu = 0.5f;
             this.LengthSigma = 0.5f;
             this.WidthMu = 0.5f;
@@ -37,13 +42,17 @@ namespace SimInfo
             this.simNumber = -1;
         }
 
-        public SimState(int whiskerDensity, float spawnAreaSizeX, float spawnAreaSizeY, float spawnAreaSizeZ, float spawnHeight, float LengthMu, float LengthSigma, float WidthMu, float WidthSigma, int simNumber)
+        public SimState(int whiskerDensity, float spawnAreaSizeX, float spawnAreaSizeY, float spawnAreaSizeZ,
+                        float spawnPositionX, float spawnPositionY, float spawnPositionZ, float LengthMu,
+                        float LengthSigma, float WidthMu, float WidthSigma, int simNumber)
         {
             this.whiskerDensity = whiskerDensity;
             this.spawnAreaSizeX = spawnAreaSizeX;
             this.spawnAreaSizeY = spawnAreaSizeY;
             this.spawnAreaSizeZ = spawnAreaSizeZ;
-            this.SpawnHeight = spawnHeight;
+            this.spawnPositionX = spawnPositionX;
+            this.spawnPositionY = spawnPositionY;
+            this.spawnPositionZ = spawnPositionZ;
             this.LengthMu = LengthMu;
             this.LengthSigma = LengthSigma;
             this.WidthMu = WidthMu;
@@ -69,7 +78,39 @@ namespace SimInfo
         {
             // Serialize the simState to JSON
             string jsonString = JsonUtility.ToJson(this);
-            
+
+            // Create a file path and file name for the JSON file
+            string filePath = jsonPath;
+
+            // Write the JSON string to a file asynchronously
+            var asyncRequest = File.WriteAllTextAsync(filePath, jsonString);
+
+            // Wait for the file writing to complete
+            while (!asyncRequest.IsCompleted)
+            {
+                yield return null;
+            }
+        }
+
+        public void SaveToCSV(string jsonPath)
+        {
+            Debug.Log("attempting to save sim to CSV | Path: " + jsonPath);
+            // Serialize the simState to CSV
+            string jsonString = JsonUtility.ToJson(this);
+
+            Debug.Log("Saving -> JSON string:\n" + jsonString);
+            // Create a file path and file name for the JSON file
+            string filePath = jsonPath;
+
+            // Write the JSON string to a file synchronously
+            File.WriteAllText(filePath, jsonString);
+        }
+
+        public IEnumerator SaveToCSVasync(string jsonPath)
+        {
+            // Serialize the simState to JSON
+            string jsonString = JsonUtility.ToJson(this);
+
             // Create a file path and file name for the JSON file
             string filePath = jsonPath;
 
@@ -83,5 +124,4 @@ namespace SimInfo
             }
         }
     }
-    
 }
