@@ -162,21 +162,20 @@ public class SceneHandler : MonoBehaviour
             simState.simNumber = SimNumber;
             simState.SaveSimToJSON(myJsonPath);
 
-            if (simState.fileOpened)
-            {
-                objfilePath = simState.objfilePath;
-                mtlfilePath = simState.mtlfilePath;
-                fileOpened = simState.fileOpened;
-
-                //Get File Browser object in scene by name and call load from file path
-                GameObject fileBrowser = GameObject.Find("FileBrowser");
-                fileBrowser.GetComponent<LoadFile>().LoadFromPath(objfilePath, mtlfilePath);
-            }
-            StartCoroutine(MonteCarloEndSimulationAfterDuration());
-        }
-        else
-        {
-            ShowDebugMessage("Root Sim JSON file does not exist");
+            // if (simState.fileOpened)
+            // {
+                // objfilePath = simState.objfilePath;
+                // mtlfilePath = simState.mtlfilePath;
+                // fileOpened = simState.fileOpened;
+                // Get File Browser object in scene by name and call load from file path
+                // GameObject fileBrowser = GameObject.Find("FileBrowser");
+                // fileBrowser.GetComponent<LoadFile>().LoadFromPath(objfilePath, mtlfilePath);
+            // }
+        //     StartCoroutine(MonteCarloEndSimulationAfterDuration());
+        // }
+        // else
+        // {
+        //     ShowDebugMessage("Root Sim JSON file does not exist");
         }
     }
 
