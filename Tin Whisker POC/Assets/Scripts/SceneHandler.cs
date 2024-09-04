@@ -49,8 +49,6 @@ public class SceneHandler : MonoBehaviour
     {
         rootJsonPath = Application.persistentDataPath + "/SimState.JSON";
         ParseArgs();
-        startButton = GameObject.Find("Start_Button").GetComponent<Button>();
-        endButton = GameObject.Find("End_Button").GetComponent<Button>();
         popupManager = FindObjectOfType<PopupManager>();
         endButton.gameObject.SetActive(false);
 
