@@ -1,0 +1,59 @@
+Altium Designer Pick and Place Locations
+C:\Users\Zachariah\Documents\NWES\Product Data\Uploaded\PWRMOD-001\Outputs Files\Fabrication\Pick Place\Pick Place for PWRMOD-001-RevA.txt
+
+========================================================================================================================
+File Design Information:
+
+Date:       05/11/23
+Time:       21:27
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mil
+
+Designator Comment             Layer    Footprint               Center-X(mil) Center-Y(mil) Rotation Description                                                                                       
+U4         TPS562201DDCR       TopLayer FP-DDC0006A-IPC_C       735.000       385.000       270      "IC REG BUCK ADJ 2A TSOT23-6"                                                                     
+U3         LM27762DSSR         TopLayer SON50P200X300X80-13N-D  1328.661      459.213       180      "LM27762 LOW-NOISE POSITIVE- AND"                                                                 
+U2         HMC358MS8GE         TopLayer SOP65P488X110-9N        1065.000      710.000       90       "IC MMIC AMP VCO BUFFER 8-MSOP"                                                                   
+U1         HMC637ALP5E         TopLayer FP-HCP-32-1-IPC_A       1015.472      1133.545      90       "IC MMIC MESFET GAAS 1W 32-QFN"                                                                   
+R10        ERJ2RKF1002X        TopLayer RESC1005X40X25LL05T05   620.000       275.000       0        "Chip Resistor, 10 KOhm, +/- 1%, 0.1 W, -55 to 155 degC, 0402 (1005 Metric), RoHS, Tape and Reel" 
+R9         CRCW020156K2FNED    TopLayer RESC0603X28X15NL05T05   620.000       310.000       180      ""                                                                                                
+R8         120                 TopLayer 0402_RES                1440.000      1200.000      90       "RES 120 OHM 1% 1/16W 0402"                                                                       
+R7         6.34K               TopLayer 0402_RES                1323.661      559.213       0        "RES 6.34K OHM 1% 1/16W 0402"                                                                     
+R6         10K                 TopLayer 0402_RES                1273.661      579.213       270      "RES 10K OHM 1% 1/16W 0402"                                                                       
+R5         10K                 TopLayer 0402_RES                1470.000      390.000       270      "RES 10K OHM 1% 1/16W 0402"                                                                       
+R4         120                 TopLayer 0402_RES                800.000       760.000       0        "RES 120 OHM 1% 1/16W 0402"                                                                       
+R3         15K                 TopLayer 0402_RES                1435.000      390.000       90       "RES SMD 15K OHM 1% 1/16W 0402"                                                                   
+R2         10K                 TopLayer 0402_RES                1375.000      370.000       0        "RES 10K OHM 1% 1/16W 0402"                                                                       
+R1         10K                 TopLayer 0402_RES                1305.000      370.000       180      "RES 10K OHM 1% 1/16W 0402"                                                                       
+L2         NRS8030T3R3MJGJ     TopLayer FP-NRS8030-MFG          480.000       510.000       90       "Inductor Power Shielded Wirewound 3.3uH 20% 100KHz Ferrite 4.2A 24.7mO DCR T/R"                  
+L1         1.2nH               TopLayer IND_0201                993.189       1300.000      0        "FIXED IND 1.2NH 1.1A 40MOHM SMD"                                                                 
+J2         SMA-J-P-H-ST-EM1    TopLayer FP-SMA-J-P-H-ST-EM1-MFG 1000.000      81.142        0        "CONN SMA JACK STR 50OHM EDGE MNT"                                                                
+J5         M20-9990246         TopLayer FP-M20-9990246-MFG      820.000       1355.000      0        "CONN HEADER VERT 2POS 2.54MM"                                                                    
+J4         M20-9990246         TopLayer FP-M20-9990246-MFG      835.000       915.000       0        "CONN HEADER VERT 2POS 2.54MM"                                                                    
+J3         M20-9990246         TopLayer FP-M20-9990246-MFG      1295.000      1060.000      180      "CONN HEADER VERT 2POS 2.54MM"                                                                    
+J6         M20-9990246         TopLayer FP-M20-9990246-MFG      835.000       650.000       0        "CONN HEADER VERT 2POS 2.54MM"                                                                    
+J1         SMA-J-P-H-ST-EM1    TopLayer FP-SMA-J-P-H-ST-EM1-MFG 1005.000      1778.858      180      "CONN SMA JACK STR 50OHM EDGE MNT"                                                                
+D2         GRN                 TopLayer LED_0603                1385.000      1200.000      90       "LED GREEN CLEAR CHIP 0603 SMD"                                                                   
+D1         GRN                 TopLayer LED_0603                795.000       805.000       0        "LED GREEN CLEAR CHIP 0603 SMD"                                                                   
+C22        GRM31CR61E106KA12L  TopLayer CAPC3216X180X55ML20T25  685.000       190.000       0        "Chip Capacitor, 10 uF, +/- 10%, 25 V, -55 to 85 degC, 1206 (3216 Metric), RoHS, Tape and Reel"   
+C21        GRM31CR61E106KA12L  TopLayer CAPC3216X180X55ML20T25  685.000       70.000        0        "Chip Capacitor, 10 uF, +/- 10%, 25 V, -55 to 85 degC, 1206 (3216 Metric), RoHS, Tape and Reel"   
+C20        C1608X5R1A226M080AC TopLayer CAPC1608X100X20ML10     315.000       815.000       0        "Chip Capacitor, 22 uF, +/- 20%, 10 V, -55 to 85 degC, 0603 (1608 Metric), RoHS, Tape and Reel"   
+C19        C1608X5R1A226M080AC TopLayer CAPC1608X100X20ML10     315.000       730.000       0        "Chip Capacitor, 22 uF, +/- 20%, 10 V, -55 to 85 degC, 0603 (1608 Metric), RoHS, Tape and Reel"   
+C18        C0603C104Z3VACTU    TopLayer FP-C0603-CG-IPC_B       764.258       541.810       0        "CAP CER 0.1UF 25V Y5V 0603"                                                                      
+C17        1000pF              TopLayer 0402_CAP                1205.000      1230.000      180      "CAP CER 1000PF 25V X7R 0402"                                                                     
+C16        4.7uF               TopLayer 0402_CAP                1205.000      1265.000      180      "CAP CER 4.7UF 10V X5R 0402"                                                                      
+C15        4.7uF               TopLayer 0402_CAP                830.000       1135.000      0        "CAP CER 4.7UF 10V X5R 0402"                                                                      
+C14        1000pF              TopLayer 0402_CAP                830.000       1100.000      0        "CAP CER 1000PF 25V X7R 0402"                                                                     
+C13        2.2uF               TopLayer 0402_CAP                1390.000      580.000       90       "CAP CER 2.2UF 16V X6S 0402"                                                                      
+C12        4.7uF               TopLayer 0402_CAP                1235.000      480.000       270      "CAP CER 4.7UF 10V X5R 0402"                                                                      
+C11        2.2uF               TopLayer 0402_CAP                1235.000      380.000       90       "CAP CER 2.2UF 16V X6S 0402"                                                                      
+C10        2.2uF               TopLayer 0402_CAP                1440.000      461.654       270      "CAP CER 2.2UF 16V X6S 0402"                                                                      
+C9         10uF                TopLayer 0402_CAP                1100.000      565.000       180      "CAP CER 10UF 6.3V X5R 0402"                                                                      
+C8         4.7uF               TopLayer 0402_CAP                1430.000      540.000       90       "CAP CER 4.7UF 10V X5R 0402"                                                                      
+C7         1000pF              TopLayer 0402_CAP                1026.614      915.000       90       "CAP CER 1000PF 50V C0G/NP0 0402"                                                                 
+C6         1000pF              TopLayer 0402_CAP                1005.000      1360.000      270      "CAP CER 1000PF 25V X7R 0402"                                                                     
+C5         1000pF              TopLayer 0402_CAP                820.000       1005.000      0        "CAP CER 1000PF 25V X7R 0402"                                                                     
+C4         1000pF              TopLayer 0402_CAP                820.000       1045.000      0        "CAP CER 1000PF 25V X7R 0402"                                                                     
+C3         100pF               TopLayer 0402_CAP                1185.000      1165.000      270      "CAP CER 100PF 25V X7R 0402"                                                                      
+C2         1000pF              TopLayer 0402_CAP                1245.000      1165.000      270      "CAP CER 1000PF 25V X7R 0402"                                                                     
+C1         4.7uF               TopLayer 0402_CAP                1300.000      1165.000      270      "CAP CER 4.7UF 10V X5R 0402"                                                                      

@@ -1,0 +1,1020 @@
+#
+#Component attribute names
+#
+@0 .comp_mount_type
+@1 .comp_height
+
+# CMP 0
+CMP 5 0.735 0.385 90 N U4 TPS562201DDCR ;0=1,1=0.0472
+PRP Case/Package 'SOT'
+PRP Contact_Plating 'Tin'
+PRP Lead_Free 'Lead Free'
+PRP Manufacturer 'Texas Instruments'
+PRP Manufacturer_Part_Number 'TPS562201DDCR'
+PRP Max_Input_Voltage '17V'
+PRP Max_Operating_Temperature '125°C'
+PRP Max_Output_Current '2A'
+PRP Min_Input_Voltage '4.5V'
+PRP Min_Operating_Temperature '-40°C'
+PRP Mount 'Surface Mount'
+PRP Number_of_Outputs '1'
+PRP Number_of_Pins '6'
+PRP Operating_Supply_Voltage '17V'
+PRP Output_Type 'Adjustable'
+PRP Output_Voltage '7V'
+PRP Quiescent_Current '400uA'
+PRP RoHS_Compliant 'Yes'
+PRP Switching_Frequency '580kHz'
+TOP 0 0.7724016 0.4263501 90 N 26 35 1
+TOP 1 0.735 0.4263501 90 N 6 2 2
+TOP 2 0.6975984 0.4263501 90 N 30 5 3
+TOP 3 0.6975984 0.3436499 90 N 7 0 4
+TOP 4 0.735 0.3436499 90 N 30 6 5
+TOP 5 0.7724016 0.3436499 90 N 14 1 6
+#
+# CMP 1
+CMP 14 1.3286614 0.4592126 180 N U3 LM27762DSSR ;0=1,1=0.0472
+PRP Geometry.Height '0.8mm'
+PRP Manufacturer 'Texas Instruments'
+PRP Manufacturer_Part_Number 'LM27762DSSR'
+PRP Mouser_Part_Number '595-LM27762DSSR'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '2156-LM27762DSSR-ND'
+TOP 0 1.37 0.41 180 N 10 2 1
+TOP 1 1.37 0.429685 180 N 9 3 2
+TOP 2 1.37 0.4493701 180 N 27 11 3
+TOP 3 1.37 0.4690551 180 N 26 44 4
+TOP 4 1.37 0.4887402 180 N 21 2 5
+TOP 5 1.37 0.5084252 180 N 29 6 6
+TOP 6 1.2873228 0.5084252 180 N 8 3 7
+TOP 7 1.2873228 0.4887402 180 N 1 1 8
+TOP 8 1.2873228 0.4690551 180 N 20 2 9
+TOP 9 1.2873228 0.4493701 180 N 19 2 10
+TOP 10 1.2873228 0.429685 180 N 28 5 11
+TOP 11 1.2873228 0.41 180 N 11 2 12
+TOP 12 1.3286614 0.4592126 90 N 26 43 13
+#
+# CMP 2
+CMP 15 1.065 0.71 270 N U2 HMC358MS8GE ;0=1,1=0.0472
+PRP Geometry.Height '1.1mm'
+PRP Manufacturer 'Analog Devices'
+PRP PartNumber 'HMC358MS8GE'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '1127-1344-ND'
+TOP 0 1.0266142 0.6233858 270 N 5 2 1
+TOP 1 1.0522047 0.6233858 270 N 0 21 2
+TOP 2 1.0777953 0.6233858 270 N 5 3 3
+TOP 3 1.1033858 0.6233858 270 N 26 46 4
+TOP 4 1.1033858 0.7966142 270 N 26 47 5
+TOP 5 1.0777953 0.7966142 270 N 0 22 6
+TOP 6 1.0522047 0.7966142 270 N 0 23 7
+TOP 7 1.0266142 0.7966142 270 N 23 1 8
+TOP 8 1.065 0.71 180 N 26 45 9
+#
+# CMP 3
+CMP 6 1.0154724 1.1335446 270 N U1 HMC637ALP5E ;0=1,1=0.0472
+PRP Case/Package 'QFN'
+PRP Contact_Plating 'Tin'
+PRP Gain '13dB'
+PRP Lead_Free 'Contains Lead'
+PRP Manufacturer_Part_Number 'HMC637ALP5E'
+PRP Max_Operating_Temperature '85°C'
+PRP Max_Power_Dissipation '8.6W'
+PRP Max_Supply_Voltage '14V'
+PRP Min_Operating_Temperature '-40°C'
+PRP Mount 'Surface Mount'
+PRP Noise_Figure '5dB'
+PRP Number_Of_Channels '1'
+PRP Number_of_Pins '32'
+PRP Operating_Supply_Current '400mA'
+PRP Operating_Supply_Voltage '12V'
+PRP P1dB '29dBm'
+PRP Package_Quantity '50'
+PRP Packaging 'Tray'
+PRP RoHS_Compliant 'No'
+PRP Weight '0.006653oz'
+TOP 0 0.9465748 1.035 270 N 0 20 1
+TOP 1 0.9662598 1.035 270 N 2 3 2
+TOP 2 0.9859449 1.035 270 N 0 19 3
+TOP 3 1.0056299 1.035 270 N 26 38 4
+TOP 4 1.0253149 1.035 270 N 22 1 5
+TOP 5 1.045 1.035 270 N 0 18 6
+TOP 6 1.064685 1.035 270 N 0 17 7
+TOP 7 1.0843701 1.035 270 N 0 16 8
+TOP 8 1.114017 1.064647 270 N 0 9 9
+TOP 9 1.114017 1.084332 270 N 0 8 10
+TOP 10 1.114017 1.1040171 270 N 0 7 11
+TOP 11 1.114017 1.1237021 270 N 26 36 12
+TOP 12 1.114017 1.1433871 270 N 3 4 13
+TOP 13 1.114017 1.1630722 270 N 0 6 14
+TOP 14 1.114017 1.1827572 270 N 15 1 15
+TOP 15 1.114017 1.2024423 270 N 16 1 16
+TOP 16 1.0843701 1.2320892 270 N 0 15 17
+TOP 17 1.064685 1.2320892 270 N 0 14 18
+TOP 18 1.045 1.2320892 270 N 0 13 19
+TOP 19 1.0253149 1.2320892 270 N 0 12 20
+TOP 20 1.0056299 1.2320892 270 N 24 1 21
+TOP 21 0.9859449 1.2320892 270 N 26 37 22
+TOP 22 0.9662598 1.2320892 270 N 0 11 23
+TOP 23 0.9465748 1.2320892 270 N 0 10 24
+TOP 24 0.9169278 1.2024423 270 N 0 5 25
+TOP 25 0.9169278 1.1827572 270 N 0 4 26
+TOP 26 0.9169278 1.1630722 270 N 0 3 27
+TOP 27 0.9169278 1.1433871 270 N 0 2 28
+TOP 28 0.9169278 1.1237021 270 N 17 1 29
+TOP 29 0.9169278 1.1040171 270 N 18 1 30
+TOP 30 0.9169278 1.084332 270 N 0 1 31
+TOP 31 0.9169278 1.064647 270 N 0 0 32
+TOP 32 1.0154724 1.1335446 270 N 26 39 33
+#
+# CMP 4
+CMP 13 0.62 0.275 0 N R10 ERJ2RKF1002X ;0=1,1=0.0157
+PRP Case_Code_(Imperial) '0402'
+PRP Case_Code_(Metric) '1005'
+PRP Case\/Package '0402'
+PRP Composition 'ThickFilm'
+PRP Contact_Plating 'Tin'
+PRP Datasheet_URL 'https://industrial.panasonic.com/cdbs/www-data/pdf/RDA0000/AOA0000C304.pdf'
+PRP Datasheet_Version '02/2017'
+PRP Depth '0.5mm'
+PRP Height '0.35mm'
+PRP Lead_Free 'LeadFree'
+PRP Length '1mm'
+PRP Manufacturer 'Panasonic'
+PRP Manufacturer_URL 'http://www.panasonic.com/'
+PRP Max_Operating_Temperature '155degC'
+PRP Max_Power_Dissipation '100mW'
+PRP Military_Standard 'Not'
+PRP Min_Operating_Temperature '-55degC'
+PRP Mount 'SurfaceMount'
+PRP Mounting_Technology 'SurfaceMount'
+PRP Number_of_Pins '2'
+PRP Number_of_Terminations '2'
+PRP Package_Description '2-Pin Surface Mount Device, Body 1 x 0.5 mm'
+PRP Package_Quantity '1'
+PRP Package_Reference '402'
+PRP Packaging 'TapeandReel'
+PRP Power_Rating '100mW'
+PRP Radiation_Hardening 'No'
+PRP REACH_SVHC 'NoSVHC'
+PRP Resistance '10KOhm'
+PRP RoHSCompliant 'True'
+PRP Temperature_Coefficient '100ppm\/degreesC'
+PRP Termination 'SMD/SMT'
+PRP Tolerance '1%'
+PRP Voltage_Rating '50V'
+PRP Voltage_Rating_(DC) '50V'
+PRP Width '0.02inch'
+TOP 0 0.604252 0.275 270 N 26 42 1
+TOP 1 0.6357481 0.275 270 N 7 2 2
+#
+# CMP 5
+CMP 12 0.62 0.31 180 N R9 CRCW020156K2FNED ;0=1,1=0.0110
+PRP Manufacturer 'Vishay Dale'
+PRP Part_Number 'CRCW020156K2FNED'
+TOP 0 0.6327953 0.31 90 N 7 1 1
+TOP 1 0.6072047 0.31 90 N 27 10 2
+#
+# CMP 6
+CMP 1 1.44 1.2 270 N R8 120 ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://www.vishay.com/docs/20035/dcrcwe3.pdf'
+PRP CompType 'Resistor'
+PRP Manufacturer 'Yageo'
+PRP MountType 'SMT'
+PRP PackageReference '0402'
+PRP PartNumber 'RC0402FR-07120RL'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '311-120LRCT-ND'
+PRP Technology 'Thick Film'
+PRP Tolerance__ '1%'
+PRP Value '120'
+TOP 0 1.44 1.180315 270 N 26 32 1
+TOP 1 1.44 1.219685 270 N 12 0 2
+#
+# CMP 7
+CMP 1 1.3236614 0.5592126 0 N R7 6.34K ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://www.vishay.com/docs/20035/dcrcwe3.pdf'
+PRP CompType 'Resistor'
+PRP Manufacturer 'Yageo'
+PRP MountType 'SMT'
+PRP PackageReference '0402'
+PRP PartNumber 'RC0402FR-076K34L'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 'YAG3218CT-ND'
+PRP Technology 'Thick Film'
+PRP Tolerance__ '1%'
+PRP Value '6.34K'
+TOP 0 1.3039764 0.5592126 0 N 8 1 1
+TOP 1 1.3433464 0.5592126 0 N 29 3 2
+#
+# CMP 8
+CMP 1 1.2736614 0.5792126 90 N R6 10K ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://www.vishay.com/docs/20035/dcrcwe3.pdf'
+PRP CompType 'Resistor'
+PRP Manufacturer 'Stackpole Electronics Inc'
+PRP MountType 'SMT'
+PRP PackageReference '0402'
+PRP PartNumber 'RMCF0402FT10K0'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 'RMCF0402FT10K0TR-ND'
+PRP Technology 'Thick Film'
+PRP Tolerance__ ''
+PRP Value '10K'
+PRP ValueDisplayed '10K'
+TOP 0 1.2736614 0.5988976 90 N 26 11 1
+TOP 1 1.2736614 0.5595276 90 N 8 2 2
+#
+# CMP 9
+CMP 1 1.47 0.39 90 N R5 10K ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://www.vishay.com/docs/20035/dcrcwe3.pdf'
+PRP CompType 'Resistor'
+PRP Manufacturer 'Stackpole Electronics Inc'
+PRP MountType 'SMT'
+PRP PackageReference '0402'
+PRP PartNumber 'RMCF0402FT10K0'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 'RMCF0402FT10K0TR-ND'
+PRP Technology 'Thick Film'
+PRP Tolerance__ ''
+PRP Value '10K'
+PRP ValueDisplayed '10K'
+TOP 0 1.47 0.409685 90 N 9 1 1
+TOP 1 1.47 0.370315 90 N 26 12 2
+#
+# CMP 10
+CMP 1 0.8 0.76 0 N R4 120 ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://www.vishay.com/docs/20035/dcrcwe3.pdf'
+PRP CompType 'Resistor'
+PRP Manufacturer 'Yageo'
+PRP MountType 'SMT'
+PRP PackageReference '0402'
+PRP PartNumber 'RC0402FR-07120RL'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '311-120LRCT-ND'
+PRP Technology 'Thick Film'
+PRP Tolerance__ '1%'
+PRP Value '120'
+TOP 0 0.780315 0.76 0 N 28 2 1
+TOP 1 0.819685 0.76 0 N 13 0 2
+#
+# CMP 11
+CMP 1 1.435 0.39 270 N R3 15K ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://www.vishay.com/docs/20035/dcrcwe3.pdf'
+PRP CompType 'Resistor'
+PRP Manufacturer 'Yageo'
+PRP MountType 'SMT'
+PRP PackageReference '0402'
+PRP PartNumber 'RC0402FR-0715KL'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '311-15.0KLRTR-ND'
+PRP Technology 'Thick Film'
+PRP Tolerance__ ''
+PRP Value '15K'
+PRP ValueDisplayed '15K'
+TOP 0 1.435 0.370315 270 N 28 3 1
+TOP 1 1.435 0.409685 270 N 9 2 2
+#
+# CMP 12
+CMP 1 1.375 0.37 0 N R2 10K ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://www.vishay.com/docs/20035/dcrcwe3.pdf'
+PRP CompType 'Resistor'
+PRP Manufacturer 'Stackpole Electronics Inc'
+PRP MountType 'SMT'
+PRP PackageReference '0402'
+PRP PartNumber 'RMCF0402FT10K0'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 'RMCF0402FT10K0TR-ND'
+PRP Technology 'Thick Film'
+PRP Tolerance__ ''
+PRP Value '10K'
+PRP ValueDisplayed '10K'
+TOP 0 1.355315 0.37 0 N 27 4 1
+TOP 1 1.394685 0.37 0 N 10 1 2
+#
+# CMP 13
+CMP 1 1.305 0.37 180 N R1 10K ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://www.vishay.com/docs/20035/dcrcwe3.pdf'
+PRP CompType 'Resistor'
+PRP Manufacturer 'Stackpole Electronics Inc'
+PRP MountType 'SMT'
+PRP PackageReference '0402'
+PRP PartNumber 'RMCF0402FT10K0'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 'RMCF0402FT10K0TR-ND'
+PRP Technology 'Thick Film'
+PRP Tolerance__ ''
+PRP Value '10K'
+PRP ValueDisplayed '10K'
+TOP 0 1.324685 0.37 180 N 27 5 1
+TOP 1 1.285315 0.37 180 N 11 1 2
+#
+# CMP 14
+CMP 8 0.48 0.51 270 N L2 NRS8030T3R3MJGJ ;0=1,1=0.0472
+PRP Case/Package 'Nonstandard'
+PRP Core_Material 'Ferrite'
+PRP Current_Rating '4.3A'
+PRP DC_Resistance_(DCR) '19mR'
+PRP Depth '8.2mm'
+PRP Halogen_Free 'Halogen Free'
+PRP Height '3mm'
+PRP Height_-_Seated_(Max) '0.118inch'
+PRP Inductance '3.3uH'
+PRP Inductance_Tolerance '20%'
+PRP Lead_Free 'Lead Free'
+PRP Lead_Pitch '5.6mm'
+PRP Length '8mm'
+PRP Max_DC_Current '4.2A'
+PRP Max_Operating_Temperature '125°C'
+PRP Min_Operating_Temperature '-25°C'
+PRP Mount 'Surface Mount'
+PRP Number_of_Pins '2'
+PRP Package_Quantity '1000'
+PRP Packaging 'Tape and Reel'
+PRP Radiation_Hardening 'No'
+PRP REACH_SVHC 'No SVHC'
+PRP Resistor_Type 'Wirewound'
+PRP RMS_Current_(Irms) '4.3A'
+PRP RoHS_Compliant 'Yes'
+PRP Saturation_Current '4.2A'
+PRP Self_Resonant_Frequency '50MHz'
+PRP Series 'NRS'
+PRP Shielding 'Shielded'
+PRP Termination 'SMD/SMT'
+PRP Test_Frequency '100kHz'
+PRP Tolerance '20%'
+PRP Width '0.315inch'
+TOP 0 0.48 0.3997638 270 N 6 3 1
+TOP 1 0.48 0.6202362 270 N 27 9 2
+#
+# CMP 15
+CMP 10 0.993189 1.3 0 N L1 1.2nH ;0=1,1=0.0472
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://www.yuden.co.jp/ut/product/category/inductor/BRC2012T2R2MD.pdf'
+PRP CompType 'Inductor'
+PRP Manufacturer 'Murata Electronics'
+PRP PartNumber 'LQP03HQ1N2B02D'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '490-13874-1-ND'
+PRP Value '1.2nH'
+TOP 0 0.981378 1.3 0 N 4 1 1
+TOP 1 1.005 1.3 0 N 24 2 2
+#
+# CMP 16
+CMP 9 1 -0.185 0 N J2 SMA-J-P-H-ST-EM1 ;0=1,1=0.0472
+PRP Body_Material 'Brass'
+PRP Body_Plating 'Gold'
+PRP Case/Package 'SMA'
+PRP Center_Contact_Plating 'Gold'
+PRP Connector_Type 'SMA'
+PRP Contact_Material 'Copper'
+PRP Contact_Plating 'Gold'
+PRP Depth '13.33mm'
+PRP Dielectric_Material 'PTFE'
+PRP Fastening_Type 'Threaded'
+PRP Housing_Color 'Gold'
+PRP Impedance '50R'
+PRP Insulation_Material 'Polytetrafluoroethylene'
+PRP Length '6.35mm'
+PRP Manufacturer_Part_Number 'SMA-J-P-H-ST-EM1'
+PRP Max_Frequency '6GHz'
+PRP Max_Operating_Temperature '125°C'
+PRP Min_Operating_Temperature '-65°C'
+PRP Mount 'Edge'
+PRP Orientation 'Straight'
+PRP Package_Quantity '1'
+PRP Packaging 'Tray'
+PRP Radiation_Hardening 'No'
+PRP RoHS_Compliant 'Yes'
+PRP Series 'SMA'
+PRP Termination 'Solder'
+PRP Voltage_Rating '335V'
+TOP 0 1 0.0772047 0 N 30 7 1
+TOP 1 0.8887795 0.0850787 0 N 26 41 2
+TOP 2 1.1112205 0.0850787 0 N 26 40 3
+TOP 3 0.8887795 0.0850787 0 N 26 9 4
+TOP 4 1.1112205 0.0850787 0 N 26 10 5
+#
+# CMP 17
+CMP 7 0.82 1.355 0 N J5 M20-9990246 ;0=2,1=0.0472
+PRP Automotive 'No'
+PRP Category 'Conn'
+PRP ComponentLink2Description 'Datasheet'
+PRP ComponentLink2URL 'https://cdn.harwin.com/pdfs/M20-999.pdf'
+PRP Conn_Gender 'Male'
+PRP Conn_Orientation 'Vertical'
+PRP Contact_Material 'Tin,Nickel'
+PRP Current_Rating '3A'
+PRP Device_Class_L1 'Connectors'
+PRP Device_Class_L2 'Headers and Wire Housings'
+PRP Device_Class_L3 'unset'
+PRP Digikey_Description 'CONN HEADER VERT 2POS 2.54MM'
+PRP Height '8.99mm'
+PRP Lead_Free 'Yes'
+PRP Manufacturer 'Harwin'
+PRP Manufacturer_Part_Number 'M20-9990246'
+PRP Mouser_Description '2.54mm (0.1_) Pitch SIL Vertical PC Tail Pin Header, 6.1mm mating pin height, tin, 2 contacts'
+PRP Number_of_Contacts '2'
+PRP Number_of_Rows '1'
+PRP Octopart 'https://octopart.com/m20-9990246-harwin-2590635'
+PRP Package 'M20-9990246'
+PRP Pitch '2.54mm'
+PRP RoHS 'TRUE'
+PRP Temperature '-40°C to +105°C'
+PRP Temperature_Range_High '+105°C'
+PRP Temperature_Range_Low '-40°C'
+TOP 0 0.77 1.355 0 N 30 2 1
+TOP 1 0.87 1.355 0 N 4 0 2
+#
+# CMP 18
+CMP 7 0.835 0.915 0 N J4 M20-9990246 ;0=2,1=0.0472
+PRP Automotive 'No'
+PRP Category 'Conn'
+PRP ComponentLink2Description 'Datasheet'
+PRP ComponentLink2URL 'https://cdn.harwin.com/pdfs/M20-999.pdf'
+PRP Conn_Gender 'Male'
+PRP Conn_Orientation 'Vertical'
+PRP Contact_Material 'Tin,Nickel'
+PRP Current_Rating '3A'
+PRP Device_Class_L1 'Connectors'
+PRP Device_Class_L2 'Headers and Wire Housings'
+PRP Device_Class_L3 'unset'
+PRP Digikey_Description 'CONN HEADER VERT 2POS 2.54MM'
+PRP Height '8.99mm'
+PRP Lead_Free 'Yes'
+PRP Manufacturer 'Harwin'
+PRP Manufacturer_Part_Number 'M20-9990246'
+PRP Mouser_Description '2.54mm (0.1_) Pitch SIL Vertical PC Tail Pin Header, 6.1mm mating pin height, tin, 2 contacts'
+PRP Number_of_Contacts '2'
+PRP Number_of_Rows '1'
+PRP Octopart 'https://octopart.com/m20-9990246-harwin-2590635'
+PRP Package 'M20-9990246'
+PRP Pitch '2.54mm'
+PRP RoHS 'TRUE'
+PRP Temperature '-40°C to +105°C'
+PRP Temperature_Range_High '+105°C'
+PRP Temperature_Range_Low '-40°C'
+TOP 0 0.785 0.915 0 N 27 3 1
+TOP 1 0.885 0.915 0 N 2 0 2
+#
+# CMP 19
+CMP 7 1.295 1.06 180 N J3 M20-9990246 ;0=2,1=0.0472
+PRP Automotive 'No'
+PRP Category 'Conn'
+PRP ComponentLink2Description 'Datasheet'
+PRP ComponentLink2URL 'https://cdn.harwin.com/pdfs/M20-999.pdf'
+PRP Conn_Gender 'Male'
+PRP Conn_Orientation 'Vertical'
+PRP Contact_Material 'Tin,Nickel'
+PRP Current_Rating '3A'
+PRP Device_Class_L1 'Connectors'
+PRP Device_Class_L2 'Headers and Wire Housings'
+PRP Device_Class_L3 'unset'
+PRP Digikey_Description 'CONN HEADER VERT 2POS 2.54MM'
+PRP Height '8.99mm'
+PRP Lead_Free 'Yes'
+PRP Manufacturer 'Harwin'
+PRP Manufacturer_Part_Number 'M20-9990246'
+PRP Mouser_Description '2.54mm (0.1_) Pitch SIL Vertical PC Tail Pin Header, 6.1mm mating pin height, tin, 2 contacts'
+PRP Number_of_Contacts '2'
+PRP Number_of_Rows '1'
+PRP Octopart 'https://octopart.com/m20-9990246-harwin-2590635'
+PRP Package 'M20-9990246'
+PRP Pitch '2.54mm'
+PRP RoHS 'TRUE'
+PRP Temperature '-40°C to +105°C'
+PRP Temperature_Range_High '+105°C'
+PRP Temperature_Range_Low '-40°C'
+TOP 0 1.345 1.06 180 N 29 2 1
+TOP 1 1.245 1.06 180 N 3 0 2
+#
+# CMP 20
+CMP 7 0.835 0.65 0 N J6 M20-9990246 ;0=2,1=0.0472
+PRP Automotive 'No'
+PRP Category 'Conn'
+PRP ComponentLink2Description 'Datasheet'
+PRP ComponentLink2URL 'https://cdn.harwin.com/pdfs/M20-999.pdf'
+PRP Conn_Gender 'Male'
+PRP Conn_Orientation 'Vertical'
+PRP Contact_Material 'Tin,Nickel'
+PRP Current_Rating '3A'
+PRP Device_Class_L1 'Connectors'
+PRP Device_Class_L2 'Headers and Wire Housings'
+PRP Device_Class_L3 'unset'
+PRP Digikey_Description 'CONN HEADER VERT 2POS 2.54MM'
+PRP Height '8.99mm'
+PRP Lead_Free 'Yes'
+PRP Manufacturer 'Harwin'
+PRP Manufacturer_Part_Number 'M20-9990246'
+PRP Mouser_Description '2.54mm (0.1_) Pitch SIL Vertical PC Tail Pin Header, 6.1mm mating pin height, tin, 2 contacts'
+PRP Number_of_Contacts '2'
+PRP Number_of_Rows '1'
+PRP Octopart 'https://octopart.com/m20-9990246-harwin-2590635'
+PRP Package 'M20-9990246'
+PRP Pitch '2.54mm'
+PRP RoHS 'TRUE'
+PRP Temperature '-40°C to +105°C'
+PRP Temperature_Range_High '+105°C'
+PRP Temperature_Range_Low '-40°C'
+TOP 0 0.785 0.65 0 N 28 1 1
+TOP 1 0.885 0.65 0 N 5 0 2
+#
+# CMP 21
+CMP 9 1.005 2.045 180 N J1 SMA-J-P-H-ST-EM1 ;0=1,1=0.0472
+PRP Body_Material 'Brass'
+PRP Body_Plating 'Gold'
+PRP Case/Package 'SMA'
+PRP Center_Contact_Plating 'Gold'
+PRP Connector_Type 'SMA'
+PRP Contact_Material 'Copper'
+PRP Contact_Plating 'Gold'
+PRP Depth '13.33mm'
+PRP Dielectric_Material 'PTFE'
+PRP Fastening_Type 'Threaded'
+PRP Housing_Color 'Gold'
+PRP Impedance '50R'
+PRP Insulation_Material 'Polytetrafluoroethylene'
+PRP Length '6.35mm'
+PRP Manufacturer_Part_Number 'SMA-J-P-H-ST-EM1'
+PRP Max_Frequency '6GHz'
+PRP Max_Operating_Temperature '125°C'
+PRP Min_Operating_Temperature '-65°C'
+PRP Mount 'Edge'
+PRP Orientation 'Straight'
+PRP Package_Quantity '1'
+PRP Packaging 'Tray'
+PRP Radiation_Hardening 'No'
+PRP RoHS_Compliant 'Yes'
+PRP Series 'SMA'
+PRP Termination 'Solder'
+PRP Voltage_Rating '335V'
+TOP 0 1.005 1.7827953 180 N 25 0 1
+TOP 1 1.1162205 1.7749213 180 N 26 13 2
+TOP 2 0.8937795 1.7749213 180 N 26 14 3
+TOP 3 1.1162205 1.7749213 180 N 26 8 4
+TOP 4 0.8937795 1.7749213 180 N 26 7 5
+#
+# CMP 22
+CMP 11 1.385 1.2 270 N D2 GRN ;0=1,1=0.0472
+PRP Manufacturer 'Kingbright'
+PRP PartNumber 'APTD1608CGCK'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '754-1545-2-ND'
+PRP Unit_Cost__Qty_1 '$0.68'
+PRP Unit_Cost__Qty_500 '$0.293'
+PRP Value 'GRN'
+TOP 0 1.385 1.2265748 180 N 12 1 1
+TOP 1 1.385 1.1734252 180 N 29 5 2
+#
+# CMP 23
+CMP 11 0.795 0.805 0 N D1 GRN ;0=1,1=0.0472
+PRP Manufacturer 'Kingbright'
+PRP PartNumber 'APTD1608CGCK'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '754-1545-2-ND'
+PRP Unit_Cost__Qty_1 '$0.68'
+PRP Unit_Cost__Qty_500 '$0.293'
+PRP Value 'GRN'
+TOP 0 0.8215748 0.805 270 N 13 1 1
+TOP 1 0.7684252 0.805 270 N 26 15 2
+#
+# CMP 24
+CMP 3 0.685 0.19 0 N C22 GRM31CR61E106KA12L ;0=1,1=0.0709
+PRP Brand 'MurataElectronics'
+PRP Capacitance '10uF'
+PRP Case_Code_-_in '1206'
+PRP Case_Code_-_mm '3216'
+PRP Case_Height '1.6mm'
+PRP Case_Length '3.2mm'
+PRP Case_Width '1.6mm'
+PRP Datasheet_URL 'https://datasheet.ciiva.com/11786/0900766b80ef921d-11786983.pdf'
+PRP Datasheet_Version 'Sep-13'
+PRP Dielectric 'X5R'
+PRP Factory_Pack_Quantity '2000'
+PRP Manufacturer 'Murata'
+PRP Manufacturer_URL 'http://www.murata.com/'
+PRP Maximum_Operating_Temperature '+85C'
+PRP Minimum_Operating_Temperature '-55C'
+PRP Package_/_Case '1206(3216metric)'
+PRP Package_Description '2-Pin Surface Mount Device, Body 3.2 x 1.6 mm'
+PRP Package_Reference '1206'
+PRP Packaging 'Reel'
+PRP Product 'GeneralTypeMLCCs'
+PRP Product_Category 'MultilayerCeramicCapacitorsMLCC-SMD/SMT'
+PRP RoHS 'Details'
+PRP Series 'GRM'
+PRP Termination_Style 'SMD/SMT'
+PRP Tolerance '10%'
+PRP Type 'GeneralPurposeMLCC'
+PRP Voltage_Rating_DC '25V'
+TOP 0 0.6269291 0.19 270 N 26 34 1
+TOP 1 0.7430708 0.19 270 N 30 4 2
+#
+# CMP 25
+CMP 3 0.685 0.07 0 N C21 GRM31CR61E106KA12L ;0=1,1=0.0709
+PRP Brand 'MurataElectronics'
+PRP Capacitance '10uF'
+PRP Case_Code_-_in '1206'
+PRP Case_Code_-_mm '3216'
+PRP Case_Height '1.6mm'
+PRP Case_Length '3.2mm'
+PRP Case_Width '1.6mm'
+PRP Datasheet_URL 'https://datasheet.ciiva.com/11786/0900766b80ef921d-11786983.pdf'
+PRP Datasheet_Version 'Sep-13'
+PRP Dielectric 'X5R'
+PRP Factory_Pack_Quantity '2000'
+PRP Manufacturer 'Murata'
+PRP Manufacturer_URL 'http://www.murata.com/'
+PRP Maximum_Operating_Temperature '+85C'
+PRP Minimum_Operating_Temperature '-55C'
+PRP Package_/_Case '1206(3216metric)'
+PRP Package_Description '2-Pin Surface Mount Device, Body 3.2 x 1.6 mm'
+PRP Package_Reference '1206'
+PRP Packaging 'Reel'
+PRP Product 'GeneralTypeMLCCs'
+PRP Product_Category 'MultilayerCeramicCapacitorsMLCC-SMD/SMT'
+PRP RoHS 'Details'
+PRP Series 'GRM'
+PRP Termination_Style 'SMD/SMT'
+PRP Tolerance '10%'
+PRP Type 'GeneralPurposeMLCC'
+PRP Voltage_Rating_DC '25V'
+TOP 0 0.6269291 0.07 270 N 26 16 1
+TOP 1 0.7430708 0.07 270 N 30 3 2
+#
+# CMP 26
+CMP 2 0.315 0.815 0 N C20 C1608X5R1A226M080AC ;0=1,1=0.0394
+PRP Applications 'GeneralPurpose'
+PRP Capacitance '22µF'
+PRP Category 'Capacitors'
+PRP Datasheet_URL 'http://download.siliconexpert.com/pdfs/2015/4/21/15/54/45/779/tdk_/manual/37024850441143360mlcc_commercial_general_en.pdf'
+PRP Datasheet_Version 'Mar-15'
+PRP Design_Resources '20WNon-IsolatedBuckLEDDriverUsingPLLNK460KG'
+PRP Family 'CeramicCapacitors'
+PRP Features '-'
+PRP Height_-_Seated_(Max) '-'
+PRP Kits '445-9014-KIT-ND-KITMLCC100PF-22UF060310-50V'
+PRP Lead_Spacing '-'
+PRP Lead_Style '-'
+PRP Manufacturer 'TDK'
+PRP Manufacturer_URL 'http://www.tdk.com/'
+PRP Mounting_Type 'SurfaceMount,MLCC'
+PRP Online_Catalog 'CSeries,GeneralPurpose'
+PRP Operating_Temperature '-55degC~85degC'
+PRP Other_Names '445-9077-1'
+PRP Package_/_Case '0603(1608Metric)'
+PRP Package_Description '2-Pin Surface Mount Device, Body 1.6 x 0.8 mm'
+PRP Package_Reference '603'
+PRP Packaging 'CutTape(CT)'
+PRP PCN_Part_Number 'MLCCPartNumberChange30/Nov/2012'
+PRP Product_Training_Modules 'CSeriesGeneralApplicationsSEAT,CCV,andTVCLDesignToolsGuidetoReplacinganElectrolyticCapacitorwithanMLCC'
+PRP Ratings '-'
+PRP RoHS_Information 'RoHSCertificate-MLCC'
+PRP Series 'C'
+PRP Size_/_Dimension '0.063_Lx0.031_W(1.60mmx0.80mm)'
+PRP Standard_Package '1'
+PRP Temperature_Coefficient 'X5R'
+PRP Thickness_(Max) '0.035_(0.90mm)'
+PRP Tolerance '±20%'
+PRP Voltage_-_Rated '10V'
+TOP 0 0.2815354 0.815 270 N 26 33 1
+TOP 1 0.3484645 0.815 270 N 27 8 2
+#
+# CMP 27
+CMP 2 0.315 0.73 0 N C19 C1608X5R1A226M080AC ;0=1,1=0.0394
+PRP Applications 'GeneralPurpose'
+PRP Capacitance '22µF'
+PRP Category 'Capacitors'
+PRP Datasheet_URL 'http://download.siliconexpert.com/pdfs/2015/4/21/15/54/45/779/tdk_/manual/37024850441143360mlcc_commercial_general_en.pdf'
+PRP Datasheet_Version 'Mar-15'
+PRP Design_Resources '20WNon-IsolatedBuckLEDDriverUsingPLLNK460KG'
+PRP Family 'CeramicCapacitors'
+PRP Features '-'
+PRP Height_-_Seated_(Max) '-'
+PRP Kits '445-9014-KIT-ND-KITMLCC100PF-22UF060310-50V'
+PRP Lead_Spacing '-'
+PRP Lead_Style '-'
+PRP Manufacturer 'TDK'
+PRP Manufacturer_URL 'http://www.tdk.com/'
+PRP Mounting_Type 'SurfaceMount,MLCC'
+PRP Online_Catalog 'CSeries,GeneralPurpose'
+PRP Operating_Temperature '-55degC~85degC'
+PRP Other_Names '445-9077-1'
+PRP Package_/_Case '0603(1608Metric)'
+PRP Package_Description '2-Pin Surface Mount Device, Body 1.6 x 0.8 mm'
+PRP Package_Reference '603'
+PRP Packaging 'CutTape(CT)'
+PRP PCN_Part_Number 'MLCCPartNumberChange30/Nov/2012'
+PRP Product_Training_Modules 'CSeriesGeneralApplicationsSEAT,CCV,andTVCLDesignToolsGuidetoReplacinganElectrolyticCapacitorwithanMLCC'
+PRP Ratings '-'
+PRP RoHS_Information 'RoHSCertificate-MLCC'
+PRP Series 'C'
+PRP Size_/_Dimension '0.063_Lx0.031_W(1.60mmx0.80mm)'
+PRP Standard_Package '1'
+PRP Temperature_Coefficient 'X5R'
+PRP Thickness_(Max) '0.035_(0.90mm)'
+PRP Tolerance '±20%'
+PRP Voltage_-_Rated '10V'
+TOP 0 0.2815354 0.73 270 N 26 17 1
+TOP 1 0.3484645 0.73 270 N 27 6 2
+#
+# CMP 28
+CMP 4 0.7642584 0.54181 0 N C18 C0603C104Z3VACTU ;0=1,1=0.0472
+PRP Capacitance '100nF'
+PRP Case_Code_(Imperial) '0603'
+PRP Case_Code_(Metric) '1608'
+PRP Case/Package '0603'
+PRP Construction 'Flat'
+PRP Depth '0.8mm'
+PRP Dielectric 'Y5V'
+PRP Dielectric_Material 'Ceramic'
+PRP Dissipation_Factor '7%'
+PRP Height '0.8mm'
+PRP Lead_Free 'Lead Free'
+PRP Lead_Pitch '0.7mm'
+PRP Length '1.6mm'
+PRP Max_Operating_Temperature '85°C'
+PRP Min_Operating_Temperature '-30°C'
+PRP Mount 'Surface Mount'
+PRP Number_of_Pins '2'
+PRP Package_Quantity '1'
+PRP Packaging 'Tape and Reel'
+PRP Radiation_Hardening 'No'
+PRP REACH_SVHC 'No SVHC'
+PRP RoHS_Compliant 'Yes'
+PRP Series 'C'
+PRP Termination 'SMD/SMT'
+PRP Thickness '0.034inch'
+PRP Tolerance '80%'
+PRP Voltage '25V'
+PRP Voltage_Rating '25V'
+PRP Voltage_Rating_(DC) '25V'
+PRP Width '0.031inch'
+TOP 0 0.7356814 0.54181 0 N 6 1 1
+TOP 1 0.7928354 0.54181 0 N 14 0 2
+#
+# CMP 29
+CMP 0 1.205 1.23 180 N C17 1000pF ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://ds.yuden.co.jp/TYCOMPAS/ut/detail.do?productNo=LMK105BJ104KV-F&fileName=LMK105BJ104KV-F_SS&mode=specSheetDownload'
+PRP CompType 'Capacitor'
+PRP Manufacturer 'KEMET'
+PRP Manufacturer_Part_Number 'C0402C102J3RECAUTO'
+PRP PackageReference '0402'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 ''
+PRP TaMax_C '85°C'
+PRP TaMin_C '-55°C'
+PRP Technology 'Ceramic'
+PRP Tolerance__ ''
+PRP Value '1000pF'
+TOP 0 1.2266535 1.23 180 N 26 31 1
+TOP 1 1.1833465 1.23 180 N 15 0 2
+#
+# CMP 30
+CMP 0 1.205 1.265 180 N C16 4.7uF ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://ds.yuden.co.jp/TYCOMPAS/ut/detail.do?productNo=LMK105BJ104KV-F&fileName=LMK105BJ104KV-F_SS&mode=specSheetDownload'
+PRP Manufacturer 'Samsung Electro-Mechanics'
+PRP PackageReference '0402'
+PRP PartNumber 'CL05A475MP5NRNC'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '1276-1482-1-ND'
+PRP Technology 'Ceramic'
+PRP Value '4.7uF'
+TOP 0 1.2266535 1.265 180 N 26 18 1
+TOP 1 1.1833465 1.265 180 N 16 0 2
+#
+# CMP 31
+CMP 0 0.83 1.135 0 N C15 4.7uF ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://ds.yuden.co.jp/TYCOMPAS/ut/detail.do?productNo=LMK105BJ104KV-F&fileName=LMK105BJ104KV-F_SS&mode=specSheetDownload'
+PRP Manufacturer 'Samsung Electro-Mechanics'
+PRP PackageReference '0402'
+PRP PartNumber 'CL05A475MP5NRNC'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '1276-1482-1-ND'
+PRP Technology 'Ceramic'
+PRP Value '4.7uF'
+TOP 0 0.8083465 1.135 0 N 26 19 1
+TOP 1 0.8516535 1.135 0 N 17 0 2
+#
+# CMP 32
+CMP 0 0.83 1.1 0 N C14 1000pF ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://ds.yuden.co.jp/TYCOMPAS/ut/detail.do?productNo=LMK105BJ104KV-F&fileName=LMK105BJ104KV-F_SS&mode=specSheetDownload'
+PRP CompType 'Capacitor'
+PRP Manufacturer 'KEMET'
+PRP Manufacturer_Part_Number 'C0402C102J3RECAUTO'
+PRP PackageReference '0402'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 ''
+PRP TaMax_C '85°C'
+PRP TaMin_C '-55°C'
+PRP Technology 'Ceramic'
+PRP Tolerance__ ''
+PRP Value '1000pF'
+TOP 0 0.8083465 1.1 0 N 26 20 1
+TOP 1 0.8516535 1.1 0 N 18 0 2
+#
+# CMP 33
+CMP 0 1.39 0.58 270 N C13 2.2uF ;0=1,1=0.0217
+PRP Manufacturer 'TDK Corporation'
+PRP Package '0402'
+PRP PartNumber 'C1005X6S1C225M050BC'
+PRP Supplier_1 'Digikey'
+PRP Supplier_Part_Number_1 '445-9101-2-ND'
+PRP Value '2.2uF'
+TOP 0 1.39 0.5583465 270 N 29 4 1
+TOP 1 1.39 0.6016535 270 N 26 21 2
+#
+# CMP 34
+CMP 0 1.235 0.48 90 N C12 4.7uF ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://ds.yuden.co.jp/TYCOMPAS/ut/detail.do?productNo=LMK105BJ104KV-F&fileName=LMK105BJ104KV-F_SS&mode=specSheetDownload'
+PRP Manufacturer 'Samsung Electro-Mechanics'
+PRP PackageReference '0402'
+PRP PartNumber 'CL05A475MP5NRNC'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '1276-1482-1-ND'
+PRP Technology 'Ceramic'
+PRP Value '4.7uF'
+TOP 0 1.235 0.5016535 90 N 20 1 1
+TOP 1 1.235 0.4583465 90 N 19 1 2
+#
+# CMP 35
+CMP 0 1.235 0.38 270 N C11 2.2uF ;0=1,1=0.0217
+PRP Manufacturer 'TDK Corporation'
+PRP Package '0402'
+PRP PartNumber 'C1005X6S1C225M050BC'
+PRP Supplier_1 'Digikey'
+PRP Supplier_Part_Number_1 '445-9101-2-ND'
+PRP Value '2.2uF'
+TOP 0 1.235 0.3583465 270 N 26 22 1
+TOP 1 1.235 0.4016535 270 N 28 4 2
+#
+# CMP 36
+CMP 0 1.44 0.4616535 90 N C10 2.2uF ;0=1,1=0.0217
+PRP Manufacturer 'TDK Corporation'
+PRP Package '0402'
+PRP PartNumber 'C1005X6S1C225M050BC'
+PRP Supplier_1 'Digikey'
+PRP Supplier_Part_Number_1 '445-9101-2-ND'
+PRP Value '2.2uF'
+TOP 0 1.44 0.483307 90 N 26 23 1
+TOP 1 1.44 0.44 90 N 27 7 2
+#
+# CMP 37
+CMP 0 1.1 0.565 180 N C9 10uF ;0=1,1=0.0217
+PRP Manufacturer 'Murata Electronics'
+PRP Package '0402'
+PRP PartNumber 'GRJ155R60J106ME11D'
+PRP Supplier_1 'Digikey'
+PRP Supplier_Part_Number_1 '490-13211-1-ND'
+PRP Value '10uF'
+TOP 0 1.1216535 0.565 180 N 26 24 1
+TOP 1 1.0783465 0.565 180 N 5 1 2
+#
+# CMP 38
+CMP 0 1.43 0.54 270 N C8 4.7uF ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://ds.yuden.co.jp/TYCOMPAS/ut/detail.do?productNo=LMK105BJ104KV-F&fileName=LMK105BJ104KV-F_SS&mode=specSheetDownload'
+PRP Manufacturer 'Samsung Electro-Mechanics'
+PRP PackageReference '0402'
+PRP PartNumber 'CL05A475MP5NRNC'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '1276-1482-1-ND'
+PRP Technology 'Ceramic'
+PRP Value '4.7uF'
+TOP 0 1.43 0.5183465 270 N 21 1 1
+TOP 1 1.43 0.5616535 270 N 26 25 2
+#
+# CMP 39
+CMP 0 1.026614 0.915 270 N C7 1000pF ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://ds.yuden.co.jp/TYCOMPAS/ut/detail.do?productNo=LMK105BJ104KV-F&fileName=LMK105BJ104KV-F_SS&mode=specSheetDownload'
+PRP CompType 'Capacitor'
+PRP Manufacturer 'Murata Electronics'
+PRP PackageReference '0402'
+PRP PartNumber 'GCM1555C1H102FA16D'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '490-16461-2-ND'
+PRP TaMax_C '85°C'
+PRP TaMin_C '-55°C'
+PRP Technology 'Ceramic'
+PRP Tolerance__ ''
+PRP Value '1000pF'
+TOP 0 1.026614 0.8933465 270 N 23 0 1
+TOP 1 1.026614 0.9366535 270 N 22 0 2
+#
+# CMP 40
+CMP 0 1.005 1.36 90 N C6 1000pF ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://ds.yuden.co.jp/TYCOMPAS/ut/detail.do?productNo=LMK105BJ104KV-F&fileName=LMK105BJ104KV-F_SS&mode=specSheetDownload'
+PRP CompType 'Capacitor'
+PRP Manufacturer 'KEMET'
+PRP Manufacturer_Part_Number 'C0402C102J3RECAUTO'
+PRP PackageReference '0402'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 ''
+PRP TaMax_C '85°C'
+PRP TaMin_C '-55°C'
+PRP Technology 'Ceramic'
+PRP Tolerance__ ''
+PRP Value '1000pF'
+TOP 0 1.005 1.3816535 90 N 25 1 1
+TOP 1 1.005 1.3383465 90 N 24 0 2
+#
+# CMP 41
+CMP 0 0.82 1.005 0 N C5 1000pF ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://ds.yuden.co.jp/TYCOMPAS/ut/detail.do?productNo=LMK105BJ104KV-F&fileName=LMK105BJ104KV-F_SS&mode=specSheetDownload'
+PRP CompType 'Capacitor'
+PRP Manufacturer 'KEMET'
+PRP Manufacturer_Part_Number 'C0402C102J3RECAUTO'
+PRP PackageReference '0402'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 ''
+PRP TaMax_C '85°C'
+PRP TaMin_C '-55°C'
+PRP Technology 'Ceramic'
+PRP Tolerance__ ''
+PRP Value '1000pF'
+TOP 0 0.7983465 1.005 0 N 26 26 1
+TOP 1 0.8416535 1.005 0 N 2 1 2
+#
+# CMP 42
+CMP 0 0.82 1.045 0 N C4 1000pF ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://ds.yuden.co.jp/TYCOMPAS/ut/detail.do?productNo=LMK105BJ104KV-F&fileName=LMK105BJ104KV-F_SS&mode=specSheetDownload'
+PRP CompType 'Capacitor'
+PRP Manufacturer 'KEMET'
+PRP Manufacturer_Part_Number 'C0402C102J3RECAUTO'
+PRP PackageReference '0402'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 ''
+PRP TaMax_C '85°C'
+PRP TaMin_C '-55°C'
+PRP Technology 'Ceramic'
+PRP Tolerance__ ''
+PRP Value '1000pF'
+TOP 0 0.7983465 1.045 0 N 26 27 1
+TOP 1 0.8416535 1.045 0 N 2 2 2
+#
+# CMP 43
+CMP 0 1.185 1.165 90 N C3 100pF ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://ds.yuden.co.jp/TYCOMPAS/ut/detail.do?productNo=LMK105BJ104KV-F&fileName=LMK105BJ104KV-F_SS&mode=specSheetDownload'
+PRP CompType 'Capacitor'
+PRP Manufacturer 'AVX Corporation'
+PRP PackageReference '0402'
+PRP PartNumber '04023C101KAT2A'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '478-10080-2-ND'
+PRP TaMax_C '85°C'
+PRP TaMin_C '-55°C'
+PRP Technology 'Ceramic'
+PRP Tolerance__ ''
+PRP Value '100pF'
+TOP 0 1.185 1.1866535 90 N 26 28 1
+TOP 1 1.185 1.1433465 90 N 3 1 2
+#
+# CMP 44
+CMP 0 1.245 1.165 90 N C2 1000pF ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://ds.yuden.co.jp/TYCOMPAS/ut/detail.do?productNo=LMK105BJ104KV-F&fileName=LMK105BJ104KV-F_SS&mode=specSheetDownload'
+PRP CompType 'Capacitor'
+PRP Manufacturer 'KEMET'
+PRP Manufacturer_Part_Number 'C0402C102J3RECAUTO'
+PRP PackageReference '0402'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 ''
+PRP TaMax_C '85°C'
+PRP TaMin_C '-55°C'
+PRP Technology 'Ceramic'
+PRP Tolerance__ ''
+PRP Value '1000pF'
+TOP 0 1.245 1.1866535 90 N 26 29 1
+TOP 1 1.245 1.1433465 90 N 3 2 2
+#
+# CMP 45
+CMP 0 1.3 1.165 90 N C1 4.7uF ;0=1,1=0.0217
+PRP ComponentLink1Description 'Datasheet link'
+PRP ComponentLink1URL 'http://ds.yuden.co.jp/TYCOMPAS/ut/detail.do?productNo=LMK105BJ104KV-F&fileName=LMK105BJ104KV-F_SS&mode=specSheetDownload'
+PRP Manufacturer 'Samsung Electro-Mechanics'
+PRP PackageReference '0402'
+PRP PartNumber 'CL05A475MP5NRNC'
+PRP Supplier_1 'Digi-Key'
+PRP Supplier_Part_Number_1 '1276-1482-1-ND'
+PRP Technology 'Ceramic'
+PRP Value '4.7uF'
+TOP 0 1.3 1.1866535 90 N 26 30 1
+TOP 1 1.3 1.1433465 90 N 3 3 2
+#
