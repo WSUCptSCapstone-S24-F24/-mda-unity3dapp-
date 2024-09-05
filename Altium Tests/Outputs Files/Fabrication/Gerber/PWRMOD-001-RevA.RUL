@@ -1,8 +1,0 @@
-DRC Rules Export File for PCB: C:\Users\Zachariah\Documents\NWES\Product Data\Uploaded\PWRMOD-001\PWRMOD-001-RevA.PcbDoc
-RuleKind=Clearance|RuleName=Clearance_1|Scope=Board|Minimum=15.00
-RuleKind=Clearance|RuleName=Clearance_RF|Scope=Board|Minimum=6.00
-RuleKind=Width|RuleName=Width_RF|Scope=Board|Minimum=4.11
-RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=0.00
-RuleKind=Width|RuleName=Width|Scope=Board|Minimum=6.00
-RuleKind=Clearance|RuleName=Clearance|Scope=Board|Minimum=6.00
-RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
