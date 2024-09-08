@@ -177,39 +177,77 @@ public class WhiskerSim : MonoBehaviour
 
 public class LognormalRandom
 {
-    // Fields to hold the random number generator, mean (mu), and standard deviation (sigma)
-    private readonly System.Random rand;
-    private readonly double mu;
-    private readonly double sigma;
+    private System.Random rand;
+    private double mu;
+    private double sigma;
 
-    // Constructor to initialize the LognormalRandom object with specified mean, standard deviation, and optional seed for random number generation
     public LognormalRandom(double mu, double sigma, int? seed = null)
     {
-        // Assign mean (mu) and standard deviation (sigma) values provided during object creation
         this.mu = mu;
         this.sigma = sigma;
-        // Initialize the random number generator with the provided seed if available, otherwise use a default seed
-        rand = seed.HasValue ? new System.Random(seed.Value) : new System.Random();
+        this.rand = seed.HasValue ? new System.Random(seed.Value) : new System.Random();
+    }
+
+    // Generates a normal random variable matching Excel's approach
+    public double GenerateNormalRandom()
+    {
+        // Generate a uniform random number in the range (0, 1)
+        double uniformRandom = this.rand.NextDouble();
+
+        // Use the inverse of the normal cumulative distribution function
+        // Excel's approach: NORMINV(rand(), mu, sigma)
+        double normalRandom = mu + sigma * InverseCumulativeNormal(uniformRandom);
+        return normalRandom;
     }
 
     // Method to generate the next random lognormal value
     public double Next()
     {
-        // Generate a random standard normal variable (Z)
-        double z = RandomStandardNormal();
-        // Transform the standard normal variable to a lognormal variable using the formula X = exp(mu + sigma * Z)
-        double x = Math.Exp(mu + sigma * z);
-        return x;
+        return Math.Exp(GenerateNormalRandom());
     }
 
-    // Method to generate a random standard normal variable using the Box-Muller transform
-    private double RandomStandardNormal()
+    // Approximate the inverse cumulative distribution function for the standard normal
+    private static double InverseCumulativeNormal(double p)
     {
-        // Generate two random uniform variables (U1, U2) between 0 and 1
-        double u1 = 1.0 - rand.NextDouble();
-        double u2 = 1.0 - rand.NextDouble();
-        // Compute a random standard normal variable (Z) using the Box-Muller transform
-        double z = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
-        return z;
+        // Approximation for the inverse cumulative normal distribution (quantile function)
+        // Algorithm reference: https://en.wikipedia.org/wiki/Inverse_distribution_function
+
+        // Constants for the approximation
+        double[] a = { -3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02, 1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00 };
+        double[] b = { -5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02, 6.680131188771972e+01, -1.328068155288572e+01 };
+        double[] c = { -7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00, -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00 };
+        double[] d = { 7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00, 3.754408661907416e+00 };
+
+        // Define break points
+        double p_low = 0.02425;
+        double p_high = 1 - p_low;
+
+        double q, r, val;
+
+        if (p < p_low)
+        {
+            // Rational approximation for lower region
+            q = Math.Sqrt(-2 * Math.Log(p));
+            val = (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) /
+                  ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+        }
+        else if (p <= p_high)
+        {
+            // Rational approximation for central region
+            q = p - 0.5;
+            r = q * q;
+            val = (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q /
+                  (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+        }
+        else
+        {
+            // Rational approximation for upper region
+            q = Math.Sqrt(-2 * Math.Log(1 - p));
+            val = -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) /
+                  ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+        }
+
+        return val;
     }
 }
+
