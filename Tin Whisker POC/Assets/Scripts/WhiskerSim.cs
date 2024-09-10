@@ -64,8 +64,15 @@ public class WhiskerSim : MonoBehaviour
         //Test the dimensions of the cylinder
         // // Write the header row
 
-        Vector3 originalScale = cylinder.transform.localScale;
+        Vector3 originalScale = cylinder.transform.localScale; // Defualt is scale: (1, 1, 1) which makes a length of 2 or 1/5 mm and a diameter of 1 or 1/10 mm
+        // (1, 5, 1) is 1 mm long --> (1, 0.005, 1) is 1 micron long
+        // (10, 1, 10) is 1 mm diameter --> (0.01, 1, 0.01) is 1 micron diameter 
+        Vector3 scaledTransform = new Vector3(originalScale.x * 10.0f / 1000.0f, originalScale.y * 5.0f / 1000.0f, originalScale.z * 10.0f / 1000.0f);
+        // Debug.Log($"X: {scaledTransform.x} Y: {scaledTransform.y} Z: {scaledTransform.z}");
+        cylinder.transform.localScale = scaledTransform;
+
         float WhiskerCount = (simState.spawnAreaSizeX * simState.spawnAreaSizeY * simState.spawnAreaSizeZ) * simState.whiskerDensity;
+
 
         LognormalRandom lognormalRandomLength = new LognormalRandom(simState.LengthMu, simState.LengthSigma);
         LognormalRandom lognormalRandomWidth = new LognormalRandom(simState.WidthMu, simState.WidthSigma);
@@ -92,13 +99,10 @@ public class WhiskerSim : MonoBehaviour
 
             cylinder_clone.Add(newCylinder);
 
-            // float lengthMultiplier = (float)lognormalRandomLength.NextDouble();
-            // float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
             float lengthMultiplier = (float)lognormalRandomLength.Next();
             float widthMultiplier = (float)lognormalRandomWidth.Next();
 
-            newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
-            ScaleCylinder(newCylinder, 1f, 0.1f);
+            ScaleCylinder(newCylinder, widthMultiplier, lengthMultiplier);
             WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
             whiskerCollider.WhiskerNum = i;
             if (whiskerCollider && shortDetector)
@@ -127,7 +131,6 @@ public class WhiskerSim : MonoBehaviour
         }
     }
 
-    // This method is called to scale the cylinder
     public void ScaleCylinder(GameObject cylinderObject, float widthScale, float heightScale)
     {
         if (cylinderObject == null)
@@ -175,6 +178,7 @@ public class WhiskerSim : MonoBehaviour
     }
 }
 
+
 public class LognormalRandom
 {
     private System.Random rand;
@@ -188,16 +192,12 @@ public class LognormalRandom
         this.rand = seed.HasValue ? new System.Random(seed.Value) : new System.Random();
     }
 
-    // Generates a normal random variable matching Excel's approach
     public double GenerateNormalRandom()
     {
-        // Generate a uniform random number in the range (0, 1)
-        double uniformRandom = this.rand.NextDouble();
-
-        // Use the inverse of the normal cumulative distribution function
-        // Excel's approach: NORMINV(rand(), mu, sigma)
-        double normalRandom = mu + sigma * InverseCumulativeNormal(uniformRandom);
-        return normalRandom;
+        double u1 = this.rand.NextDouble();
+        double u2 = this.rand.NextDouble();
+        double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
+        return this.mu + this.sigma * randStdNormal;
     }
 
     // Method to generate the next random lognormal value
@@ -205,49 +205,4 @@ public class LognormalRandom
     {
         return Math.Exp(GenerateNormalRandom());
     }
-
-    // Approximate the inverse cumulative distribution function for the standard normal
-    private static double InverseCumulativeNormal(double p)
-    {
-        // Approximation for the inverse cumulative normal distribution (quantile function)
-        // Algorithm reference: https://en.wikipedia.org/wiki/Inverse_distribution_function
-
-        // Constants for the approximation
-        double[] a = { -3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02, 1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00 };
-        double[] b = { -5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02, 6.680131188771972e+01, -1.328068155288572e+01 };
-        double[] c = { -7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00, -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00 };
-        double[] d = { 7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00, 3.754408661907416e+00 };
-
-        // Define break points
-        double p_low = 0.02425;
-        double p_high = 1 - p_low;
-
-        double q, r, val;
-
-        if (p < p_low)
-        {
-            // Rational approximation for lower region
-            q = Math.Sqrt(-2 * Math.Log(p));
-            val = (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) /
-                  ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
-        }
-        else if (p <= p_high)
-        {
-            // Rational approximation for central region
-            q = p - 0.5;
-            r = q * q;
-            val = (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q /
-                  (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
-        }
-        else
-        {
-            // Rational approximation for upper region
-            q = Math.Sqrt(-2 * Math.Log(1 - p));
-            val = -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) /
-                  ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
-        }
-
-        return val;
-    }
 }
-
