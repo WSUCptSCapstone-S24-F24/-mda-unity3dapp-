@@ -64,8 +64,15 @@ public class WhiskerSim : MonoBehaviour
         //Test the dimensions of the cylinder
         // // Write the header row
 
-        Vector3 originalScale = cylinder.transform.localScale;
+        Vector3 originalScale = cylinder.transform.localScale; // Defualt is scale: (1, 1, 1) which makes a length of 2 or 1/5 mm and a diameter of 1 or 1/10 mm
+        // (1, 5, 1) is 1 mm long --> (1, 0.005, 1) is 1 micron long
+        // (10, 1, 10) is 1 mm diameter --> (0.01, 1, 0.01) is 1 micron diameter 
+        Vector3 scaledTransform = new Vector3(originalScale.x * 10.0f / 1000.0f, originalScale.y * 5.0f / 1000.0f, originalScale.z * 10.0f / 1000.0f);
+        // Debug.Log($"X: {scaledTransform.x} Y: {scaledTransform.y} Z: {scaledTransform.z}");
+        cylinder.transform.localScale = scaledTransform;
+
         float WhiskerCount = (simState.spawnAreaSizeX * simState.spawnAreaSizeY * simState.spawnAreaSizeZ) * simState.whiskerDensity;
+
 
         LognormalRandom lognormalRandomLength = new LognormalRandom(simState.LengthMu, simState.LengthSigma);
         LognormalRandom lognormalRandomWidth = new LognormalRandom(simState.WidthMu, simState.WidthSigma);
@@ -92,13 +99,10 @@ public class WhiskerSim : MonoBehaviour
 
             cylinder_clone.Add(newCylinder);
 
-            // float lengthMultiplier = (float)lognormalRandomLength.NextDouble();
-            // float widthMultiplier = (float)lognormalRandomWidth.NextDouble();
             float lengthMultiplier = (float)lognormalRandomLength.Next();
             float widthMultiplier = (float)lognormalRandomWidth.Next();
 
-            newCylinder.transform.localScale = new Vector3(originalScale.x * widthMultiplier, originalScale.y * lengthMultiplier, originalScale.z * widthMultiplier);
-            ScaleCylinder(newCylinder, 1f, 0.1f);
+            ScaleCylinder(newCylinder, widthMultiplier, lengthMultiplier);
             WhiskerCollider whiskerCollider = newCylinder.GetComponent<WhiskerCollider>();
             whiskerCollider.WhiskerNum = i;
             if (whiskerCollider && shortDetector)
@@ -127,7 +131,6 @@ public class WhiskerSim : MonoBehaviour
         }
     }
 
-    // This method is called to scale the cylinder
     public void ScaleCylinder(GameObject cylinderObject, float widthScale, float heightScale)
     {
         if (cylinderObject == null)
@@ -175,41 +178,31 @@ public class WhiskerSim : MonoBehaviour
     }
 }
 
+
 public class LognormalRandom
 {
-    // Fields to hold the random number generator, mean (mu), and standard deviation (sigma)
-    private readonly System.Random rand;
-    private readonly double mu;
-    private readonly double sigma;
+    private System.Random rand;
+    private double mu;
+    private double sigma;
 
-    // Constructor to initialize the LognormalRandom object with specified mean, standard deviation, and optional seed for random number generation
     public LognormalRandom(double mu, double sigma, int? seed = null)
     {
-        // Assign mean (mu) and standard deviation (sigma) values provided during object creation
         this.mu = mu;
         this.sigma = sigma;
-        // Initialize the random number generator with the provided seed if available, otherwise use a default seed
-        rand = seed.HasValue ? new System.Random(seed.Value) : new System.Random();
+        this.rand = seed.HasValue ? new System.Random(seed.Value) : new System.Random();
+    }
+
+    public double GenerateNormalRandom()
+    {
+        double u1 = this.rand.NextDouble();
+        double u2 = this.rand.NextDouble();
+        double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
+        return this.mu + this.sigma * randStdNormal;
     }
 
     // Method to generate the next random lognormal value
     public double Next()
     {
-        // Generate a random standard normal variable (Z)
-        double z = RandomStandardNormal();
-        // Transform the standard normal variable to a lognormal variable using the formula X = exp(mu + sigma * Z)
-        double x = Math.Exp(mu + sigma * z);
-        return x;
-    }
-
-    // Method to generate a random standard normal variable using the Box-Muller transform
-    private double RandomStandardNormal()
-    {
-        // Generate two random uniform variables (U1, U2) between 0 and 1
-        double u1 = 1.0 - rand.NextDouble();
-        double u2 = 1.0 - rand.NextDouble();
-        // Compute a random standard normal variable (Z) using the Box-Muller transform
-        double z = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
-        return z;
+        return Math.Exp(GenerateNormalRandom());
     }
 }

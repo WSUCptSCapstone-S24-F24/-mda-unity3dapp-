@@ -156,7 +156,6 @@ public class LoadFile : MonoBehaviour
             // Iterate through all the children of the parent model
             foreach (Transform child in Modle.transform)
             {
-              
                 // Add a kinematic rigidbody to the child
                 Rigidbody rb = child.gameObject.AddComponent<Rigidbody>();
                 child.gameObject.name = "CO"+i.ToString();

@@ -79,7 +79,7 @@ public class CSVHandler : MonoBehaviour
                     float diameter = Mathf.Max(localScale.x, localScale.z); // Diameter is the larger of x and z
 
                     // Write the properties to the file
-                    writer.WriteLine($"{whisker.name},{Math.Round(pos.x / 10f, 1)},{Math.Round(pos.y / 10f, 1)},{Math.Round(pos.z / 10f, 1)},{Math.Round(length * 100f, 2)},{Math.Round(diameter * 100f, 2)}");
+                    writer.WriteLine($"{whisker.name}, {Math.Round(pos.x / 10f, 1)}, {Math.Round(pos.y / 10f, 1)}, {Math.Round(pos.z / 10f, 1)}, {Math.Round(length * 2 * 100f, 2)}, {Math.Round(diameter * 100f, 2)}");
                 }
             }
 
