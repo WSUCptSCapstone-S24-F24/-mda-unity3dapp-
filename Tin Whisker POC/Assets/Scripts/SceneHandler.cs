@@ -42,6 +42,9 @@ public class SceneHandler : MonoBehaviour
     public string objfilePath;
     public string mtlfilePath;
 
+    public TMP_InputField VibrationSpeedText;
+    public TMP_InputField VibrationAmplitudeText;
+
     private string rootJsonPath;
     private string myJsonPath;
 
@@ -121,6 +124,9 @@ public class SceneHandler : MonoBehaviour
         SpawnPositionXText.text = simState.spawnPositionX.ToString();
         SpawnPositionYText.text = simState.spawnPositionY.ToString();
         SpawnPositionZText.text = simState.spawnPositionZ.ToString();
+
+        VibrationSpeedText.text = simState.vibrationSpeed.ToString();
+        VibrationAmplitudeText.text = simState.vibrationAmplitude.ToString();
 
 
         // Get the float value from the text field
@@ -219,6 +225,12 @@ public class SceneHandler : MonoBehaviour
 
         if (int.TryParse(SimQuantityText.text, out int result13))
             monteCarloLauncher.numSimulations = result13;
+
+        if (float.TryParse(VibrationSpeedText.text, out float result14))
+            simState.vibrationSpeed = result14;
+
+        if (float.TryParse(VibrationAmplitudeText.text, out float result15))
+            simState.vibrationAmplitude = result15;
     }
 
     public void LoadScene(int buildnum)

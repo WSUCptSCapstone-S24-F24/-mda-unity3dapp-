@@ -23,6 +23,8 @@ namespace SimInfo
         public string objfilePath;
         public string mtlfilePath;
         public bool fileOpened;
+        public float vibrationAmplitude;
+        public float vibrationSpeed;
 
 
         public SimState()
@@ -40,11 +42,13 @@ namespace SimInfo
             this.WidthMu = 0.5f;
             this.WidthSigma = 0.5f;
             this.simNumber = -1;
+            this.vibrationAmplitude = 2500.0f;
+            this.vibrationSpeed = 2500.0f;
         }
 
         public SimState(int whiskerDensity, float spawnAreaSizeX, float spawnAreaSizeY, float spawnAreaSizeZ,
                         float spawnPositionX, float spawnPositionY, float spawnPositionZ, float LengthMu,
-                        float LengthSigma, float WidthMu, float WidthSigma, int simNumber)
+                        float LengthSigma, float WidthMu, float WidthSigma, int simNumber, float vibrationAmplitude, float vibrationSpeed)
         {
             this.whiskerDensity = whiskerDensity;
             this.spawnAreaSizeX = spawnAreaSizeX;
@@ -58,6 +62,8 @@ namespace SimInfo
             this.WidthMu = WidthMu;
             this.WidthSigma = WidthSigma;
             this.simNumber = simNumber;
+            this.vibrationAmplitude = vibrationAmplitude;
+            this.vibrationSpeed = vibrationSpeed;
         }
 
         public void SaveSimToJSON(string jsonPath)

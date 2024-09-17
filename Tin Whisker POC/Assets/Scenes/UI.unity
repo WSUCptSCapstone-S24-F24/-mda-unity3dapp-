@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276788, g: 0.21589147, b: 0.29782534, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12415,6 +12415,8 @@ MonoBehaviour:
     POC\Assets\PCB\BIgSplitTest.obj
   mtlfilePath: C:\Users\Gene\Desktop\Tin Whiskers\-mda-unity3dapp--main\Tin Whisker
     POC\Assets\PCB\BIgSplitTest.mtl
+  VibrationSpeedText: {fileID: 1494976106}
+  VibrationAmplitudeText: {fileID: 386875936}
 --- !u!114 &1193138110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15103,8 +15105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Board: {fileID: 0}
-  amplitude: 0.01
-  speed: 25
 --- !u!1 &1577287056
 GameObject:
   m_ObjectHideFlags: 0

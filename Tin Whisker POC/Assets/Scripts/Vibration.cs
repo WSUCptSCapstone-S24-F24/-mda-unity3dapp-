@@ -1,38 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using SimInfo;
 
 public class Vibration : MonoBehaviour
 {
     public GameObject Board;
-
-    public float amplitude;      // Amplitude of the sine wave.
-    public float speed;  // Speed of the movement.
     private Vector3 initialPosition;     // Initial position of the GameObject.
     private bool status = true;
-
     private float t;
+
+    private SceneHandler sceneHandler;
 
     public void Start()
     {
         Board = GameObject.FindWithTag("Board");
         initialPosition = Board.transform.position; // Store the initial position of the GameObject.
+        status = !status;
+        t = Time.time;
 
-        if (status)
-            status = false;
-        else
-            status = true;
-            t = Time.time;
+        sceneHandler = FindObjectOfType<SceneHandler>();
+        if (sceneHandler == null)
+        {
+            Debug.LogError("SceneHandler not found in the scene.");
+        }
     }
 
     void Update()
     {
-        float verticalPosition = initialPosition.y + amplitude * Mathf.Sin(speed * (Time.time - t));
-
-        if (status)
+        if (sceneHandler != null && sceneHandler.simState != null)
         {
-            Board.transform.position = Vector3.MoveTowards(Board.transform.position, new Vector3(0f, verticalPosition, 0f), 1.0f);
+            SimState simState = sceneHandler.simState;
+            float verticalPosition = initialPosition.y + simState.vibrationAmplitude * Mathf.Sin(simState.vibrationSpeed * (Time.time - t));
+            if (status)
+            {
+                Board.transform.position = Vector3.MoveTowards(Board.transform.position, new Vector3(initialPosition.x, verticalPosition, initialPosition.z), 1.0f);
+            }
         }
     }
 }
