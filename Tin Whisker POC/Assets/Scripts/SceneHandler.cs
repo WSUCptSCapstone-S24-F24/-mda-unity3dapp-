@@ -70,6 +70,21 @@ public class SceneHandler : MonoBehaviour
         {
             ShowDebugMessage("SimState not found");
         }
+
+    private void ResetBoardPosition()
+    {
+        GameObject board = GameObject.FindWithTag("Board");
+        if (board != null)
+        {
+            Vector3 originalPosition = board.transform.position;
+            originalPosition.y = -13.7f; // This is the height set in LoadFile script
+            board.transform.position = originalPosition;
+            Debug.Log("Board position reset to: " + originalPosition);
+        }
+        else
+        {
+            Debug.LogError("Cannot reset board position. Board not found.");
+        }
     }
 
     public void ShowDebugMessage(string message)
@@ -293,6 +308,7 @@ public class SceneHandler : MonoBehaviour
     {
         if (isSceneLoaded)
         {
+            ResetBoardPosition();
             StartCoroutine(UnloadSceneAsync(buildnum));
         }
         else
