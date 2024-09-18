@@ -17,7 +17,7 @@ public class WhiskerSim : MonoBehaviour
     private int SimNumber;
     public List<GameObject> cylinder_clone = new List<GameObject>();
 
-    private void Start()
+    public void StartSim()
     {
         SimNumber = GameObject.Find("SceneControl").GetComponent<SceneHandler>().SimNumber;
         string[] args = System.Environment.GetCommandLineArgs();

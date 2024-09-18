@@ -8,14 +8,15 @@ using UnityEngine.UI;
 
 public class SceneHandler : MonoBehaviour
 {
-    private Scene loadedScene;
+    // private Scene loadedScene;
+    public GameObject SimulationObject;
     public string sceneName;
     public int sceneNum = 1;
     private bool isSceneLoaded = false;
     private bool isSceneRunning = false;
     private bool argsParsed = false;
     public bool fileOpened = false;
-    public int SimNumber = 0;    
+    public int SimNumber = 0;
     private WhiskerSim whiskerSim;
     public GameObject ResultsCanvas;
     public MonteCarloLauncher monteCarloLauncher;
@@ -164,18 +165,18 @@ public class SceneHandler : MonoBehaviour
 
             // if (simState.fileOpened)
             // {
-                // objfilePath = simState.objfilePath;
-                // mtlfilePath = simState.mtlfilePath;
-                // fileOpened = simState.fileOpened;
-                // Get File Browser object in scene by name and call load from file path
-                // GameObject fileBrowser = GameObject.Find("FileBrowser");
-                // fileBrowser.GetComponent<LoadFile>().LoadFromPath(objfilePath, mtlfilePath);
+            // objfilePath = simState.objfilePath;
+            // mtlfilePath = simState.mtlfilePath;
+            // fileOpened = simState.fileOpened;
+            // Get File Browser object in scene by name and call load from file path
+            // GameObject fileBrowser = GameObject.Find("FileBrowser");
+            // fileBrowser.GetComponent<LoadFile>().LoadFromPath(objfilePath, mtlfilePath);
             // }
-        //     StartCoroutine(MonteCarloEndSimulationAfterDuration());
-        // }
-        // else
-        // {
-        //     ShowDebugMessage("Root Sim JSON file does not exist");
+            //     StartCoroutine(MonteCarloEndSimulationAfterDuration());
+            // }
+            // else
+            // {
+            //     ShowDebugMessage("Root Sim JSON file does not exist");
         }
     }
 
@@ -246,13 +247,14 @@ public class SceneHandler : MonoBehaviour
             endButton.gameObject.SetActive(true);
 
             simState.SaveSimToJSON(myJsonPath);
-            if (!isSceneLoaded)
+            if (SimulationObject)
             {
-                StartCoroutine(LoadSceneAsync(buildnum));
+                whiskerSim = SimulationObject.GetComponent<WhiskerSim>();
+                whiskerSim.StartSim();
             }
             else
             {
-                ReloadScene(buildnum);
+                Debug.LogError("No Simulation Object found");
             }
 
             regularEndSimCoroutine = StartCoroutine(RegularEndSimulationAfterDuration());
@@ -264,75 +266,79 @@ public class SceneHandler : MonoBehaviour
         }
     }
 
-    IEnumerator LoadSceneAsync(int buildnum)
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(buildnum, LoadSceneMode.Additive);
+    // TODO: Check if need to remove
+    // IEnumerator LoadSceneAsync(int buildnum)
+    // {
+    //     AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(buildnum, LoadSceneMode.Additive);
 
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
+    //     while (!asyncLoad.isDone)
+    //     {
+    //         yield return null;
+    //     }
 
-        loadedScene = SceneManager.GetSceneByBuildIndex(buildnum);
-        isSceneLoaded = true;
-    }
+    //     loadedScene = SceneManager.GetSceneByBuildIndex(buildnum);
+    //     isSceneLoaded = true;
+    // }
 
-    public void UnloadScene(int buildnum)
-    {
-        if (isSceneLoaded)
-        {
-            StartCoroutine(UnloadSceneAsync(buildnum));
-        }
-        else
-        {
-            Debug.LogWarning("Scene is not loaded.");
-        }
-    }
+    // public void UnloadScene(int buildnum)
+    // {
+    //     if (isSceneLoaded)
+    //     {
+    //         StartCoroutine(UnloadSceneAsync(buildnum));
+    //     }
+    //     else
+    //     {
+    //         Debug.LogWarning("Scene is not loaded.");
+    //     }
+    // }
 
-    IEnumerator UnloadSceneAsync(int buildnum)
-    {
-        AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(buildnum);
+    // IEnumerator UnloadSceneAsync(int buildnum)
+    // {
+    //     AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(buildnum);
 
-        while (!asyncUnload.isDone)
-        {
-            yield return null;
-        }
-        isSceneLoaded = false;
-    }
+    //     while (!asyncUnload.isDone)
+    //     {
+    //         yield return null;
+    //     }
+    //     isSceneLoaded = false;
+    // }
 
-    public void ReloadScene(int buildnum)
-    {
-        loadedScene = SceneManager.GetSceneByBuildIndex(buildnum);
-        if (isSceneLoaded)
-        {
-            SceneManager.UnloadSceneAsync(loadedScene);
+    // TODO: Check if need to remove
+    // public void ReloadScene(int buildnum)
+    // {
+    //     loadedScene = SceneManager.GetSceneByBuildIndex(buildnum);
+    //     if (isSceneLoaded)
+    //     {
+    //         SceneManager.UnloadSceneAsync(loadedScene);
 
-            StartCoroutine(ReloadSceneAsync());
-        }
-    }
+    //         StartCoroutine(ReloadSceneAsync());
+    //     }
+    // }
 
-    IEnumerator ReloadSceneAsync()
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(
-            loadedScene.name,
-            LoadSceneMode.Additive
-        );
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-        loadedScene = SceneManager.GetSceneByBuildIndex(1);
+    // IEnumerator ReloadSceneAsync()
+    // {
+    //     AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(
+    //         loadedScene.name,
+    //         LoadSceneMode.Additive
+    //     );
+    //     while (!asyncLoad.isDone)
+    //     {
+    //         yield return null;
+    //     }
+    //     loadedScene = SceneManager.GetSceneByBuildIndex(1);
 
-        SceneManager.SetActiveScene(loadedScene);
-    }
+    //     SceneManager.SetActiveScene(loadedScene);
+    // }
 
-    public void MonteCarlosim()
-    {
-        getSimInputs();
-        LoadScene(2);
-        StartCoroutine(simState.SaveSimToJSONasync(rootJsonPath));
-    }
+    // public void MonteCarlosim()
+    // {
+    //     getSimInputs();
+    //     LoadScene(2);
+    //     StartCoroutine(simState.SaveSimToJSONasync(rootJsonPath));
+    // }
 
+
+    // TODO: Rework with new monte carlo code
     public void ParseArgs()
     {
         if (argsParsed)
@@ -377,30 +383,31 @@ public class SceneHandler : MonoBehaviour
         GameObject.Find("MainCanvas").SetActive(false);
     }
 
-    IEnumerator MonteCarloEndSimulationAfterDuration()
-    {
-        float simulationDuration;
-        if (simState != null && simState.simDuration > 0)
-        {
-            simulationDuration = simState.simDuration;
-        }
-        else
-        {
-            simulationDuration = 10f;
-        }
-        yield return new WaitForSeconds(simulationDuration);
-        if (whiskerSim != null)
-        {
-            whiskerSim.SaveResults(SimNumber);
-            QuitApplication();
-        }
-        else
-        {
-            ShowDebugMessage("WireSim not found");
-            GetResultsForward();
-            QuitApplication();
-        }
-    }
+    // TODO: Check if need with new monte carlo system
+    // IEnumerator MonteCarloEndSimulationAfterDuration()
+    // {
+    //     float simulationDuration;
+    //     if (simState != null && simState.simDuration > 0)
+    //     {
+    //         simulationDuration = simState.simDuration;
+    //     }
+    //     else
+    //     {
+    //         simulationDuration = 10f;
+    //     }
+    //     yield return new WaitForSeconds(simulationDuration);
+    //     if (whiskerSim != null)
+    //     {
+    //         whiskerSim.SaveResults(SimNumber);
+    //         QuitApplication();
+    //     }
+    //     else
+    //     {
+    //         ShowDebugMessage("WireSim not found");
+    //         GetResultsForward();
+    //         QuitApplication();
+    //     }
+    // }
 
     IEnumerator RegularEndSimulationAfterDuration()
     {
@@ -440,25 +447,26 @@ public class SceneHandler : MonoBehaviour
 
         // Finally, unload the scene
         ShowDebugMessage("Simulation ended.");
-        UnloadScene(sceneNum);
+        // UnloadScene(sceneNum);
         isSceneRunning = false;
         startButton.interactable = true;
         endButton.gameObject.SetActive(false);
     }
 
     // This callback method will be called by WhiskerSim when the simulation ends and it's time to unload the scene
-    private void OnSimulationEnded()
-    {
-        // Call the Cleanup on all WhiskerCollider instances before unloading the scene
-        foreach (WhiskerCollider whiskerCollider in FindObjectsOfType<WhiskerCollider>())
-        {
-            whiskerCollider.Cleanup();
-        }
+    // TODO: Find out if necessary
+    // private void OnSimulationEnded()
+    // {
+    //     // Call the Cleanup on all WhiskerCollider instances before unloading the scene
+    //     foreach (WhiskerCollider whiskerCollider in FindObjectsOfType<WhiskerCollider>())
+    //     {
+    //         whiskerCollider.Cleanup();
+    //     }
 
-        // Now you can unload the scene
+    //     // Now you can unload the scene
 
-        UnloadScene(sceneNum);
-    }
+    //     UnloadScene(sceneNum);
+    // }
 
     public void EndSimulationEarly()
     {
@@ -484,7 +492,7 @@ public class SceneHandler : MonoBehaviour
         isSceneRunning = false;
 
         // Unload the scene or reset the simulation as needed
-        UnloadScene(sceneNum);
+        // UnloadScene(sceneNum);
         ShowDebugMessage("Simulation ended.");
     }
 

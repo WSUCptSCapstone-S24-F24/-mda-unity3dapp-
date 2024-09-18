@@ -13,8 +13,8 @@ public class MonteCarloLauncher : MonoBehaviour
 
     public void OnClickStart()
     {
-        UnityEngine.Debug.Log("This application is not ready to run a Monte Carlo Simuation");
-        return; // Temp handler (application not ready to run Monte Carlo sim)
+        // UnityEngine.Debug.Log("This application is not ready to run a Monte Carlo Simuation");
+        // return; // Temp handler (application not ready to run Monte Carlo sim)
 
         // Previous teams implementation of monte carlo parallel 
         if (unityAppPath == "not found")
@@ -64,7 +64,9 @@ public class MonteCarloLauncher : MonoBehaviour
         public void Execute(int index)
         {
             // Implement the simulation logic for a single instance
+
             // Each index represents a different simulation run
+
         }
     }
 
