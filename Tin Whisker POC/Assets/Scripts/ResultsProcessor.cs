@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using SimInfo;
-public class CSVHandler : MonoBehaviour
+public class ResultsProcessor : MonoBehaviour
 {
     public TextMeshProUGUI csvText;
     public int padding = 2; // Padding between columns

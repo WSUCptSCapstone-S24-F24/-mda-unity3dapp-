@@ -19,6 +19,7 @@ public class WhiskerSim : MonoBehaviour
 
     public void StartSim()
     {
+        // TODO: Check if needed
         SimNumber = GameObject.Find("SceneControl").GetComponent<SceneHandler>().SimNumber;
         string[] args = System.Environment.GetCommandLineArgs();
         for (int i = 0; i < args.Length; i++)
@@ -120,9 +121,9 @@ public class WhiskerSim : MonoBehaviour
         }
 
         // Log all whiskers to whisker_log_{simNumber}
-        CSVHandler.LogWhiskers(cylinder_clone, SimNumber);
+        ResultsProcessor.LogWhiskers(cylinder_clone, SimNumber);
         // Log the SimState to simstate_log_{simNumber}
-        CSVHandler.LogSimState(simState, SimNumber);
+        ResultsProcessor.LogSimState(simState, SimNumber);
 
 
         if (simState.simNumber != SimNumber)
