@@ -16,11 +16,11 @@ public class ResultsHandler : MonoBehaviour
     {
         if (Preview != null)
             Preview.SetActive(false);
-        GameObject sceneController = GameObject.Find("SceneControl");
-        if (sceneController != null)
+        GameObject MainController = GameObject.Find("MainController");
+        if (MainController != null)
         {
             // Get the SceneHandler component and access sceneNum
-            SceneHandler handler = sceneController.GetComponent<SceneHandler>();
+            MainController handler = MainController.GetComponent<MainController>();
             if (handler != null)
                 lastSimNum = handler.SimNumber - 1;
             else

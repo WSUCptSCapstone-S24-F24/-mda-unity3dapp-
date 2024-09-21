@@ -4,13 +4,15 @@ using Unity.Collections;
 using UnityEngine;
 
 
-// Monte Carlo Sim Plan
+// *Monte Carlo Sim Plan*
 // Decrease the size scale of the simulation?
 // Burst compile for fast code
-// Speed up timesteps
+// Speed up time (practical max of 10)
 // Split whatever is possible into Jobs
 // Split whatever possible into threads?
+// Physics layers?
 
+// List of all result files or a heat map / list of bridged components or both?
 
 [BurstCompile] 
 struct TestSimulationJob : IJob

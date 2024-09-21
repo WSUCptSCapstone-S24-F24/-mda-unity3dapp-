@@ -167,10 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5f69d2a02943147abd92b31afadcbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shortDetector: {fileID: 1471391705}
-  cylinder: {fileID: 2086067737}
-  simulationDuration: 0
-  cylinder_clone: []
+  ShortDetector: {fileID: 1471391705}
+  Whisker: {fileID: 2086067737}
+  SimulationDuration: 0
 --- !u!4 &18744240
 Transform:
   m_ObjectHideFlags: 0
@@ -209,13 +208,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21696088}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 510.30685, y: 189.97282, z: -25.12165}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 728696397}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &21757744
 GameObject:
@@ -1077,7 +1076,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 728696397}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &105953284
 GameObject:
@@ -1358,7 +1357,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 728696397}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &135098060
 MonoBehaviour:
@@ -4839,7 +4838,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 728696397}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &415277290
 MonoBehaviour:
@@ -7762,7 +7761,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 728696397}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 45, y: 1, z: 0}
 --- !u!1 &674139273
 GameObject:
@@ -8481,6 +8480,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1193138108}
   - {fileID: 1964132187}
   - {fileID: 21696089}
   - {fileID: 668964460}
@@ -10242,7 +10242,7 @@ GameObject:
   - component: {fileID: 882808387}
   - component: {fileID: 882808386}
   m_Layer: 5
-  m_Name: Start_Button
+  m_Name: RunSimButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10314,9 +10314,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1193138109}
-        m_TargetAssemblyTypeName: SceneHandler, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
+        m_TargetAssemblyTypeName: MainController, Assembly-CSharp
+        m_MethodName: RunSimulation
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13101,7 +13101,7 @@ GameObject:
   - component: {fileID: 1193138109}
   - component: {fileID: 1193138110}
   m_Layer: 0
-  m_Name: SceneControl
+  m_Name: MainController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13119,8 +13119,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2062435014}
-  m_RootOrder: 1
+  m_Father: {fileID: 728696397}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1193138109
 MonoBehaviour:
@@ -13135,14 +13135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SimulationObject: {fileID: 18744237}
-  sceneName: Sim
-  sceneNum: 1
-  fileOpened: 0
   SimNumber: 0
   ResultsCanvas: {fileID: 1309027517}
   monteCarloLauncher: {fileID: 0}
-  startButton: {fileID: 882808386}
-  endButton: {fileID: 1444597790}
   WhiskerDensityText: {fileID: 1363293969}
   LengthSigmaText: {fileID: 1016260905}
   LengthMuText: {fileID: 1008457480}
@@ -13156,10 +13151,10 @@ MonoBehaviour:
   SpawnPositionZText: {fileID: 1813485770}
   SimDurationText: {fileID: 288786585}
   SimQuantityText: {fileID: 705666963}
-  objfilePath: C:\Users\Gene\Desktop\Tin Whiskers\-mda-unity3dapp--main\Tin Whisker
-    POC\Assets\PCB\BIgSplitTest.obj
-  mtlfilePath: C:\Users\Gene\Desktop\Tin Whiskers\-mda-unity3dapp--main\Tin Whisker
-    POC\Assets\PCB\BIgSplitTest.mtl
+  endSimEarlyButton: {fileID: 1444597790}
+  PCBloaded: 0
+  objfilePath: 
+  mtlfilePath: 
 --- !u!114 &1193138110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14060,7 +14055,7 @@ RectTransform:
   - {fileID: 1067547198}
   - {fileID: 819011431}
   m_Father: {fileID: 2062435014}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -14739,7 +14734,7 @@ GameObject:
   - component: {fileID: 1444597791}
   - component: {fileID: 1444597790}
   m_Layer: 5
-  m_Name: End_Button
+  m_Name: EndSimButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16821,7 +16816,7 @@ GameObject:
   - component: {fileID: 1679835156}
   - component: {fileID: 1679835155}
   m_Layer: 5
-  m_Name: Exit_Button
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17942,7 +17937,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 728696397}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1840626577
 GameObject:
@@ -19129,7 +19124,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 728696397}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1964132188
 MonoBehaviour:
@@ -19144,7 +19139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Modle: {fileID: 21696088}
-  SceneManager: {fileID: 1193138106}
+  MainController: {fileID: 1193138106}
 --- !u!1 &1966717075
 GameObject:
   m_ObjectHideFlags: 0
@@ -19523,7 +19518,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1115006699}
-  - {fileID: 1193138108}
   - {fileID: 1309027521}
   - {fileID: 2075313676}
   m_Father: {fileID: 0}
@@ -19574,7 +19568,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2062435014}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2075313677
 MonoBehaviour:

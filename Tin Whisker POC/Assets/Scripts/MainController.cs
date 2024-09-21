@@ -6,25 +6,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SceneHandler : MonoBehaviour
+public class MainController : MonoBehaviour
 {
     // private Scene loadedScene;
     public GameObject SimulationObject;
-    public string sceneName;
-    public int sceneNum = 1;
-    private bool isSceneLoaded = false;
-    private bool isSceneRunning = false;
-    private bool argsParsed = false;
-    public bool fileOpened = false;
     public int SimNumber = 0;
-    private WhiskerSim whiskerSim;
+    public SimState simState;
     public GameObject ResultsCanvas;
-    public MonteCarloLauncher monteCarloLauncher;
+    public MonteCarloLauncher monteCarloLauncher; 
 
-    public Button startButton;
-    public Button endButton;
-    private Coroutine regularEndSimCoroutine;
-    private PopupManager popupManager;
 
     public TMP_InputField WhiskerDensityText;
     public TMP_InputField LengthSigmaText;
@@ -39,35 +29,27 @@ public class SceneHandler : MonoBehaviour
     public TMP_InputField SpawnPositionZText;
     public TMP_InputField SimDurationText;
     public TMP_InputField SimQuantityText;
-    public SimState simState;
+    public Button endSimEarlyButton;
+
+    public bool PCBloaded = false;
     public string objfilePath;
     public string mtlfilePath;
 
     private string rootJsonPath;
     private string myJsonPath;
 
+    private PopupManager popupManager;
+    private Coroutine regularEndSimCoroutine;
+    private WhiskerSim whiskerSim;
+    private bool simRunning = false;
+
     public void Start()
     {
         rootJsonPath = Application.persistentDataPath + "/SimState.JSON";
-        ParseArgs();
-        startButton = GameObject.Find("Start_Button").GetComponent<Button>();
-        endButton = GameObject.Find("End_Button").GetComponent<Button>();
         popupManager = FindObjectOfType<PopupManager>();
-        endButton.gameObject.SetActive(false);
+        endSimEarlyButton.gameObject.SetActive(false);
 
-        if (SimNumber == 0)
-        {
-            Debug.Log("Root Sim Start");
-            RootSimSetup();
-        }
-        else
-        {
-            MonteCarloSimStart();
-        }
-        if (simState == null)
-        {
-            ShowDebugMessage("SimState not found");
-        }
+        SimSetup();
     }
 
     public void ShowDebugMessage(string message)
@@ -82,7 +64,7 @@ public class SceneHandler : MonoBehaviour
         }
     }
 
-    private void RootSimSetup()
+    private void SimSetup()
     {
         myJsonPath = rootJsonPath;
         if (System.IO.File.Exists(rootJsonPath))
@@ -100,21 +82,24 @@ public class SceneHandler : MonoBehaviour
             simState.simNumber = SimNumber;
             if (simState == null)
             {
-                ShowDebugMessage("SimState class not found");
+                ShowDebugMessage("No sim state found");
             }
             else
             {
-                Debug.Log("SimState class found\nsimState: " + simState.ToString());
+                Debug.Log("Sim state found");
                 Debug.Log("rootJsonPath: " + rootJsonPath);
             }
             simState.SaveSimToJSON(rootJsonPath);
         }
 
         WhiskerDensityText.text = simState.whiskerDensity.ToString();
+
         LengthSigmaText.text = simState.LengthSigma.ToString();
         LengthMuText.text = simState.LengthMu.ToString();
+
         WidthSigmaText.text = simState.WidthSigma.ToString();
         WidthMuText.text = simState.WidthMu.ToString();
+
         SpawnAreaSizeXText.text = simState.spawnAreaSizeX.ToString();
         SpawnAreaSizeYText.text = simState.spawnAreaSizeY.ToString();
         SpawnAreaSizeZText.text = simState.spawnAreaSizeZ.ToString();
@@ -125,7 +110,7 @@ public class SceneHandler : MonoBehaviour
 
 
         // Get the float value from the text field
-        getSimInputs();
+        GetSimInputs();
         simState.SaveSimToJSON(rootJsonPath);
         SetUpSpawnBox();
     }
@@ -152,35 +137,7 @@ public class SceneHandler : MonoBehaviour
         }
     }
 
-    private void MonteCarloSimStart()
-    {
-        myJsonPath = Application.persistentDataPath + "/SimState.JSON";
-        if (System.IO.File.Exists(rootJsonPath))
-        {
-            // JSON folder exists, read data from file and initialize SimState object
-            string jsonString = System.IO.File.ReadAllText(rootJsonPath);
-            simState = JsonUtility.FromJson<SimState>(jsonString);
-            simState.simNumber = SimNumber;
-            simState.SaveSimToJSON(myJsonPath);
-
-            // if (simState.fileOpened)
-            // {
-            // objfilePath = simState.objfilePath;
-            // mtlfilePath = simState.mtlfilePath;
-            // fileOpened = simState.fileOpened;
-            // Get File Browser object in scene by name and call load from file path
-            // GameObject fileBrowser = GameObject.Find("FileBrowser");
-            // fileBrowser.GetComponent<LoadFile>().LoadFromPath(objfilePath, mtlfilePath);
-            // }
-            //     StartCoroutine(MonteCarloEndSimulationAfterDuration());
-            // }
-            // else
-            // {
-            //     ShowDebugMessage("Root Sim JSON file does not exist");
-        }
-    }
-
-    public void getSimInputs()
+    public void GetSimInputs()
     {
         if (int.TryParse(WhiskerDensityText.text, out int result))
             simState.whiskerDensity = result;
@@ -222,146 +179,49 @@ public class SceneHandler : MonoBehaviour
             monteCarloLauncher.numSimulations = result13;
     }
 
-    public void LoadScene(int buildnum)
+    public void RunSimulation()
     {
-        if (isSceneRunning)
+        if (simRunning)
         {
             ShowDebugMessage("Simulation is already running.");
             return; // Exit if the simulation is already running
         }
+        ShowDebugMessage("Simulation starting. ");
 
-        if (fileOpened)
+        if (PCBloaded)
         {
             simState.simNumber = SimNumber;
             Debug.Log("Sim num: " + SimNumber);
-            getSimInputs();
-            if (fileOpened)
+            GetSimInputs();
+
+            if (PCBloaded)
             {
+                // TODO: Show object file and mtl file path in results so user knows which PCB was used
                 simState.objfilePath = objfilePath;
                 simState.mtlfilePath = mtlfilePath;
-                simState.fileOpened = fileOpened;
             }
 
-            isSceneRunning = true;
-            startButton.interactable = false;
-            endButton.gameObject.SetActive(true);
+            simRunning = true;
+            // TODO: Make all but end sim button be non-interactable
+            GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;
+            endSimEarlyButton.gameObject.SetActive(true);
 
             simState.SaveSimToJSON(myJsonPath);
-            if (SimulationObject)
-            {
+
+            if (SimulationObject) {
                 whiskerSim = SimulationObject.GetComponent<WhiskerSim>();
-                whiskerSim.StartSim();
+                whiskerSim.StartSim(SimNumber);
             }
             else
-            {
                 Debug.LogError("No Simulation Object found");
-            }
 
-            regularEndSimCoroutine = StartCoroutine(RegularEndSimulationAfterDuration());
+            regularEndSimCoroutine = StartCoroutine(EndSimulationAfterDuration());
             SimNumber++;
         }
         else
         {
             ShowDebugMessage("No loaded PCB");
         }
-    }
-
-    // TODO: Check if need to remove
-    // IEnumerator LoadSceneAsync(int buildnum)
-    // {
-    //     AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(buildnum, LoadSceneMode.Additive);
-
-    //     while (!asyncLoad.isDone)
-    //     {
-    //         yield return null;
-    //     }
-
-    //     loadedScene = SceneManager.GetSceneByBuildIndex(buildnum);
-    //     isSceneLoaded = true;
-    // }
-
-    // public void UnloadScene(int buildnum)
-    // {
-    //     if (isSceneLoaded)
-    //     {
-    //         StartCoroutine(UnloadSceneAsync(buildnum));
-    //     }
-    //     else
-    //     {
-    //         Debug.LogWarning("Scene is not loaded.");
-    //     }
-    // }
-
-    // IEnumerator UnloadSceneAsync(int buildnum)
-    // {
-    //     AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(buildnum);
-
-    //     while (!asyncUnload.isDone)
-    //     {
-    //         yield return null;
-    //     }
-    //     isSceneLoaded = false;
-    // }
-
-    // TODO: Check if need to remove
-    // public void ReloadScene(int buildnum)
-    // {
-    //     loadedScene = SceneManager.GetSceneByBuildIndex(buildnum);
-    //     if (isSceneLoaded)
-    //     {
-    //         SceneManager.UnloadSceneAsync(loadedScene);
-
-    //         StartCoroutine(ReloadSceneAsync());
-    //     }
-    // }
-
-    // IEnumerator ReloadSceneAsync()
-    // {
-    //     AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(
-    //         loadedScene.name,
-    //         LoadSceneMode.Additive
-    //     );
-    //     while (!asyncLoad.isDone)
-    //     {
-    //         yield return null;
-    //     }
-    //     loadedScene = SceneManager.GetSceneByBuildIndex(1);
-
-    //     SceneManager.SetActiveScene(loadedScene);
-    // }
-
-    // public void MonteCarlosim()
-    // {
-    //     getSimInputs();
-    //     LoadScene(2);
-    //     StartCoroutine(simState.SaveSimToJSONasync(rootJsonPath));
-    // }
-
-
-    // TODO: Rework with new monte carlo code
-    public void ParseArgs()
-    {
-        if (argsParsed)
-        {
-            return;
-        }
-        string[] args = System.Environment.GetCommandLineArgs();
-        for (int i = 0; i < args.Length; i++)
-        {
-            if (args[i] == "-simNumber" && args.Length > i + 1)
-            {
-                int simNumber;
-                if (int.TryParse(args[i + 1], out simNumber))
-                {
-                    SimNumber = simNumber;
-                }
-            }
-        }
-        if (SimNumber == -1)
-        {
-            SimNumber = 0;
-        }
-        argsParsed = true;
     }
 
     public void GetResultsForward()
@@ -373,7 +233,7 @@ public class SceneHandler : MonoBehaviour
         }
 
         //Get the results from the wire sim script
-        whiskerSim.SaveResults(SimNumber);
+        whiskerSim.SaveResults();
     }
 
     public void SwitchToResults()
@@ -383,35 +243,8 @@ public class SceneHandler : MonoBehaviour
         GameObject.Find("MainCanvas").SetActive(false);
     }
 
-    // TODO: Check if need with new monte carlo system
-    // IEnumerator MonteCarloEndSimulationAfterDuration()
-    // {
-    //     float simulationDuration;
-    //     if (simState != null && simState.simDuration > 0)
-    //     {
-    //         simulationDuration = simState.simDuration;
-    //     }
-    //     else
-    //     {
-    //         simulationDuration = 10f;
-    //     }
-    //     yield return new WaitForSeconds(simulationDuration);
-    //     if (whiskerSim != null)
-    //     {
-    //         whiskerSim.SaveResults(SimNumber);
-    //         QuitApplication();
-    //     }
-    //     else
-    //     {
-    //         ShowDebugMessage("WireSim not found");
-    //         GetResultsForward();
-    //         QuitApplication();
-    //     }
-    // }
-
-    IEnumerator RegularEndSimulationAfterDuration()
+    IEnumerator EndSimulationAfterDuration()
     {
-        ShowDebugMessage("Simulation starting.");
         // Check if simState and its duration are set, otherwise use a default value
         float simulationDuration =
             (simState != null && simState.simDuration > 0) ? simState.simDuration : 10f;
@@ -429,9 +262,7 @@ public class SceneHandler : MonoBehaviour
         {
             // Assuming SaveResults and ClearCylinders are operations that can complete immediately
             whiskerSim.SaveResults();
-            whiskerSim.ClearCylinders();
-
-            // Optional: wait a frame to ensure operations have completed if they involve Unity's messaging system
+            whiskerSim.ClearWhiskers();
             yield return null;
         }
         else
@@ -441,32 +272,14 @@ public class SceneHandler : MonoBehaviour
 
         // Proceed to call cleanup for all WhiskerCollider instances
         foreach (WhiskerCollider whiskerCollider in FindObjectsOfType<WhiskerCollider>())
-        {
             whiskerCollider.Cleanup();
-        }
 
         // Finally, unload the scene
         ShowDebugMessage("Simulation ended.");
-        // UnloadScene(sceneNum);
-        isSceneRunning = false;
-        startButton.interactable = true;
-        endButton.gameObject.SetActive(false);
+        simRunning = false;
+        GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
+        endSimEarlyButton.gameObject.SetActive(false);
     }
-
-    // This callback method will be called by WhiskerSim when the simulation ends and it's time to unload the scene
-    // TODO: Find out if necessary
-    // private void OnSimulationEnded()
-    // {
-    //     // Call the Cleanup on all WhiskerCollider instances before unloading the scene
-    //     foreach (WhiskerCollider whiskerCollider in FindObjectsOfType<WhiskerCollider>())
-    //     {
-    //         whiskerCollider.Cleanup();
-    //     }
-
-    //     // Now you can unload the scene
-
-    //     UnloadScene(sceneNum);
-    // }
 
     public void EndSimulationEarly()
     {
@@ -482,17 +295,16 @@ public class SceneHandler : MonoBehaviour
 
         // Perform any necessary cleanup, similar to what would happen at the end of the simulation
         whiskerSim.SaveResults();
-        whiskerSim.ClearCylinders();
+        whiskerSim.ClearWhiskers();
 
         // Reactivate the Start button, hide the Exit button
-        startButton.interactable = true;
-        endButton.gameObject.SetActive(false);
+        GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
+        endSimEarlyButton.gameObject.SetActive(false);
 
         // Set the simulation state to not running
-        isSceneRunning = false;
+        simRunning = false;
 
         // Unload the scene or reset the simulation as needed
-        // UnloadScene(sceneNum);
         ShowDebugMessage("Simulation ended.");
     }
 
