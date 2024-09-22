@@ -4,20 +4,24 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using System.IO;
 using SimInfo;
+using TMPro;
 
 public class WhiskerSim : MonoBehaviour
 {
     public ShortDetector ShortDetector;
     public SimState SimState;
     public GameObject Whisker; // Cylinder/Whisker to clone
+    public bool IsSimulationEnded;
 
     private int simNumber;
     private string myjsonPath;
     private List<GameObject> whiskers = new List<GameObject>();
     private float duration;
-    
-    public Coroutine StartSim(int simNumber, float duration)
+    private Coroutine simulationCoroutine;
+
+    public void StartSim(int simNumber, float duration)
     {
+        IsSimulationEnded = false;
         this.simNumber = simNumber;
         this.duration = duration;
         SimStateSetUp();
@@ -27,7 +31,7 @@ public class WhiskerSim : MonoBehaviour
         ResultsProcessor.LogWhiskers(whiskers, this.simNumber);
         // Log the SimState to simstate_log_{simNumber}
         ResultsProcessor.LogSimState(SimState, this.simNumber);
-        return StartCoroutine(EndSimulationAfterDuration());
+        simulationCoroutine = StartCoroutine(EndSimulationAfterDuration());
     }
 
     public void ScaleCylinder(GameObject cylinderObject, float widthScale, float heightScale)
@@ -60,7 +64,7 @@ public class WhiskerSim : MonoBehaviour
     {
         foreach (GameObject Whisker in whiskers)
         {
-            Destroy(Whisker);
+            DestroyImmediate(Whisker);
         }
         whiskers.Clear();
     }
@@ -89,10 +93,10 @@ public class WhiskerSim : MonoBehaviour
             SimState.SaveSimToJSON(myjsonPath);
             SimState.simNumber = simNumber;
         }
-
     }
 
     private void SpawnWhiskers() {
+        Whisker.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         Vector3 originalScale = Whisker.transform.localScale; 
         // Defualt is scale: (1, 1, 1) which makes a length of 2 or 1/5 mm and a diameter of 1 or 1/10 mm
         // (1, 5, 1) is 1 mm long --> (1, 0.005, 1) is 1 micron long
@@ -101,7 +105,6 @@ public class WhiskerSim : MonoBehaviour
         Whisker.transform.localScale = scaledTransform;
 
         float WhiskerCount = SimState.spawnAreaSizeX * SimState.spawnAreaSizeY * SimState.spawnAreaSizeZ * SimState.whiskerDensity;
-
         LognormalRandom lognormalRandomLength = new LognormalRandom(SimState.LengthMu, SimState.LengthSigma);
         LognormalRandom lognormalRandomWidth = new LognormalRandom(SimState.WidthMu, SimState.WidthSigma);
 
@@ -163,5 +166,15 @@ public class WhiskerSim : MonoBehaviour
         // Proceed to call cleanup for all WhiskerCollider instances
         foreach (WhiskerCollider whiskerCollider in FindObjectsOfType<WhiskerCollider>())
             whiskerCollider.Cleanup();
+        IsSimulationEnded = true;
+    }
+
+    public void EndSimulationEarly()
+    {
+        // Stop the coroutine that is waiting for the simulation to end
+        StopCoroutine(simulationCoroutine);
+        SaveResults();
+        ClearWhiskers();
+        IsSimulationEnded = true;
     }
 }

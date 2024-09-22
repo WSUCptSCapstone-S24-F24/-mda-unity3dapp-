@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using SimInfo;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -38,10 +39,8 @@ public class MainController : MonoBehaviour
     private string myJsonPath;
 
     private PopupManager popupManager;
-    private Coroutine regularEndSimCoroutine;
     private WhiskerSim whiskerSim;
     private MonteCarloSim monteCarloSim;
-    private bool simEnded;
 
     public void Start()
     {
@@ -202,10 +201,9 @@ public class MainController : MonoBehaviour
             simState.SaveSimToJSON(myJsonPath);
 
             if (SimulationObject) {
-                simEnded = false;
                 whiskerSim = SimulationObject.GetComponent<WhiskerSim>();
-                regularEndSimCoroutine = whiskerSim.StartSim(SimNumber, simState.simDuration);
-                StartCoroutine(EndOfSimActions(regularEndSimCoroutine));
+                whiskerSim.StartSim(SimNumber, simState.simDuration);
+                StartCoroutine(EndOfSimActions());
                 SimNumber++;
             }
             else
@@ -218,12 +216,9 @@ public class MainController : MonoBehaviour
         }
     }
 
-    IEnumerator EndOfSimActions(Coroutine simCoroutine)
-    {
-        simEnded = true;
-        if (!simEnded) {
-            yield return new WaitUntil(() => simEnded); // Wait for simulatiion to finish
-        }
+    IEnumerator EndOfSimActions() {
+        yield return new WaitUntil(() => whiskerSim.IsSimulationEnded);
+
         ShowDebugMessage("Simulation ended.");
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
         endSimEarlyButton.gameObject.SetActive(false);
@@ -231,24 +226,8 @@ public class MainController : MonoBehaviour
 
     public void EndSimulationEarly()
     {
-        simEnded = true;
-        Debug.Log("User ended simulation.");
-        // Stop the coroutine that is waiting for the simulation to end
-        StopCoroutine(regularEndSimCoroutine);
-
-        if (whiskerSim == null)
-        {
-            whiskerSim = FindObjectOfType<WhiskerSim>();
-        }
-
-        // Perform any necessary cleanup, similar to what would happen at the end of the simulation
-        whiskerSim.SaveResults();
-        whiskerSim.ClearWhiskers();
-
-        // Reactivate the Start button, hide the Exit button
-        GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
-        endSimEarlyButton.gameObject.SetActive(false);
         ShowDebugMessage("User interupt. ");
+        whiskerSim.EndSimulationEarly();
     }
 
     public void SwitchToResults()

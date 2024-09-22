@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShortDetector: {fileID: 1471391705}
   Whisker: {fileID: 2086067737}
-  SimulationDuration: 0
+  IsSimulationEnded: 0
 --- !u!4 &18744240
 Transform:
   m_ObjectHideFlags: 0
@@ -12494,7 +12494,6 @@ MonoBehaviour:
   SimulationObject: {fileID: 18744237}
   SimNumber: 0
   ResultsCanvas: {fileID: 1309027517}
-  monteCarloLauncher: {fileID: 0}
   WhiskerDensityText: {fileID: 1363293969}
   LengthSigmaText: {fileID: 1016260905}
   LengthMuText: {fileID: 1008457480}
