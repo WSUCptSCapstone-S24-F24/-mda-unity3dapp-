@@ -146,12 +146,22 @@ public class LoadFile : MonoBehaviour
 
             // set Gravity off for Modle rigidbody
             Modle.GetComponent<Rigidbody>().useGravity = false;
+            Modle.GetComponent<Rigidbody>().isKinematic = true;
 
             //change rigid body collision detection to continuous
             Modle.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
             //Change the behavior to extrapolate
             Modle.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Extrapolate;
+
+            MeshCollider mainCollider = Modle.AddComponent<MeshCollider>();
+            MeshFilter meshFilter = Modle.GetComponent<MeshFilter>();
+            if (meshFilter != null && meshFilter.sharedMesh != null)
+            {
+                mainCollider.sharedMesh = meshFilter.sharedMesh;
+                mainCollider.convex = false;  
+            }
+
             int i = 0;
             // Iterate through all the children of the parent model
             foreach (Transform child in Modle.transform)
