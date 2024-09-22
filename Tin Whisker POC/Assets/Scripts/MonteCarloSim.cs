@@ -5,7 +5,7 @@ using System.IO;
 using System.Collections;
 using Unity.Jobs;
 
-public class MonteCarloLauncher : MonoBehaviour
+public class MonteCarloSim : MonoBehaviour
 {
     public int numSimulations = 2; // 2 Default
 

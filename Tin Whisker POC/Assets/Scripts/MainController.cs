@@ -13,7 +13,6 @@ public class MainController : MonoBehaviour
     public int SimNumber = 0;
     public SimState simState;
     public GameObject ResultsCanvas;
-    public MonteCarloLauncher monteCarloLauncher; 
 
 
     public TMP_InputField WhiskerDensityText;
@@ -41,7 +40,8 @@ public class MainController : MonoBehaviour
     private PopupManager popupManager;
     private Coroutine regularEndSimCoroutine;
     private WhiskerSim whiskerSim;
-    private bool simRunning = false;
+    private MonteCarloSim monteCarloSim;
+    private bool simEnded;
 
     public void Start()
     {
@@ -49,7 +49,7 @@ public class MainController : MonoBehaviour
         popupManager = FindObjectOfType<PopupManager>();
         endSimEarlyButton.gameObject.SetActive(false);
 
-        SimSetup();
+        ParameterSetup();
     }
 
     public void ShowDebugMessage(string message)
@@ -64,7 +64,7 @@ public class MainController : MonoBehaviour
         }
     }
 
-    private void SimSetup()
+    private void ParameterSetup()
     {
         myJsonPath = rootJsonPath;
         if (System.IO.File.Exists(rootJsonPath))
@@ -176,17 +176,11 @@ public class MainController : MonoBehaviour
             simState.simDuration = result12;
 
         if (int.TryParse(SimQuantityText.text, out int result13))
-            monteCarloLauncher.numSimulations = result13;
+            monteCarloSim.numSimulations = result13;
     }
 
     public void RunSimulation()
     {
-        if (simRunning)
-        {
-            ShowDebugMessage("Simulation is already running.");
-            return; // Exit if the simulation is already running
-        }
-
         if (PCBloaded)
         {
             ShowDebugMessage("Simulation starting. ");
@@ -201,7 +195,6 @@ public class MainController : MonoBehaviour
                 simState.mtlfilePath = mtlfilePath;
             }
 
-            simRunning = true;
             // TODO: Make all but end sim button be non-interactable
             GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;
             endSimEarlyButton.gameObject.SetActive(true);
@@ -209,14 +202,15 @@ public class MainController : MonoBehaviour
             simState.SaveSimToJSON(myJsonPath);
 
             if (SimulationObject) {
+                simEnded = false;
                 whiskerSim = SimulationObject.GetComponent<WhiskerSim>();
-                whiskerSim.StartSim(SimNumber);
+                regularEndSimCoroutine = whiskerSim.StartSim(SimNumber, simState.simDuration);
+                StartCoroutine(EndOfSimActions(regularEndSimCoroutine));
+                SimNumber++;
             }
             else
                 Debug.LogError("No Simulation Object found");
 
-            regularEndSimCoroutine = StartCoroutine(EndSimulationAfterDuration());
-            SimNumber++;
         }
         else
         {
@@ -224,67 +218,21 @@ public class MainController : MonoBehaviour
         }
     }
 
-    public void GetResultsForward()
+    IEnumerator EndOfSimActions(Coroutine simCoroutine)
     {
-        if (!whiskerSim)
-        {
-            //Get object with sim tag then get its wire sim script
-            whiskerSim = GameObject.FindGameObjectWithTag("Sim").GetComponent<WhiskerSim>();
+        simEnded = true;
+        if (!simEnded) {
+            yield return new WaitUntil(() => simEnded); // Wait for simulatiion to finish
         }
-
-        //Get the results from the wire sim script
-        whiskerSim.SaveResults();
-    }
-
-    public void SwitchToResults()
-    {
-        if (ResultsCanvas != null)
-            ResultsCanvas.SetActive(true);
-        GameObject.Find("MainCanvas").SetActive(false);
-    }
-
-    IEnumerator EndSimulationAfterDuration()
-    {
-        // Check if simState and its duration are set, otherwise use a default value
-        float simulationDuration =
-            (simState != null && simState.simDuration > 0) ? simState.simDuration : 10f;
-
-        // Wait for the specified simulation duration
-        yield return new WaitForSeconds(simulationDuration);
-
-        // Ensure whiskerSim is available; find it if not already referenced
-        if (whiskerSim == null)
-        {
-            whiskerSim = FindObjectOfType<WhiskerSim>();
-        }
-
-        if (whiskerSim != null)
-        {
-            // Assuming SaveResults and ClearCylinders are operations that can complete immediately
-            whiskerSim.SaveResults();
-            whiskerSim.ClearWhiskers();
-            yield return null;
-        }
-        else
-        {
-            ShowDebugMessage("WhiskerSim not found. Unable to save results or clear cylinders.");
-        }
-
-        // Proceed to call cleanup for all WhiskerCollider instances
-        foreach (WhiskerCollider whiskerCollider in FindObjectsOfType<WhiskerCollider>())
-            whiskerCollider.Cleanup();
-
-        // Finally, unload the scene
         ShowDebugMessage("Simulation ended.");
-        simRunning = false;
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
         endSimEarlyButton.gameObject.SetActive(false);
     }
 
     public void EndSimulationEarly()
     {
+        simEnded = true;
         Debug.Log("User ended simulation.");
-        ShowDebugMessage("User ended simulation.");
         // Stop the coroutine that is waiting for the simulation to end
         StopCoroutine(regularEndSimCoroutine);
 
@@ -300,12 +248,14 @@ public class MainController : MonoBehaviour
         // Reactivate the Start button, hide the Exit button
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
         endSimEarlyButton.gameObject.SetActive(false);
+        ShowDebugMessage("User interupt. ");
+    }
 
-        // Set the simulation state to not running
-        simRunning = false;
-
-        // Unload the scene or reset the simulation as needed
-        ShowDebugMessage("Simulation ended.");
+    public void SwitchToResults()
+    {
+        if (ResultsCanvas != null)
+            ResultsCanvas.SetActive(true);
+        GameObject.Find("MainCanvas").SetActive(false);
     }
 
     public void QuitApplication()

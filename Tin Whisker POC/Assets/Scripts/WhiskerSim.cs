@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using System.IO;
@@ -9,16 +10,16 @@ public class WhiskerSim : MonoBehaviour
     public ShortDetector ShortDetector;
     public SimState SimState;
     public GameObject Whisker; // Cylinder/Whisker to clone
-    public float SimulationDuration;
 
     private int simNumber;
     private string myjsonPath;
     private List<GameObject> whiskers = new List<GameObject>();
-
-
-    public void StartSim(int simNumber)
+    private float duration;
+    
+    public Coroutine StartSim(int simNumber, float duration)
     {
         this.simNumber = simNumber;
+        this.duration = duration;
         SimStateSetUp();
         SpawnWhiskers();
 
@@ -26,6 +27,7 @@ public class WhiskerSim : MonoBehaviour
         ResultsProcessor.LogWhiskers(whiskers, this.simNumber);
         // Log the SimState to simstate_log_{simNumber}
         ResultsProcessor.LogSimState(SimState, this.simNumber);
+        return StartCoroutine(EndSimulationAfterDuration());
     }
 
     public void ScaleCylinder(GameObject cylinderObject, float widthScale, float heightScale)
@@ -144,5 +146,22 @@ public class WhiskerSim : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator EndSimulationAfterDuration()
+    {
+        // Check if simState and its duration are set, otherwise use a default value
+        float simulationDuration = duration > 0 ? duration : 10f;
+
+        // Wait for the specified simulation duration
+        yield return new WaitForSeconds(simulationDuration);
+
+        SaveResults();
+        ClearWhiskers();
+        yield return null;
+
+        // Proceed to call cleanup for all WhiskerCollider instances
+        foreach (WhiskerCollider whiskerCollider in FindObjectsOfType<WhiskerCollider>())
+            whiskerCollider.Cleanup();
     }
 }
