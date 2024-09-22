@@ -10,12 +10,14 @@ using UnityEngine.UI;
 public class MainController : MonoBehaviour
 {
     // private Scene loadedScene;
-    public GameObject SimulationObject;
+    public GameObject WhiskerSimulationObject;
     public int SimNumber = 0;
     public SimState simState;
+    private WhiskerSim whiskerSim;
+    private MonteCarloSim monteCarloSim;
+
+
     public GameObject ResultsCanvas;
-
-
     public TMP_InputField WhiskerDensityText;
     public TMP_InputField LengthSigmaText;
     public TMP_InputField LengthMuText;
@@ -39,14 +41,14 @@ public class MainController : MonoBehaviour
     private string myJsonPath;
 
     private PopupManager popupManager;
-    private WhiskerSim whiskerSim;
-    private MonteCarloSim monteCarloSim;
 
     public void Start()
     {
         rootJsonPath = Application.persistentDataPath + "/SimState.JSON";
         popupManager = FindObjectOfType<PopupManager>();
         endSimEarlyButton.gameObject.SetActive(false);
+        whiskerSim = WhiskerSimulationObject.GetComponent<WhiskerSim>();
+        monteCarloSim = new MonteCarloSim();
 
         ParameterSetup();
     }
@@ -187,12 +189,9 @@ public class MainController : MonoBehaviour
             Debug.Log("Sim num: " + SimNumber);
             GetSimInputs();
 
-            if (PCBloaded)
-            {
-                // TODO: Show object file and mtl file path in results so user knows which PCB was used
-                simState.objfilePath = objfilePath;
-                simState.mtlfilePath = mtlfilePath;
-            }
+            // TODO: Show object file and mtl file path in results so user knows which PCB was used
+            simState.objfilePath = objfilePath;
+            simState.mtlfilePath = mtlfilePath;
 
             // TODO: Make all but end sim button be non-interactable
             GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;
@@ -200,15 +199,8 @@ public class MainController : MonoBehaviour
 
             simState.SaveSimToJSON(myJsonPath);
 
-            if (SimulationObject) {
-                whiskerSim = SimulationObject.GetComponent<WhiskerSim>();
-                whiskerSim.StartSim(SimNumber, simState.simDuration);
-                StartCoroutine(EndOfSimActions());
-                SimNumber++;
-            }
-            else
-                Debug.LogError("No Simulation Object found");
-
+            whiskerSim.RunSim(ref SimNumber, simState.simDuration);
+            StartCoroutine(EndOfSimActions());
         }
         else
         {
@@ -228,6 +220,33 @@ public class MainController : MonoBehaviour
     {
         ShowDebugMessage("User interupt. ");
         whiskerSim.EndSimulationEarly();
+    }
+
+    public void RunMonteCarloSimulation() {
+        if (PCBloaded)
+        {
+            ShowDebugMessage("Simulation starting. ");
+            simState.simNumber = SimNumber;
+            Debug.Log("Sim num: " + SimNumber);
+            GetSimInputs();
+
+            // TODO: Show object file and mtl file path in results so user knows which PCB was used
+            simState.objfilePath = objfilePath;
+            simState.mtlfilePath = mtlfilePath;
+
+            // TODO: Make all but end sim button be non-interactable
+            GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;
+            endSimEarlyButton.gameObject.SetActive(true);
+
+            simState.SaveSimToJSON(myJsonPath);
+
+            // monteCarloSim.RunSim(WhiskerSimulationObject, ref SimNumber, simState.simDuration);
+            monteCarloSim.RunSim(whiskerSim, ref SimNumber, simState.simDuration);
+        }
+        else
+        {
+            ShowDebugMessage("No loaded PCB");
+        }
     }
 
     public void SwitchToResults()

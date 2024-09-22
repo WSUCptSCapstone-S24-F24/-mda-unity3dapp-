@@ -19,7 +19,7 @@ public class WhiskerSim : MonoBehaviour
     private float duration;
     private Coroutine simulationCoroutine;
 
-    public void StartSim(int simNumber, float duration)
+    public void RunSim(ref int simNumber, float duration)
     {
         IsSimulationEnded = false;
         this.simNumber = simNumber;
@@ -31,7 +31,8 @@ public class WhiskerSim : MonoBehaviour
         ResultsProcessor.LogWhiskers(whiskers, this.simNumber);
         // Log the SimState to simstate_log_{simNumber}
         ResultsProcessor.LogSimState(SimState, this.simNumber);
-        simulationCoroutine = StartCoroutine(EndSimulationAfterDuration());
+        simulationCoroutine = StartCoroutine(EndSimulationAfterDuration());        
+        simNumber++;
     }
 
     public void ScaleCylinder(GameObject cylinderObject, float widthScale, float heightScale)
