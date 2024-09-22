@@ -186,10 +186,10 @@ public class MainController : MonoBehaviour
             ShowDebugMessage("Simulation is already running.");
             return; // Exit if the simulation is already running
         }
-        ShowDebugMessage("Simulation starting. ");
 
         if (PCBloaded)
         {
+            ShowDebugMessage("Simulation starting. ");
             simState.simNumber = SimNumber;
             Debug.Log("Sim num: " + SimNumber);
             GetSimInputs();
