@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using SimInfo;
 using TMPro;
 using Unity.VisualScripting;
@@ -194,7 +195,7 @@ public class MainController : MonoBehaviour
             simState.mtlfilePath = mtlfilePath;
 
             // TODO: Make all but end sim button be non-interactable
-            GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;
+            GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;  
             endSimEarlyButton.gameObject.SetActive(true);
 
             simState.SaveSimToJSON(myJsonPath);
@@ -209,7 +210,7 @@ public class MainController : MonoBehaviour
     }
 
     IEnumerator EndOfSimActions() {
-        yield return new WaitUntil(() => whiskerSim.IsSimulationEnded);
+        yield return new WaitUntil(() => whiskerSim.SimulationStatuses[SimNumber - 1]);
 
         ShowDebugMessage("Simulation ended.");
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
@@ -235,19 +236,30 @@ public class MainController : MonoBehaviour
             simState.mtlfilePath = mtlfilePath;
 
             // TODO: Make all but end sim button be non-interactable
+            GameObject.Find("Run Monte Carlo").GetComponent<Button>().interactable = false;
             GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;
-            endSimEarlyButton.gameObject.SetActive(true);
 
             simState.SaveSimToJSON(myJsonPath);
 
-            // monteCarloSim.RunSim(WhiskerSimulationObject, ref SimNumber, simState.simDuration);
             monteCarloSim.RunSim(whiskerSim, ref SimNumber, simState.simDuration);
+            StartCoroutine(EndOfMonteCarloSimActions());  // TODO: Change to end of monte carlo sim actions
         }
         else
         {
             ShowDebugMessage("No loaded PCB");
         }
     }
+
+    IEnumerator EndOfMonteCarloSimActions() {
+        // yield return new WaitUntil(() => monteCarloSim.IsSimulationEnded);
+        yield return new WaitUntil(() => monteCarloSim.AllSimulationStatusesTrue());
+
+        ShowDebugMessage("Monte Carlo simulation ended.");
+        GameObject.Find("Run Monte Carlo").GetComponent<Button>().interactable = true;
+        GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
+        Time.timeScale = 1.0f;
+    }
+
 
     public void SwitchToResults()
     {

@@ -11,19 +11,23 @@ public class WhiskerSim : MonoBehaviour
     public ShortDetector ShortDetector;
     public SimState SimState;
     public GameObject Whisker; // Cylinder/Whisker to clone
-    public bool IsSimulationEnded;
+    public Dictionary<int, bool> SimulationStatuses { get; private set; } = new Dictionary<int, bool>();
 
     private int simNumber;
     private string myjsonPath;
     private List<GameObject> whiskers = new List<GameObject>();
     private float duration;
     private Coroutine simulationCoroutine;
+    private string layerName;
+    private bool render;
 
-    public void RunSim(ref int simNumber, float duration)
+    public void RunSim(ref int simNumber, float duration, string layerName = "Sim layer 1", bool render = true)
     {
-        IsSimulationEnded = false;
+        SimulationStatuses[simNumber] = false;
         this.simNumber = simNumber;
         this.duration = duration;
+        this.layerName = layerName;
+        this.render = render;
         SimStateSetUp();
         SpawnWhiskers();
 
@@ -121,9 +125,11 @@ public class WhiskerSim : MonoBehaviour
                                                 Random.Range(-SimState.spawnAreaSizeZ / 2f * 10f, SimState.spawnAreaSizeZ / 2f * 10f) + SimState.spawnPositionZ * 10f - 5f);
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject newWhisker = Instantiate(Whisker, spawnPosition, spawnRotation);
+            int layer = LayerMask.NameToLayer(layerName);
+            newWhisker.layer = layer;
             newWhisker.name = $"Whisker{i}";
             // Make Whisker visable
-            newWhisker.GetComponent<MeshRenderer>().enabled = true;
+            newWhisker.GetComponent<MeshRenderer>().enabled = render;
             // Enable Whisker collisions
             Collider collider = newWhisker.GetComponent<Collider>();
             if (collider != null)
@@ -167,7 +173,7 @@ public class WhiskerSim : MonoBehaviour
         // Proceed to call cleanup for all WhiskerCollider instances
         foreach (WhiskerCollider whiskerCollider in FindObjectsOfType<WhiskerCollider>())
             whiskerCollider.Cleanup();
-        IsSimulationEnded = true;
+        SimulationStatuses[simNumber] = true;
     }
 
     public void EndSimulationEarly()
@@ -176,6 +182,6 @@ public class WhiskerSim : MonoBehaviour
         StopCoroutine(simulationCoroutine);
         SaveResults();
         ClearWhiskers();
-        IsSimulationEnded = true;
+        SimulationStatuses[simNumber] = true;
     }
 }

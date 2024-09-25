@@ -18,12 +18,44 @@ using Unity.VisualScripting;
 public class MonteCarloSim : MonoBehaviour
 {
     public int numSimulations = 2; // 2 Default
+    public bool IsSimulationEnded;
+    private string[] layerNames;
+    private WhiskerSim whiskerSim;
     
     public void RunSim(WhiskerSim whiskerSim, ref int simNumber, float duration) {
+        IsSimulationEnded = false;
+        this.whiskerSim = whiskerSim;
+        MakeLayerNames();
         Time.timeScale = 10.0f;
         for (int i = 0; i < numSimulations; i++) {
-            whiskerSim.RunSim(ref simNumber, duration);
+            this.whiskerSim.RunSim(ref simNumber, duration, layerNames[i], false);
         }
-        Time.timeScale = 1.0f;
+        // StartCoroutine(EndOfSimActions());
+        // Time.timeScale = 1.0f;
+        // IsSimulationEnded = true;
+    }
+
+    IEnumerator EndOfSimActions() {
+        UnityEngine.Debug.Log("EndOfSimActions started");
+        yield return new WaitUntil(() => AllSimulationStatusesTrue());
+        UnityEngine.Debug.Log("AllSimulationStatusesTrue completed");
+
+    }
+
+    public bool AllSimulationStatusesTrue()
+    {
+        foreach (bool status in whiskerSim.SimulationStatuses.Values)
+        {
+            if (!status) return false; 
+        }
+        return true; 
+    }
+
+    private void MakeLayerNames() {
+        layerNames = new string[numSimulations];
+        int[] possibleLayerNums = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        for(int i = 0; i < numSimulations; i++) {
+            layerNames[i] = $"Sim layer {possibleLayerNums[i % possibleLayerNums.Length]}";
+        }
     }
 }

@@ -169,7 +169,7 @@ public class LoadFile : MonoBehaviour
                 MeshCollider mc = child.gameObject.AddComponent<MeshCollider>();
                 mc.sharedMesh = child.GetComponent<MeshFilter>().sharedMesh;
                 i++;
-                child.gameObject.layer = 10;
+                child.gameObject.layer = 6;
             }
 
             // Save the file path to the scene handler, to be used in the Monte Carlo simulation

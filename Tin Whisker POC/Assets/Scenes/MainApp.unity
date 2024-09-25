@@ -19060,7 +19060,7 @@ GameObject:
   - component: {fileID: 2086067741}
   - component: {fileID: 2086067740}
   - component: {fileID: 2086067739}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Whisker
   m_TagString: Wisker
   m_Icon: {fileID: 0}
