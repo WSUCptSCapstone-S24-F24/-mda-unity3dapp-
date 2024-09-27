@@ -42,8 +42,8 @@ namespace SimInfo
             this.WidthMu = 0.5f;
             this.WidthSigma = 0.5f;
             this.simNumber = -1;
-            this.vibrationAmplitude = 2500.0f;
-            this.vibrationSpeed = 2500.0f;
+            this.vibrationAmplitude = 10.0f;
+            this.vibrationSpeed = 10.0f;
         }
 
         public SimState(int whiskerDensity, float spawnAreaSizeX, float spawnAreaSizeY, float spawnAreaSizeZ,
