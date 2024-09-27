@@ -106,7 +106,7 @@ public class CSVHandler : MonoBehaviour
             Directory.CreateDirectory(Path.GetDirectoryName(simStateLogPath));
 
             // Prepare new data to be written
-            string newData = $"WhiskerDensity,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed\n{simState.whiskerDensity},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed}\n";
+            string newData = $"WhiskerDensity,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,ShockIntensity,ShockDuration\n{simState.whiskerDensity},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.ShockIntensity},{simState.ShockDuration}\n";
 
             // Read existing content of whiskers log file
             List<string> whiskersLines = new List<string>();

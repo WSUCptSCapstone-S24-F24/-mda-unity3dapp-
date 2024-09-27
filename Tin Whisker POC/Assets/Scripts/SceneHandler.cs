@@ -44,6 +44,12 @@ public class SceneHandler : MonoBehaviour
 
     public TMP_InputField VibrationSpeedText;
     public TMP_InputField VibrationAmplitudeText;
+    public TMP_InputField ShockIntensityText;
+    public TMP_InputField ShockDurationText;
+    public Shocker Shocker;
+    public OpenVibration OpenVibration;
+    public Vibration Vibration;
+    public Shock Shock;
 
     private string rootJsonPath;
     private string myJsonPath;
@@ -143,6 +149,8 @@ public class SceneHandler : MonoBehaviour
 
         VibrationSpeedText.text = simState.vibrationSpeed.ToString();
         VibrationAmplitudeText.text = simState.vibrationAmplitude.ToString();
+        ShockIntensityText.text = simState.ShockIntensity.ToString();
+        ShockDurationText.text = simState.ShockDuration.ToString();
 
 
         // Get the float value from the text field
@@ -247,6 +255,12 @@ public class SceneHandler : MonoBehaviour
 
         if (float.TryParse(VibrationAmplitudeText.text, out float result15))
             simState.vibrationAmplitude = result15;
+
+        if (float.TryParse(ShockIntensityText.text, out float result16))
+            simState.ShockIntensity = result16;
+
+        if (float.TryParse(ShockDurationText.text, out float result17))
+            simState.ShockDuration = result17;
     }
 
     public void LoadScene(int buildnum)
@@ -273,6 +287,7 @@ public class SceneHandler : MonoBehaviour
             startButton.interactable = false;
             endButton.gameObject.SetActive(true);
 
+
             simState.SaveSimToJSON(myJsonPath);
             if (!isSceneLoaded)
             {
@@ -283,7 +298,20 @@ public class SceneHandler : MonoBehaviour
                 ReloadScene(buildnum);
             }
 
+            if (Shocker.shocking == true)
+            {
+                Debug.Log("Starting shock...");
+                StartCoroutine(FindObjectOfType<Shock>().InitializeShock());
+            }
+
+            if (OpenVibration.vibrate == true)
+            {
+                Debug.Log("Starting vibration...");
+                StartCoroutine(FindObjectOfType<Vibration>().InitializeVibration());
+            }
+
             regularEndSimCoroutine = StartCoroutine(RegularEndSimulationAfterDuration());
+
             SimNumber++;
         }
         else

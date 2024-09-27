@@ -592,3 +592,48 @@ Here are changes we plan to implement as soon as possible:
 ---
 ---
 
+
+## Agenda (9/18/2024)
+ * What was the meeting about?
+
+## Minutes (9/18/2024)
+
+During this meeting our 
+
+## Retrospective Summary (9/18/2024)
+Here's what went well:
+  * 
+ 
+Here's what we'd like to improve:
+   * 
+  
+Here are changes we plan to implement as soon as possible:
+   * 
+
+---
+---
+
+
+
+## Agenda (9/25/2024)
+ * What was the meeting about?
+
+## Minutes (9/25/2024)
+
+During this meeting our 
+
+## Retrospective Summary (9/25/2024)
+Here's what went well:
+  * 
+ 
+Here's what we'd like to improve:
+   * 
+  
+Here are changes we plan to implement as soon as possible:
+   * 
+
+---
+---
+
+
+

@@ -1,46 +1,84 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SimInfo;
 
 public class Shock : MonoBehaviour
 {
-    private float intensity = 0.05f; // How high the object moves
-    private float duration = 0.025f; // Total duration of the effect (up and down)
+    private SceneHandler sceneHandler;
+    private WhiskerSim whiskerSim;
+    private bool isShocking = false;
 
-    // Public method to start the shock effect
-    public void StartShock()
+    public void Start()
     {
-        GameObject boardObject = GameObject.FindGameObjectWithTag("Board");
-        if (boardObject != null)
+        //StartCoroutine(InitializeShock());
+    }
+
+    public IEnumerator InitializeShock()
+    {
+        // Wait until SceneHandler and WhiskerSim are available
+        while (sceneHandler == null || whiskerSim == null)
         {
-            StartCoroutine(iShock(boardObject));
+            sceneHandler = FindObjectOfType<SceneHandler>();
+            whiskerSim = FindObjectOfType<WhiskerSim>();
+
+            if (sceneHandler == null)
+            {
+                Debug.LogError("SceneHandler not found in the scene.");
+            }
+
+            if (whiskerSim == null)
+            {
+                Debug.LogError("WhiskerSim not found in the scene.");
+            }
+
+            yield return null; // Wait for the next frame
+        }
+
+        // Once both are available, start the ShockCoroutine
+        StartCoroutine(ShockCoroutine());
+    }
+
+    IEnumerator ShockCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(sceneHandler.simState.ShockDuration);
+            isShocking = true;
+            yield return new WaitForFixedUpdate();
+            isShocking = false;
         }
     }
 
-    IEnumerator iShock(GameObject target)
+    void FixedUpdate()
     {
-        Vector3 originalPosition = target.transform.position;
-        Vector3 targetPosition = originalPosition + Vector3.up * intensity; // Move up
-
-        // First half of the duration: move up
-        float elapsedTime = 0;
-        while (elapsedTime < duration / 2)
+        if (sceneHandler != null && sceneHandler.simState != null && whiskerSim != null && isShocking)
         {
-            target.transform.position = Vector3.Lerp(originalPosition, targetPosition, (elapsedTime / (duration / 2)));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+            SimState simState = sceneHandler.simState;
+            float shockForce = simState.ShockIntensity;
+            float velocityTolerance = 0.01f; // Tolerance for zero velocity check
+            float varianceAmount = 5f; // Small variance for x and z
 
-        // Second half of the duration: move down
-        elapsedTime = 0;
-        while (elapsedTime < duration / 2)
-        {
-            target.transform.position = Vector3.Lerp(targetPosition, originalPosition, (elapsedTime / (duration / 2)));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+            // Generate random variance for x and z once per shock interval
+            float randomX = Random.Range(-varianceAmount, varianceAmount);
+            float randomZ = Random.Range(-varianceAmount, varianceAmount);
 
-        // Ensure the object is exactly at its original position after the shock
-        target.transform.position = originalPosition;
+            foreach (GameObject whisker in whiskerSim.cylinder_clone)
+            {
+                if (whisker != null)
+                {
+                    Rigidbody rb = whisker.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        // Check if the velocity is approximately zero (within the tolerance)
+                        if (Mathf.Abs(rb.velocity.y) < velocityTolerance)
+                        {
+                            Vector3 shockImpact = new Vector3(randomX, shockForce, randomZ); // Use same randomX and randomZ for all whiskers
+                            rb.AddForce(shockImpact, ForceMode.Impulse);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
