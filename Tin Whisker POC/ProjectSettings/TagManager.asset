@@ -8,6 +8,7 @@ TagManager:
   - Wisker
   - Board
   - ResultsMenu
+  - ScaleGrid
   layers:
   - Default
   - TransparentFX

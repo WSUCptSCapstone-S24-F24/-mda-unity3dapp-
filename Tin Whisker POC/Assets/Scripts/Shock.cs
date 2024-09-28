@@ -56,7 +56,7 @@ public class Shock : MonoBehaviour
         {
             SimState simState = sceneHandler.simState;
             float shockForce = simState.ShockIntensity;
-            float velocityTolerance = 0.01f; // Tolerance for zero velocity check
+            float velocityTolerance = 1.0f; // Tolerance for zero velocity check
             float varianceAmount = 5f; // Small variance for x and z
 
             // Generate random variance for x and z once per shock interval
