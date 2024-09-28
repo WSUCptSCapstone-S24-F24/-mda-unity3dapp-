@@ -211,6 +211,8 @@ public class CSVHandler : MonoBehaviour
         {
             Debug.LogError($"Failed to write to {fullPath}: {ex.Message}");
         }
+
+        bridgedComponentSets.Clear();
     }
 
     // Function to read and display CSV file given its path
