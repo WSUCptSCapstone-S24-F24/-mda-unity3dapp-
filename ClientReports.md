@@ -594,21 +594,21 @@ Here are changes we plan to implement as soon as possible:
 
 
 ## Agenda (9/18/2024)
- * What was the meeting about?
+ * Progress reporting for the week.
 
 ## Minutes (9/18/2024)
 
-During this meeting our 
-
+During this meeting we presented our progress of the Monte Carlo Simulation, Physics Calculations, and Side PCB progress. We also presented the Corrected whisker lognormal distribution. 
 ## Retrospective Summary (9/18/2024)
 Here's what went well:
-  * 
+  * Primary Client seemed to aprove of the progress being made, and the resources we have collected.
  
 Here's what we'd like to improve:
-   * 
+   * Consistancy of github commits and updates.
   
 Here are changes we plan to implement as soon as possible:
-   * 
+   * Finishing the physics issues
+   * Finishing the Monte Carlo issues
 
 ---
 ---
@@ -616,22 +616,22 @@ Here are changes we plan to implement as soon as possible:
 
 
 ## Agenda (9/25/2024)
- * What was the meeting about?
+ * Demo / User testing: Data Collection
 
 ## Minutes (9/25/2024)
 
-During this meeting our 
+During this meeting we presented more progress about the Monte Carlo Simulation, and asked about how we should present the data we have collected.
 
 ## Retrospective Summary (9/25/2024)
 Here's what went well:
-  * 
- 
+  * We got a clear answer from the Client and can move forward.
+   * We also got some understanding into the different Clients requests.
+
 Here's what we'd like to improve:
-   * 
+   * Fixing issues of attendance.
   
 Here are changes we plan to implement as soon as possible:
-   * 
-
+   * Merging the Monte Carlo progress with the rest of the project.
 ---
 ---
 
