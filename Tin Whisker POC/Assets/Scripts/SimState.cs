@@ -22,19 +22,18 @@ namespace SimInfo
         public float simDuration;
         public string objfilePath;
         public string mtlfilePath;
-        public bool fileOpened;
 
 
         public SimState()
         {
             // Default values
-            this.whiskerDensity = 10;
+            this.whiskerDensity = 1;
             this.spawnAreaSizeX = 2f;
             this.spawnAreaSizeY = 2f;
             this.spawnAreaSizeZ = 2f;
             this.spawnPositionX = 0f;
-            this.spawnPositionY = 0f;
-            this.spawnPositionZ = 15f;
+            this.spawnPositionY = 15f;
+            this.spawnPositionZ = 0f;
             this.LengthMu = 0.5f;
             this.LengthSigma = 0.5f;
             this.WidthMu = 0.5f;
