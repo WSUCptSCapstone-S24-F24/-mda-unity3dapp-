@@ -96,14 +96,12 @@ public class ResultsProcessor : MonoBehaviour
         // Creating the file paths for whiskers and bridged components logs
         string whiskersLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"whiskers_log_{simNumber}.csv");
         string bridgedLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"bridgedcomponents_log_{simNumber}.csv");
-        string simStateLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"simstate_log_{simNumber}.csv");
 
         try
         {
             // Ensure the directories exist
             Directory.CreateDirectory(Path.GetDirectoryName(whiskersLogPath));
             Directory.CreateDirectory(Path.GetDirectoryName(bridgedLogPath));
-            Directory.CreateDirectory(Path.GetDirectoryName(simStateLogPath));
 
             // Prepare new data to be written
             string newData = $"WhiskerDensity,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec)\n{simState.whiskerDensity},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration}\n";
@@ -148,18 +146,11 @@ public class ResultsProcessor : MonoBehaviour
                 }
             }
 
-            // Prepare to write to the sim state log file
-            using (StreamWriter simStateWriter = new StreamWriter(simStateLogPath, false)) // false to overwrite
-            {
-                // Write new data first
-                simStateWriter.WriteLine(newData);
-            }
-
-            Debug.Log($"Successfully wrote sim state to the beginning of {whiskersLogPath}, {bridgedLogPath}, and {simStateLogPath}");
+            Debug.Log($"Successfully wrote sim state to the beginning of {whiskersLogPath} and {bridgedLogPath}");
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Failed to write sim state to the beginning of {whiskersLogPath} or {bridgedLogPath} or {simStateLogPath}: {ex.Message}");
+            Debug.LogError($"Failed to write sim state to the beginning of {whiskersLogPath} or {bridgedLogPath}: {ex.Message}");
         }
     }
 

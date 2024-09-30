@@ -39,15 +39,7 @@ public class ResultsHandler : MonoBehaviour
 
         StartCoroutine(WaitForKeyPress());
     }
-
-    public void ShowSimState()
-    {
-        if (Preview != null)
-            Preview.SetActive(true);
-        ResultsProcessor.ShowCSVFile($"simstate_log_{lastSimNum}.csv");
-        StartCoroutine(WaitForKeyPress());
-    }
-
+    
     public void ShowMonteCarloReport()
     {
         if (Preview != null)
