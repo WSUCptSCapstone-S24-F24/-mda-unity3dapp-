@@ -35,7 +35,7 @@ using SimInfo;
 public class LoadFile : MonoBehaviour
 {
     public GameObject Modle; //Load OBJ Model
-    public GameObject MainController;
+    public GameObject SceneManager;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
     // WebGL
@@ -169,14 +169,14 @@ public class LoadFile : MonoBehaviour
                 MeshCollider mc = child.gameObject.AddComponent<MeshCollider>();
                 mc.sharedMesh = child.GetComponent<MeshFilter>().sharedMesh;
                 i++;
-                child.gameObject.layer = 6;
+                child.gameObject.layer = 10;
             }
 
             // Save the file path to the scene handler, to be used in the Monte Carlo simulation
-            MainController.GetComponent<MainController>().objfilePath = url;
-            MainController.GetComponent<MainController>().mtlfilePath = mtl;
+            SceneManager.GetComponent<SceneHandler>().objfilePath = url;
+            SceneManager.GetComponent<SceneHandler>().mtlfilePath = mtl;
             
-            MainController.GetComponent<MainController>().PCBloaded = true;
+            SceneManager.GetComponent<SceneHandler>().fileOpened = true;
         }
     }
 
