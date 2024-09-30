@@ -12,6 +12,9 @@ public class MainController : MonoBehaviour
 {
     // private Scene loadedScene;
     public GameObject WhiskerSimulationObject;
+    // ****************** TEST ******************
+    public GameObject MonteCarloSimulationObject;
+    // ****************** TEST ******************
     public int SimNumber = 0;
     public SimState simState;
     private WhiskerSim whiskerSim;
@@ -49,7 +52,7 @@ public class MainController : MonoBehaviour
         popupManager = FindObjectOfType<PopupManager>();
         endSimEarlyButton.gameObject.SetActive(false);
         whiskerSim = WhiskerSimulationObject.GetComponent<WhiskerSim>();
-        monteCarloSim = new MonteCarloSim();
+        monteCarloSim = MonteCarloSimulationObject.GetComponent<MonteCarloSim>();
 
         ParameterSetup();
     }
@@ -210,7 +213,7 @@ public class MainController : MonoBehaviour
     }
 
     IEnumerator EndOfSimActions() {
-        yield return new WaitUntil(() => whiskerSim.SimulationStatuses[SimNumber - 1]);
+        yield return new WaitUntil(() => whiskerSim.NumberSimsRunning == 0);
 
         ShowDebugMessage("Simulation ended.");
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
@@ -241,7 +244,7 @@ public class MainController : MonoBehaviour
 
             simState.SaveSimToJSON(myJsonPath);
 
-            monteCarloSim.RunSim(whiskerSim, ref SimNumber, simState.simDuration);
+            monteCarloSim.RunMonteCarloSim(whiskerSim, ref SimNumber, simState.simDuration);
             StartCoroutine(EndOfMonteCarloSimActions());  // TODO: Change to end of monte carlo sim actions
         }
         else
@@ -251,13 +254,11 @@ public class MainController : MonoBehaviour
     }
 
     IEnumerator EndOfMonteCarloSimActions() {
-        // yield return new WaitUntil(() => monteCarloSim.IsSimulationEnded);
-        yield return new WaitUntil(() => monteCarloSim.AllSimulationStatusesTrue());
+        yield return new WaitUntil(() => monteCarloSim.IsSimulationEnded);
 
         ShowDebugMessage("Monte Carlo simulation ended.");
         GameObject.Find("Run Monte Carlo").GetComponent<Button>().interactable = true;
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
-        Time.timeScale = 1.0f;
     }
 
 

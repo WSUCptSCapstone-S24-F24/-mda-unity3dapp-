@@ -169,7 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShortDetector: {fileID: 1471391705}
   Whisker: {fileID: 2086067737}
-  IsSimulationEnded: 0
 --- !u!4 &18744240
 Transform:
   m_ObjectHideFlags: 0
@@ -3254,6 +3253,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294696848}
   m_CullTransparentMesh: 1
+--- !u!1 &308242103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 308242104}
+  - component: {fileID: 308242105}
+  m_Layer: 0
+  m_Name: MonteCarloSimulation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &308242104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308242103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1897125901}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &308242105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308242103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efde55fac2da0cb46876b30f466b40af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numSimulations: 2
+  IsSimulationEnded: 0
 --- !u!1 &328569550
 GameObject:
   m_ObjectHideFlags: 0
@@ -12478,6 +12523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WhiskerSimulationObject: {fileID: 18744237}
+  MonteCarloSimulationObject: {fileID: 308242103}
   SimNumber: 0
   ResultsCanvas: {fileID: 1309027517}
   WhiskerDensityText: {fileID: 1363293969}
@@ -17529,6 +17575,7 @@ Transform:
   - {fileID: 2086067744}
   - {fileID: 18744240}
   - {fileID: 1471391706}
+  - {fileID: 308242104}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

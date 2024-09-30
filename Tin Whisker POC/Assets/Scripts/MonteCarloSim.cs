@@ -1,11 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
-using System.Diagnostics;
-using System.IO;
 using System.Collections;
-using Unity.Jobs;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
 
 // ****   Monte Carlo Sim Ideas   ****
 // Decrease the size scale of the simulation
@@ -21,8 +16,8 @@ public class MonteCarloSim : MonoBehaviour
     public bool IsSimulationEnded;
     private string[] layerNames;
     private WhiskerSim whiskerSim;
-    
-    public void RunSim(WhiskerSim whiskerSim, ref int simNumber, float duration) {
+
+    public void RunMonteCarloSim(WhiskerSim whiskerSim, ref int simNumber, float duration) {
         IsSimulationEnded = false;
         this.whiskerSim = whiskerSim;
         MakeLayerNames();
@@ -30,25 +25,14 @@ public class MonteCarloSim : MonoBehaviour
         for (int i = 0; i < numSimulations; i++) {
             this.whiskerSim.RunSim(ref simNumber, duration, layerNames[i], false);
         }
-        // StartCoroutine(EndOfSimActions());
-        // Time.timeScale = 1.0f;
-        // IsSimulationEnded = true;
+        StartCoroutine(EndActions());
     }
 
-    IEnumerator EndOfSimActions() {
-        UnityEngine.Debug.Log("EndOfSimActions started");
-        yield return new WaitUntil(() => AllSimulationStatusesTrue());
-        UnityEngine.Debug.Log("AllSimulationStatusesTrue completed");
-
-    }
-
-    public bool AllSimulationStatusesTrue()
-    {
-        foreach (bool status in whiskerSim.SimulationStatuses.Values)
-        {
-            if (!status) return false; 
-        }
-        return true; 
+    IEnumerator EndActions() {
+        yield return new WaitUntil(() => whiskerSim.NumberSimsRunning == 0);
+        Debug.Log("End of monte carlo sim");
+        Time.timeScale = 1.0f;
+        IsSimulationEnded = true;
     }
 
     private void MakeLayerNames() {

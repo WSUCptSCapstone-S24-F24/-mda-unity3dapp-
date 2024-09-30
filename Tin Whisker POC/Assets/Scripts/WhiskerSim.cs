@@ -11,7 +11,7 @@ public class WhiskerSim : MonoBehaviour
     public ShortDetector ShortDetector;
     public SimState SimState;
     public GameObject Whisker; // Cylinder/Whisker to clone
-    public Dictionary<int, bool> SimulationStatuses { get; private set; } = new Dictionary<int, bool>();
+    public int NumberSimsRunning;
 
     private int simNumber;
     private string myjsonPath;
@@ -23,7 +23,7 @@ public class WhiskerSim : MonoBehaviour
 
     public void RunSim(ref int simNumber, float duration, string layerName = "Sim layer 1", bool render = true)
     {
-        SimulationStatuses[simNumber] = false;
+        NumberSimsRunning++;
         this.simNumber = simNumber;
         this.duration = duration;
         this.layerName = layerName;
@@ -161,7 +161,7 @@ public class WhiskerSim : MonoBehaviour
     IEnumerator EndSimulationAfterDuration()
     {
         // Check if simState and its duration are set, otherwise use a default value
-        float simulationDuration = duration > 0 ? duration : 10f;
+        float simulationDuration = duration >= 0.1 ? duration : 10f;
 
         // Wait for the specified simulation duration
         yield return new WaitForSeconds(simulationDuration);
@@ -173,7 +173,7 @@ public class WhiskerSim : MonoBehaviour
         // Proceed to call cleanup for all WhiskerCollider instances
         foreach (WhiskerCollider whiskerCollider in FindObjectsOfType<WhiskerCollider>())
             whiskerCollider.Cleanup();
-        SimulationStatuses[simNumber] = true;
+        NumberSimsRunning--;
     }
 
     public void EndSimulationEarly()
@@ -182,6 +182,6 @@ public class WhiskerSim : MonoBehaviour
         StopCoroutine(simulationCoroutine);
         SaveResults();
         ClearWhiskers();
-        SimulationStatuses[simNumber] = true;
+        NumberSimsRunning--;
     }
 }
