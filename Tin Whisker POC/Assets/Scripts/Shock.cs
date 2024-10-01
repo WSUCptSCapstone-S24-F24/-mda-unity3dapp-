@@ -5,7 +5,7 @@ using SimInfo;
 
 public class Shock : MonoBehaviour
 {
-    private SceneHandler sceneHandler;
+    private MainController MainController;
     private WhiskerSim whiskerSim;
     private bool isShocking = false;
 
@@ -16,15 +16,15 @@ public class Shock : MonoBehaviour
 
     public IEnumerator InitializeShock()
     {
-        // Wait until SceneHandler and WhiskerSim are available
-        while (sceneHandler == null || whiskerSim == null)
+        // Wait until MainController and WhiskerSim are available
+        while (MainController == null || whiskerSim == null)
         {
-            sceneHandler = FindObjectOfType<SceneHandler>();
+            MainController = FindObjectOfType<MainController>();
             whiskerSim = FindObjectOfType<WhiskerSim>();
 
-            if (sceneHandler == null)
+            if (MainController == null)
             {
-                Debug.LogError("SceneHandler not found in the scene.");
+                Debug.LogError("MainController not found in the scene.");
             }
 
             if (whiskerSim == null)
@@ -43,7 +43,7 @@ public class Shock : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(sceneHandler.simState.ShockDuration);
+            yield return new WaitForSeconds(MainController.simState.ShockDuration);
             isShocking = true;
             yield return new WaitForFixedUpdate();
             isShocking = false;
@@ -52,9 +52,9 @@ public class Shock : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (sceneHandler != null && sceneHandler.simState != null && whiskerSim != null && isShocking)
+        if (MainController != null && MainController.simState != null && whiskerSim != null && isShocking)
         {
-            SimState simState = sceneHandler.simState;
+            SimState simState = MainController.simState;
             float shockForce = simState.ShockIntensity;
             float velocityTolerance = 1.0f; // Tolerance for zero velocity check
             float varianceAmount = 5f; // Small variance for x and z

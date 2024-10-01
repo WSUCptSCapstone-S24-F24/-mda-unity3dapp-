@@ -71,6 +71,6 @@ public class ShortDetector : MonoBehaviour
         }
 
         // Aggregate and process the results
-        CSVHandler.LogBridgedWhiskers(bridgedComponentSets, sim_id);
+        ResultsProcessor.LogBridgedWhiskers(bridgedComponentSets, sim_id);
     }
 }
