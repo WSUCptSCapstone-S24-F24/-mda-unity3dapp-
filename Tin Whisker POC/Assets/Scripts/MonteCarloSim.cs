@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Runtime.ConstrainedExecution;
 
 
 // ****   Monte Carlo Sim Ideas   ****
@@ -17,9 +18,9 @@ public class MonteCarloSim : MonoBehaviour
 
     private string[] layerNames;
     private WhiskerSim whiskerSim;
-    private int maxBatchSize = 10;
+    private const int MAX_BATCH_SIZE = 10;
 
-    public void RunMonteCarloSim(WhiskerSim whiskerSim, ref int simNumber, float duration) {
+    public void RunMonteCarloSim(WhiskerSim whiskerSim, int simNumber, float duration) {
         IsSimulationEnded = false;
         this.whiskerSim = whiskerSim;
         MakeLayerNames();
@@ -28,16 +29,15 @@ public class MonteCarloSim : MonoBehaviour
     }
 
 
-    IEnumerator RunSimulationsInBatches(int simNumber, float duration) {
+    IEnumerator RunSimulationsInBatches(int beginningSimNumber, float duration) {
         int totalSimulations = numSimulations;
-        int batchStart = 0;
-
-        while (batchStart < totalSimulations) {
-            int batchEnd = Mathf.Min(batchStart + maxBatchSize, totalSimulations);
+        int batchStart = beginningSimNumber;
+        while (batchStart < totalSimulations + beginningSimNumber) {
+            int batchEnd = Mathf.Min(batchStart + MAX_BATCH_SIZE + beginningSimNumber, totalSimulations + beginningSimNumber);
             Debug.Log($"Running simulations from {batchStart} to {batchEnd - 1}");
 
             for (int i = batchStart; i < batchEnd; i++) {
-                this.whiskerSim.RunSim(ref simNumber, duration, layerNames[i], false);
+                whiskerSim.RunSim(beginningSimNumber + i, duration, layerNames[i], false); // 10 becuase 10 tags and layers exitst for batches
             }
 
             yield return new WaitUntil(() => whiskerSim.NumberSimsRunning == 0);

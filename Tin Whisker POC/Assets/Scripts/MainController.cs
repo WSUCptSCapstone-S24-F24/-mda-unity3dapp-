@@ -10,11 +10,8 @@ using UnityEngine.UI;
 
 public class MainController : MonoBehaviour
 {
-    // private Scene loadedScene;
     public GameObject WhiskerSimulationObject;
-    // ****************** TEST ******************
     public GameObject MonteCarloSimulationObject;
-    // ****************** TEST ******************
     public int SimNumber = 0;
     public SimState simState;
     private WhiskerSim whiskerSim;
@@ -203,7 +200,7 @@ public class MainController : MonoBehaviour
 
             simState.SaveSimToJSON(myJsonPath);
 
-            whiskerSim.RunSim(ref SimNumber, simState.simDuration);
+            whiskerSim.RunSim(SimNumber, simState.simDuration);
             StartCoroutine(EndOfSimActions());
         }
         else
@@ -218,12 +215,13 @@ public class MainController : MonoBehaviour
         ShowDebugMessage("Simulation ended.");
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
         endSimEarlyButton.gameObject.SetActive(false);
+        SimNumber++;
     }
 
     public void EndSimulationEarly()
     {
         ShowDebugMessage("User interupt. ");
-        whiskerSim.EndSimulationEarly();
+        whiskerSim.EndSimulationEarly(SimNumber);
     }
 
     public void RunMonteCarloSimulation() {
@@ -244,7 +242,7 @@ public class MainController : MonoBehaviour
 
             simState.SaveSimToJSON(myJsonPath);
 
-            monteCarloSim.RunMonteCarloSim(whiskerSim, ref SimNumber, simState.simDuration);
+            monteCarloSim.RunMonteCarloSim(whiskerSim, SimNumber, simState.simDuration);
             StartCoroutine(EndOfMonteCarloSimActions());  // TODO: Change to end of monte carlo sim actions
         }
         else
@@ -259,6 +257,7 @@ public class MainController : MonoBehaviour
         ShowDebugMessage("Monte Carlo simulation ended.");
         GameObject.Find("Run Monte Carlo").GetComponent<Button>().interactable = true;
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
+        SimNumber += monteCarloSim.numSimulations;
     }
 
 

@@ -13,30 +13,25 @@ public class WhiskerSim : MonoBehaviour
     public GameObject Whisker; // Cylinder/Whisker to clone
     public int NumberSimsRunning;
 
-    private int simNumber;
     private string myjsonPath;
     private List<GameObject> whiskers = new List<GameObject>();
     private float duration;
     private Coroutine simulationCoroutine;
-    private string layerName;
     private bool render;
 
-    public void RunSim(ref int simNumber, float duration, string layerName = "Sim layer 1", bool render = true)
+    public void RunSim(int simNumber, float duration, string layerName = "Sim layer 1", bool render = true)
     {
         NumberSimsRunning++;
-        this.simNumber = simNumber;
         this.duration = duration;
-        this.layerName = layerName;
         this.render = render;
-        SimStateSetUp();
-        SpawnWhiskers();
+        SimStateSetUp(simNumber);
+        SpawnWhiskers(layerName);
 
         // Log all whiskers to whisker_log_{simNumber}
-        ResultsProcessor.LogWhiskers(whiskers, this.simNumber);
+        ResultsProcessor.LogWhiskers(whiskers, simNumber);
         // Log the SimState to simstate_log_{simNumber}
-        ResultsProcessor.LogSimState(SimState, this.simNumber);
-        simulationCoroutine = StartCoroutine(EndSimulationAfterDuration());        
-        simNumber++;
+        ResultsProcessor.LogSimState(SimState, simNumber);
+        simulationCoroutine = StartCoroutine(EndSimulationAfterDuration(simNumber));
     }
 
     public void ScaleCylinder(GameObject cylinderObject, float widthScale, float heightScale)
@@ -65,22 +60,29 @@ public class WhiskerSim : MonoBehaviour
         cylinderObject.transform.localScale = newScale;
     }
 
-    public void ClearWhiskers()
+    public void ClearLayerWhiskers(string layerNameToDelete)
     {
+        int layerNum = LayerMask.NameToLayer(layerNameToDelete);
         foreach (GameObject Whisker in whiskers)
         {
-            DestroyImmediate(Whisker);
+            if (Whisker.layer == layerNum)
+            {
+                DestroyImmediate(Whisker);
+            }
         }
-        whiskers.Clear();
+        
+        whiskers.RemoveAll(whisker => whisker == null);
     }
 
-    public void SaveResults()
+    public void SaveResults(int simNumber)
     {
+        Debug.Log($"Saving sim number: {simNumber}");
         SimState.SaveSimToJSON(myjsonPath);
         ShortDetector.StopWhiskerChecks(simNumber);
     }
 
-    private void SimStateSetUp() {
+    private void SimStateSetUp(int simNumber)
+    {
         Debug.Log("Sim number: " + simNumber);
 
         myjsonPath = Application.persistentDataPath + "/SimState.JSON";
@@ -100,9 +102,10 @@ public class WhiskerSim : MonoBehaviour
         }
     }
 
-    private void SpawnWhiskers() {
+    private void SpawnWhiskers(string layerName)
+    {
         Whisker.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-        Vector3 originalScale = Whisker.transform.localScale; 
+        Vector3 originalScale = Whisker.transform.localScale;
         // Defualt is scale: (1, 1, 1) which makes a length of 2 or 1/5 mm and a diameter of 1 or 1/10 mm
         // (1, 5, 1) is 1 mm long --> (1, 0.005, 1) is 1 micron long
         // (10, 1, 10) is 1 mm diameter --> (0.01, 1, 0.01) is 1 micron diameter 
@@ -158,7 +161,7 @@ public class WhiskerSim : MonoBehaviour
         }
     }
 
-    IEnumerator EndSimulationAfterDuration()
+    IEnumerator EndSimulationAfterDuration(int simNumber)
     {
         // Check if simState and its duration are set, otherwise use a default value
         float simulationDuration = duration >= 0.1 ? duration : 10f;
@@ -166,8 +169,8 @@ public class WhiskerSim : MonoBehaviour
         // Wait for the specified simulation duration
         yield return new WaitForSeconds(simulationDuration);
 
-        SaveResults();
-        ClearWhiskers();
+        SaveResults(simNumber);
+        ClearLayerWhiskers($"Sim layer {simNumber % 10 + 1}");
         yield return null;
 
         // Proceed to call cleanup for all WhiskerCollider instances
@@ -176,12 +179,12 @@ public class WhiskerSim : MonoBehaviour
         NumberSimsRunning--;
     }
 
-    public void EndSimulationEarly()
+    public void EndSimulationEarly(int simNumber)
     {
         // Stop the coroutine that is waiting for the simulation to end
         StopCoroutine(simulationCoroutine);
-        SaveResults();
-        ClearWhiskers();
+        SaveResults(simNumber);
+        ClearLayerWhiskers($"Sim layer {simNumber % 10 + 1}");
         NumberSimsRunning--;
     }
 }
