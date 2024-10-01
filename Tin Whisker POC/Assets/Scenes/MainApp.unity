@@ -734,7 +734,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: -165}
+  m_AnchoredPosition: {x: 350, y: 0}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &44852351
@@ -781,8 +781,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 1830807169}
   m_HandleRect: {fileID: 864788111}
   m_Direction: 0
-  m_MinValue: -180
-  m_MaxValue: 180
+  m_MinValue: -90
+  m_MaxValue: 90
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -3423,7 +3423,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0.26496887, y: 0, z: 118.394585, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3618,6 +3618,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numSimulations: 2
   IsSimulationEnded: 0
+--- !u!1 &328485543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 328485544}
+  - component: {fileID: 328485545}
+  m_Layer: 0
+  m_Name: WhiskerSimulationObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &328485544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328485543}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 728696397}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &328485545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328485543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5f69d2a02943147abd92b31afadcbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShortDetector: {fileID: 1471391705}
+  Whisker: {fileID: 2086067737}
+  NumberSimsRunning: 0
+  whiskers: []
 --- !u!1 &328569550
 GameObject:
   m_ObjectHideFlags: 0
@@ -6341,7 +6389,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: -200}
+  m_AnchoredPosition: {x: 350, y: -45}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &576654194
@@ -6388,8 +6436,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 665246818}
   m_HandleRect: {fileID: 368173169}
   m_Direction: 0
-  m_MinValue: -180
-  m_MaxValue: 180
+  m_MinValue: -90
+  m_MaxValue: 90
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -7644,7 +7692,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7d86bd84fac594daed2546457f104e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button1: {fileID: 0}
   textBox1: {fileID: 1040841937}
   textBox2: {fileID: 590282055}
   shocking: 0
@@ -8394,6 +8441,7 @@ Transform:
   - {fileID: 135098059}
   - {fileID: 415277289}
   - {fileID: 1553522532}
+  - {fileID: 328485544}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12766,7 +12814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 75, y: -3}
+  m_AnchoredPosition: {x: 75.2, y: -3}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1114429780
@@ -12852,7 +12900,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -0.7890091, y: 0.6737652, z: 145.11993, w: 15.859172}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -13248,7 +13296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a9d6a0b8fd031458936f12231fa365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiskerSimulationObject: {fileID: 2086067737}
+  WhiskerSimulationObject: {fileID: 328485543}
   MonteCarloSimulationObject: {fileID: 308242103}
   SimNumber: 0
   ResultsCanvas: {fileID: 1309027517}
@@ -17722,7 +17770,7 @@ GameObject:
   - component: {fileID: 1822092297}
   m_Layer: 0
   m_Name: ScaleGrid
-  m_TagString: Untagged
+  m_TagString: ScaleGrid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

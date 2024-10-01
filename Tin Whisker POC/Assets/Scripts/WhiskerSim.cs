@@ -165,7 +165,6 @@ public class WhiskerSim : MonoBehaviour
 
         // Wait for the specified simulation duration
         yield return new WaitForSeconds(simulationDuration);
-
         SaveResults();
         ClearWhiskers();
         yield return null;

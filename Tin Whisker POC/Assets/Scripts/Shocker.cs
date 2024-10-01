@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Shocker : MonoBehaviour
 {
-    public GameObject button1;
     public GameObject textBox1;
     public GameObject textBox2;
     private bool hidden = true;

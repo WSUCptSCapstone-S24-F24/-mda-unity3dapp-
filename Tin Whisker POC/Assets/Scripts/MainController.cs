@@ -235,17 +235,47 @@ public class MainController : MonoBehaviour
             Debug.Log("Sim num: " + SimNumber);
             GetSimInputs();
 
-            // TODO: Show object file and mtl file path in results so user knows which PCB was used
             simState.objfilePath = objfilePath;
             simState.mtlfilePath = mtlfilePath;
 
-            // TODO: Make all but end sim button be non-interactable
-            GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;  
-            endSimEarlyButton.gameObject.SetActive(true);
+            // Check if whiskerSim is null
+            if (whiskerSim == null)
+            {
+                Debug.LogError("whiskerSim is null");
+            }
 
+            // Check if simState is null
+            if (simState == null)
+            {
+                Debug.LogError("simState is null");
+            }
+
+            GameObject runSimButton = GameObject.Find("RunSimButton");
+            if (runSimButton == null)
+            {
+                Debug.LogError("RunSimButton not found.");
+            }
+            else
+            {
+                runSimButton.GetComponent<Button>().interactable = false;
+            }
+
+            if (Shocker.shocking)
+            {
+                Debug.Log("Starting shock...");
+                StartCoroutine(FindObjectOfType<Shock>().InitializeShock());
+            }
+
+            if (OpenVibration.vibrate)
+            {
+                Debug.Log("Starting vibration...");
+                StartCoroutine(FindObjectOfType<Vibration>().InitializeVibration());
+            }
+
+            endSimEarlyButton.gameObject.SetActive(true);
             simState.SaveSimToJSON(myJsonPath);
 
-            whiskerSim.RunSim(ref SimNumber, simState.simDuration);
+            whiskerSim.RunSim(ref SimNumber, simState.simDuration);  // Line 248
             StartCoroutine(EndOfSimActions());
         }
         else

@@ -50,6 +50,8 @@ public class Shock : MonoBehaviour
         }
     }
 
+
+
     void FixedUpdate()
     {
         if (MainController != null && MainController.simState != null && whiskerSim != null && isShocking)
