@@ -63,7 +63,7 @@ public class Shock : MonoBehaviour
             float randomX = Random.Range(-varianceAmount, varianceAmount);
             float randomZ = Random.Range(-varianceAmount, varianceAmount);
 
-            foreach (GameObject whisker in whiskerSim.cylinder_clone)
+            foreach (GameObject whisker in whiskerSim.whiskers)
             {
                 if (whisker != null)
                 {

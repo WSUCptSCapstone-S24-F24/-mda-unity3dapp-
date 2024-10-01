@@ -15,7 +15,7 @@ public class WhiskerSim : MonoBehaviour
 
     private int simNumber;
     private string myjsonPath;
-    private List<GameObject> whiskers = new List<GameObject>();
+    public List<GameObject> whiskers = new List<GameObject>();
     private float duration;
     private Coroutine simulationCoroutine;
     private string layerName;

@@ -167,10 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5f69d2a02943147abd92b31afadcbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shortDetector: {fileID: 0}
-  cylinder: {fileID: 0}
-  simulationDuration: 0
-  cylinder_clone: []
+  ShortDetector: {fileID: 1471391705}
+  Whisker: {fileID: 2086067737}
+  NumberSimsRunning: 0
+  whiskers: []
 --- !u!4 &18744240
 Transform:
   m_ObjectHideFlags: 0
@@ -3617,6 +3617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numSimulations: 2
+  IsSimulationEnded: 0
 --- !u!1 &328569550
 GameObject:
   m_ObjectHideFlags: 0
@@ -13247,14 +13248,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a9d6a0b8fd031458936f12231fa365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
-  sceneNum: 1
-  fileOpened: 0
+  WhiskerSimulationObject: {fileID: 2086067737}
+  MonteCarloSimulationObject: {fileID: 308242103}
   SimNumber: 0
   ResultsCanvas: {fileID: 1309027517}
-  monteCarloLauncher: {fileID: 0}
-  startButton: {fileID: 0}
-  endButton: {fileID: 0}
   WhiskerDensityText: {fileID: 1363293969}
   LengthSigmaText: {fileID: 1016260905}
   LengthMuText: {fileID: 1008457480}
@@ -13268,16 +13265,18 @@ MonoBehaviour:
   SpawnPositionZText: {fileID: 1813485770}
   SimDurationText: {fileID: 288786585}
   SimQuantityText: {fileID: 705666963}
+  endSimEarlyButton: {fileID: 1679835155}
+  PCBloaded: 0
   objfilePath: 
   mtlfilePath: 
-  VibrationSpeedText: {fileID: 0}
-  VibrationAmplitudeText: {fileID: 0}
-  ShockIntensityText: {fileID: 0}
-  ShockDurationText: {fileID: 0}
-  Shocker: {fileID: 0}
-  OpenVibration: {fileID: 0}
-  Vibration: {fileID: 0}
-  Shock: {fileID: 0}
+  VibrationSpeedText: {fileID: 1494976106}
+  VibrationAmplitudeText: {fileID: 386875936}
+  ShockIntensityText: {fileID: 1040841939}
+  ShockDurationText: {fileID: 590282057}
+  Shocker: {fileID: 674139275}
+  OpenVibration: {fileID: 398489737}
+  Vibration: {fileID: 570358060}
+  Shock: {fileID: 1660062881}
 --- !u!114 &1193138110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14199,7 +14198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Preview: {fileID: 819011430}
   MainMenu: {fileID: 1115006695}
-  ResultsShower: {fileID: 0}
+  ResultsProcessor: {fileID: 0}
 --- !u!114 &1309027523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19081,7 +19080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Modle: {fileID: 21696088}
-  SceneManager: {fileID: 0}
+  MainController: {fileID: 1193138106}
 --- !u!1 &1966717075
 GameObject:
   m_ObjectHideFlags: 0

@@ -61,7 +61,7 @@ public class Vibration : MonoBehaviour
             float offset = simState.vibrationAmplitude * Mathf.Sin(simState.vibrationSpeed * (Time.time - t));
             float velocityTolerance = 1.0f; // Tolerance for zero velocity check
 
-            foreach (GameObject whisker in whiskerSim.cylinder_clone)
+            foreach (GameObject whisker in whiskerSim.whiskers)
             {
                 if (whisker != null)
                 {
