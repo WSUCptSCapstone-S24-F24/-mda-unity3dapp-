@@ -144,43 +144,212 @@ public class MainController : MonoBehaviour
     public void GetSimInputs()
     {
         if (int.TryParse(WhiskerAmountText.text, out int result))
-            simState.whiskerAmount = result;
+        {
+            if (result > 1000) // 1000 Max amount of whiskers 
+            {
+                simState.whiskerAmount = 1000;
+            }
+            else if (result < 0)
+            {
+                simState.whiskerAmount = 0;
+            }
+            else
+            {
+                simState.whiskerAmount = result;
+            }
+        }
 
-        if (float.TryParse(LengthSigmaText.text, out float result2))
-            simState.LengthSigma = result2;
+        if (float.TryParse(LengthMuText.text, out float result2))
+        {
+            if (result2 > 6.0f)
+            {
+                simState.LengthMu = 6.0f;
+            }
+            else if (result2 < 0.1f)
+            {
+                simState.LengthMu = 0.1f;
+            }
+            else
+            {
+                simState.LengthMu = result2;
+            }
+        }
 
-        if (float.TryParse(LengthMuText.text, out float result3))
-            simState.LengthMu = result3;
-
-        if (float.TryParse(WidthSigmaText.text, out float result4))
-            simState.WidthSigma = result4;
+        if (float.TryParse(LengthSigmaText.text, out float result3))
+        {
+            if (result3 > 0.3f * result2)
+            {
+                simState.LengthSigma = 0.3f * result2;
+            }
+            else if (result3 < 0)
+            {
+                simState.LengthSigma = 0;
+            }
+            else
+            {
+                simState.LengthSigma = result3;
+            }
+        }
 
         if (float.TryParse(WidthMuText.text, out float result5))
-            simState.WidthMu = result5;
+        {
+            if (result5 > 6.0f)
+            {
+                simState.WidthMu = 6.0f;
+            }
+            else if (result5 < 0.1f)
+            {
+                simState.WidthMu = 0.1f;
+            }
+            else
+            {
+                simState.WidthMu = result5;
+            }
+        }
+
+        if (float.TryParse(WidthSigmaText.text, out float result4))
+        {
+            if (result4 > 0.3f * result3)
+            {
+                simState.WidthSigma = 0.3f * result3;
+            }
+            else if (result4 < 0)
+            {
+                simState.WidthSigma = 0;
+            }
+            else
+            {
+                simState.WidthSigma = result4;
+            }
+        }
 
         if (float.TryParse(SpawnAreaSizeXText.text, out float result6))
-            simState.spawnAreaSizeX = result6;
+        {
+            if (result6 > 300)
+            {
+                simState.spawnAreaSizeX = 300;
+            }
+            else if (result6 < 1)
+            {
+                simState.spawnAreaSizeX = 1.0f;
+            }
+            else
+            {
+                simState.spawnAreaSizeX = result6;
+            }
+        }
 
         if (float.TryParse(SpawnAreaSizeYText.text, out float result7))
-            simState.spawnAreaSizeY = result7;
+        {
+            if (result7 > 300)
+            {
+                simState.spawnAreaSizeY = 300;
+            }
+            else if (result7 < 1)
+            {
+                simState.spawnAreaSizeY = 1;
+            }
+            else
+            {
+                simState.spawnAreaSizeY = result7;
+            }
+        }
 
         if (float.TryParse(SpawnAreaSizeZText.text, out float result8))
-            simState.spawnAreaSizeZ = result8;
+        {
+            if (result8 > 300)
+            {
+                simState.spawnAreaSizeZ = 300;
+            }
+            else if (result8 < 1)
+            {
+                simState.spawnAreaSizeZ = 1;
+            }
+            else
+            {
+                simState.spawnAreaSizeZ = result8;
+            }
+        }
 
         if (float.TryParse(SpawnPositionXText.text, out float result9))
-            simState.spawnPositionX = result9;
+        {
+            if (result9 > 300)
+            {
+                simState.spawnPositionX = 300;
+            }
+            else if (result9 < -300)
+            {
+                simState.spawnPositionX = 300;
+            }
+            else
+            {
+                simState.spawnPositionX = result9;
+            }
+        }
 
         if (float.TryParse(SpawnPositionYText.text, out float result10))
-            simState.spawnPositionY = result10;
+        {
+            if (result10 > 300)
+            {
+                simState.spawnPositionY = 300;
+            }
+            else if (result10 < -300)
+            {
+                simState.spawnPositionY = 300;
+            }
+            else
+            {
+                simState.spawnPositionY = result10;
+            }
+        }
 
         if (float.TryParse(SpawnPositionZText.text, out float result11))
-            simState.spawnPositionZ = result11;
+        {
+            if (result11 > 300)
+            {
+                simState.spawnPositionZ = 300;
+            }
+            else if (result11 < -300)
+            {
+                simState.spawnPositionZ = 300;
+            }
+            else
+            {
+                simState.spawnPositionZ = result11;
+            }
+        }
 
         if (float.TryParse(SimDurationText.text, out float result12))
-            simState.simDuration = result12;
+        {
+            if (result12 > 20)
+            {
+                simState.simDuration = 20;
+            }
+            else if (result12 < 0.1f)
+            {
+                simState.simDuration = 0.1f;
+            }
+            else
+            {
+                simState.simDuration = result12;
+            }
+        }
 
         if (int.TryParse(SimQuantityText.text, out int result13))
-            monteCarloSim.numSimulations = result13;
+        {
+            if (result13 > 100)
+            {
+                monteCarloSim.numSimulations = 100;
+            }
+            else if (result13 <= 0)
+            {
+                monteCarloSim.numSimulations = 1;
+            }
+            else
+            {
+                monteCarloSim.numSimulations = result13;
+            }
+        }
     }
 
     public void RunSimulation()
@@ -197,7 +366,7 @@ public class MainController : MonoBehaviour
             simState.mtlfilePath = mtlfilePath;
 
             // TODO: Make all but end sim button be non-interactable
-            GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;  
+            GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;
             EndSimEarlyButton.gameObject.SetActive(true);
 
             simState.SaveSimToJSON(myJsonPath);
@@ -211,7 +380,8 @@ public class MainController : MonoBehaviour
         }
     }
 
-    IEnumerator EndOfSimActions() {
+    IEnumerator EndOfSimActions()
+    {
         yield return new WaitUntil(() => whiskerSim.NumberSimsRunning == 0);
 
         ShowDebugMessage("Simulation ended.");
@@ -226,7 +396,8 @@ public class MainController : MonoBehaviour
         whiskerSim.EndSimulationEarly(SimNumber);
     }
 
-    public void RunMonteCarloSimulation() {
+    public void RunMonteCarloSimulation()
+    {
         if (PCBloaded)
         {
             ShowDebugMessage("Simulation starting. ");
@@ -254,7 +425,8 @@ public class MainController : MonoBehaviour
         }
     }
 
-    IEnumerator EndOfMonteCarloSimActions() {
+    IEnumerator EndOfMonteCarloSimActions()
+    {
         yield return new WaitUntil(() => monteCarloSim.IsSimulationEnded);
 
         ShowDebugMessage("Monte Carlo simulation ended.");
