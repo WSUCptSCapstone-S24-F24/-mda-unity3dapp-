@@ -104,7 +104,7 @@ public class LoadFile : MonoBehaviour
         }
     }
 
-    private IEnumerator OutputRoutineOpen(string url, string mtl)
+    private IEnumerator OutputRoutineOpen(string url, string mtl = null)
     {
         Debug.Log("File URI: " + url);
         UnityWebRequest www = UnityWebRequest.Get(url);
