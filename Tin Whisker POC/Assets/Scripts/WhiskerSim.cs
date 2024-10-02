@@ -118,7 +118,7 @@ public class WhiskerSim : MonoBehaviour
         Vector3 scaledTransform = new Vector3(originalScale.x * 10.0f / 1000.0f, originalScale.y * 5.0f / 1000.0f, originalScale.z * 10.0f / 1000.0f);
         Whisker.transform.localScale = scaledTransform;
 
-        float WhiskerCount = SimState.spawnAreaSizeX * SimState.spawnAreaSizeY * SimState.spawnAreaSizeZ * SimState.whiskerDensity;
+        float WhiskerCount = SimState.whiskerAmount;
         LognormalRandom lognormalRandomLength = new LognormalRandom(SimState.LengthMu, SimState.LengthSigma);
         LognormalRandom lognormalRandomWidth = new LognormalRandom(SimState.WidthMu, SimState.WidthSigma);
 

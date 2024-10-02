@@ -19,7 +19,7 @@ public class MainController : MonoBehaviour
 
 
     public GameObject ResultsCanvas;
-    public TMP_InputField WhiskerDensityText;
+    public TMP_InputField WhiskerAmountText;
     public TMP_InputField LengthSigmaText;
     public TMP_InputField LengthMuText;
     public TMP_InputField WidthSigmaText;
@@ -96,7 +96,7 @@ public class MainController : MonoBehaviour
             simState.SaveSimToJSON(rootJsonPath);
         }
 
-        WhiskerDensityText.text = simState.whiskerDensity.ToString();
+        WhiskerAmountText.text = simState.whiskerAmount.ToString();
 
         LengthSigmaText.text = simState.LengthSigma.ToString();
         LengthMuText.text = simState.LengthMu.ToString();
@@ -143,8 +143,8 @@ public class MainController : MonoBehaviour
 
     public void GetSimInputs()
     {
-        if (int.TryParse(WhiskerDensityText.text, out int result))
-            simState.whiskerDensity = result;
+        if (int.TryParse(WhiskerAmountText.text, out int result))
+            simState.whiskerAmount = result;
 
         if (float.TryParse(LengthSigmaText.text, out float result2))
             simState.LengthSigma = result2;

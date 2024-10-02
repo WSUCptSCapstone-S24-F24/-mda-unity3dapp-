@@ -111,7 +111,7 @@ public class ResultsProcessor : MonoBehaviour
             Directory.CreateDirectory(Path.GetDirectoryName(bridgedLogPath));
 
             // Prepare new data to be written
-            string newData = $"WhiskerDensity,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec)\n{simState.whiskerDensity},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration}\n";
+            string newData = $"WhiskerAmount,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec)\n{simState.whiskerAmount},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration}\n";
 
             // Read existing content of whiskers log file
             List<string> whiskersLines = new List<string>();
@@ -331,7 +331,7 @@ public class ResultsProcessor : MonoBehaviour
             Directory.CreateDirectory(Path.GetDirectoryName(monteCarloLogPath));
 
             // Prepare new data to be written
-            string newData = $"WhiskerDensity,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec)\n{simState.whiskerDensity},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration}\n";
+            string newData = $"WhiskerAmount,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec)\n{simState.whiskerAmount},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration}\n";
 
             // Read existing content of whiskers log file
             List<string> whiskersLines = new List<string>();

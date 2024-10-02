@@ -7,7 +7,7 @@ namespace SimInfo
 {
     public class SimState
     {
-        public int whiskerDensity;
+        public int whiskerAmount;
         public float spawnAreaSizeX;
         public float spawnAreaSizeY;
         public float spawnAreaSizeZ;
@@ -27,7 +27,7 @@ namespace SimInfo
         public SimState()
         {
             // Default values
-            this.whiskerDensity = 1;
+            this.whiskerAmount = 1;
             this.spawnAreaSizeX = 2f;
             this.spawnAreaSizeY = 2f;
             this.spawnAreaSizeZ = 2f;
@@ -41,11 +41,11 @@ namespace SimInfo
             this.simNumber = -1;
         }
 
-        public SimState(int whiskerDensity, float spawnAreaSizeX, float spawnAreaSizeY, float spawnAreaSizeZ,
+        public SimState(int whiskerAmount, float spawnAreaSizeX, float spawnAreaSizeY, float spawnAreaSizeZ,
                         float spawnPositionX, float spawnPositionY, float spawnPositionZ, float LengthMu,
                         float LengthSigma, float WidthMu, float WidthSigma, int simNumber)
         {
-            this.whiskerDensity = whiskerDensity;
+            this.whiskerAmount = whiskerAmount;
             this.spawnAreaSizeX = spawnAreaSizeX;
             this.spawnAreaSizeY = spawnAreaSizeY;
             this.spawnAreaSizeZ = spawnAreaSizeZ;
