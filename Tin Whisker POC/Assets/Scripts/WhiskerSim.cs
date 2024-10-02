@@ -20,6 +20,10 @@ public class WhiskerSim : MonoBehaviour
     private Coroutine simulationCoroutine;
     private string layerName;
     private bool render;
+    public Shock Shock;
+    public Shocker Shocker;
+    public Vibration Vibration;
+    public OpenVibration OpenVibration;
 
     public void RunSim(ref int simNumber, float duration, string layerName = "Sim layer 1", bool render = true)
     {
@@ -30,6 +34,18 @@ public class WhiskerSim : MonoBehaviour
         this.render = render;
         SimStateSetUp();
         SpawnWhiskers();
+
+        if (Shocker.shocking)
+        {
+            Debug.Log("Starting shock...");
+            Shock.StartShock();
+        }
+
+        if (OpenVibration.vibrate)
+        {
+            Debug.Log("Starting vibration...");
+            Vibration.StartVibration();
+        }
 
         // Log all whiskers to whisker_log_{simNumber}
         ResultsProcessor.LogWhiskers(whiskers, this.simNumber);
@@ -158,6 +174,19 @@ public class WhiskerSim : MonoBehaviour
         }
     }
 
+    private void StopShockAndVibrationRoutines()
+    {
+        if (Shock != null)
+        {
+            Shock.StopShock(); // Stops the shock logic
+        }
+
+        if (Vibration != null)
+        {
+            Vibration.StopVibration(); // Stops the vibration logic
+        }
+    }
+
     IEnumerator EndSimulationAfterDuration()
     {
         // Check if simState and its duration are set, otherwise use a default value
@@ -167,6 +196,7 @@ public class WhiskerSim : MonoBehaviour
         yield return new WaitForSeconds(simulationDuration);
         SaveResults();
         ClearWhiskers();
+        StopShockAndVibrationRoutines();
         yield return null;
 
         // Proceed to call cleanup for all WhiskerCollider instances
@@ -181,6 +211,7 @@ public class WhiskerSim : MonoBehaviour
         StopCoroutine(simulationCoroutine);
         SaveResults();
         ClearWhiskers();
+        StopShockAndVibrationRoutines();
         NumberSimsRunning--;
     }
 }

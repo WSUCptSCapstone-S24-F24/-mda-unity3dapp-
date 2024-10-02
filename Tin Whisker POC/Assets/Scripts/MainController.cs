@@ -17,7 +17,7 @@ public class MainController : MonoBehaviour
     // ****************** TEST ******************
     public int SimNumber = 0;
     public SimState simState;
-    private WhiskerSim whiskerSim;
+    public WhiskerSim whiskerSim;
     private MonteCarloSim monteCarloSim;
 
 
@@ -48,10 +48,6 @@ public class MainController : MonoBehaviour
     public TMP_InputField VibrationAmplitudeText;
     public TMP_InputField ShockIntensityText;
     public TMP_InputField ShockDurationText;
-    public Shocker Shocker;
-    public OpenVibration OpenVibration;
-    public Vibration Vibration;
-    public Shock Shock;
 
     private PopupManager popupManager;
 
@@ -260,22 +256,14 @@ public class MainController : MonoBehaviour
                 runSimButton.GetComponent<Button>().interactable = false;
             }
 
-            if (Shocker.shocking)
-            {
-                Debug.Log("Starting shock...");
-                StartCoroutine(FindObjectOfType<Shock>().InitializeShock());
-            }
 
-            if (OpenVibration.vibrate)
-            {
-                Debug.Log("Starting vibration...");
-                StartCoroutine(FindObjectOfType<Vibration>().InitializeVibration());
-            }
 
             endSimEarlyButton.gameObject.SetActive(true);
             simState.SaveSimToJSON(myJsonPath);
 
             whiskerSim.RunSim(ref SimNumber, simState.simDuration);  // Line 248
+
+
             StartCoroutine(EndOfSimActions());
         }
         else

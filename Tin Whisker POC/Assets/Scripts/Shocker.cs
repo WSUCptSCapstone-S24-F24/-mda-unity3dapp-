@@ -21,6 +21,7 @@ public class Shocker : MonoBehaviour
     {
         if (hidden)
         {
+            Debug.Log("Button clicked, updating shocking state. True");
             textBox1.SetActive(true);
             textBox2.SetActive(true);
             hidden = false;
@@ -28,6 +29,7 @@ public class Shocker : MonoBehaviour
         }
         else
         {
+            Debug.Log("Button clicked, updating shocking state. False");
             textBox1.SetActive(false);
             textBox2.SetActive(false);
             hidden = true;

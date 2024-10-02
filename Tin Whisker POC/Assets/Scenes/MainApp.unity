@@ -171,6 +171,10 @@ MonoBehaviour:
   Whisker: {fileID: 2086067737}
   NumberSimsRunning: 0
   whiskers: []
+  Shock: {fileID: 1660062881}
+  Shocker: {fileID: 674139275}
+  Vibration: {fileID: 570358060}
+  OpenVibration: {fileID: 398489737}
 --- !u!4 &18744240
 Transform:
   m_ObjectHideFlags: 0
@@ -3666,6 +3670,10 @@ MonoBehaviour:
   Whisker: {fileID: 2086067737}
   NumberSimsRunning: 0
   whiskers: []
+  Shock: {fileID: 1660062881}
+  Shocker: {fileID: 674139275}
+  Vibration: {fileID: 570358060}
+  OpenVibration: {fileID: 398489737}
 --- !u!1 &328569550
 GameObject:
   m_ObjectHideFlags: 0
@@ -13321,10 +13329,6 @@ MonoBehaviour:
   VibrationAmplitudeText: {fileID: 386875936}
   ShockIntensityText: {fileID: 1040841939}
   ShockDurationText: {fileID: 590282057}
-  Shocker: {fileID: 674139275}
-  OpenVibration: {fileID: 398489737}
-  Vibration: {fileID: 570358060}
-  Shock: {fileID: 1660062881}
 --- !u!114 &1193138110
 MonoBehaviour:
   m_ObjectHideFlags: 0
