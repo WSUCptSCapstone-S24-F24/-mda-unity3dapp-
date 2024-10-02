@@ -18,9 +18,11 @@ public class WhiskerSim : MonoBehaviour
     private float duration;
     private Coroutine simulationCoroutine;
     private bool render;
+    
 
-    public void RunSim(int simNumber, float duration, string layerName = "Sim layer 1", bool render = true)
+    public void RunSim(int simNumber, float duration, bool render = true)
     {
+        string layerName = $"Sim layer {simNumber % 10 + 1}";  // For 10 physics layers
         NumberSimsRunning++;
         this.duration = duration;
         this.render = render;
@@ -28,8 +30,8 @@ public class WhiskerSim : MonoBehaviour
         SpawnWhiskers(layerName);
 
         // Log all whiskers to whisker_log_{simNumber}
-        ResultsProcessor.LogWhiskers(whiskers, simNumber);
-        // Log the SimState to simstate_log_{simNumber}
+        ResultsProcessor.LogWhiskers(GetSimLayerWhiskers(whiskers, layerName), simNumber);
+        // Log the SimState to other results files
         ResultsProcessor.LogSimState(SimState, simNumber);
         simulationCoroutine = StartCoroutine(EndSimulationAfterDuration(simNumber));
     }
@@ -63,11 +65,11 @@ public class WhiskerSim : MonoBehaviour
     public void ClearLayerWhiskers(string layerNameToDelete)
     {
         int layerNum = LayerMask.NameToLayer(layerNameToDelete);
-        foreach (GameObject Whisker in whiskers)
+        foreach (GameObject whisker in whiskers)
         {
-            if (Whisker.layer == layerNum)
+            if (whisker.layer == layerNum)
             {
-                DestroyImmediate(Whisker);
+                DestroyImmediate(whisker);
             }
         }
         
@@ -186,5 +188,17 @@ public class WhiskerSim : MonoBehaviour
         SaveResults(simNumber);
         ClearLayerWhiskers($"Sim layer {simNumber % 10 + 1}");
         NumberSimsRunning--;
+    }
+
+    private List<GameObject> GetSimLayerWhiskers(List<GameObject> allWhiskers, string layerName) {
+        List<GameObject> resultWhiskers = new List<GameObject>();
+        int layerNum = LayerMask.NameToLayer(layerName);
+        foreach(GameObject whisker in allWhiskers) {
+            if (whisker.layer == layerNum)
+            {
+                resultWhiskers.Add(whisker);
+            }
+        }
+        return resultWhiskers;
     }
 }

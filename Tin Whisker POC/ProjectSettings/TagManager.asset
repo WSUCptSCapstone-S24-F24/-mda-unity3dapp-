@@ -5,19 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Part
-  - Wisker
   - Board
   - ResultsMenu
-  - WhiskerBatch1
-  - WhiskerBatch2
-  - WhiskerBatch3
-  - WhiskerBatch4
-  - WhiskerBatch5
-  - WhiskerBatch6
-  - WhiskerBatch7
-  - WhiskerBatch8
-  - WhiskerBatch9
-  - WhiskerBatch10
   layers:
   - Default
   - TransparentFX

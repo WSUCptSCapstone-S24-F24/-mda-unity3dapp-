@@ -16,14 +16,12 @@ public class MonteCarloSim : MonoBehaviour
     public int numSimulations = 2; // 2 Default
     public bool IsSimulationEnded;
 
-    private string[] layerNames;
     private WhiskerSim whiskerSim;
     private const int MAX_BATCH_SIZE = 10;
 
     public void RunMonteCarloSim(WhiskerSim whiskerSim, int simNumber, float duration) {
         IsSimulationEnded = false;
         this.whiskerSim = whiskerSim;
-        MakeLayerNames();
         Time.timeScale = 10.0f;
         StartCoroutine(RunSimulationsInBatches(simNumber, duration));
     }
@@ -34,10 +32,9 @@ public class MonteCarloSim : MonoBehaviour
         int batchStart = beginningSimNumber;
         while (batchStart < totalSimulations + beginningSimNumber) {
             int batchEnd = Mathf.Min(batchStart + MAX_BATCH_SIZE + beginningSimNumber, totalSimulations + beginningSimNumber);
-            Debug.Log($"Running simulations from {batchStart} to {batchEnd - 1}");
-
+            // Debug.Log($"Running simulations from {batchStart} to {batchEnd - 1}");
             for (int i = batchStart; i < batchEnd; i++) {
-                whiskerSim.RunSim(beginningSimNumber + i, duration, layerNames[i], false); // 10 becuase 10 tags and layers exitst for batches
+                whiskerSim.RunSim(beginningSimNumber + i, duration, false);
             }
 
             yield return new WaitUntil(() => whiskerSim.NumberSimsRunning == 0);
@@ -49,17 +46,10 @@ public class MonteCarloSim : MonoBehaviour
     }
 
     IEnumerator EndActions() {
-        Debug.Log("End of monte carlo sim");
+        // Debug.Log("End of monte carlo sim");
         Time.timeScale = 1.0f;
         IsSimulationEnded = true;
         yield return null;
     }    
-    
-    private void MakeLayerNames() {
-        layerNames = new string[numSimulations];
-        int[] possibleLayerNums = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        for(int i = 0; i < numSimulations; i++) {
-            layerNames[i] = $"Sim layer {possibleLayerNums[i % possibleLayerNums.Length]}";
-        }
-    }
+
 }
