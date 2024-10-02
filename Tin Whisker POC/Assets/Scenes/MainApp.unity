@@ -785,8 +785,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 1830807169}
   m_HandleRect: {fileID: 864788111}
   m_Direction: 0
-  m_MinValue: -90
-  m_MaxValue: 90
+  m_MinValue: -10
+  m_MaxValue: 10
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -6444,8 +6444,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 665246818}
   m_HandleRect: {fileID: 368173169}
   m_Direction: 0
-  m_MinValue: -90
-  m_MaxValue: 90
+  m_MinValue: -10
+  m_MaxValue: 10
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -13307,6 +13307,7 @@ MonoBehaviour:
   WhiskerSimulationObject: {fileID: 328485543}
   MonteCarloSimulationObject: {fileID: 308242103}
   SimNumber: 0
+  whiskerSim: {fileID: 0}
   ResultsCanvas: {fileID: 1309027517}
   WhiskerDensityText: {fileID: 1363293969}
   LengthSigmaText: {fileID: 1016260905}

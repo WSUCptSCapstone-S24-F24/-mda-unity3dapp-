@@ -624,7 +624,7 @@ During this meeting we presented more progress about the Monte Carlo Simulation,
 
 ## Retrospective Summary (9/25/2024)
 Here's what went well:
-  * We got a clear answer from the Client and can move forward.
+   * We got a clear answer from the Client and can move forward.
    * We also got some understanding into the different Clients requests.
 
 Here's what we'd like to improve:
@@ -632,6 +632,30 @@ Here's what we'd like to improve:
   
 Here are changes we plan to implement as soon as possible:
    * Merging the Monte Carlo progress with the rest of the project.
+---
+---
+
+
+
+## Agenda (10/2/2024)
+ * Demo / User testing: Executable and Integration
+
+## Minutes (10/2/2024)
+
+During this meeting we presented our Beta Executable, got feedback about the way data was being presented, and presented the progress of integrating the previous features into the need base.
+
+## Retrospective Summary (10/2/2024)
+Here's what went well:
+   * The Clients seemed positive about the direction of the executable.
+   * The Clients were involved with providing valuable feedback about what improvements they would like to see.
+
+Here's what we'd like to improve:
+   * The user should have an easy to understand evnironment for the different changes the simulation can provide.
+   * To verify that the client can easily access the beta application, and to move into a direction of the client's requested medium.
+  
+Here are changes we plan to implement as soon as possible:
+   * After completion of the integration, heat map of bridge components scaled to the highest briged component is requested and high priority.
+   * CSV should be presenting Bridged Component Pairs for the Monte Carlos themselves not singular components.
 ---
 ---
 
