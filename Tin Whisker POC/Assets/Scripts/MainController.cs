@@ -258,6 +258,7 @@ public class MainController : MonoBehaviour
         GameObject.Find("Run Monte Carlo").GetComponent<Button>().interactable = true;
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
         SimNumber += monteCarloSim.numSimulations;
+
     }
 
 

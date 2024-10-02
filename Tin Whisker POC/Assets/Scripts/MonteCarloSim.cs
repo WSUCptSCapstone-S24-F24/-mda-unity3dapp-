@@ -34,7 +34,7 @@ public class MonteCarloSim : MonoBehaviour
             int batchEnd = Mathf.Min(batchStart + MAX_BATCH_SIZE + beginningSimNumber, totalSimulations + beginningSimNumber);
             // Debug.Log($"Running simulations from {batchStart} to {batchEnd - 1}");
             for (int i = batchStart; i < batchEnd; i++) {
-                whiskerSim.RunSim(beginningSimNumber + i, duration, false);
+                whiskerSim.RunSim(i, duration, true); // Switch back to false
             }
 
             yield return new WaitUntil(() => whiskerSim.NumberSimsRunning == 0);
@@ -48,9 +48,9 @@ public class MonteCarloSim : MonoBehaviour
     IEnumerator EndActions(int beginningSimNumber) {
         // Debug.Log("End of monte carlo sim");
         Time.timeScale = 1.0f;
-        IsSimulationEnded = true;
         ResultsProcessor.LogSimStateToMonteCarlo(whiskerSim.SimState, beginningSimNumber, numSimulations);
         ResultsProcessor.LogMonteCarloResults(beginningSimNumber, numSimulations);
+        IsSimulationEnded = true;
         yield return null;
     }    
 }

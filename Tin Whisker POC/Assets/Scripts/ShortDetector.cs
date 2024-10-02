@@ -29,6 +29,7 @@ public class ShortDetector : MonoBehaviour
                     bridgedComponentSets[simNumber].Add(set);
                 }
 
+                // TODO: Check if cuases real issues with results only checking first 100
                 // Wait for next frame after checking a few whiskers (you can adjust this number)
                 if (i % WHISKERS_CHECKED_PER_FRAME == 0)
                 {

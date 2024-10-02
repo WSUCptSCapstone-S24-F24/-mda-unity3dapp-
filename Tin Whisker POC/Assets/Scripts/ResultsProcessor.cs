@@ -5,6 +5,7 @@ using TMPro;
 using System.Collections.Generic;
 using SimInfo;
 using System.Linq;
+using UnityEngine.Analytics;
 
 public class ResultsProcessor : MonoBehaviour
 {
@@ -91,6 +92,13 @@ public class ResultsProcessor : MonoBehaviour
 
     public static void LogSimState(SimState simState, int simNumber)
     {
+        // Clear directory if not cleared
+        if (!cleared)
+        {
+            ClearSimulationResultsDirectory();
+            cleared = true;
+        }
+
         // Creating the file paths for whiskers and bridged components logs
         string whiskersLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"whiskers_log_{simNumber}.csv");
         string bridgedLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"bridgedcomponents_log_{simNumber}.csv");
@@ -174,17 +182,14 @@ public class ResultsProcessor : MonoBehaviour
             // Prepare to write to the file
             using (StreamWriter writer = new StreamWriter(fullPath, false))
             {
-                // Write headers if the file is new
-                if (existingLines.Count == 0)
-                {
-                    writer.WriteLine("Whisker,Component1,Component2");
-                }
-
                 // Write the existing content back first
                 foreach (string line in existingLines)
                 {
                     writer.WriteLine(line);
                 }
+
+                // Write headers if the file is new
+                writer.WriteLine("Whisker,Component1,Component2");
 
                 // Write the new bridged component pairs
                 foreach (var set in bridgedComponentSets)
@@ -208,7 +213,8 @@ public class ResultsProcessor : MonoBehaviour
         if (!File.Exists(csvFilePath))
         {
             Debug.LogError($"File not found: {csvFilePath}");
-            PopupManagerSingleton.Instance.ShowPopup("No simulation results found");
+            PopupManagerSingleton.Instance.ShowPopup("No results found");
+            csvText.text = "";
             return;
         }
 
@@ -246,7 +252,8 @@ public class ResultsProcessor : MonoBehaviour
 
         // Calculate results
         Dictionary<string, int> componentBridgeCounts = new Dictionary<string, int>();
-        int totalFilesWithBridgedComponents = 0;
+        Dictionary<int, int> simNumBridges = new Dictionary<int, int>();
+        int totalSimsWithBridgedComponents = 0;
 
         for (int i = beginningSimNumber; i < beginningSimNumber + numSims; i++)
         {
@@ -258,41 +265,43 @@ public class ResultsProcessor : MonoBehaviour
                 continue;
             }
 
-            bool fileHasBridges = false;
-
+            int num_skip_lines = 4;
+            int num_bridges = 0; 
             foreach (var line in File.ReadLines(fullPath))
             {
+                if (num_skip_lines > 0) {
+                    num_skip_lines--;
+                    continue;
+                }
                 var parts = line.Split(new char[] { ',', '\t' }, StringSplitOptions.RemoveEmptyEntries);
                 
                 if (parts.Length == 3)
                 {
+                    num_bridges++;
                     string component1 = parts[1].Trim();
                     string component2 = parts[2].Trim();
 
                     UpdateComponentCount(componentBridgeCounts, component1);
                     UpdateComponentCount(componentBridgeCounts, component2);
-
-                    fileHasBridges = true;
-                    
                 }
             }
-
-            if (fileHasBridges) 
+            if (num_bridges > 0) 
             {
-                totalFilesWithBridgedComponents++;
+                totalSimsWithBridgedComponents++;
             }
+            simNumBridges[i] = num_bridges;
 
             File.Delete(fullPath);
         }
 
-        double percentageWithBridgedComponents = (double)totalFilesWithBridgedComponents / numSims * 100.0;
+        double percentageWithBridgedComponents = (double)totalSimsWithBridgedComponents / numSims * 100.0;
 
         // Log results
         string outFileName = $"montecarlo_log_{beginningSimNumber + numSims - 1}.csv";
         string outFullPath = Path.Combine(directoryPath, outFileName);
         using (StreamWriter writer = new StreamWriter(outFullPath))
         {
-            writer.WriteLine("Component,BridgeCount");
+            writer.WriteLine("Component,Bridge count");
 
             foreach (var entry in componentBridgeCounts.OrderByDescending(kv => kv.Value))
             {
@@ -301,6 +310,12 @@ public class ResultsProcessor : MonoBehaviour
 
             writer.WriteLine();
             writer.WriteLine($"Percentage of simulations with bridged components: {percentageWithBridgedComponents:F2}%");
+
+            writer.WriteLine("Sim number,Number of bridges");
+            foreach (var entry in simNumBridges.OrderBy(kv => kv.Key))
+            {
+                writer.WriteLine($"{entry.Key},{entry.Value}");
+            }
         }
     }
 
