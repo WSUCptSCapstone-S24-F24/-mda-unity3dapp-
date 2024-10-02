@@ -6,7 +6,7 @@ public class Vibration : MonoBehaviour
 {
     private Vector3 initialPosition;
     private float t;
-    private SceneHandler sceneHandler;
+    private MainController MainController;
     private WhiskerSim whiskerSim;
     public float twitchFrequency = 10f; 
     private bool isTwitching = false;
@@ -18,15 +18,15 @@ public class Vibration : MonoBehaviour
 
     public IEnumerator InitializeVibration()
     {
-        // Wait until SceneHandler and WhiskerSim are available
-        while (sceneHandler == null || whiskerSim == null)
+        // Wait until MainController and WhiskerSim are available
+        while (MainController == null || whiskerSim == null)
         {
-            sceneHandler = FindObjectOfType<SceneHandler>();
+            MainController = FindObjectOfType<MainController>();
             whiskerSim = FindObjectOfType<WhiskerSim>();
 
-            if (sceneHandler == null)
+            if (MainController == null)
             {
-                Debug.LogError("SceneHandler not found in the scene.");
+                Debug.LogError("MainController not found in the scene.");
             }
 
             if (whiskerSim == null)
@@ -55,13 +55,13 @@ public class Vibration : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (sceneHandler != null && sceneHandler.simState != null && whiskerSim != null && isTwitching)
+        if (MainController != null && MainController.simState != null && whiskerSim != null && isTwitching)
         {
-            SimState simState = sceneHandler.simState;
+            SimState simState = MainController.simState;
             float offset = simState.vibrationAmplitude * Mathf.Sin(simState.vibrationSpeed * (Time.time - t));
             float velocityTolerance = 1.0f; // Tolerance for zero velocity check
 
-            foreach (GameObject whisker in whiskerSim.cylinder_clone)
+            foreach (GameObject whisker in whiskerSim.whiskers)
             {
                 if (whisker != null)
                 {
