@@ -1,9 +1,5 @@
-using System;
 using System.Collections;
-using System.Diagnostics;
-using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ResultsHandler : MonoBehaviour
 {

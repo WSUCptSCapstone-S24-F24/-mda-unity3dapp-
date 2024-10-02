@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using SimInfo;
+using System.Linq;
+
 public class ResultsProcessor : MonoBehaviour
 {
     public TextMeshProUGUI csvText;
@@ -31,8 +33,6 @@ public class ResultsProcessor : MonoBehaviour
                 {
                     subDirectory.Delete(true);
                 }
-
-                Debug.Log($"Successfully cleared SimulationResults directory at: {directoryPath}");
             }
             else
             {
@@ -82,8 +82,6 @@ public class ResultsProcessor : MonoBehaviour
                     writer.WriteLine($"{whisker.name}, {Math.Round(pos.x / 10f, 1)}, {Math.Round(pos.y / 10f, 1)}, {Math.Round(pos.z / 10f, 1)}, {Math.Round(length * 2 * 100f, 2)}, {Math.Round(diameter * 100f, 2)}");
                 }
             }
-
-            Debug.Log($"Successfully wrote to {fullPath}");
         }
         catch (Exception ex)
         {
@@ -96,6 +94,7 @@ public class ResultsProcessor : MonoBehaviour
         // Creating the file paths for whiskers and bridged components logs
         string whiskersLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"whiskers_log_{simNumber}.csv");
         string bridgedLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"bridgedcomponents_log_{simNumber}.csv");
+
 
         try
         {
@@ -145,8 +144,6 @@ public class ResultsProcessor : MonoBehaviour
                     bridgedWriter.WriteLine(line);
                 }
             }
-
-            Debug.Log($"Successfully wrote sim state to the beginning of {whiskersLogPath} and {bridgedLogPath}");
         }
         catch (Exception ex)
         {
@@ -195,8 +192,6 @@ public class ResultsProcessor : MonoBehaviour
                     writer.WriteLine($"{set.Item1},{set.Item2.name},{set.Item3.name}");
                 }
             }
-
-            Debug.Log($"Successfully wrote to {fullPath}");
         }
         catch (Exception ex)
         {
@@ -246,12 +241,111 @@ public class ResultsProcessor : MonoBehaviour
     }
 
     public static void LogMonteCarloResults(int beginningSimNumber, int numSims) {
-        // Calculate Monte Carlo accumulative results 
-        
-        
+        // Define the path where you want to save the results
+        string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults");
 
+        // Calculate results
+        Dictionary<string, int> componentBridgeCounts = new Dictionary<string, int>();
+        int totalFilesWithBridgedComponents = 0;
 
+        for (int i = beginningSimNumber; i < beginningSimNumber + numSims; i++)
+        {
+            string fileName = $"bridgedcomponents_log_{i}.csv";
+            string fullPath = Path.Combine(directoryPath, fileName);
+            if (!File.Exists(fullPath))
+            {
+                Debug.LogError($"File not found: {fullPath}");
+                continue;
+            }
+
+            bool fileHasBridges = false;
+
+            foreach (var line in File.ReadLines(fullPath))
+            {
+                var parts = line.Split(new char[] { ',', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                
+                if (parts.Length == 3)
+                {
+                    string component1 = parts[1].Trim();
+                    string component2 = parts[2].Trim();
+
+                    UpdateComponentCount(componentBridgeCounts, component1);
+                    UpdateComponentCount(componentBridgeCounts, component2);
+
+                    fileHasBridges = true;
+                    
+                }
+            }
+
+            if (fileHasBridges) 
+            {
+                totalFilesWithBridgedComponents++;
+            }
+
+            File.Delete(fullPath);
+        }
+
+        double percentageWithBridgedComponents = (double)totalFilesWithBridgedComponents / numSims * 100.0;
+
+        // Log results
+        string outFileName = $"montecarlo_log_{beginningSimNumber + numSims - 1}.csv";
+        string outFullPath = Path.Combine(directoryPath, outFileName);
+        using (StreamWriter writer = new StreamWriter(outFullPath))
+        {
+            writer.WriteLine("Component,BridgeCount");
+
+            foreach (var entry in componentBridgeCounts.OrderByDescending(kv => kv.Value))
+            {
+                writer.WriteLine($"{entry.Key},{entry.Value}");
+            }
+
+            writer.WriteLine();
+            writer.WriteLine($"Percentage of simulations with bridged components: {percentageWithBridgedComponents:F2}%");
+        }
     }
+
+
+    public static void LogSimStateToMonteCarlo(SimState simState, int beginningSimNumber, int numSims)
+    {
+        // Creating the file paths for whiskers and bridged components logs
+        string monteCarloLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"montecarlo_log_{beginningSimNumber + numSims - 1}.csv");
+
+        try
+        {
+            // Ensure the directories exist
+            Directory.CreateDirectory(Path.GetDirectoryName(monteCarloLogPath));
+
+            // Prepare new data to be written
+            string newData = $"WhiskerDensity,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec)\n{simState.whiskerDensity},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration}\n";
+
+            // Read existing content of whiskers log file
+            List<string> whiskersLines = new List<string>();
+            if (File.Exists(monteCarloLogPath))
+            {
+                whiskersLines.AddRange(File.ReadAllLines(monteCarloLogPath));
+            }
+
+            // Prepare to write to the whiskers log file
+            using (StreamWriter whiskersWriter = new StreamWriter(monteCarloLogPath, false)) // false to overwrite
+            {
+                // Write new data first
+                whiskersWriter.WriteLine(newData);
+
+                // Write back existing data
+                foreach (string line in whiskersLines)
+                {
+                    whiskersWriter.WriteLine(line);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to write sim state to the beginning of {monteCarloLogPath}: {ex.Message}");
+        }
+    }
+
+
+
 
     // Function to calculate the maximum width of each column
     private int[] GetColumnWidths(string[] lines)
@@ -278,5 +372,17 @@ public class ResultsProcessor : MonoBehaviour
         }
 
         return columnWidths;
+    }
+
+    private static void UpdateComponentCount(Dictionary<string, int> componentCounts, string component)
+    {
+        if (componentCounts.ContainsKey(component))
+        {
+            componentCounts[component]++;
+        }
+        else
+        {
+            componentCounts[component] = 1;
+        }
     }
 }

@@ -20,7 +20,6 @@ public class WhiskerSim : MonoBehaviour
     private Coroutine simulationCoroutine;
     private bool render;
 
-    
 
     public void RunSim(int simNumber, float duration, bool render = true)
     {
