@@ -42,14 +42,14 @@ public class MonteCarloSim : MonoBehaviour
             batchStart = batchEnd;
         }
 
-        StartCoroutine(EndActions());
+        StartCoroutine(EndActions(beginningSimNumber));
     }
 
-    IEnumerator EndActions() {
+    IEnumerator EndActions(int beginningSimNumber) {
         // Debug.Log("End of monte carlo sim");
         Time.timeScale = 1.0f;
         IsSimulationEnded = true;
+        ResultsProcessor.LogMonteCarloResults(beginningSimNumber, numSimulations);
         yield return null;
     }    
-
 }

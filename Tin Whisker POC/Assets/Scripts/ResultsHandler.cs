@@ -19,15 +19,15 @@ public class ResultsHandler : MonoBehaviour
         GameObject MainController = GameObject.Find("MainController");
         if (MainController != null)
         {
-            // Get the SceneHandler component and access sceneNum
+            // Get the MainController component and access sceneNum
             MainController handler = MainController.GetComponent<MainController>();
             if (handler != null)
                 lastSimNum = handler.SimNumber - 1;
             else
-                UnityEngine.Debug.LogError("SceneHandler component is not found on the SceneControl object!");
+                UnityEngine.Debug.LogError("Main Controller component is not found on the MainController object!");
         }
         else
-            UnityEngine.Debug.LogError("SceneControl GameObject is not found!");
+            UnityEngine.Debug.LogError("Main Controller GameObject is not found!");
         StartCoroutine(WaitForEscape());
     }
 

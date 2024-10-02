@@ -8,16 +8,18 @@ using TMPro;
 
 public class WhiskerSim : MonoBehaviour
 {
-    public ShortDetector ShortDetector;
+
     public SimState SimState;
     public GameObject Whisker; // Cylinder/Whisker to clone
     public int NumberSimsRunning;
+    public ShortDetector ShortDetector;
 
     private string myjsonPath;
     private List<GameObject> whiskers = new List<GameObject>();
     private float duration;
     private Coroutine simulationCoroutine;
     private bool render;
+
     
 
     public void RunSim(int simNumber, float duration, bool render = true)
@@ -27,13 +29,15 @@ public class WhiskerSim : MonoBehaviour
         this.duration = duration;
         this.render = render;
         SimStateSetUp(simNumber);
-        SpawnWhiskers(layerName);
+        List<WhiskerCollider> whiskerColliders = SpawnWhiskers(layerName);
+
 
         // Log all whiskers to whisker_log_{simNumber}
         ResultsProcessor.LogWhiskers(GetSimLayerWhiskers(whiskers, layerName), simNumber);
         // Log the SimState to other results files
         ResultsProcessor.LogSimState(SimState, simNumber);
         simulationCoroutine = StartCoroutine(EndSimulationAfterDuration(simNumber));
+        ShortDetector.GetComponent<ShortDetector>().StartWhiskerChecks(whiskerColliders);
     }
 
     public void ScaleCylinder(GameObject cylinderObject, float widthScale, float heightScale)
@@ -104,8 +108,9 @@ public class WhiskerSim : MonoBehaviour
         }
     }
 
-    private void SpawnWhiskers(string layerName)
+    private List<WhiskerCollider> SpawnWhiskers(string layerName)
     {
+        List<WhiskerCollider> whiskerColliders = new List<WhiskerCollider>();
         Whisker.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         Vector3 originalScale = Whisker.transform.localScale;
         // Defualt is scale: (1, 1, 1) which makes a length of 2 or 1/5 mm and a diameter of 1 or 1/10 mm
@@ -148,19 +153,9 @@ public class WhiskerSim : MonoBehaviour
             ScaleCylinder(newWhisker, widthMultiplier, lengthMultiplier);
             WhiskerCollider whiskerCollider = newWhisker.GetComponent<WhiskerCollider>();
             whiskerCollider.WhiskerNum = i;
-            if (whiskerCollider && ShortDetector)
-            {
-                ShortDetector.whiskers.Add(whiskerCollider);
-            }
-            else
-            {
-                Debug.LogError("Whisker collider or short detector not found");
-                if (!ShortDetector)
-                {
-                    Debug.LogError("Short detector not found");
-                }
-            }
+            whiskerColliders.Add(whiskerCollider);
         }
+        return whiskerColliders;
     }
 
     IEnumerator EndSimulationAfterDuration(int simNumber)

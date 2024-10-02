@@ -245,6 +245,14 @@ public class ResultsProcessor : MonoBehaviour
         }
     }
 
+    public static void LogMonteCarloResults(int beginningSimNumber, int numSims) {
+        // Calculate Monte Carlo accumulative results 
+        
+        
+
+
+    }
+
     // Function to calculate the maximum width of each column
     private int[] GetColumnWidths(string[] lines)
     {
