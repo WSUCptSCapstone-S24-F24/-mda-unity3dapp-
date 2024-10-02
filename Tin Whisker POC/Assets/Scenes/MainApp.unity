@@ -153,7 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9e3f8b40deb4d42a94d6098e131eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whiskers: []
 --- !u!114 &18744239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Whisker: {fileID: 2086067737}
   NumberSimsRunning: 0
-  ShortDetector: {fileID: 0}
+  ShortDetector: {fileID: 1207734983}
 --- !u!4 &18744240
 Transform:
   m_ObjectHideFlags: 0
@@ -12733,7 +12732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9e3f8b40deb4d42a94d6098e131eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whiskers: []
 --- !u!1 &1209273016
 GameObject:
   m_ObjectHideFlags: 0

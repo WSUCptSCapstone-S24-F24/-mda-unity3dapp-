@@ -37,7 +37,7 @@ public class WhiskerSim : MonoBehaviour
         // Log the SimState to other results files
         ResultsProcessor.LogSimState(SimState, simNumber);
         simulationCoroutine = StartCoroutine(EndSimulationAfterDuration(simNumber));
-        ShortDetector.GetComponent<ShortDetector>().StartWhiskerChecks(whiskerColliders);
+        ShortDetector.GetComponent<ShortDetector>().StartWhiskerChecks(whiskerColliders, simNumber);
     }
 
     public void ScaleCylinder(GameObject cylinderObject, float widthScale, float heightScale)

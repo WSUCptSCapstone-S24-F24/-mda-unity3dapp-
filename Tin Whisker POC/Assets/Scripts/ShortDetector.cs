@@ -6,16 +6,17 @@ using UnityEngine;
 
 public class ShortDetector : MonoBehaviour
 {
-    private HashSet<(int, GameObject, GameObject)> bridgedComponentSets = new HashSet<(int, GameObject, GameObject)>();
+    private Dictionary<int, HashSet<(int, GameObject, GameObject)>> bridgedComponentSets = new Dictionary<int, HashSet<(int, GameObject, GameObject)>>();
     private Coroutine whiskerCheckCoroutine;
     private static int WHISKERS_CHECKED_PER_FRAME = 100;
   
-    public void StartWhiskerChecks(List<WhiskerCollider> whiskerColliders)
+    public void StartWhiskerChecks(List<WhiskerCollider> whiskerColliders, int simNumber)
     {
-        whiskerCheckCoroutine = StartCoroutine(CheckWhiskersRoutine(whiskerColliders));
+        bridgedComponentSets[simNumber] = new HashSet<(int, GameObject, GameObject)>();
+        whiskerCheckCoroutine = StartCoroutine(CheckWhiskersRoutine(whiskerColliders, simNumber));
     }
 
-    private IEnumerator CheckWhiskersRoutine(List<WhiskerCollider> whiskerColliders)
+    private IEnumerator CheckWhiskersRoutine(List<WhiskerCollider> whiskerColliders, int simNumber)
     {
         while (true)
         {
@@ -25,7 +26,7 @@ public class ShortDetector : MonoBehaviour
                 {
                     GameObject[] components = whiskerColliders[i].GetBridgedComponents();
                     (int, GameObject, GameObject) set = NormalizeSet(whiskerColliders[i].WhiskerNum, components[0], components[1]);
-                    bridgedComponentSets.Add(set);
+                    bridgedComponentSets[simNumber].Add(set);
                 }
 
                 // Wait for next frame after checking a few whiskers (you can adjust this number)
@@ -58,6 +59,7 @@ public class ShortDetector : MonoBehaviour
         }
 
         // Aggregate and process the results
-        ResultsProcessor.LogBridgedWhiskers(bridgedComponentSets, simNumber);
+        ResultsProcessor.LogBridgedWhiskers(bridgedComponentSets[simNumber], simNumber);
+        bridgedComponentSets[simNumber].Clear();
     }
 }
