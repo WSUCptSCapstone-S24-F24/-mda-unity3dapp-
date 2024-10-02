@@ -32,7 +32,8 @@ public class MainController : MonoBehaviour
     public TMP_InputField SpawnPositionZText;
     public TMP_InputField SimDurationText;
     public TMP_InputField SimQuantityText;
-    public Button endSimEarlyButton;
+    public Button EndSimEarlyButton;
+    public Canvas MonteCarloWaitScreen;
 
     public bool PCBloaded = false;
     public string objfilePath;
@@ -47,7 +48,8 @@ public class MainController : MonoBehaviour
     {
         rootJsonPath = Application.persistentDataPath + "/SimState.JSON";
         popupManager = FindObjectOfType<PopupManager>();
-        endSimEarlyButton.gameObject.SetActive(false);
+        EndSimEarlyButton.gameObject.SetActive(false);
+        MonteCarloWaitScreen.gameObject.SetActive(false);
         whiskerSim = WhiskerSimulationObject.GetComponent<WhiskerSim>();
         monteCarloSim = MonteCarloSimulationObject.GetComponent<MonteCarloSim>();
 
@@ -196,7 +198,7 @@ public class MainController : MonoBehaviour
 
             // TODO: Make all but end sim button be non-interactable
             GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;  
-            endSimEarlyButton.gameObject.SetActive(true);
+            EndSimEarlyButton.gameObject.SetActive(true);
 
             simState.SaveSimToJSON(myJsonPath);
 
@@ -214,7 +216,7 @@ public class MainController : MonoBehaviour
 
         ShowDebugMessage("Simulation ended.");
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
-        endSimEarlyButton.gameObject.SetActive(false);
+        EndSimEarlyButton.gameObject.SetActive(false);
         SimNumber++;
     }
 
@@ -239,6 +241,7 @@ public class MainController : MonoBehaviour
             // TODO: Make all but end sim button be non-interactable
             GameObject.Find("Run Monte Carlo").GetComponent<Button>().interactable = false;
             GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;
+            MonteCarloWaitScreen.gameObject.SetActive(true);
 
             simState.SaveSimToJSON(myJsonPath);
 
@@ -257,6 +260,7 @@ public class MainController : MonoBehaviour
         ShowDebugMessage("Monte Carlo simulation ended.");
         GameObject.Find("Run Monte Carlo").GetComponent<Button>().interactable = true;
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
+        MonteCarloWaitScreen.gameObject.SetActive(false);
         SimNumber += monteCarloSim.numSimulations;
 
     }

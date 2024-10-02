@@ -299,7 +299,7 @@ public class ResultsProcessor : MonoBehaviour
         // Log results
         string outFileName = $"montecarlo_log_{beginningSimNumber + numSims - 1}.csv";
         string outFullPath = Path.Combine(directoryPath, outFileName);
-        using (StreamWriter writer = new StreamWriter(outFullPath))
+        using (StreamWriter writer = new StreamWriter(outFullPath, true))
         {
             writer.WriteLine("Component,Bridge count");
 
