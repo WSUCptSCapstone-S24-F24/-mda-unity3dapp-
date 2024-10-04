@@ -6,51 +6,40 @@ using UnityEngine;
 
 public class ShortDetector : MonoBehaviour
 {
-    public List<WhiskerCollider> whiskers;  // Assign all whiskers to this list
-    public int maxBridgingWhiskers = 10; // Replace with your desired stop condition
-
-    private HashSet<(int, GameObject, GameObject)> bridgedComponentSets = new HashSet<(int, GameObject, GameObject)>();
+    private Dictionary<int, HashSet<(int, GameObject, GameObject)>> bridgedComponentSets = new Dictionary<int, HashSet<(int, GameObject, GameObject)>>();
     private Coroutine whiskerCheckCoroutine;
-  
-    private void Start()
+    private static int WHISKERS_CHECKED_PER_FRAME = 100;
+
+    public void StartWhiskerChecks(List<WhiskerCollider> whiskerColliders, int simNumber)
     {
-        whiskerCheckCoroutine = StartCoroutine(CheckWhiskersRoutine());
+        bridgedComponentSets[simNumber] = new HashSet<(int, GameObject, GameObject)>();
+        whiskerCheckCoroutine = StartCoroutine(CheckWhiskersRoutine(whiskerColliders, simNumber));
     }
 
-    private IEnumerator CheckWhiskersRoutine()
+    private IEnumerator CheckWhiskersRoutine(List<WhiskerCollider> whiskerColliders, int simNumber)
     {
         while (true)
         {
-            if (whiskers.Count == 0)
+            for (int i = 0; i < whiskerColliders.Count; i++)
             {
-                yield return new WaitForSeconds(1.0f);
-                continue; // Continue the while loop if no whiskers are found
-            }
-
-            for (int i = 0; i < whiskers.Count; i++)
-            {
-                if (whiskers[i].IsBridgingComponents())
+                if (whiskerColliders[i].IsBridgingComponents())
                 {
-                    // Get the two components the whisker is bridging
-                    GameObject[] components = whiskers[i].GetBridgedComponents();
-
-                    // Store the components in a normalized order (smallest instance ID first)
-                    (int, GameObject, GameObject) set = NormalizeSet(whiskers[i].WhiskerNum, components[0], components[1]);
-                    bridgedComponentSets.Add(set);
+                    GameObject[] components = whiskerColliders[i].GetBridgedComponents();
+                    (int, GameObject, GameObject) set = NormalizeSet(whiskerColliders[i].WhiskerNum, components[0], components[1]);
+                    bridgedComponentSets[simNumber].Add(set);
                 }
 
+                // TODO: Check if cuases real issues with results only checking first 100
                 // Wait for next frame after checking a few whiskers (you can adjust this number)
-                if (i % 100 == 0)
+                if (i % WHISKERS_CHECKED_PER_FRAME == 0)
                 {
                     yield return null;
                 }
             }
         }
-        if (whiskers.Count == 0)
-            Debug.LogError("No whiskers assigned to ShortDetector");
     }
 
-    
+
     private (int, GameObject, GameObject) NormalizeSet(int a, GameObject b, GameObject c)
     {
         if (b.GetInstanceID() < c.GetInstanceID())
@@ -63,7 +52,7 @@ public class ShortDetector : MonoBehaviour
         }
     }
 
-    public void StopWhiskerChecks(int sim_id)
+    public void StopWhiskerChecks(int simNumber)
     {
         if (whiskerCheckCoroutine != null)
         {
@@ -71,6 +60,7 @@ public class ShortDetector : MonoBehaviour
         }
 
         // Aggregate and process the results
-        ResultsProcessor.LogBridgedWhiskers(bridgedComponentSets, sim_id);
+        ResultsProcessor.LogBridgedWhiskers(bridgedComponentSets[simNumber], simNumber);
+        bridgedComponentSets[simNumber].Clear();
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using System.IO;
 using SimInfo;
-using TMPro;
 
 public class WhiskerSim : MonoBehaviour
 {
@@ -13,27 +12,33 @@ public class WhiskerSim : MonoBehaviour
     public GameObject Whisker; // Cylinder/Whisker to clone
     public int NumberSimsRunning;
 
-    private int simNumber;
     private string myjsonPath;
     public List<GameObject> whiskers = new List<GameObject>();
     private float duration;
     private Coroutine simulationCoroutine;
-    private string layerName;
     private bool render;
     public Shock Shock;
     public Shocker Shocker;
     public Vibration Vibration;
     public OpenVibration OpenVibration;
 
-    public void RunSim(ref int simNumber, float duration, string layerName = "Sim layer 1", bool render = true)
+    public void RunSim(int simNumber, float duration, bool render = true)
     {
+        string layerName = $"Sim layer {simNumber % 10 + 1}";  // For 10 physics layers
         NumberSimsRunning++;
-        this.simNumber = simNumber;
         this.duration = duration;
-        this.layerName = layerName;
         this.render = render;
-        SimStateSetUp();
-        SpawnWhiskers();
+
+        // Validate if the layer exists
+        int layer = LayerMask.NameToLayer(layerName);
+        if (layer == -1)
+        {
+            Debug.LogError($"Layer '{layerName}' does not exist. Please create this layer in the Tags and Layers settings.");
+            return;
+        }
+
+        SimStateSetUp(simNumber);
+        List<WhiskerCollider> whiskerColliders = SpawnWhiskers(layerName);
 
         if (Shocker.shocking)
         {
@@ -48,11 +53,11 @@ public class WhiskerSim : MonoBehaviour
         }
 
         // Log all whiskers to whisker_log_{simNumber}
-        ResultsProcessor.LogWhiskers(whiskers, this.simNumber);
-        // Log the SimState to simstate_log_{simNumber}
-        ResultsProcessor.LogSimState(SimState, this.simNumber);
-        simulationCoroutine = StartCoroutine(EndSimulationAfterDuration());        
-        simNumber++;
+        ResultsProcessor.LogWhiskers(GetSimLayerWhiskers(whiskers, layerName), simNumber);
+        // Log the SimState to other results files
+        ResultsProcessor.LogSimState(SimState, simNumber);
+        simulationCoroutine = StartCoroutine(EndSimulationAfterDuration(simNumber));
+        ShortDetector.GetComponent<ShortDetector>().StartWhiskerChecks(whiskerColliders, simNumber);
     }
 
     public void ScaleCylinder(GameObject cylinderObject, float widthScale, float heightScale)
@@ -81,22 +86,29 @@ public class WhiskerSim : MonoBehaviour
         cylinderObject.transform.localScale = newScale;
     }
 
-    public void ClearWhiskers()
+    public void ClearLayerWhiskers(string layerNameToDelete)
     {
-        foreach (GameObject Whisker in whiskers)
+        int layerNum = LayerMask.NameToLayer(layerNameToDelete);
+        foreach (GameObject whisker in whiskers)
         {
-            DestroyImmediate(Whisker);
+            if (whisker.layer == layerNum)
+            {
+                DestroyImmediate(whisker);
+            }
         }
-        whiskers.Clear();
+
+        whiskers.RemoveAll(whisker => whisker == null);
     }
 
-    public void SaveResults()
+    public void SaveResults(int simNumber)
     {
+        Debug.Log($"Saving sim number: {simNumber}");
         SimState.SaveSimToJSON(myjsonPath);
         ShortDetector.StopWhiskerChecks(simNumber);
     }
 
-    private void SimStateSetUp() {
+    private void SimStateSetUp(int simNumber)
+    {
         Debug.Log("Sim number: " + simNumber);
 
         myjsonPath = Application.persistentDataPath + "/SimState.JSON";
@@ -116,40 +128,56 @@ public class WhiskerSim : MonoBehaviour
         }
     }
 
-    private void SpawnWhiskers() {
+    private List<WhiskerCollider> SpawnWhiskers(string layerName)
+    {
+        List<WhiskerCollider> whiskerColliders = new List<WhiskerCollider>();
         Whisker.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-        Vector3 originalScale = Whisker.transform.localScale; 
-        // Defualt is scale: (1, 1, 1) which makes a length of 2 or 1/5 mm and a diameter of 1 or 1/10 mm
-        // (1, 5, 1) is 1 mm long --> (1, 0.005, 1) is 1 micron long
-        // (10, 1, 10) is 1 mm diameter --> (0.01, 1, 0.01) is 1 micron diameter 
-        Vector3 scaledTransform = new Vector3(originalScale.x * 10.0f / 1000.0f, originalScale.y * 5.0f / 1000.0f, originalScale.z * 10.0f / 1000.0f);
+        Vector3 originalScale = Whisker.transform.localScale;
+
+        Vector3 scaledTransform = new Vector3(
+            originalScale.x * 10.0f / 1000.0f,
+            originalScale.y * 5.0f / 1000.0f,
+            originalScale.z * 10.0f / 1000.0f
+        );
         Whisker.transform.localScale = scaledTransform;
 
-        float WhiskerCount = SimState.spawnAreaSizeX * SimState.spawnAreaSizeY * SimState.spawnAreaSizeZ * SimState.whiskerDensity;
+        float WhiskerCount = SimState.whiskerAmount;
         LognormalRandom lognormalRandomLength = new LognormalRandom(SimState.LengthMu, SimState.LengthSigma);
         LognormalRandom lognormalRandomWidth = new LognormalRandom(SimState.WidthMu, SimState.WidthSigma);
 
         if (WhiskerCount > 1000)
         {
             WhiskerCount = 1000;
-            Debug.LogError("Whisker count is too high\nWhisker count: " + WhiskerCount);
+            Debug.LogError("Whisker count is too high. Whisker count: " + WhiskerCount);
         }
+
+        int layer = LayerMask.NameToLayer(layerName);
+        if (layer == -1)
+        {
+            Debug.LogError($"Layer '{layerName}' does not exist. Cannot assign layer to whiskers.");
+            return whiskerColliders;
+        }
+
         for (int i = 0; i < WhiskerCount; i++)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(-SimState.spawnAreaSizeX / 2f * 10f, SimState.spawnAreaSizeX / 2f * 10f) + SimState.spawnPositionX * 10f - 5f,
-                                                Random.Range(-SimState.spawnAreaSizeY / 2f * 10f, SimState.spawnAreaSizeY / 2f * 10f) + SimState.spawnPositionY * 10f + SimState.spawnAreaSizeY * 10f / 2,
-                                                Random.Range(-SimState.spawnAreaSizeZ / 2f * 10f, SimState.spawnAreaSizeZ / 2f * 10f) + SimState.spawnPositionZ * 10f - 5f);
+            Vector3 spawnPosition = new Vector3(
+                Random.Range(-SimState.spawnAreaSizeX / 2f * 10f, SimState.spawnAreaSizeX / 2f * 10f) + SimState.spawnPositionX * 10f - 5f,
+                Random.Range(-SimState.spawnAreaSizeY / 2f * 10f, SimState.spawnAreaSizeY / 2f * 10f) + SimState.spawnPositionY * 10f + SimState.spawnAreaSizeY * 10f / 2,
+                Random.Range(-SimState.spawnAreaSizeZ / 2f * 10f, SimState.spawnAreaSizeZ / 2f * 10f) + SimState.spawnPositionZ * 10f - 5f
+            );
             Quaternion spawnRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+
             GameObject newWhisker = Instantiate(Whisker, spawnPosition, spawnRotation);
-            int layer = LayerMask.NameToLayer(layerName);
-            newWhisker.layer = layer;
+            newWhisker.layer = layer; // Assign valid layer
             newWhisker.name = $"Whisker{i}";
-            // Make Whisker visable
+
+            // Make Whisker visible
             newWhisker.GetComponent<MeshRenderer>().enabled = render;
+
             // Enable Whisker collisions
             Collider collider = newWhisker.GetComponent<Collider>();
             if (collider != null)
-                collider.enabled = true; // Enable collisions
+                collider.enabled = true;
 
             whiskers.Add(newWhisker);
 
@@ -159,19 +187,10 @@ public class WhiskerSim : MonoBehaviour
             ScaleCylinder(newWhisker, widthMultiplier, lengthMultiplier);
             WhiskerCollider whiskerCollider = newWhisker.GetComponent<WhiskerCollider>();
             whiskerCollider.WhiskerNum = i;
-            if (whiskerCollider && ShortDetector)
-            {
-                ShortDetector.whiskers.Add(whiskerCollider);
-            }
-            else
-            {
-                Debug.LogError("Whisker collider or short detector not found");
-                if (!ShortDetector)
-                {
-                    Debug.LogError("Short detector not found");
-                }
-            }
+            whiskerColliders.Add(whiskerCollider);
         }
+
+        return whiskerColliders;
     }
 
     private void StopShockAndVibrationRoutines()
@@ -187,15 +206,16 @@ public class WhiskerSim : MonoBehaviour
         }
     }
 
-    IEnumerator EndSimulationAfterDuration()
+    IEnumerator EndSimulationAfterDuration(int simNumber)
     {
         // Check if simState and its duration are set, otherwise use a default value
         float simulationDuration = duration >= 0.1 ? duration : 10f;
 
         // Wait for the specified simulation duration
         yield return new WaitForSeconds(simulationDuration);
-        SaveResults();
-        ClearWhiskers();
+
+        SaveResults(simNumber);
+        ClearLayerWhiskers($"Sim layer {simNumber % 10 + 1}");
         StopShockAndVibrationRoutines();
         yield return null;
 
@@ -205,13 +225,28 @@ public class WhiskerSim : MonoBehaviour
         NumberSimsRunning--;
     }
 
-    public void EndSimulationEarly()
+    public void EndSimulationEarly(int simNumber)
     {
         // Stop the coroutine that is waiting for the simulation to end
         StopCoroutine(simulationCoroutine);
-        SaveResults();
-        ClearWhiskers();
+        SaveResults(simNumber);
+        ClearLayerWhiskers($"Sim layer {simNumber % 10 + 1}");
         StopShockAndVibrationRoutines();
         NumberSimsRunning--;
     }
+
+    private List<GameObject> GetSimLayerWhiskers(List<GameObject> allWhiskers, string layerName)
+    {
+        List<GameObject> resultWhiskers = new List<GameObject>();
+        int layerNum = LayerMask.NameToLayer(layerName);
+        foreach (GameObject whisker in allWhiskers)
+        {
+            if (whisker.layer == layerNum)
+            {
+                resultWhiskers.Add(whisker);
+            }
+        }
+        return resultWhiskers;
+    }
 }
+
