@@ -7,7 +7,7 @@ namespace SimInfo
 {
     public class SimState
     {
-        public int whiskerDensity;
+        public int whiskerAmount;
         public float spawnAreaSizeX;
         public float spawnAreaSizeY;
         public float spawnAreaSizeZ;
@@ -23,12 +23,16 @@ namespace SimInfo
         public string objfilePath;
         public string mtlfilePath;
         public bool fileOpened;
+        public float vibrationAmplitude;
+        public float vibrationSpeed;
+        public float ShockIntensity;
+        public float ShockDuration;
 
 
         public SimState()
         {
             // Default values
-            this.whiskerDensity = 10;
+            this.whiskerAmount = 10;
             this.spawnAreaSizeX = 2f;
             this.spawnAreaSizeY = 2f;
             this.spawnAreaSizeZ = 2f;
@@ -40,13 +44,17 @@ namespace SimInfo
             this.WidthMu = 0.5f;
             this.WidthSigma = 0.5f;
             this.simNumber = -1;
-        }
+            this.vibrationAmplitude = 10.0f;
+            this.vibrationSpeed = 10.0f;
+            this.ShockIntensity = 0.05f; 
+            this.ShockDuration = 0.025f; 
+    }
 
-        public SimState(int whiskerDensity, float spawnAreaSizeX, float spawnAreaSizeY, float spawnAreaSizeZ,
+        public SimState(int whiskerAmount, float spawnAreaSizeX, float spawnAreaSizeY, float spawnAreaSizeZ,
                         float spawnPositionX, float spawnPositionY, float spawnPositionZ, float LengthMu,
-                        float LengthSigma, float WidthMu, float WidthSigma, int simNumber)
+                        float LengthSigma, float WidthMu, float WidthSigma, int simNumber, float vibrationAmplitude, float vibrationSpeed, float ShockIntensity, float ShockDuration)
         {
-            this.whiskerDensity = whiskerDensity;
+            this.whiskerAmount = whiskerAmount;
             this.spawnAreaSizeX = spawnAreaSizeX;
             this.spawnAreaSizeY = spawnAreaSizeY;
             this.spawnAreaSizeZ = spawnAreaSizeZ;
@@ -58,6 +66,10 @@ namespace SimInfo
             this.WidthMu = WidthMu;
             this.WidthSigma = WidthSigma;
             this.simNumber = simNumber;
+            this.vibrationAmplitude = vibrationAmplitude;
+            this.vibrationSpeed = vibrationSpeed;
+            this.ShockIntensity = ShockIntensity;
+            this.ShockDuration = ShockDuration;
         }
 
         public void SaveSimToJSON(string jsonPath)

@@ -1,33 +1,29 @@
-using System;
 using System.Collections;
-using System.Diagnostics;
-using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ResultsHandler : MonoBehaviour
 {
     public GameObject Preview;
     public GameObject MainMenu;
-    public CSVHandler ResultsShower;
+    public ResultsProcessor ResultsProcessor;
     private int lastSimNum;
 
     void OnEnable()
     {
         if (Preview != null)
             Preview.SetActive(false);
-        GameObject sceneController = GameObject.Find("SceneControl");
-        if (sceneController != null)
+        GameObject MainController = GameObject.Find("MainController");
+        if (MainController != null)
         {
-            // Get the SceneHandler component and access sceneNum
-            SceneHandler handler = sceneController.GetComponent<SceneHandler>();
+            // Get the MainController component and access sceneNum
+            MainController handler = MainController.GetComponent<MainController>();
             if (handler != null)
-                lastSimNum = handler.SimNumber;
+                lastSimNum = handler.SimNumber - 1;
             else
-                UnityEngine.Debug.LogError("SceneHandler component is not found on the SceneControl object!");
+                UnityEngine.Debug.LogError("Main Controller component is not found on the MainController object!");
         }
         else
-            UnityEngine.Debug.LogError("SceneControl GameObject is not found!");
+            UnityEngine.Debug.LogError("Main Controller GameObject is not found!");
         StartCoroutine(WaitForEscape());
     }
 
@@ -35,16 +31,8 @@ public class ResultsHandler : MonoBehaviour
     {
         if (Preview != null)
             Preview.SetActive(true);
-        ResultsShower.ShowCSVFile($"whiskers_log_{lastSimNum}.csv");
+        ResultsProcessor.ShowCSVFile($"whiskers_log_{lastSimNum}.csv");
 
-        StartCoroutine(WaitForKeyPress());
-    }
-
-    public void ShowSimState()
-    {
-        if (Preview != null)
-            Preview.SetActive(true);
-        ResultsShower.ShowCSVFile($"simstate_log_{lastSimNum}.csv");
         StartCoroutine(WaitForKeyPress());
     }
 
@@ -52,7 +40,7 @@ public class ResultsHandler : MonoBehaviour
     {
         if (Preview != null)
             Preview.SetActive(true);
-        ResultsShower.ShowCSVFile($"montecarlo_log_{lastSimNum}.csv");
+        ResultsProcessor.ShowCSVFile($"montecarlo_log_{lastSimNum}.csv");
         StartCoroutine(WaitForKeyPress());
     }
 
@@ -60,7 +48,7 @@ public class ResultsHandler : MonoBehaviour
     {
         if (Preview != null)
             Preview.SetActive(true);
-        ResultsShower.ShowCSVFile($"bridgedcomponents_log_{lastSimNum}.csv");
+        ResultsProcessor.ShowCSVFile($"bridgedcomponents_log_{lastSimNum}.csv");
         StartCoroutine(WaitForKeyPress());
     }
 
