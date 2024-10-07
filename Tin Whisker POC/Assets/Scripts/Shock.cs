@@ -6,94 +6,82 @@ using SimInfo;
 public class Shock : MonoBehaviour
 {
     private MainController MainController;
-    private bool isShocking = false;
-    private Coroutine shockCoroutine; // Track the running coroutine
+    private bool isShocking = false; // Determines whether shocking is enabled
+    private float shockTimer = 0f;   // Tracks the time left until the next shock
+    private float shockDuration = 0f; // Caches the ShockDuration from SimState
 
-    public void Start()
+    void Start()
     {
-        // Only initialize if shock is supposed to start automatically
-        // You can remove this if you want to control shock manually
+        // Initialize when needed; no automatic start
     }
 
     public void StartShock()
     {
-        if (shockCoroutine == null)  // Ensure only one coroutine runs
-        {
-            shockCoroutine = StartCoroutine(InitializeShock());
-        }
-    }
-
-    public IEnumerator InitializeShock()
-    {
-        // Wait until MainController and WhiskerSim are available
-        while (MainController == null || MainController.whiskerSim == null)
+        if (MainController == null)
         {
             MainController = FindObjectOfType<MainController>();
-            if (MainController == null)
+            if (MainController == null || MainController.simState == null)
             {
-                Debug.LogError("MainController not found in the scene.");
-                yield break; // Exit if MainController is not found
+                Debug.LogError("MainController or SimState not found. Shock cannot start.");
+                return;
             }
-
-            if (MainController.whiskerSim == null)
-            {
-                Debug.LogError("WhiskerSim not found in the scene.");
-                yield break; // Exit if WhiskerSim is not found
-            }
-
-            yield return null; // Wait for the next frame
         }
 
-        // Once both are available, start the ShockCoroutine
-        shockCoroutine = StartCoroutine(ShockCoroutine());
+        shockDuration = MainController.simState.ShockDuration; // Set shock duration from SimState
+        shockTimer = shockDuration; // Start the timer at the ShockDuration value
+        isShocking = true; // Enable shocking
+        Debug.Log("Shock started with a duration of: " + shockDuration);
     }
 
     public void StopShock()
     {
-        if (shockCoroutine != null)
-        {
-            isShocking = false; // Stop the shock logic
-            StopCoroutine(shockCoroutine); // Stop the coroutine
-            shockCoroutine = null; // Clear the coroutine reference
-            Debug.Log("Shock coroutine stopped.");
-        }
-    }
-
-    IEnumerator ShockCoroutine()
-    {
-        while (true)  // Run indefinitely until stopped
-        {
-            yield return new WaitForSeconds(MainController.simState.ShockDuration);
-            isShocking = true;  // Set flag to apply shock
-            yield return new WaitForFixedUpdate(); // Wait for one physics frame
-            isShocking = false; // Reset flag after one update
-        }
+        isShocking = false; // Stop the shock logic
+        Debug.Log("Shock stopped.");
     }
 
     void FixedUpdate()
     {
-        if (MainController != null && MainController.simState != null && MainController.whiskerSim != null && isShocking)
+        if (isShocking && MainController != null && MainController.simState != null && MainController.whiskerSim != null)
         {
-            SimState simState = MainController.simState;
-            float shockForce = simState.ShockIntensity;
-            float velocityTolerance = 1.0f; // Tolerance for zero velocity check
-            float varianceAmount = 5f; // Small variance for x and z
+            // Reduce the shock timer by the time since the last fixed update
+            shockTimer -= Time.fixedDeltaTime;
 
-            // Generate random variance for x and z once per shock interval
-            float randomX = Random.Range(-varianceAmount, varianceAmount);
-            float randomZ = Random.Range(-varianceAmount, varianceAmount);
-
-            // Apply shock force to all whiskers
-            foreach (GameObject whisker in MainController.whiskerSim.whiskers)
+            // When the timer reaches zero, apply the shock
+            if (shockTimer <= 0f)
             {
-                if (whisker != null)
+                ApplyShock(); // Apply the shock force to whiskers
+
+                // Reset the timer for the next shock
+                shockTimer = shockDuration;
+            }
+        }
+    }
+
+    private void ApplyShock()
+    {
+        SimState simState = MainController.simState;
+        float shockForce = simState.ShockIntensity;
+        float velocityTolerance = 1.0f; // Tolerance for zero velocity check
+        float varianceAmount = 5f; // Small variance for x and z
+
+        Debug.Log("Applying shock...");
+
+        // Generate random variance for x and z components ONCE for all whiskers
+        float randomX = Random.Range(-varianceAmount, varianceAmount);
+        float randomZ = Random.Range(-varianceAmount, varianceAmount);
+
+        // Apply shock force to all whiskers in the same direction
+        foreach (GameObject whisker in MainController.whiskerSim.whiskers)
+        {
+            if (whisker != null)
+            {
+                Rigidbody rb = whisker.GetComponent<Rigidbody>();
+                if (rb != null && Mathf.Abs(rb.velocity.y) < velocityTolerance)
                 {
-                    Rigidbody rb = whisker.GetComponent<Rigidbody>();
-                    if (rb != null && Mathf.Abs(rb.velocity.y) < velocityTolerance)
-                    {
-                        Vector3 shockImpact = new Vector3(randomX, shockForce, randomZ); // Use same randomX and randomZ for all whiskers
-                        rb.AddForce(shockImpact, ForceMode.Impulse);
-                    }
+                    Vector3 shockImpact = new Vector3(randomX, shockForce, randomZ);
+
+                    // Apply the same shock force to all whiskers
+                    rb.AddForce(shockImpact, ForceMode.Impulse);
                 }
             }
         }
