@@ -256,6 +256,7 @@ public class ResultsProcessor : MonoBehaviour
 
         // Calculate results
         Dictionary<string, int> componentBridgeCounts = new Dictionary<string, int>();
+        Dictionary<(string, string), int> bridgesCounts = new Dictionary<(string, string), int>();
         Dictionary<int, int> simNumBridges = new Dictionary<int, int>();
         int totalSimsWithBridgedComponents = 0;
 
@@ -286,6 +287,7 @@ public class ResultsProcessor : MonoBehaviour
                     string component1 = parts[1].Trim();
                     string component2 = parts[2].Trim();
 
+                    UpdateBridgesCount(bridgesCounts, (component1, component2));
                     UpdateComponentCount(componentBridgeCounts, component1);
                     UpdateComponentCount(componentBridgeCounts, component2);
                 }
@@ -306,15 +308,22 @@ public class ResultsProcessor : MonoBehaviour
         string outFullPath = Path.Combine(directoryPath, outFileName);
         using (StreamWriter writer = new StreamWriter(outFullPath, true))
         {
-            writer.WriteLine("Component,Bridge count");
+            writer.WriteLine("Component1,Component2,Bridge count,Pair bridge probability %");
+            foreach (var entry in bridgesCounts.OrderByDescending(kv => kv.Value))
+            {
+                writer.WriteLine($"{entry.Key.Item1},{entry.Key.Item2},{entry.Value},{(double)entry.Value / numSims * 100:F2}");
+            }
+
+            writer.WriteLine("\n\n");
+            writer.WriteLine("Component,Bridge count,Component bridge probability %");
 
             foreach (var entry in componentBridgeCounts.OrderByDescending(kv => kv.Value))
             {
-                writer.WriteLine($"{entry.Key},{entry.Value}");
+                writer.WriteLine($"{entry.Key},{entry.Value},{(double)entry.Value / numSims * 100:F2}");
             }
 
-            writer.WriteLine();
-            writer.WriteLine($"Percentage of simulations with bridged components: {percentageWithBridgedComponents:F2}%");
+
+            writer.WriteLine($"\n\nPercentage of simulations with bridged components: {percentageWithBridgedComponents:F2}%");
 
             writer.WriteLine("Sim number,Number of bridges");
             foreach (var entry in simNumBridges.OrderBy(kv => kv.Key))
@@ -402,7 +411,21 @@ public class ResultsProcessor : MonoBehaviour
             componentCounts[component] = 1;
         }
     }
+
+    private static void UpdateBridgesCount(Dictionary<(string, string), int> bridgesCounts, (string, string) componentPair)
+    {
+        // Ensure the component pair is always in lexicographical order
+        var normalizedPair = (componentPair.Item1.CompareTo(componentPair.Item2) <= 0)
+            ? componentPair
+            : (componentPair.Item2, componentPair.Item1);
+
+        if (bridgesCounts.ContainsKey(normalizedPair))
+        {
+            bridgesCounts[normalizedPair]++;
+        }
+        else
+        {
+            bridgesCounts[normalizedPair] = 1;
+        }
+    }
 }
-
-
-
