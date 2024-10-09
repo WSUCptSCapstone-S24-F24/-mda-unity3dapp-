@@ -108,7 +108,6 @@ public class BoardTiltController : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"Invalid input in {inputField.name}. Defaulting to 0.");
             return 0f; // Default to 0 if parsing fails
         }
     }
