@@ -168,8 +168,8 @@ public class ComponentHeatMap : MonoBehaviour
                 // Normalize the bridge count between 0 and 1
                 float normalizedBridgeCount = (float)bridgeCount / maxCount;
 
-                // Interpolate between green (no bridges) and red (max bridges)
-                Color heatMapColor = Color.Lerp(Color.green, Color.red, normalizedBridgeCount);
+                // Interpolate between yellow (no bridges) and red (max bridges)
+                Color heatMapColor = Color.Lerp(Color.yellow, Color.red, normalizedBridgeCount);
 
                 // Apply the color to the component's material
                 Renderer renderer = child.gameObject.GetComponent<Renderer>();
@@ -178,6 +178,16 @@ public class ComponentHeatMap : MonoBehaviour
                     renderer.material.color = heatMapColor;
                 }
             }
+            else
+            {
+                // Components not in the heatmap will be colored black
+                Renderer renderer = child.gameObject.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.material.color = Color.black;
+                }
+            }
         }
     }
 }
+

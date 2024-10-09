@@ -103,15 +103,15 @@ public class ResultsProcessor : MonoBehaviour
         string whiskersLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"whiskers_log_{simNumber}.csv");
         string bridgedLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"bridgedcomponents_log_{simNumber}.csv");
 
-
         try
         {
             // Ensure the directories exist
             Directory.CreateDirectory(Path.GetDirectoryName(whiskersLogPath));
             Directory.CreateDirectory(Path.GetDirectoryName(bridgedLogPath));
 
-            // Prepare new data to be written
-            string newData = $"WhiskerAmount,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,ShockIntensity,ShockDuration\n{simState.whiskerAmount},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.ShockIntensity},{simState.ShockDuration}\n";
+            // Prepare new data to be written (added xTilt and zTilt)
+            string newData = $"WhiskerAmount,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,ShockIntensity,ShockDuration,xTilt,zTilt\n" +
+                             $"{simState.whiskerAmount},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.ShockIntensity},{simState.ShockDuration},{simState.xTilt},{simState.zTilt}\n";
 
             // Read existing content of whiskers log file
             List<string> whiskersLines = new List<string>();
@@ -158,6 +158,7 @@ public class ResultsProcessor : MonoBehaviour
             Debug.LogError($"Failed to write sim state to the beginning of {whiskersLogPath} or {bridgedLogPath}: {ex.Message}");
         }
     }
+
 
 
     public static void LogBridgedWhiskers(HashSet<(int, GameObject, GameObject)> bridgedComponentSets, int simNumber)
