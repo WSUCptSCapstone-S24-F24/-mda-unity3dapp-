@@ -344,6 +344,7 @@ MonoBehaviour:
   ShortDetector: {fileID: 1471391705}
   Whisker: {fileID: 2086067737}
   NumberSimsRunning: 0
+  mainController: {fileID: 1193138109}
   whiskers: []
   Shock: {fileID: 1660062881}
   Shocker: {fileID: 674139275}
