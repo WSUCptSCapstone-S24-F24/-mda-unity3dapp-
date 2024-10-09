@@ -196,9 +196,6 @@ public class ResultsProcessor : MonoBehaviour
                     writer.WriteLine(line);
                 }
 
-
-                writer.WriteLine($"\nProbability % of whisker bridge (whiskers bridged/total whiskers): {(double)uniqueBridgeWhiskers.Count / numWhiskers * 100:F2}");
-
                 // Write headers if the file is new
                 writer.WriteLine("Whisker,Component1,Component2,Probability of Bridging %");
 
@@ -208,11 +205,7 @@ public class ResultsProcessor : MonoBehaviour
                     writer.WriteLine($"{set.Item1},{set.Item2.name},{set.Item3.name}");
                 }
 
-                writer.WriteLine("\nWhisker num,Num bridges,Probability of bridging %");
-                foreach (var whiskerNum in uniqueBridgeWhiskers) {
-                    int count = bridgeWhiskers.Count(whisker => whisker == whiskerNum);
-                    writer.WriteLine($"{whiskerNum},{count},{(double)count / numWhiskers * 100:F2}");
-                }
+                writer.WriteLine($"\nProbability % of whisker bridge (whiskers bridged/total whiskers): {(double)uniqueBridgeWhiskers.Count / numWhiskers * 100:F2}");
             }
         }
         catch (Exception ex)
