@@ -5,7 +5,6 @@ using TMPro;
 using System.Collections.Generic;
 using SimInfo;
 using System.Linq;
-using UnityEngine.Analytics;
 
 public class ResultsProcessor : MonoBehaviour
 {
@@ -160,7 +159,7 @@ public class ResultsProcessor : MonoBehaviour
     }
 
 
-    public static void LogBridgedWhiskers(HashSet<(int, GameObject, GameObject)> bridgedComponentSets, int simNumber)
+    public static void LogBridgedWhiskers(int numWhiskers, HashSet<(int, GameObject, GameObject)> bridgedComponentSets, int simNumber)
     {
         // Define the path where you want to save the results
         string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults");
@@ -172,6 +171,15 @@ public class ResultsProcessor : MonoBehaviour
             // Ensure the directory exists
             Directory.CreateDirectory(directoryPath);
 
+            List<int> bridgeWhiskers = new List<int>();
+            HashSet<int> uniqueBridgeWhiskers = new HashSet<int>();
+
+            foreach (var tuple in bridgedComponentSets)
+            {
+                uniqueBridgeWhiskers.Add(tuple.Item1); 
+                bridgeWhiskers.Add(tuple.Item1);
+            }
+
             // Read existing content of bridged components log file
             List<string> existingLines = new List<string>();
             if (File.Exists(fullPath))
@@ -182,20 +190,28 @@ public class ResultsProcessor : MonoBehaviour
             // Prepare to write to the file
             using (StreamWriter writer = new StreamWriter(fullPath, false))
             {
-
                 // Write the existing content back first
                 foreach (string line in existingLines)
                 {
                     writer.WriteLine(line);
                 }
 
+
+                writer.WriteLine($"\nProbability % of whisker bridge (whiskers bridged/total whiskers): {(double)uniqueBridgeWhiskers.Count / numWhiskers * 100:F2}");
+
                 // Write headers if the file is new
-                writer.WriteLine("Whisker,Component1,Component2");
+                writer.WriteLine("Whisker,Component1,Component2,Probability of Bridging %");
 
                 // Write the new bridged component pairs
                 foreach (var set in bridgedComponentSets)
                 {
                     writer.WriteLine($"{set.Item1},{set.Item2.name},{set.Item3.name}");
+                }
+
+                writer.WriteLine("\nWhisker num,Num bridges,Probability of bridging %");
+                foreach (var whiskerNum in uniqueBridgeWhiskers) {
+                    int count = bridgeWhiskers.Count(whisker => whisker == whiskerNum);
+                    writer.WriteLine($"{whiskerNum},{count},{(double)count / numWhiskers * 100:F2}");
                 }
             }
         }
@@ -290,6 +306,8 @@ public class ResultsProcessor : MonoBehaviour
                     UpdateBridgesCount(bridgesCounts, (component1, component2));
                     UpdateComponentCount(componentBridgeCounts, component1);
                     UpdateComponentCount(componentBridgeCounts, component2);
+                } else {
+                    break;
                 }
             }
             if (num_bridges > 0)

@@ -8,10 +8,12 @@ public class ShortDetector : MonoBehaviour
 {
     private Dictionary<int, HashSet<(int, GameObject, GameObject)>> bridgedComponentSets = new Dictionary<int, HashSet<(int, GameObject, GameObject)>>();
     private Coroutine whiskerCheckCoroutine;
+    private Dictionary<int, int> simNumWhiskersPairs = new Dictionary<int, int>();
     private static int WHISKERS_CHECKED_PER_FRAME = 100;
 
     public void StartWhiskerChecks(List<WhiskerCollider> whiskerColliders, int simNumber)
     {
+        simNumWhiskersPairs[simNumber] = whiskerColliders.Count;
         bridgedComponentSets[simNumber] = new HashSet<(int, GameObject, GameObject)>();
         whiskerCheckCoroutine = StartCoroutine(CheckWhiskersRoutine(whiskerColliders, simNumber));
     }
@@ -60,7 +62,7 @@ public class ShortDetector : MonoBehaviour
         }
 
         // Aggregate and process the results
-        ResultsProcessor.LogBridgedWhiskers(bridgedComponentSets[simNumber], simNumber);
+        ResultsProcessor.LogBridgedWhiskers(simNumWhiskersPairs[simNumber], bridgedComponentSets[simNumber], simNumber);
         bridgedComponentSets[simNumber].Clear();
     }
 }
