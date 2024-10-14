@@ -11,6 +11,7 @@ public class WhiskerSim : MonoBehaviour
     public SimState SimState;
     public GameObject Whisker; // Cylinder/Whisker to clone
     public int NumberSimsRunning;
+    public MainController mainController;
 
     private string myjsonPath;
     public List<GameObject> whiskers = new List<GameObject>();
@@ -28,6 +29,8 @@ public class WhiskerSim : MonoBehaviour
         NumberSimsRunning++;
         this.duration = duration;
         this.render = render;
+
+        mainController.ui_lock();
 
         // Validate if the layer exists
         int layer = LayerMask.NameToLayer(layerName);
@@ -217,6 +220,7 @@ public class WhiskerSim : MonoBehaviour
         SaveResults(simNumber);
         ClearLayerWhiskers($"Sim layer {simNumber % 10 + 1}");
         StopShockAndVibrationRoutines();
+        mainController.ui_unlock();
         yield return null;
 
         // Proceed to call cleanup for all WhiskerCollider instances
@@ -232,6 +236,7 @@ public class WhiskerSim : MonoBehaviour
         SaveResults(simNumber);
         ClearLayerWhiskers($"Sim layer {simNumber % 10 + 1}");
         StopShockAndVibrationRoutines();
+        mainController.ui_unlock();
         NumberSimsRunning--;
     }
 

@@ -31,6 +31,8 @@ public class MainController : MonoBehaviour
     public TMP_InputField SpawnPositionZText;
     public TMP_InputField SimDurationText;
     public TMP_InputField SimQuantityText;
+    public TMP_InputField xTiltText;
+    public TMP_InputField zTiltText;
     public Button EndSimEarlyButton;
     public Canvas MonteCarloWaitScreen;
 
@@ -135,6 +137,10 @@ public class MainController : MonoBehaviour
         VibrationAmplitudeText.text = simState.vibrationAmplitude.ToString();
         ShockIntensityText.text = simState.ShockIntensity.ToString();
         ShockDurationText.text = simState.ShockDuration.ToString();
+
+        // Initialize new tilt input fields
+        xTiltText.text = simState.xTilt.ToString();
+        zTiltText.text = simState.zTilt.ToString();
 
 
         // Get the float value from the text field
@@ -385,6 +391,30 @@ public class MainController : MonoBehaviour
 
         if (float.TryParse(ShockDurationText.text, out float result17))
             simState.ShockDuration = result17;
+
+        if (float.TryParse(xTiltText.text, out float result18))
+            simState.xTilt = result18;
+
+        if (float.TryParse(zTiltText.text, out float result19))
+            simState.zTilt = result19;
+    }
+
+    public void ui_lock()
+    {
+        // Disable xTilt and zTilt input fields
+        if (xTiltText != null) xTiltText.interactable = false;
+        if (zTiltText != null) zTiltText.interactable = false;
+
+        // Add more UI elements here as necessary to lock them during the simulation
+    }
+
+    public void ui_unlock()
+    {
+        // Enable xTilt and zTilt input fields
+        if (xTiltText != null) xTiltText.interactable = true;
+        if (zTiltText != null) zTiltText.interactable = true;
+
+        // Add more UI elements here as necessary to unlock them after the simulation
     }
 
     public void RunSimulation()
