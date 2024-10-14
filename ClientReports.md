@@ -650,12 +650,36 @@ Here's what went well:
    * The Clients were involved with providing valuable feedback about what improvements they would like to see.
 
 Here's what we'd like to improve:
-   * The user should have an easy to understand evnironment for the different changes the simulation can provide.
+   * The user should have an easy to understand environment for the different changes the simulation can provide.
    * To verify that the client can easily access the beta application, and to move into a direction of the client's requested medium.
   
 Here are changes we plan to implement as soon as possible:
    * After completion of the integration, heat map of bridge components scaled to the highest briged component is requested and high priority.
    * CSV should be presenting Bridged Component Pairs for the Monte Carlos themselves not singular components.
+---
+---
+
+## Agenda (10/9/2024)
+ * Demo / User testing: Results Processing and Heat Map
+
+## Minutes (10/9/2024)
+
+During this meeting we presented some new features and enhancements focused around the results capturing of the data.
+
+## Retrospective Summary (10/9/2024)
+Here's what went well:
+   * The Clients gave positive feedback about the heat mapping system.
+   * The Clients were involved with providing valuable feedback about what improvements they would like to see, specifically in the results.
+
+Here's what we'd like to improve:
+   * The user interface and overall usability need to be improved to the users specifications.
+   * Verification from our main client is needed to know if the deployable for the beta is appropriate. 
+  
+Here are changes we plan to implement as soon as possible:
+   * Togglable whiskers.
+   * Togglable spawning box.
+   * Monte Carlo loading bar.
+   * Improvement to results.
 ---
 ---
 
