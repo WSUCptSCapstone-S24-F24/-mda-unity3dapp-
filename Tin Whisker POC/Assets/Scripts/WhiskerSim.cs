@@ -240,6 +240,30 @@ public class WhiskerSim : MonoBehaviour
         NumberSimsRunning--;
     }
 
+    public void InspectMode(int simNumber)
+    {
+        StopCoroutine(simulationCoroutine); // Stop the active simulation coroutine, if any
+        StopShockAndVibrationRoutines(); // Stop any shock and vibration routines
+        SaveResults(simNumber);
+        // Remove Rigidbody from all whiskers
+        foreach (GameObject whisker in whiskers)
+        {
+            Rigidbody rb = whisker.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                Destroy(rb); // Remove the rigidbody to stop all physics interactions
+            }
+        }
+
+        NumberSimsRunning--; // Decrement running simulation count
+    }
+
+        // Function to clear whiskers after inspection
+    public void ClearWhiskersAfterInspection()
+    {
+        ClearLayerWhiskers($"Sim layer {SimState.simNumber % 10 + 1}"); // Clear the whiskers from the layer
+    }
+
     private List<GameObject> GetSimLayerWhiskers(List<GameObject> allWhiskers, string layerName)
     {
         List<GameObject> resultWhiskers = new List<GameObject>();

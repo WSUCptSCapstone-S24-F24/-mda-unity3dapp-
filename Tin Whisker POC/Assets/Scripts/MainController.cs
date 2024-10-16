@@ -35,6 +35,8 @@ public class MainController : MonoBehaviour
     public TMP_InputField zTiltText;
     public Button EndSimEarlyButton;
     public Canvas MonteCarloWaitScreen;
+    public Button InspectionModeButton;
+    public Button ClearWhiskersButton;
 
     public bool PCBloaded = false;
     public string objfilePath;
@@ -55,7 +57,9 @@ public class MainController : MonoBehaviour
         rootJsonPath = Application.persistentDataPath + "/SimState.JSON";
         popupManager = FindObjectOfType<PopupManager>();
         EndSimEarlyButton.gameObject.SetActive(false);
+        InspectionModeButton.gameObject.SetActive(false);
         MonteCarloWaitScreen.gameObject.SetActive(false);
+        ClearWhiskersButton.gameObject.SetActive(false);
         monteCarloSim = MonteCarloSimulationObject.GetComponent<MonteCarloSim>();
 
         ParameterSetup();
@@ -433,6 +437,7 @@ public class MainController : MonoBehaviour
             // TODO: Make all but end sim button be non-interactable
             GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;
             EndSimEarlyButton.gameObject.SetActive(true);
+            InspectionModeButton.gameObject.SetActive(true);
 
             simState.SaveSimToJSON(myJsonPath);
 
@@ -452,6 +457,7 @@ public class MainController : MonoBehaviour
         ShowDebugMessage("Simulation ended.");
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
         EndSimEarlyButton.gameObject.SetActive(false);
+        InspectionModeButton.gameObject.SetActive(false);
         SimNumber++;
     }
 
@@ -459,6 +465,21 @@ public class MainController : MonoBehaviour
     {
         ShowDebugMessage("User interupt. ");
         whiskerSim.EndSimulationEarly(SimNumber);
+    }
+
+    public void InspectionModeUI()
+    {
+        ShowDebugMessage("User Inspection Mode. ");
+        InspectionModeButton.gameObject.SetActive(false);
+        ClearWhiskersButton.gameObject.SetActive(true);
+        whiskerSim.InspectMode(SimNumber);
+
+    }
+
+    public void ClearWhiskers()
+    {
+        whiskerSim.ClearWhiskersAfterInspection();
+        ClearWhiskersButton.gameObject.SetActive(false);
     }
 
     public void RunMonteCarloSimulation()
