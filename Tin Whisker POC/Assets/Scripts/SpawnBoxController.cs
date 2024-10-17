@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class SpawnBoxController : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class SpawnBoxController : MonoBehaviour
     public TMP_InputField PositionX;
     public TMP_InputField PositionY;
     public TMP_InputField PositionZ;
+    public Toggle showBox;
     public float scaler = 10;
 
     private GameObject cube;
@@ -16,6 +19,7 @@ public class SpawnBoxController : MonoBehaviour
     void Start()
     {
         AddListeners();
+
     }
 
     private void AddListeners()
@@ -27,6 +31,7 @@ public class SpawnBoxController : MonoBehaviour
         PositionX.onEndEdit.AddListener(delegate { OnValueChanged(PositionX); });
         PositionY.onEndEdit.AddListener(delegate { OnValueChanged(PositionY); });
         PositionZ.onEndEdit.AddListener(delegate { OnValueChanged(PositionZ); });
+        showBox.onValueChanged.AddListener(delegate { OnToggleValueChanged(); });
 
         // After adding listeners, explicitly call UpdateCubeProperties to initialize cube size and position
         UpdateCubeProperties();
@@ -47,6 +52,11 @@ public class SpawnBoxController : MonoBehaviour
             Debug.LogWarning("Invalid input: " + inputField.text);
             inputField.text = "0"; // Reset the input field to a default value
         }
+    }
+
+    public void OnToggleValueChanged()
+    {
+        cube.SetActive(showBox.isOn);
     }
 
     public void UpdateCubeProperties()
