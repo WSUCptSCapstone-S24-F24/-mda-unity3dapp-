@@ -465,7 +465,6 @@ public class MainController : MonoBehaviour
     {
         if (PCBloaded)
         {
-            ShowDebugMessage("Simulation starting. ");
             simState.simNumber = SimNumber;
             Debug.Log("Sim num: " + SimNumber);
             GetSimInputs();

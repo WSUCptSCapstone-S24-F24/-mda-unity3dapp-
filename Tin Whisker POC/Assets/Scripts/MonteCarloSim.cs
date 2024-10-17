@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Runtime.ConstrainedExecution;
+using TMPro;
 
 
 // ****   Monte Carlo Sim Ideas   ****
@@ -14,6 +15,7 @@ using System.Runtime.ConstrainedExecution;
 public class MonteCarloSim : MonoBehaviour
 {
     public int numSimulations = 2; // 2 Default
+    public TextMeshProUGUI NumSimsProgressText;
     public bool IsSimulationEnded;
 
     private WhiskerSim whiskerSim;
@@ -32,17 +34,19 @@ public class MonteCarloSim : MonoBehaviour
     {
         int totalSimulations = numSimulations;
         int batchStart = beginningSimNumber;
+        int simsRun = 0;
+        NumSimsProgressText.text = $"{simsRun} of {numSimulations} Completed";
         while (batchStart < totalSimulations + beginningSimNumber)
         {
             int batchEnd = Mathf.Min(batchStart + MAX_BATCH_SIZE + beginningSimNumber, totalSimulations + beginningSimNumber);
             // Debug.Log($"Running simulations from {batchStart} to {batchEnd - 1}");
             for (int i = batchStart; i < batchEnd; i++)
             {
+                simsRun++;
                 whiskerSim.RunSim(i, duration, false);
             }
-
             yield return new WaitUntil(() => whiskerSim.NumberSimsRunning == 0);
-
+            NumSimsProgressText.text = $"{simsRun} of {numSimulations} Completed";
             batchStart = batchEnd;
         }
 
