@@ -111,7 +111,7 @@ public class ResultsProcessor : MonoBehaviour
 
             // Prepare new data to be written (added xTilt and zTilt)
             string newData = $"WhiskerAmount,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,ShockIntensity,ShockDuration,xTilt,zTilt\n" +
-                             $"{simState.whiskerAmount},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.ShockIntensity},{simState.ShockDuration},{simState.xTilt},{simState.zTilt}\n";
+                            $"{simState.whiskerAmount},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.ShockIntensity},{simState.ShockDuration},{simState.xTilt},{simState.zTilt}\n";
 
             // Read existing content of whiskers log file
             List<string> whiskersLines = new List<string>();
@@ -256,12 +256,16 @@ public class ResultsProcessor : MonoBehaviour
         string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults");
 
         // Calculate results
+        List<Dictionary<(string, string), int>> fullPerSimBridgeCounts = new List<Dictionary<(string, string), int>>();
+        Dictionary<int, HashSet<(string, string)>> perSimPairs = new Dictionary<int, HashSet<(string, string)>>();
+        Dictionary<(string, string), int> pairBridgeCounts = new Dictionary<(string, string), int>();
         Dictionary<string, int> componentBridgeCounts = new Dictionary<string, int>();
         Dictionary<int, int> simNumBridges = new Dictionary<int, int>();
         int totalSimsWithBridgedComponents = 0;
 
         for (int i = beginningSimNumber; i < beginningSimNumber + numSims; i++)
         {
+            Dictionary<(string, string), int> perSimPairBridgeCounts = new Dictionary<(string, string), int>();
             string fileName = $"bridgedcomponents_log_{i}.csv";
             string fullPath = Path.Combine(directoryPath, fileName);
             if (!File.Exists(fullPath))
@@ -270,27 +274,34 @@ public class ResultsProcessor : MonoBehaviour
                 continue;
             }
 
-            int num_skip_lines = 4;
             int num_bridges = 0;
             foreach (var line in File.ReadLines(fullPath))
             {
-                if (num_skip_lines > 0)
-                {
-                    num_skip_lines--;
-                    continue;
-                }
                 var parts = line.Split(new char[] { ',', '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (parts.Length == 3)
                 {
+                    if (!parts[1].StartsWith("CO") || !parts[2].StartsWith("CO"))
+                    {
+                        continue;
+                    }
                     num_bridges++;
                     string component1 = parts[1].Trim();
                     string component2 = parts[2].Trim();
 
                     UpdateComponentCount(componentBridgeCounts, component1);
                     UpdateComponentCount(componentBridgeCounts, component2);
+                    UpdatePairCount(pairBridgeCounts, component1, component2);
+                    UpdatePairCount(perSimPairBridgeCounts, component1, component2);
+                    if (!perSimPairs.ContainsKey(i))
+                    {
+                        perSimPairs[i] = new HashSet<(string, string)>();
+                    }
+                    var pair = (string.Compare(component1, component2) < 0) ? (component1, component2) : (component2, component1);
+                    perSimPairs[i].Add(pair);
                 }
             }
+            fullPerSimBridgeCounts.Add(perSimPairBridgeCounts);
             if (num_bridges > 0)
             {
                 totalSimsWithBridgedComponents++;
@@ -298,6 +309,21 @@ public class ResultsProcessor : MonoBehaviour
             simNumBridges[i] = num_bridges;
 
             File.Delete(fullPath);
+        }
+        Dictionary<(string, string), int> perSimPairCounts = new Dictionary<(string, string), int>();
+        foreach (var entry in perSimPairs)
+        {
+            foreach (var pair in entry.Value)
+            {
+                if (perSimPairCounts.ContainsKey(pair))
+                {
+                    perSimPairCounts[pair]++;
+                }
+                else
+                {
+                    perSimPairCounts[pair] = 1;
+                }
+            }
         }
 
         double percentageWithBridgedComponents = (double)totalSimsWithBridgedComponents / numSims * 100.0;
@@ -315,9 +341,33 @@ public class ResultsProcessor : MonoBehaviour
             }
 
             writer.WriteLine();
-            writer.WriteLine($"Percentage of simulations with bridged components: {percentageWithBridgedComponents:F2}%");
+            writer.WriteLine("Component1,Component2,Bridge pair count");
+            foreach (var entry in pairBridgeCounts.OrderByDescending(kv => kv.Value))
+            {
+                writer.WriteLine($"{entry.Key.Item1},{entry.Key.Item2},{entry.Value}");
+            }
 
-            writer.WriteLine("Sim number,Number of bridges");
+            writer.WriteLine();
+            writer.WriteLine("Sim number,Component1,Component2,Bridge pair count");
+            for (int i = 0; i < fullPerSimBridgeCounts.Count; i++)
+            {
+                foreach (var entry in fullPerSimBridgeCounts[i].OrderByDescending(kv => kv.Value))
+                {
+                    writer.WriteLine($"{i},{entry.Key.Item1},{entry.Key.Item2},{entry.Value}");
+                }
+            }
+
+            writer.WriteLine();
+            writer.WriteLine($"Component1,Component2,Num sims with pair,Sims with pair %");
+            foreach (var entry in perSimPairCounts.OrderByDescending(kv => kv.Value))
+            {
+                writer.WriteLine($"{entry.Key.Item1},{entry.Key.Item2},{entry.Value},{(double)entry.Value / numSims * 100.0 :F2}");
+            }
+
+            writer.WriteLine();
+            writer.WriteLine($"% sims with bridge: {percentageWithBridgedComponents:F2}%");
+
+            writer.WriteLine("Sim number,Total number of bridges");
             foreach (var entry in simNumBridges.OrderBy(kv => kv.Key))
             {
                 writer.WriteLine($"{entry.Key},{entry.Value}");
@@ -338,7 +388,7 @@ public class ResultsProcessor : MonoBehaviour
 
             // Prepare new data to be written, now including vibration, shock, and tilt information
             string newData = $"WhiskerAmount,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,ShockIntensity,ShockDuration,xTilt,zTilt\n" +
-                             $"{simState.whiskerAmount},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.ShockIntensity},{simState.ShockDuration},{simState.xTilt},{simState.zTilt}\n";
+                            $"{simState.whiskerAmount},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.ShockIntensity},{simState.ShockDuration},{simState.xTilt},{simState.zTilt}\n";
 
             // Read existing content of whiskers log file
             List<string> whiskersLines = new List<string>();
@@ -403,6 +453,20 @@ public class ResultsProcessor : MonoBehaviour
         else
         {
             componentCounts[component] = 1;
+        }
+    }
+
+    private static void UpdatePairCount(Dictionary<(string, string), int> pairCounts, string component1, string component2)
+    {
+        var pair = (string.Compare(component1, component2) < 0) ? (component1, component2) : (component2, component1);
+
+        if (pairCounts.ContainsKey(pair))
+        {
+            pairCounts[pair]++;
+        }
+        else
+        {
+            pairCounts[pair] = 1;
         }
     }
 }

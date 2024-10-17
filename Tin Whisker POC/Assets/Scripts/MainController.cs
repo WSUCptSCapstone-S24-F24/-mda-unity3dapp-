@@ -432,6 +432,7 @@ public class MainController : MonoBehaviour
 
             // TODO: Make all but end sim button be non-interactable
             GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;
+            GameObject.Find("Sim results").GetComponent<Button>().interactable = false;
             EndSimEarlyButton.gameObject.SetActive(true);
 
             simState.SaveSimToJSON(myJsonPath);
@@ -450,6 +451,7 @@ public class MainController : MonoBehaviour
         yield return new WaitUntil(() => whiskerSim.NumberSimsRunning == 0);
 
         ShowDebugMessage("Simulation ended.");
+        GameObject.Find("Sim results").GetComponent<Button>().interactable = true;
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
         EndSimEarlyButton.gameObject.SetActive(false);
         SimNumber++;
