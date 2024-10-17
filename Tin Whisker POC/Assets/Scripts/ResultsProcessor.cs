@@ -367,10 +367,10 @@ public class ResultsProcessor : MonoBehaviour
             writer.WriteLine();
             writer.WriteLine($"% sims with bridge: {percentageWithBridgedComponents:F2}%");
 
-            writer.WriteLine("Sim number,Total number of bridges");
+            writer.WriteLine("Sim number,Total bridges,Total bridge %");
             foreach (var entry in simNumBridges.OrderBy(kv => kv.Key))
             {
-                writer.WriteLine($"{entry.Key},{entry.Value}");
+                writer.WriteLine($"{entry.Key},{entry.Value},{(double)entry.Value / numSims * 100.0 :F1}");
             }
         }
     }
