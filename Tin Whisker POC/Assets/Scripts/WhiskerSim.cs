@@ -262,6 +262,7 @@ public class WhiskerSim : MonoBehaviour
     public void ClearWhiskersAfterInspection()
     {
         ClearLayerWhiskers($"Sim layer {SimState.simNumber % 10 + 1}"); // Clear the whiskers from the layer
+        mainController.ui_unlock();
     }
 
     private List<GameObject> GetSimLayerWhiskers(List<GameObject> allWhiskers, string layerName)
