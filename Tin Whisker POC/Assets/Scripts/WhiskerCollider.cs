@@ -12,8 +12,8 @@ public class WhiskerCollider : MonoBehaviour
         if (collision.gameObject.CompareTag("Part"))
         {
             currentlyCollidingObjects.Add(collision.gameObject);
-            Renderer objectRenderer = GetComponent<Renderer>();
-            objectRenderer.material.color = Color.red;
+            // Renderer objectRenderer = GetComponent<Renderer>();
+            // objectRenderer.material.color = Color.red;
         }
     }
 
@@ -22,8 +22,8 @@ public class WhiskerCollider : MonoBehaviour
         if (collision.gameObject.CompareTag("Part"))
         {
             currentlyCollidingObjects.Remove(collision.gameObject);
-            Renderer objectRenderer = GetComponent<Renderer>();
-            objectRenderer.material.color = Color.white;
+            // Renderer objectRenderer = GetComponent<Renderer>();
+            // objectRenderer.material.color = Color.white;
         }
     }
 

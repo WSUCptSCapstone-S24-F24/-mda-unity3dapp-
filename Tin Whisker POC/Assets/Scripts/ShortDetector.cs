@@ -25,11 +25,16 @@ public class ShortDetector : MonoBehaviour
                 if (whiskerColliders[i].IsBridgingComponents())
                 {
                     GameObject[] components = whiskerColliders[i].GetBridgedComponents();
+                    Renderer objectRenderer = whiskerColliders[i].GetComponent<Renderer>();
+                    objectRenderer.material.color = Color.red;
                     (int, GameObject, GameObject) set = NormalizeSet(whiskerColliders[i].WhiskerNum, components[0], components[1]);
                     bridgedComponentSets[simNumber].Add(set);
+                } else { 
+                    Renderer objectRenderer =  whiskerColliders[i].GetComponent<Renderer>();
+                    objectRenderer.material.color = Color.white;
                 }
 
-                // TODO: Check if cuases real issues with results only checking first 100
+                // TODO: Check if causes real issues with results only checking first 100
                 // Wait for next frame after checking a few whiskers (you can adjust this number)
                 if (i % WHISKERS_CHECKED_PER_FRAME == 0)
                 {
