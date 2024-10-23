@@ -177,6 +177,7 @@ public class LoadFile : MonoBehaviour
             MainController.GetComponent<MainController>().mtlfilePath = mtl;
             
             MainController.GetComponent<MainController>().PCBloaded = true;
+            MainController.GetComponent<MainController>().ui_unlock();
         }
     }
 

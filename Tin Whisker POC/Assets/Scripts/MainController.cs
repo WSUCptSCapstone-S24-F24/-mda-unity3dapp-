@@ -33,6 +33,7 @@ public class MainController : MonoBehaviour
     public TMP_InputField SimQuantityText;
     public TMP_InputField xTiltText;
     public TMP_InputField zTiltText;
+    public Button SimulationSettingsButton;
     public Button EndSimEarlyButton;
     public Canvas MonteCarloWaitScreen;
     public Button InspectionModeButton;
@@ -60,6 +61,7 @@ public class MainController : MonoBehaviour
         InspectionModeButton.gameObject.SetActive(false);
         MonteCarloWaitScreen.gameObject.SetActive(false);
         ClearWhiskersButton.gameObject.SetActive(false);
+        ui_lock();
         monteCarloSim = MonteCarloSimulationObject.GetComponent<MonteCarloSim>();
 
         ParameterSetup();
@@ -405,20 +407,16 @@ public class MainController : MonoBehaviour
 
     public void ui_lock()
     {
-        // Disable xTilt and zTilt input fields
-        if (xTiltText != null) xTiltText.interactable = false;
-        if (zTiltText != null) zTiltText.interactable = false;
 
-        // Add more UI elements here as necessary to lock them during the simulation
+        SimulationSettingsButton.interactable = false;
+
     }
 
     public void ui_unlock()
     {
-        // Enable xTilt and zTilt input fields
-        if (xTiltText != null) xTiltText.interactable = true;
-        if (zTiltText != null) zTiltText.interactable = true;
 
-        // Add more UI elements here as necessary to unlock them after the simulation
+        SimulationSettingsButton.interactable = true;
+
     }
 
     public void RunSimulation()
