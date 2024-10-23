@@ -812,8 +812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleText: MC
-  descriptionText: MC
+  titleText: Monte Carlo
+  descriptionText: Run Monte Carlo
 --- !u!1 &54974484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,8 +1007,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleText: Leave mode
-  descriptionText: Leave mode
+  titleText: Leave Inspection
+  descriptionText: Go back to simulation
 --- !u!1 &69088421
 GameObject:
   m_ObjectHideFlags: 0
@@ -4567,6 +4567,8 @@ GameObject:
   - component: {fileID: 398489735}
   - component: {fileID: 398489734}
   - component: {fileID: 398489737}
+  - component: {fileID: 398489739}
+  - component: {fileID: 398489738}
   m_Layer: 5
   m_Name: Vibrate
   m_TagString: Untagged
@@ -4704,6 +4706,65 @@ MonoBehaviour:
   textBox1: {fileID: 1494976104}
   textBox2: {fileID: 405299954}
   vibrate: 0
+--- !u!114 &398489738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398489732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 398489739}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnShowTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 398489739}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnHideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &398489739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398489732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: Vibrate
+  descriptionText: Display Vibrate input field
 --- !u!224 &400516210 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7119252795838974298, guid: 52b67e50d8f63784d9595de14e4a6286, type: 3}
@@ -5606,8 +5667,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleText: setting
-  descriptionText: settings
+  titleText: Simulation Settings
+  descriptionText: Edit Simulation Settings
 --- !u!1 &540723633
 GameObject:
   m_ObjectHideFlags: 0
@@ -7416,6 +7477,8 @@ GameObject:
   - component: {fileID: 674139277}
   - component: {fileID: 674139276}
   - component: {fileID: 674139275}
+  - component: {fileID: 674139280}
+  - component: {fileID: 674139279}
   m_Layer: 5
   m_Name: Shocker
   m_TagString: Untagged
@@ -7553,6 +7616,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674139273}
   m_CullTransparentMesh: 1
+--- !u!114 &674139279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674139273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 674139280}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnShowTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 674139280}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnHideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &674139280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674139273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: Shock
+  descriptionText: Display Shocker input field
 --- !u!1 &681776349
 GameObject:
   m_ObjectHideFlags: 0
@@ -10093,7 +10215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleText: Run
-  descriptionText: Run
+  descriptionText: Start Simulator
 --- !u!1 &883655458
 GameObject:
   m_ObjectHideFlags: 0
@@ -10642,8 +10764,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleText: HM
-  descriptionText: HM
+  titleText: HeatMap
+  descriptionText: Mapping the heat spawn area
 --- !u!1 &940896029
 GameObject:
   m_ObjectHideFlags: 0
@@ -15080,7 +15202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleText: End
-  descriptionText: End
+  descriptionText: End the simulation
 --- !u!1 &1456477783
 GameObject:
   m_ObjectHideFlags: 0
@@ -15852,7 +15974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleText: Inspection mode
-  descriptionText: Inspection mode
+  descriptionText: Inspect (Not sure what exactly it does to give a description)
 --- !u!1 &1541651134
 GameObject:
   m_ObjectHideFlags: 0
@@ -17224,8 +17346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleText: Sim
-  descriptionText: Sim
+  titleText: Sim Results
+  descriptionText: Display Simulation results
 --- !u!1 &1660062880
 GameObject:
   m_ObjectHideFlags: 0
@@ -18327,6 +18449,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1456477784}
     m_Modifications:
+    - target: {fileID: 7119252795838974296, guid: 52b67e50d8f63784d9595de14e4a6286, type: 3}
+      propertyPath: descriptionText
+      value: 'Hold and drag right click to move around
+
+        Hover a button to
+        see its functions
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 7119252795838974298, guid: 52b67e50d8f63784d9595de14e4a6286, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -19072,8 +19203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleText: load
-  descriptionText: load
+  titleText: Load
+  descriptionText: Load File
 --- !u!1 &1918292061
 GameObject:
   m_ObjectHideFlags: 0
