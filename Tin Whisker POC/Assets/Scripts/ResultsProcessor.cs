@@ -109,9 +109,13 @@ public class ResultsProcessor : MonoBehaviour
             Directory.CreateDirectory(Path.GetDirectoryName(whiskersLogPath));
             Directory.CreateDirectory(Path.GetDirectoryName(bridgedLogPath));
 
-            // Prepare new data to be written (added xTilt and zTilt)
-            string newData = $"WhiskerAmount,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,ShockIntensity,ShockDuration,xTilt,zTilt\n" +
-                            $"{simState.whiskerAmount},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.ShockIntensity},{simState.ShockDuration},{simState.xTilt},{simState.zTilt}\n";
+            // Get the board size from PCBSize
+            PCBSize pcbSize = GameObject.FindObjectOfType<PCBSize>();
+            Vector3 boardSizeInCm = pcbSize != null ? pcbSize.GetBoardSizeInCm() : Vector3.zero;
+
+            // Prepare new data to be written (added xTilt, zTilt, and board size)
+            string newData = $"WhiskerAmount,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,ShockIntensity,ShockDuration,xTilt,zTilt,BoardSizeX (cm),BoardSizeY (cm),BoardSizeZ (cm)\n" +
+                            $"{simState.whiskerAmount},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.ShockIntensity},{simState.ShockDuration},{simState.xTilt},{simState.zTilt},{boardSizeInCm.x},{boardSizeInCm.y},{boardSizeInCm.z}\n";
 
             // Read existing content of whiskers log file
             List<string> whiskersLines = new List<string>();
@@ -158,6 +162,7 @@ public class ResultsProcessor : MonoBehaviour
             Debug.LogError($"Failed to write sim state to the beginning of {whiskersLogPath} or {bridgedLogPath}: {ex.Message}");
         }
     }
+
 
 
 
@@ -386,9 +391,13 @@ public class ResultsProcessor : MonoBehaviour
             // Ensure the directories exist
             Directory.CreateDirectory(Path.GetDirectoryName(monteCarloLogPath));
 
-            // Prepare new data to be written, now including vibration, shock, and tilt information
-            string newData = $"WhiskerAmount,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,ShockIntensity,ShockDuration,xTilt,zTilt\n" +
-                            $"{simState.whiskerAmount},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.ShockIntensity},{simState.ShockDuration},{simState.xTilt},{simState.zTilt}\n";
+            // Get the board size from PCBSize
+            PCBSize pcbSize = GameObject.FindObjectOfType<PCBSize>();
+            Vector3 boardSizeInCm = pcbSize != null ? pcbSize.GetBoardSizeInCm() : Vector3.zero;
+
+            // Prepare new data to be written, now including vibration, shock, tilt, and board size
+            string newData = $"WhiskerAmount,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,ShockIntensity,ShockDuration,xTilt,zTilt,BoardSizeX (cm),BoardSizeY (cm),BoardSizeZ (cm)\n" +
+                            $"{simState.whiskerAmount},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.ShockIntensity},{simState.ShockDuration},{simState.xTilt},{simState.zTilt},{boardSizeInCm.x},{boardSizeInCm.y},{boardSizeInCm.z}\n";
 
             // Read existing content of whiskers log file
             List<string> whiskersLines = new List<string>();
@@ -415,6 +424,7 @@ public class ResultsProcessor : MonoBehaviour
             Debug.LogError($"Failed to write sim state to the beginning of {monteCarloLogPath}: {ex.Message}");
         }
     }
+
 
 
     // Function to calculate the maximum width of each column
