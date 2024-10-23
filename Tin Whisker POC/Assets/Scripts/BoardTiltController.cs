@@ -13,14 +13,16 @@ public class BoardTiltController : MonoBehaviour
 
     void Start()
     {
-
-        // Start coroutines to wait for the board and scaleGrid to load
-        StartCoroutine(WaitForBoardToLoad());
-        StartCoroutine(WaitForScaleGridToLoad());
-
         // Add listeners to apply tilt when the input fields are changed
         xTiltInput.onValueChanged.AddListener(delegate { TiltObjects(); });
         zTiltInput.onValueChanged.AddListener(delegate { TiltObjects(); });
+    }
+
+    void OnEnable()
+    {
+        // When the panel is enabled, start looking for the objects again
+        StartCoroutine(WaitForBoardToLoad());
+        StartCoroutine(WaitForScaleGridToLoad());
     }
 
     // Coroutine to wait until the board object is loaded
@@ -112,3 +114,4 @@ public class BoardTiltController : MonoBehaviour
         }
     }
 }
+
