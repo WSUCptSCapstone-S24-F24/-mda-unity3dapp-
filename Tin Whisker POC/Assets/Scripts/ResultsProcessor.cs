@@ -255,17 +255,17 @@ public class ResultsProcessor : MonoBehaviour
         }
     }
 
-    public static void LogMonteCarloResults(int beginningSimNumber, int numSims, int numWhiskers)
+    public static void LogMonteCarloResults(int beginningSimNumber, int numSims)
     {
+        // TODO: CHANGE ORDER
         // Define the path where you want to save the results
         string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults");
 
         // Calculate results
         List<Dictionary<(string, string), int>> fullPerSimBridgeCounts = new List<Dictionary<(string, string), int>>();
-        Dictionary<int, HashSet<(string, string)>> perSimPairs = new Dictionary<int, HashSet<(string, string)>>();
         Dictionary<(string, string), int> pairBridgeCounts = new Dictionary<(string, string), int>();
         Dictionary<string, int> componentBridgeCounts = new Dictionary<string, int>();
-        Dictionary<int, int> simNumBridges = new Dictionary<int, int>();
+
         int totalSimsWithBridgedComponents = 0;
 
         for (int i = beginningSimNumber; i < beginningSimNumber + numSims; i++)
@@ -298,12 +298,6 @@ public class ResultsProcessor : MonoBehaviour
                     UpdateComponentCount(componentBridgeCounts, component2);
                     UpdatePairCount(pairBridgeCounts, component1, component2);
                     UpdatePairCount(perSimPairBridgeCounts, component1, component2);
-                    if (!perSimPairs.ContainsKey(i))
-                    {
-                        perSimPairs[i] = new HashSet<(string, string)>();
-                    }
-                    var pair = (string.Compare(component1, component2) < 0) ? (component1, component2) : (component2, component1);
-                    perSimPairs[i].Add(pair);
                 }
             }
             fullPerSimBridgeCounts.Add(perSimPairBridgeCounts);
@@ -311,24 +305,8 @@ public class ResultsProcessor : MonoBehaviour
             {
                 totalSimsWithBridgedComponents++;
             }
-            simNumBridges[i] = num_bridges;
 
             File.Delete(fullPath);
-        }
-        Dictionary<(string, string), int> perSimPairCounts = new Dictionary<(string, string), int>();
-        foreach (var entry in perSimPairs)
-        {
-            foreach (var pair in entry.Value)
-            {
-                if (perSimPairCounts.ContainsKey(pair))
-                {
-                    perSimPairCounts[pair]++;
-                }
-                else
-                {
-                    perSimPairCounts[pair] = 1;
-                }
-            }
         }
 
         double percentageWithBridgedComponents = (double)totalSimsWithBridgedComponents / numSims * 100.0;
@@ -363,20 +341,7 @@ public class ResultsProcessor : MonoBehaviour
             }
 
             writer.WriteLine();
-            writer.WriteLine($"Component1,Component2,Num sims with pair,Sims with pair %");
-            foreach (var entry in perSimPairCounts.OrderByDescending(kv => kv.Value))
-            {
-                writer.WriteLine($"{entry.Key.Item1},{entry.Key.Item2},{entry.Value},{(double)entry.Value / numSims * 100.0 :F2}");
-            }
-
-            writer.WriteLine();
             writer.WriteLine($"% sims with bridge: {percentageWithBridgedComponents:F2}%");
-
-            writer.WriteLine("Sim number,Total bridges,Total bridge %");
-            foreach (var entry in simNumBridges.OrderBy(kv => kv.Key))
-            {
-                writer.WriteLine($"{entry.Key},{entry.Value},{(double)entry.Value / numWhiskers * 100.0 :F1}");
-            }
         }
     }
 
