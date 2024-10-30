@@ -58,7 +58,7 @@ public class MonteCarloSim : MonoBehaviour
         // Debug.Log("End of monte carlo sim");
         Time.timeScale = 1.0f;
         ResultsProcessor.LogSimStateToMonteCarlo(whiskerSim.SimState, beginningSimNumber, numSimulations);
-        ResultsProcessor.LogMonteCarloResults(beginningSimNumber, numSimulations);
+        ResultsProcessor.LogMonteCarloResults(beginningSimNumber, numSimulations, whiskerSim.SimState.whiskerAmount);
         IsSimulationEnded = true;
         yield return null;
     }

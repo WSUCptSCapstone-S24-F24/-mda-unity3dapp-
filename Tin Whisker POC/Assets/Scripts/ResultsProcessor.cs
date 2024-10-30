@@ -255,7 +255,7 @@ public class ResultsProcessor : MonoBehaviour
         }
     }
 
-    public static void LogMonteCarloResults(int beginningSimNumber, int numSims)
+    public static void LogMonteCarloResults(int beginningSimNumber, int numSims, int numWhiskers)
     {
         // Define the path where you want to save the results
         string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults");
@@ -375,7 +375,7 @@ public class ResultsProcessor : MonoBehaviour
             writer.WriteLine("Sim number,Total bridges,Total bridge %");
             foreach (var entry in simNumBridges.OrderBy(kv => kv.Key))
             {
-                writer.WriteLine($"{entry.Key},{entry.Value},{(double)entry.Value / numSims * 100.0 :F1}");
+                writer.WriteLine($"{entry.Key},{entry.Value},{(double)entry.Value / numWhiskers * 100.0 :F1}");
             }
         }
     }
