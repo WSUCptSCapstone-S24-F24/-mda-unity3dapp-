@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using SimInfo;
 using System.Linq;
 using UnityEngine.Analytics;
+using System.Globalization;
 
 public class ResultsProcessor : MonoBehaviour
 {
@@ -265,6 +266,7 @@ public class ResultsProcessor : MonoBehaviour
         List<Dictionary<(string, string), int>> fullPerSimBridgeCounts = new List<Dictionary<(string, string), int>>();
         Dictionary<(string, string), int> pairBridgeCounts = new Dictionary<(string, string), int>();
         Dictionary<string, int> componentBridgeCounts = new Dictionary<string, int>();
+        List<int> numBridges = new List<int>();
 
         int totalSimsWithBridgedComponents = 0;
 
@@ -301,6 +303,7 @@ public class ResultsProcessor : MonoBehaviour
                 }
             }
             fullPerSimBridgeCounts.Add(perSimPairBridgeCounts);
+            numBridges.Add(num_bridges);
             if (num_bridges > 0)
             {
                 totalSimsWithBridgedComponents++;
@@ -309,15 +312,40 @@ public class ResultsProcessor : MonoBehaviour
             File.Delete(fullPath);
         }
 
-        double percentageWithBridgedComponents = (double)totalSimsWithBridgedComponents / numSims * 100.0;
+        int numBuckets = (int)Math.Sqrt(numBridges.Count);
+        numBuckets = Math.Max(1, numBuckets); 
+        int min = numBridges.Min();
+        int max = numBridges.Max();
+        int bucketWidth = (int)Math.Ceiling((double)(max - min) / numBuckets);
+        int[] buckets = new int[numBuckets];
+        foreach (int value in numBridges)
+        {
+            int bucketIndex = (value - min) / bucketWidth;
+            if (bucketIndex == numBuckets) bucketIndex--; 
+            buckets[bucketIndex]++;
+        }
+    
 
+        double percentageWithBridgedComponents = (double)totalSimsWithBridgedComponents / numSims * 100.0;
         // Log results
         string outFileName = $"montecarlo_log_{beginningSimNumber + numSims - 1}.csv";
         string outFullPath = Path.Combine(directoryPath, outFileName);
         using (StreamWriter writer = new StreamWriter(outFullPath, true))
         {
-            writer.WriteLine("Component,Bridge count");
+            writer.WriteLine();
+            writer.WriteLine($"% sims with bridge: {percentageWithBridgedComponents:F2}%");
 
+            writer.WriteLine();
+            writer.WriteLine("Histogram of bridges densities");
+            for (int i = 0; i < buckets.Length; i++)
+            {
+                int bucketStart = min + i * bucketWidth;
+                int bucketEnd = bucketStart + bucketWidth - 1;
+                writer.WriteLine($"({bucketStart} - {bucketEnd}): {buckets[i]}");
+            }
+
+            writer.WriteLine();
+            writer.WriteLine("Component,Bridge count");
             foreach (var entry in componentBridgeCounts.OrderByDescending(kv => kv.Value))
             {
                 writer.WriteLine($"{entry.Key},{entry.Value}");
@@ -339,9 +367,6 @@ public class ResultsProcessor : MonoBehaviour
                     writer.WriteLine($"{i},{entry.Key.Item1},{entry.Key.Item2},{entry.Value}");
                 }
             }
-
-            writer.WriteLine();
-            writer.WriteLine($"% sims with bridge: {percentageWithBridgedComponents:F2}%");
         }
     }
 
