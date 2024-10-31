@@ -18451,12 +18451,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7119252795838974296, guid: 52b67e50d8f63784d9595de14e4a6286, type: 3}
       propertyPath: descriptionText
-      value: 'Hold and drag right click to move around
-
-        Hover a button to
-        see its functions
-
-'
+      value: "Hold right click and W,A,S,D to move around.\nCtrl to move down and
+        Space to move up.\nHover a button to see its functions.\nMaximum and minimum
+        Input for whisker is 1000 and 0.\nMaximum and minimum Spawn area and position
+        \nX, Y, Z for simulation is 300 and 1.\nMax Simulation Duration is 20 seconds\n\n"
       objectReference: {fileID: 0}
     - target: {fileID: 7119252795838974298, guid: 52b67e50d8f63784d9595de14e4a6286, type: 3}
       propertyPath: m_Pivot.x
