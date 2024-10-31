@@ -562,6 +562,8 @@ GameObject:
   m_Component:
   - component: {fileID: 24076365}
   - component: {fileID: 24076366}
+  - component: {fileID: 24076368}
+  - component: {fileID: 24076367}
   m_Layer: 5
   m_Name: Text Area
   m_TagString: Untagged
@@ -605,6 +607,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &24076367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24076364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 24076368}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnShowTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 24076368}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnHideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &24076368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24076364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: Note
+  descriptionText: Enter range 1-300
 --- !u!1 &37777551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,6 +1729,8 @@ GameObject:
   m_Component:
   - component: {fileID: 161695607}
   - component: {fileID: 161695608}
+  - component: {fileID: 161695610}
+  - component: {fileID: 161695609}
   m_Layer: 5
   m_Name: Text Area
   m_TagString: Untagged
@@ -1711,6 +1774,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &161695609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161695606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 161695610}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnShowTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 161695610}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnHideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &161695610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161695606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: Note
+  descriptionText: Enter range 1-300
 --- !u!1 &180213567
 GameObject:
   m_ObjectHideFlags: 0
@@ -5970,6 +6092,8 @@ GameObject:
   m_Component:
   - component: {fileID: 556455662}
   - component: {fileID: 556455663}
+  - component: {fileID: 556455665}
+  - component: {fileID: 556455664}
   m_Layer: 5
   m_Name: Text Area
   m_TagString: Untagged
@@ -6013,6 +6137,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &556455664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556455661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 556455665}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnShowTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 556455665}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnHideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &556455665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556455661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: Note
+  descriptionText: Enter range 1-300
 --- !u!1 &566883546
 GameObject:
   m_ObjectHideFlags: 0
@@ -10361,6 +10544,8 @@ GameObject:
   m_Component:
   - component: {fileID: 893474016}
   - component: {fileID: 893474017}
+  - component: {fileID: 893474019}
+  - component: {fileID: 893474018}
   m_Layer: 5
   m_Name: Text Area
   m_TagString: Untagged
@@ -10404,6 +10589,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &893474018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893474015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 893474019}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnShowTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 893474019}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnHideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &893474019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893474015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: Note
+  descriptionText: Enter range 1-300
 --- !u!1 &901359192
 GameObject:
   m_ObjectHideFlags: 0
@@ -13255,6 +13499,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1194083569}
   - component: {fileID: 1194083570}
+  - component: {fileID: 1194083572}
+  - component: {fileID: 1194083571}
   m_Layer: 5
   m_Name: Text Area
   m_TagString: Untagged
@@ -13298,6 +13544,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &1194083571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194083568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1194083572}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnShowTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1194083572}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnHideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1194083572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194083568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: Note
+  descriptionText: Enter range 1-300
 --- !u!1 &1199752723
 GameObject:
   m_ObjectHideFlags: 0
@@ -13445,6 +13750,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1200844024}
   - component: {fileID: 1200844025}
+  - component: {fileID: 1200844027}
+  - component: {fileID: 1200844026}
   m_Layer: 5
   m_Name: Text Area
   m_TagString: Untagged
@@ -13488,6 +13795,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &1200844026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200844023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1200844027}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnShowTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1200844027}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnHideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1200844027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200844023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: Note
+  descriptionText: Max duration is 20 seconds
 --- !u!1 &1209273016
 GameObject:
   m_ObjectHideFlags: 0
@@ -17990,6 +18356,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1745172324}
   - component: {fileID: 1745172325}
+  - component: {fileID: 1745172327}
+  - component: {fileID: 1745172326}
   m_Layer: 5
   m_Name: Text Area
   m_TagString: Untagged
@@ -18033,6 +18401,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &1745172326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745172323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1745172327}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnShowTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1745172327}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnHideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1745172327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745172323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: Note
+  descriptionText: Enter range 1-300
 --- !u!1 &1746858684
 GameObject:
   m_ObjectHideFlags: 0
@@ -18451,10 +18878,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7119252795838974296, guid: 52b67e50d8f63784d9595de14e4a6286, type: 3}
       propertyPath: descriptionText
-      value: "Hold right click and W,A,S,D to move around.\nCtrl to move down and
-        Space to move up.\nHover a button to see its functions.\nMaximum and minimum
-        Input for whisker is 1000 and 0.\nMaximum and minimum Spawn area and position
-        \nX, Y, Z for simulation is 300 and 1.\nMax Simulation Duration is 20 seconds\n\n"
+      value: 'Hold right click and W,A,S,D to move around.
+
+        Ctrl to move
+        down and Space to move up.
+
+        Hover a button to see its functions.'
       objectReference: {fileID: 0}
     - target: {fileID: 7119252795838974298, guid: 52b67e50d8f63784d9595de14e4a6286, type: 3}
       propertyPath: m_Pivot.x
@@ -20190,6 +20619,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2050110144}
   - component: {fileID: 2050110145}
+  - component: {fileID: 2050110147}
+  - component: {fileID: 2050110146}
   m_Layer: 5
   m_Name: Text Area
   m_TagString: Untagged
@@ -20233,6 +20664,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &2050110146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050110143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2050110147}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnShowTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2050110147}
+          m_TargetAssemblyTypeName: TooltipTarget, Assembly-CSharp
+          m_MethodName: OnHideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &2050110147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050110143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4355097b11ead47a51024d47417d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: Note
+  descriptionText: Max Whisker amount is 1000
 --- !u!1 &2062435013
 GameObject:
   m_ObjectHideFlags: 0
