@@ -178,7 +178,7 @@ If the application is not configured to limit the number of logon sessions per u
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -192,9 +192,9 @@ If the application is not configured to limit the number of logon sessions per u
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000054</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This STIG is not applicable as the Unity executable operates as a standalone, single-user application without multi-user session management capabilities. The application does not support concurrent logon sessions, eliminating the need for built-in session limits.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -315,7 +315,7 @@ The application may use means other than cookies to store user information. If t
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -329,9 +329,9 @@ The application may use means other than cookies to store user information. If t
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002361</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This STIG is not applicable because the Unity application operates as a standalone executable without using web-based sessions, cookies, or client-side HTML5 storage mechanisms. There is no persistent session or cookie storage that requires clearing upon session termination.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -442,7 +442,7 @@ If the configuration setting is not set to time out user sessions after 15 minut
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -456,9 +456,9 @@ If the configuration setting is not set to time out user sessions after 15 minut
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002361</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This STIG is not applicable because the Unity application runs as a local standalone executable without user session management. There is no persistent login session that requires automatic termination based on idle time.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -569,7 +569,7 @@ If the configuration setting is not set to time out admin user sessions after 10
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -583,9 +583,9 @@ If the configuration setting is not set to time out admin user sessions after 10
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002361</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This STIG is not applicable because the Unity application operates as a standalone executable without distinct admin user sessions or session management. No persistent session exists that would require termination based on idle time for security.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -696,7 +696,7 @@ If the user session is not terminated or if the logoff function does not exist, 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -710,9 +710,9 @@ If the user session is not terminated or if the logoff function does not exist, 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002363</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This STIG is not applicable because the Unity application operates as a standalone executable without interactive user access or session management. There is no user login or logoff functionality, as all application functions are directly accessible without session initiation or termination.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -821,7 +821,7 @@ If the application does not provide an explicit logoff message indicating the us
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -835,9 +835,9 @@ If the application does not provide an explicit logoff message indicating the us
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002364</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This STIG is not applicable because the Unity application operates as a standalone executable without session management. Since there is no user authentication or session termination, a logoff message is unnecessary and irrelevant in this context.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -958,7 +958,7 @@ If application data required to be marked is not marked and does not retain its 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -972,9 +972,9 @@ If application data required to be marked is not marked and does not retain its 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002262</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This STIG is not applicable because the Unity application is not designed to handle classified or sensitive data requiring security attributes. It operates without a backend or database structure that would store and label information with security classifications, as it primarily manages graphical and simulation data locally.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -1093,7 +1093,7 @@ If application data required to be marked does not retain its marking while it i
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -1107,9 +1107,9 @@ If application data required to be marked does not retain its marking while it i
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002263</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable as the Unity application in question does not handle or process classified or sensitive data requiring security classifications. The data processed in the application pertains to simulation and graphical adjustments without access control implications or need for security attributes associated with classified information handling.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -1228,7 +1228,7 @@ If application data required to be marked does not retain its marking when it is
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -1242,9 +1242,9 @@ If application data required to be marked does not retain its marking when it is
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002264</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable as the Unity application does not transmit data over networks or require secure transmission channels. The application is standalone, handling local data processing and file storage without transmitting classified or sensitive data that would necessitate security attributes during transmission.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -1359,7 +1359,7 @@ If the connection is not secured with TLS, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -1373,9 +1373,9 @@ If the connection is not secured with TLS, this is a finding.</ATTRIBUTE_DATA>
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000068</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable because the Unity application operates as a standalone program without remote access capabilities. Since it does not connect to external or non-organization-controlled networks, there is no requirement for DoD-approved encryption to protect remote sessions.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -1490,7 +1490,7 @@ If the connection is not secured with TLS, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -1504,9 +1504,9 @@ If the connection is not secured with TLS, this is a finding.</ATTRIBUTE_DATA>
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-001453</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable because the application is a standalone Unity executable without remote access features. Since it operates entirely on a local machine without transmitting data over an external network, there is no remote access session that would require cryptographic integrity protection.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -1627,7 +1627,7 @@ If SOAP messages requiring integrity do not have the Message ID, Service Request
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -1641,9 +1641,9 @@ If SOAP messages requiring integrity do not have the Message ID, Service Request
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-001453</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable because the application does not utilize SOAP messages. As a standalone Unity executable without web services or SOAP-based communication, the application does not require SOAP message integrity elements like Message ID, Service Request, Timestamp, or SAML Assertion, nor digital signing for SOAP message integrity.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -1752,7 +1752,7 @@ If messages using WS Security do not contain time stamps, sequence numbers, and 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -1766,9 +1766,9 @@ If messages using WS Security do not contain time stamps, sequence numbers, and 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000068</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable because the application does not utilize WS-Security tokens or SOAP messaging. As a standalone Unity application without web services or WS-Security-based messaging, there is no need to implement time stamps, sequence numbers, or expiration times for message protection.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -1879,7 +1879,7 @@ If the design document does not exist, or does not indicate validity periods are
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -1893,9 +1893,9 @@ If the design document does not exist, or does not indicate validity periods are
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000068</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable as the application does not utilize WS-Security or SAML assertions. As a standalone Unity application without web service integrations, there are no WS-Security tokens or SAML assertions requiring validation for validity periods.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -2006,7 +2006,7 @@ If the design document does not exist, or does not indicate SAML assertion ident
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -2020,9 +2020,9 @@ If the design document does not exist, or does not indicate SAML assertion ident
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000068</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable, as the application does not utilize SAML assertions. Being a standalone Unity executable without integrations requiring SAML-based identity management, the application does not involve assertion IDs or asserting parties.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -2135,7 +2135,7 @@ If the design document does not exist, or does not indicate all WS-Security toke
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -2149,9 +2149,9 @@ If the design document does not exist, or does not indicate all WS-Security toke
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000068</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable, as the application does not use SAML assertions or WS-Security tokens. Being a standalone Unity application, it does not involve intermediary web services or require encrypted assertion data handling for remote authentication.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -2264,7 +2264,7 @@ If SOAP messages do not contain &lt;NotOnOrAfter&gt; elements, this is a finding
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -2278,9 +2278,9 @@ If SOAP messages do not contain &lt;NotOnOrAfter&gt; elements, this is a finding
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000068</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable, as the application does not utilize SAML assertions or SOAP messaging. It is a standalone Unity application without a need for SAML-based authentication mechanisms or the &lt;SubjectConfirmation&gt; element.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -2393,7 +2393,7 @@ If SOAP using the &lt;Conditions&gt; element does not contain &lt;NotBefore&gt; 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -2407,9 +2407,9 @@ If SOAP using the &lt;Conditions&gt; element does not contain &lt;NotBefore&gt; 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000068</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable because the application does not use SAML assertions or SOAP messaging. As a standalone Unity application, it has no implementation of SAML-based authentication and, therefore, does not include the &lt;Conditions&gt; element.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -2520,7 +2520,7 @@ If SOAP message uses more than one, OneTimeUse element in a SAML assertion, this
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -2534,9 +2534,9 @@ If SOAP message uses more than one, OneTimeUse element in a SAML assertion, this
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000068</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable because the application does not use SAML assertions or SOAP messaging. As a standalone Unity application, it lacks both SAML-based authentication and the &lt;OneTimeUse&gt; element within assertions, making this check irrelevant.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -2647,7 +2647,7 @@ If the SessionIndex is tied to privacy information, and it is not encrypted, thi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -2661,9 +2661,9 @@ If the SessionIndex is tied to privacy information, and it is not encrypted, thi
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000068</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable because the application does not use SAML assertions or SOAP messaging. As a Unity-based standalone application, it does not involve a SessionIndex or privacy data transmitted via SAML, making this requirement irrelevant.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -2788,7 +2788,7 @@ If the account management process is manual in nature, this is a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -2802,9 +2802,9 @@ If the account management process is manual in nature, this is a finding.</ATTRI
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000015</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable because the application operates as a standalone Unity executable without integrated account management functions. There is no user account management within the application itself, as it does not support role-based access or authentication that would require automated account functions.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -2917,7 +2917,7 @@ If there is no process for handling group account credentials, this is a finding
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -2931,9 +2931,9 @@ If there is no process for handling group account credentials, this is a finding
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-004045</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable because the application operates as a standalone Unity executable and does not utilize shared or group account credentials for user access. The application lacks any form of user authentication or group-based access control that would necessitate managing shared or group credentials.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -3052,7 +3052,7 @@ If the application has no ability to specify a user account as being temporary i
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -3066,9 +3066,9 @@ If the application has no ability to specify a user account as being temporary i
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000016</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable because the application does not create or manage any form of user accounts, including temporary accounts, as it functions as a standalone Unity executable. There are no authentication or account management features within the application that would require the tracking or automatic termination of temporary user accounts.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -3185,7 +3185,7 @@ If a process, procedure, function or feature designed to prevent emergency accou
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -3199,9 +3199,9 @@ If a process, procedure, function or feature designed to prevent emergency accou
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000366</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable because the application operates as a standalone Unity executable with no user account management or administrative features, including emergency accounts. There are no built-in authentication or account processes, so the application does not establish, disable, or manage emergency accounts.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -3320,7 +3320,7 @@ If the application is not set to expire inactive accounts after 35 days, or if t
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -3334,9 +3334,9 @@ If the application is not set to expire inactive accounts after 35 days, or if t
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000017</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable, as the application does not implement user accounts, authentication, or session tracking. Being a standalone Unity executable with no user login mechanism, the application has no capacity to track or disable accounts based on inactivity.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -3447,7 +3447,7 @@ If any accounts cannot be validated and are deemed to be unnecessary, this is a 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -3461,9 +3461,9 @@ If any accounts cannot be validated and are deemed to be unnecessary, this is a 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000017</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable since the application is a Unity-based standalone executable without user accounts or login functionalities. As a result, there are no test, demonstration, or unnecessary accounts created during installation that would need management, disabling, or deletion.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -3582,7 +3582,7 @@ At a minimum, ensure account name, date and time of the event are recorded.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -3596,9 +3596,10 @@ At a minimum, ensure account name, date and time of the event are recorded.</ATT
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000018</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable to the Unity-based standalone executable since the application does not include user account management or a mechanism for creating persistent user accounts. Consequently, there is no account creation process that would require auditing or administrator notification.
+</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -3717,7 +3718,7 @@ At a minimum, ensure account name, date and time of the event are recorded.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -3731,9 +3732,9 @@ At a minimum, ensure account name, date and time of the event are recorded.</ATT
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-001403</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable to the Unity-based standalone application, as it does not implement persistent user accounts or functionality for modifying user accounts. Without account management features, there is no need for audit trails to monitor account modifications.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -3852,7 +3853,7 @@ At a minimum, ensure account name, date and time of the event are recorded.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -3866,9 +3867,9 @@ At a minimum, ensure account name, date and time of the event are recorded.</ATT
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-001404</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable to the Unity-based standalone application, as it does not incorporate account management or account disabling functionality. Since there are no user accounts within the application, there are no actions related to disabling accounts that would require auditing.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -3987,7 +3988,7 @@ At a minimum, ensure account name, date and time of the event are recorded.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -4001,9 +4002,9 @@ At a minimum, ensure account name, date and time of the event are recorded.</ATT
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-001405</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable to the Unity-based standalone application, as it does not include user account management or removal functionality. Without user accounts, there are no account removal actions to audit, making this requirement unnecessary for the application.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -4116,7 +4117,7 @@ If SAs and ISSOs are not notified when accounts are created, this is a finding.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -4130,9 +4131,9 @@ If SAs and ISSOs are not notified when accounts are created, this is a finding.<
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000015</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable, as the Unity application does not manage or create user accounts. Since there is no account creation process within the application, no notifications to system administrators or security officers are necessary.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -4247,7 +4248,7 @@ If SAs and ISSOs are not notified when accounts are modified, this is a finding.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -4261,9 +4262,9 @@ If SAs and ISSOs are not notified when accounts are modified, this is a finding.
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000015</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable, as the Unity application does not include account management functions, such as the creation or modification of user accounts. Without the ability to modify accounts within the application, notification to administrators or security officers is unnecessary.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -4378,7 +4379,7 @@ If SAs and ISSOs are not notified when accounts are disabled, this is a finding.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -4392,9 +4393,9 @@ If SAs and ISSOs are not notified when accounts are disabled, this is a finding.
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000015</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable, as the Unity application does not handle account management functions, including disabling or enabling user accounts. Without internal account management capabilities, the application does not generate account-related events that would require notification to system administrators or security officers.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -4509,7 +4510,7 @@ If SAs and ISSOs are not notified when accounts are removed, this is a finding.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -4523,9 +4524,9 @@ If SAs and ISSOs are not notified when accounts are removed, this is a finding.<
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000015</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable because the Unity application does not include built-in account management capabilities, such as account creation, removal, or modification. As the application does not manage user accounts directly, there is no need to implement notification systems for account removal actions.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -4644,7 +4645,7 @@ At a minimum, ensure account name, date and time of the event are recorded.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -4658,9 +4659,9 @@ At a minimum, ensure account name, date and time of the event are recorded.</ATT
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002130</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable because the Unity application does not handle account management features, such as enabling or disabling user accounts. Since it relies on local or isolated environments without direct user account handling, auditing of account enabling actions is not relevant to its functionality.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -4775,7 +4776,7 @@ If SAs and ISSOs are not notified when accounts are enabled, this is a finding.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -4789,9 +4790,9 @@ If SAs and ISSOs are not notified when accounts are enabled, this is a finding.<
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000015</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable as the Unity application does not support or require user account management functionality, including account enabling or disabling actions. Since it operates without user accounts and lacks mechanisms for handling such administrative notifications, this requirement is outside the scope of its intended use and design.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -4904,7 +4905,7 @@ If the application data protection requirements are not documented, this is a fi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -4918,9 +4919,9 @@ If the application data protection requirements are not documented, this is a fi
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002346</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable as the Unity application is not designed to store, process, or transmit sensitive data, such as Social Security Numbers or Personally Identifiable Information. Its focus is on rendering graphical simulations without maintaining or managing sensitive database information, so data protection requirements related to sensitive organizational information are not relevant in this context.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -5047,7 +5048,7 @@ If the application requirements specify protections for data mining and the appl
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -5061,9 +5062,9 @@ If the application requirements specify protections for data mining and the appl
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002347</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>Since the application only generates local CSV files with simulation results and doesn’t support remote queries or an API, data mining concerns are minimal in this context. Additionally, without an online database or complex querying system, common data mining detection techniques, such as query rate limiting or response filtering, are not applicable.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -5200,7 +5201,7 @@ If the enforcement of configured access restrictions is not performed, this is a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -5214,9 +5215,9 @@ If the enforcement of configured access restrictions is not performed, this is a
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000213</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This Unity-based application does not implement multi-user access or authentication methods, nor does it store sensitive information requiring complex authorization mechanisms. Since the application operates as a local, standalone executable with no remote or shared access, implementing role-based or attribute-based policies is not relevant here. Therefore, access control and authorization as described are not applicable in this environment.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -5341,7 +5342,7 @@ If the enforcement of configured access restrictions is not performed, this is a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -5355,9 +5356,9 @@ If the enforcement of configured access restrictions is not performed, this is a
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002165</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This Unity application operates as a standalone executable without multi-user access, remote authentication, or sensitive data-sharing functions, and therefore does not require discretionary access control mechanisms. As it does not involve user-based access distinctions or permissions, implementing access control lists or attribute-based access is not relevant in this case, making this requirement inapplicable.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -5489,7 +5490,7 @@ If the application does not enforce the approved authorizations for controlling 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -5503,9 +5504,9 @@ If the application does not enforce the approved authorizations for controlling 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-001368</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This Unity application functions as a standalone executable without multi-system communication or inter-process data transfer, making organization-defined information flow control policies inapplicable. Since no cross-system or intra-application data flow mechanisms are utilized or required, there is no need for enforcing information flow control policies or restricting information transfer based on message content or destination.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -5639,7 +5640,7 @@ If the application does not enforce the approved authorizations for controlling 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -5653,9 +5654,9 @@ If the application does not enforce the approved authorizations for controlling 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-001414</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This STIG requirement is not applicable to the Unity application since it is a standalone program operating solely on a local machine without external or network-based system interconnections. The application does not inherently have any mechanisms for communication or data flow to external systems, which this control aims to monitor and restrict.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -5780,7 +5781,7 @@ The finding details should note the full path of the file(s) and the associated 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -5794,9 +5795,9 @@ The finding details should note the full path of the file(s) and the associated 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002235</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable to the Unity application, as it does not have an access control system that distinguishes between privileged and non-privileged users. Additionally, the application does not contain functionality for creating accounts or managing system-wide security features, which this control aims to restrict from non-authorized users.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -5913,7 +5914,7 @@ If the application user account has excessive OS privileges such as being in the
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -5927,9 +5928,9 @@ If the application user account has excessive OS privileges such as being in the
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002233</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable to the Unity application, as it is deployed as a standalone executable without integrated user accounts or access requirements for OS or application resources beyond the necessary runtime permissions. The application operates in a restricted user environment without direct access to elevated OS functions, minimizing security risks associated with excessive permissions.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -6044,7 +6045,7 @@ If the execution of privileged functionality is not logged, this is a finding.</
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -6058,9 +6059,9 @@ If the execution of privileged functionality is not logged, this is a finding.</
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002234</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable to the Unity application, as it does not incorporate privileged functions or administrative operations that would necessitate auditing. The application's operations are user-driven within a controlled environment, without privileged access to system-level functions or sensitive configurations that would pose security risks needing audit controls.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -6179,7 +6180,7 @@ If the logon is successful upon the 4th attempt the account was not locked after
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -6193,9 +6194,9 @@ If the logon is successful upon the 4th attempt the account was not locked after
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000044</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable to the Unity application. The application does not implement user authentication mechanisms or session logins that would involve tracking logon attempts or enforcing lockouts. The Unity project functions as a standalone application without direct account management or access control features.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -6316,7 +6317,7 @@ Use that process when unlocking application user accounts.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -6330,9 +6331,9 @@ Use that process when unlocking application user accounts.</ATTRIBUTE_DATA>
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-002238</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable to the Unity application, as it operates without user account management features, including locking, unlocking, or resetting accounts. The application runs locally without login credentials or user-specific access, thus eliminating the need for account unlocking processes or administrator intervention.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -6465,7 +6466,7 @@ If the standard DoD-approved banner is not displayed prior to obtaining access, 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -6479,9 +6480,10 @@ If the standard DoD-approved banner is not displayed prior to obtaining access, 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000048</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable because the Unity application does not feature a logon interface or require user authentication. Access is typically unrestricted, focusing on local use, which negates the need for a DoD notice and consent banner prior to application entry.
+</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -6592,7 +6594,7 @@ If the banner is not displayed or no action must be taken to accept terms of use
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -6606,9 +6608,9 @@ If the banner is not displayed or no action must be taken to accept terms of use
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000050</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable because the Unity application does not require user authentication or display a logon interface. Without a logon process, a click-through consent banner is unnecessary, as no actions require explicit agreement before access.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -6737,7 +6739,7 @@ If the standard DoD-approved banner is not displayed prior to obtaining access, 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -6767,9 +6769,9 @@ If the standard DoD-approved banner is not displayed prior to obtaining access, 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-001388</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable because the Unity application is not publicly accessible and does not require a logon interface or other authentication mechanism. Without these access points, a consent banner does not serve a functional purpose in this context.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -6888,7 +6890,7 @@ If the date and time the user account was last granted access to the application
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -6902,9 +6904,9 @@ If the date and time the user account was last granted access to the application
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000052</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable as the Unity application does not utilize a user interface with login credentials or user authentication features. Consequently, there is no mechanism to track or display logon timestamps, nor is there a user account system that would require notification of the last logon for security awareness.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -7023,7 +7025,7 @@ If the application is required to provide non-repudiation services and does not,
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -7037,9 +7039,9 @@ If the application is required to provide non-repudiation services and does not,
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000166</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This rule is not applicable because the application does not involve user authentication, digital signatures, or any processes that would require non-repudiation measures. The application functions locally without tracking or verifying user actions that would necessitate protection against false denial of actions, which is typically achieved through digital signatures or other non-repudiation mechanisms in systems requiring secure user authentication and data integrity verification.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -7158,7 +7160,7 @@ If the log dates and times do not correlate when the logs are aggregated, this i
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -7172,9 +7174,9 @@ If the log dates and times do not correlate when the logs are aggregated, this i
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000174</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable, as the application is a standalone Unity executable that does not provide audit record aggregation or interact with multiple system components requiring time-correlated logs. The application generates local CSV logs for simulation data without any distributed components or a need for system-wide audit trails.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -7295,7 +7297,7 @@ If the application generates session ID creation event logs by default, and that
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -7309,9 +7311,9 @@ If the application generates session ID creation event logs by default, and that
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000169</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable, as the application does not manage session-based user access or create session IDs. Since it operates as a local Unity executable without web-based sessions or user management features, there is no session tracking or session ID generation to audit.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -7426,7 +7428,7 @@ If the application generates audit logs by default when session IDs are destroye
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -7440,9 +7442,9 @@ If the application generates audit logs by default when session IDs are destroye
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000169</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable, as the application does not create or manage session IDs. Since it functions as a standalone Unity executable without web-based sessions, there is no session tracking or destruction process to audit.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -7571,7 +7573,7 @@ If the application is not configured to log session ID renewal events this is a 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -7585,9 +7587,9 @@ If the application is not configured to log session ID renewal events this is a 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000169</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable, as the application does not utilize session IDs. Being a standalone Unity executable without session management or privilege-based session renewal, there is no need for auditing session renewals.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -7706,7 +7708,7 @@ If the application logs sensitive data such as session IDs, application source c
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -7720,9 +7722,9 @@ If the application logs sensitive data such as session IDs, application source c
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000169</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable. The Unity application logs do not contain sensitive data such as passwords, session IDs, encryption keys, or PII/PHI, as they focus solely on simulation parameters and results, avoiding storage of any sensitive information.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -7853,7 +7855,7 @@ If the session timeout event is not recorded in the logs, this is a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -7867,9 +7869,9 @@ If the session timeout event is not recorded in the logs, this is a finding.</AT
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000169</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable to the Unity-based simulation application, as it lacks user accounts, logon sessions, and session management elements where session timeouts would occur. No server-based session management is present in this standalone executable, and logging focuses solely on simulation data rather than user session details.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -7974,7 +7976,7 @@ If the time the event occurred is not included as part of the event, this is a f
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -7988,8 +7990,8 @@ If the time the event occurred is not included as part of the event, this is a f
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000169</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
-				<FINDING_DETAILS></FINDING_DETAILS>
+				<STATUS>Open</STATUS>
+				<FINDING_DETAILS>This is open to discussion. </FINDING_DETAILS>
 				<COMMENTS></COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
@@ -8121,7 +8123,7 @@ If HTTP headers are not logged, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -8135,9 +8137,9 @@ If HTTP headers are not logged, this is a finding.</ATTRIBUTE_DATA>
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000169</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>As a standalone Unity executable, the application does not function as a web application or rely on HTTP communication for its core operations. Generating audit records for HTTP headers like User-Agent, Referer, GET, and POST is therefore not applicable. Standalone executables typically focus on local data processing and simulation activities, making HTTP header auditing unnecessary. Such information would only be relevant in applications utilizing web-based interactions and HTTP protocols.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -8250,7 +8252,7 @@ If the IP addresses of the systems that connect to the application are not recor
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -8264,9 +8266,9 @@ If the IP addresses of the systems that connect to the application are not recor
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000169</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This standalone executable operates locally without remote connections, so tracking IP addresses is not applicable. IP auditing is only relevant for networked applications.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -8375,7 +8377,7 @@ If the user ID is not recorded along with the event in the event log, this is a 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -8389,9 +8391,9 @@ If the user ID is not recorded along with the event in the event log, this is a 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000169</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This standalone executable does not utilize user accounts or identity tracking. Therefore, logging usernames or user IDs is not applicable.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -8510,7 +8512,7 @@ If the application does not log when successful and unsuccessful attempts to gra
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -8524,9 +8526,9 @@ If the application does not log when successful and unsuccessful attempts to gra
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This standalone executable does not support user accounts or privilege assignment functionalities. Consequently, logging privilege grants is not applicable.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -8644,7 +8646,7 @@ If the application does not generate an audit record when successful and unsucce
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -8658,9 +8660,9 @@ If the application does not generate an audit record when successful and unsucce
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>Since this standalone executable does not manage or restrict access to specific security objects, audit logging for access attempts to security objects is not applicable.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -8777,7 +8779,7 @@ If the application does not generate an audit record when successful and unsucce
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -8791,9 +8793,9 @@ If the application does not generate an audit record when successful and unsucce
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>As this standalone executable does not support role-based access controls or in-application privilege escalation, generating audit records for attempts to access different security levels is not applicable.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -8916,7 +8918,7 @@ If the application does not generate an audit record when successful and unsucce
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -8930,9 +8932,9 @@ If the application does not generate an audit record when successful and unsucce
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable as the application does not implement access or classification categories for information, nor does it assign protection levels based on data sensitivity. Since the application doesn’t handle classified or category-based data, audit records for accessing such information are not relevant.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -9049,7 +9051,7 @@ If the application does not log when successful and unsuccessful attempts to mod
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -9063,9 +9065,9 @@ If the application does not log when successful and unsuccessful attempts to mod
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable as the application does not include user privilege modifications or permission escalations within its functionality. Therefore, generating audit records for privilege changes is not relevant.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -9183,7 +9185,7 @@ If the application does not generate an audit record when successful and unsucce
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -9197,9 +9199,9 @@ If the application does not generate an audit record when successful and unsucce
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable as the application does not allow users to modify security objects. Since no actions related to security object modification are performed, generating audit records for such events is unnecessary.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -9320,7 +9322,7 @@ If the application does not generate an audit record when successful and unsucce
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -9334,9 +9336,9 @@ If the application does not generate an audit record when successful and unsucce
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable as the application does not include user-configurable security levels or roles. Consequently, no attempts to modify security levels occur within the application, eliminating the need for related audit records.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -9459,7 +9461,7 @@ If the application does not generate an audit record when successful and unsucce
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -9473,9 +9475,9 @@ If the application does not generate an audit record when successful and unsucce
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable, as the application does not handle or allow modification of information categories or classification levels. The application's data is generated and stored in a fixed structure, eliminating the need to audit modifications of information categories.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -9592,7 +9594,7 @@ If the application does not log when successful and unsuccessful attempts to del
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -9606,9 +9608,9 @@ If the application does not log when successful and unsuccessful attempts to del
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable, as the application does not allow for privileges to be created, modified, or deleted. Privileges within the application are fixed and not subject to runtime alterations, making such audit records unnecessary.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -9729,7 +9731,7 @@ If the application does not generate an audit record when successful and unsucce
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -9743,9 +9745,9 @@ If the application does not generate an audit record when successful and unsucce
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable, as the application does not allow for security levels to be created, modified, or deleted. Security levels within the application are static and do not have administrative options for runtime deletion, making audit records for such actions unnecessary.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -9862,7 +9864,7 @@ If the application does not generate an audit record when successful and unsucce
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -9876,9 +9878,9 @@ If the application does not generate an audit record when successful and unsucce
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable, as the application does not include a database or contain deletable security objects within its data structure. Security-related components are limited and static, eliminating the need for audit records of database security object deletions.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -10001,7 +10003,7 @@ If the application does not generate an audit record when successful and unsucce
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -10015,9 +10017,9 @@ If the application does not generate an audit record when successful and unsucce
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This is not applicable, as the application does not handle classified information categories or classification levels that would require auditing for deletion events. Its design focuses on standalone simulation data, which lacks any hierarchical security categorization for record-keeping.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -10132,7 +10134,7 @@ If successful and unsuccessful logon events are not recorded in the logs, this i
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -10146,9 +10148,9 @@ If successful and unsuccessful logon events are not recorded in the logs, this i
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This is not applicable, as the application operates as a standalone executable without a user authentication or logon mechanism. Consequently, there are no user logon events to audit.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -10261,7 +10263,7 @@ If log events that correspond with the actions performed are not recorded in the
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -10275,9 +10277,9 @@ If log events that correspond with the actions performed are not recorded in the
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable, as the application operates as a standalone executable without a role-based privilege or administrative framework for system-level access or configuration. Consequently, there are no privileged activities to audit within this context.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -10386,7 +10388,7 @@ If the start and the end time of the session are not recorded in the logs, this 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -10400,9 +10402,9 @@ If the start and the end time of the session are not recorded in the logs, this 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable, as the application is a standalone executable without user session tracking or role-based access that would require recording of session start and end times. There are no user-specific access sessions to audit in this context.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -10517,7 +10519,7 @@ If the application does not log application object access, this is a finding.</A
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -10531,8 +10533,8 @@ If the application does not log application object access, this is a finding.</A
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
-				<FINDING_DETAILS></FINDING_DETAILS>
+				<STATUS>Open</STATUS>
+				<FINDING_DETAILS>This is open to discussion, we use OBJ, MTL and generated csv files to run the application.</FINDING_DETAILS>
 				<COMMENTS></COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
@@ -10655,7 +10657,7 @@ If the application does not log all direct access to the system, this is a findi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -10669,9 +10671,9 @@ If the application does not log all direct access to the system, this is a findi
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable since the application operates as a standalone Unity executable, typically without direct access to underlying OS features or functions requiring separate audit trails.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -10802,7 +10804,7 @@ Findings should document which of the events was not logged.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -10816,9 +10818,9 @@ Findings should document which of the events was not logged.</ATTRIBUTE_DATA>
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable, as the standalone Unity application does not implement session auditing or logging upon startup. The application’s purpose does not include session tracking or sequential event logging typical in audit-focused systems.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -10937,7 +10939,7 @@ If the application does not begin logging events upon start up, this is a findin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -10951,8 +10953,8 @@ If the application does not begin logging events upon start up, this is a findin
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-001464</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
-				<FINDING_DETAILS></FINDING_DETAILS>
+				<STATUS>Open</STATUS>
+				<FINDING_DETAILS>Many files are generated for the purpose of analysis and future use, it would be beneficial to log when particular event occur such as start up.</FINDING_DETAILS>
 				<COMMENTS></COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
@@ -11064,7 +11066,7 @@ If the application is not recording application shutdown events in either the ap
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -11078,8 +11080,8 @@ If the application is not recording application shutdown events in either the ap
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000130</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
-				<FINDING_DETAILS></FINDING_DETAILS>
+				<STATUS>Open</STATUS>
+				<FINDING_DETAILS>It would be a great idea to log when the application is closed if possible, open for discussion. </FINDING_DETAILS>
 				<COMMENTS></COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
@@ -11197,7 +11199,7 @@ If the IP address of the remote system is not recorded along with the event in t
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -11211,9 +11213,9 @@ If the IP address of the remote system is not recorded along with the event in t
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000130</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>For a standalone Unity application that operates locally and doesn’t inherently connect to external systems or services, logging destination IP addresses is not applicable. This requirement would only apply if the application connects to external systems or services over a network, in which case IP logging would aid in monitoring network activity for security and forensic purposes.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -11326,7 +11328,7 @@ If successful access to application data elements is not recorded in the logs, t
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -11340,8 +11342,8 @@ If successful access to application data elements is not recorded in the logs, t
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000130</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
-				<FINDING_DETAILS></FINDING_DETAILS>
+				<STATUS>Open</STATUS>
+				<FINDING_DETAILS>This is not applicable to the application if it doesn't manage sensitive or protected data requiring logging upon access. If the application does handle data requiring special protection or access logging, then it should log access events to meet this control.</FINDING_DETAILS>
 				<COMMENTS></COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
@@ -11457,7 +11459,7 @@ If successful changes/modifications to application data elements are not recorde
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -11471,9 +11473,10 @@ If successful changes/modifications to application data elements are not recorde
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000130</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This STIG is N/A because data editing occurs externally, so logging changes should be managed by the operating system or database system in use. The application does not handle or control data modification within its own environment.
+</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -11580,7 +11583,7 @@ If the audit logs do not have a corresponding date and time associated with each
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -11594,9 +11597,9 @@ If the audit logs do not have a corresponding date and time associated with each
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000131</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This STIG is N/A because the application is a standalone executable without built-in logging for events within the application. Any audit or logging would be managed by the operating system if necessary for this environment.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -11727,7 +11730,7 @@ If the audit logs do not contain enough data in the logs to establish which comp
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -11741,9 +11744,9 @@ If the audit logs do not contain enough data in the logs to establish which comp
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000132</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This STIG is N/A since the application is a standalone executable without component-based logging capabilities. Forensic data on source components or functions would be managed externally by the operating system if required.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -11862,7 +11865,7 @@ If the application name and the hosts or client names are not identified, this i
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -11876,9 +11879,9 @@ If the application name and the hosts or client names are not identified, this i
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000133</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This STIG is N/A since the application is a standalone executable without component-based logging capabilities. Forensic data on source components or functions would be managed externally by the operating system if required.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -11995,7 +11998,7 @@ If the application does not produce audit records that contain information regar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -12009,9 +12012,9 @@ If the application does not produce audit records that contain information regar
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000134</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is N/A as the application operates as a standalone executable without event-specific auditing. Any need to determine event outcomes would be handled by external system logging or error handling configured at the OS level.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -12123,7 +12126,7 @@ If the event logs do not include the appropriate identifier or identifiers, this
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -12137,9 +12140,9 @@ If the event logs do not include the appropriate identifier or identifiers, this
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-001487</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is N/A because the application is a standalone executable without individual user authentication. Any audit record generation establishing user identity would rely on the OS or external logging tools.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -12258,7 +12261,7 @@ If the application does not log the full text recording of privileged commands o
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -12272,9 +12275,9 @@ If the application does not log the full text recording of privileged commands o
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000135</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is N/A because the application operates as a standalone executable and does not support privileged commands or group account user functionality. Any audit capability involving privileged commands or group identities would need to be managed externally.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -12383,7 +12386,7 @@ If the application is not configured to utilize transaction logging, this is a f
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -12397,9 +12400,9 @@ If the application is not configured to utilize transaction logging, this is a f
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000135</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is N/A because the application does not operate in a transaction-based manner or utilize a database requiring transaction recovery logs. Any recovery or logging related to data changes would need to be handled by the OS or file management system.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -12514,7 +12517,7 @@ If the application does not provide the ability to centrally manage the content 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -12528,9 +12531,9 @@ If the application does not provide the ability to centrally manage the content 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000154</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is N/A since the application is a standalone executable and does not utilize a central management system for managing audit logs.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -12649,7 +12652,7 @@ If the logs are not automatically moved off the system as per approved schedule,
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -12663,9 +12666,9 @@ If the logs are not automatically moved off the system as per approved schedule,
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-001851</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This STIG does not apply to the application as it is a standalone Unity executable without a centralized logging capability. The application’s operational setup does not support real-time off-loading of logs to a separate system, which is outside the scope of this local environment.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -12778,7 +12781,7 @@ If the system is not configured to write the application logs to the centralized
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -12792,9 +12795,9 @@ If the system is not configured to write the application logs to the centralized
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-001851</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement does not apply, as the application operates as a standalone Unity executable and lacks support for integration with a centralized log repository. The Unity environment does not inherently provide mechanisms for real-time log off-loading, making this requirement inapplicable in this context.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -12911,7 +12914,7 @@ If the application is not configured to send an alarm when storage volume exceed
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -12925,9 +12928,9 @@ If the application is not configured to send an alarm when storage volume exceed
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-001855</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable, as the application operates as a standalone executable without built-in capabilities to monitor or notify based on audit storage thresholds. Given the lack of centralized logging or automated notification features, this functionality would typically be managed by the operating system or external logging solutions, not within the Unity application itself.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -13046,7 +13049,7 @@ Configure the log alerts to be immediately sent to the application admin/SA and 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -13060,9 +13063,9 @@ Configure the log alerts to be immediately sent to the application admin/SA and 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-001858</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable, as the application is not categorized as having moderate or high impact. Consequently, real-time alerting for audit failure events is not a necessary compliance for this application.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -13183,7 +13186,7 @@ If the application is not configured to alarm on alerts that indicate the audit 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -13197,9 +13200,9 @@ If the application is not configured to alarm on alerts that indicate the audit 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000139</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>NotAFinding</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>If the application crashes in Unity, a log file is typically generated that captures the details of the crash, including error messages, stack traces, and other relevant debugging information. This is automatically handled by Unity and saved locally, and it provides insight into any failures that led to the crash.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -13322,7 +13325,7 @@ If the application does not shut down processing when an audit failure is detect
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -13336,8 +13339,8 @@ If the application does not shut down processing when an audit failure is detect
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000140</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
-				<FINDING_DETAILS></FINDING_DETAILS>
+				<STATUS>Not_Applicable</STATUS>
+				<FINDING_DETAILS>This requirement is not applicable to the Unity-based executable, as it does not implement an internal audit log system or centralized audit collection server. Unity-generated logs primarily serve for debugging and error tracking and do not handle audit record processing or queuing.</FINDING_DETAILS>
 				<COMMENTS></COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
@@ -13451,7 +13454,7 @@ If all of the application logs are not reviewable from a central location, this 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -13465,9 +13468,9 @@ If all of the application logs are not reviewable from a central location, this 
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-000154</ATTRIBUTE_DATA>
 				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
+				<STATUS>Not_Applicable</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
+				<COMMENTS>This requirement is not applicable as the Unity-based executable does not include centralized logging capabilities or multiple log components for centralized review. Any log files generated by Unity are primarily local and intended for debugging, not centralized log management or analysis across multiple components.</COMMENTS>
 				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
 				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
 			</VULN>
@@ -13593,7 +13596,7 @@ If the application does not provide the ability to filter audit events, this is 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -13739,7 +13742,7 @@ If the application does not provide on demand reports based on the filtered audi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -13885,7 +13888,7 @@ If the application does not provide an audit reduction capability that supports 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -14026,7 +14029,7 @@ If the application does not provide an audit reduction (event filtering) capabil
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -14163,7 +14166,7 @@ If the application does not provide an immediate, ad-hoc audit review and analys
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -14298,7 +14301,7 @@ If the application does not provide customizable, immediate, ad-hoc audit log re
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -14433,7 +14436,7 @@ If the application does not have a report generation capability that supports af
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -14574,7 +14577,7 @@ If the application of event filters modifies the original log records, this is a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -14715,7 +14718,7 @@ If the application of event filters modifies the original log records, this is a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -14848,7 +14851,7 @@ If the application doesn't use the internal system clocks to generate time stamp
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -14979,7 +14982,7 @@ If the application is not configured to map to UTC or GMT, this is a finding.</A
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -15106,7 +15109,7 @@ If the application audit log time stamps differ from the OS time source by more 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -15249,7 +15252,7 @@ If a non-privileged user account is allowed to access the audit data or the audi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -15392,7 +15395,7 @@ If a non-privileged user account is allowed to modify the audit data or the audi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -15535,7 +15538,7 @@ If a non-privileged user account is allowed to delete the audit data or the audi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -15674,7 +15677,7 @@ If a non-privileged user account is allowed to access the audit data or the audi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -15811,7 +15814,7 @@ If file permissions are configured so as to allow unapproved modifications to th
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -15948,7 +15951,7 @@ If file permissions are configured to allow unapproved deletions of the audit to
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -16079,7 +16082,7 @@ If the application backup settings are not configured to backup application audi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -16212,7 +16215,7 @@ If an integrity check is not created to protect the integrity of the audit infor
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -16355,7 +16358,7 @@ If a cryptographic checksum or hash value of the audit tool file is not created 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -16492,7 +16495,7 @@ If a cryptographic checksum or hash value of the audit tool file is not periodic
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -16627,7 +16630,7 @@ If the application allows regular users to install untested or unapproved softwa
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -16762,7 +16765,7 @@ If access permissions to configuration files are not restricted to application a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -16897,7 +16900,7 @@ If the user account used to make the changes is not logged in the audit records,
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -17030,7 +17033,7 @@ Provide a cryptographic hash value that can be verified by a system administrato
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -17163,7 +17166,7 @@ If file restrictions do not limit write access to library files and if the appli
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -17315,7 +17318,7 @@ If the high risk issues identified in the report have not been fixed or mitigate
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -17446,7 +17449,7 @@ If application requirements or policy documents specify application execution re
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -17579,7 +17582,7 @@ If application whitelisting is not utilized or does not follow a deny-all, permi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -17712,7 +17715,7 @@ If the application is operating with extraneous capabilities that have not been 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -17849,7 +17852,7 @@ If the ports are not approved by the PPSM CAL, this is a finding.</ATTRIBUTE_DAT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -18003,7 +18006,7 @@ If the user is not prompted to reauthenticate before the user is allowed to proc
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -18143,7 +18146,7 @@ If the device is not forced to reauthenticate periodically, this is a finding.</
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -18277,7 +18280,7 @@ If the application does not uniquely identify and authenticate users, this is a 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -18417,7 +18420,7 @@ If the application allows administrative access to the application without requi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -18546,7 +18549,7 @@ If the application allows access without requiring a CAC, this is a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -18679,7 +18682,7 @@ If the application allows access without requiring a CAC, this is a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -18822,7 +18825,7 @@ If the application allows access without requiring a CAC or Alt. Token, this is 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -18964,7 +18967,7 @@ If the application allows administrative access to the application without requi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -19106,7 +19109,7 @@ If the application allows access without requiring a CAC or Alt. Token, this is 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -19241,7 +19244,7 @@ If the application allows access without first requiring the group member to aut
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -19386,7 +19389,7 @@ If the application is not implementing replay-resistant authentication methods a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -19533,7 +19536,7 @@ If the application is not implementing replay-resistant authentication methods a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -19685,7 +19688,7 @@ If SSL mutual authentication is required and is not being utilized, this is a fi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -19827,7 +19830,7 @@ If no authentication mechanism is used to authenticate remote service consumers/
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -19976,7 +19979,7 @@ If SSL/TLS mutual authentication is required due to the application processing n
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -20125,7 +20128,7 @@ If the application does not disable accounts used to authenticate devices after 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -20264,7 +20267,7 @@ If a password shorter than 15 characters can be created, this is a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -20401,7 +20404,7 @@ If a password without at least one upper-case character can be created, this is 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -20538,7 +20541,7 @@ If a password without at least one lower-case character can be created, this is 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -20675,7 +20678,7 @@ If a password without at least one numeric character can be created, this is a f
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -20812,7 +20815,7 @@ If a password without at least one special character can be created, this is a f
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -20949,7 +20952,7 @@ If less than 8 characters of the password are changed, this is a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -21107,7 +21110,7 @@ Ensure strong access control permissions on data files containing authentication
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -21252,7 +21255,7 @@ If the passwords are not encrypted when being transmitted, this is a finding.</A
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -21389,7 +21392,7 @@ If a password can be changed more than once within 24 hours, the minimum lifetim
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -21528,7 +21531,7 @@ If user passwords are not configured to expire after 60 days, or if the applicat
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -21667,7 +21670,7 @@ If the application does not prevent users from reusing their previous five passw
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -21804,7 +21807,7 @@ If the application can not specify a password as temporary and force the user to
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -21949,7 +21952,7 @@ Ensure users are only allowed to change their own passwords.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -22082,7 +22085,7 @@ If the test user retains access after the test account has been deleted, this is
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -22215,7 +22218,7 @@ If the application does not construct a certificate path to an accepted trust an
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -22354,7 +22357,7 @@ If unauthorized access is granted to the private key(s), this is a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -22481,7 +22484,7 @@ If the application does not map the certificate data to an individual user or gr
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -22614,7 +22617,7 @@ If the application is not configured to implement a CRL, this is a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -22751,7 +22754,7 @@ Design the application so obfuscated passwords cannot be copied and then pasted 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -22884,7 +22887,7 @@ If the cryptographic module that requires authentication is not on the FIPS-appr
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -23017,7 +23020,7 @@ If the application does not identify and authenticate non-organizational users a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -23148,7 +23151,7 @@ If the application is required to provide authenticated access to Federal agenci
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -23279,7 +23282,7 @@ If the application is required to provide authenticated access to Federal agenci
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -23415,7 +23418,7 @@ If the application does not accept FICAM-approved credentials when accepting thi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -23553,7 +23556,7 @@ If the application is designed to be a service provider utilizing an external id
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -23690,7 +23693,7 @@ If the application provides maintenance functions and capabilities and those fun
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -23827,7 +23830,7 @@ If the application provides remote access to maintenance functions and capabilit
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -23962,7 +23965,7 @@ If the application provides remote access to maintenance functions and capabilit
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -24115,7 +24118,7 @@ If the application provides remote access to maintenance functions and capabilit
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -24256,7 +24259,7 @@ If a CAC is not used when remotely accessing the application for maintenance or 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -24395,7 +24398,7 @@ If the application does not deny access after each user session has exceeded the
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -24536,7 +24539,7 @@ Validate that variable values do not change while a switch event is occurring.</
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -24683,7 +24686,7 @@ If exceptions are documented with no mitigation this is a finding.</ATTRIBUTE_DA
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -24818,7 +24821,7 @@ If the application signing process does not use FIPS validated cryptographic mod
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -24951,7 +24954,7 @@ If FIPS-validated cryptographic modules are not used when generating hashes or i
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -25078,7 +25081,7 @@ If the application is using cryptographic modules that are not FIPS-validated to
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -25209,7 +25212,7 @@ If the application is using cryptographic modules that are not FIPS-validated wh
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -25338,7 +25341,7 @@ If the application user interface and the application management interface are s
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -25487,7 +25490,7 @@ If the application does not set the HTTPOnly flag on session cookies or if the a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -25627,7 +25630,7 @@ If the "secure" flag is not set on the session cookie, or if the vulnerability s
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -25764,7 +25767,7 @@ If the session IDs are unencrypted across network segments, this is a finding.</
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -25895,7 +25898,7 @@ If the session IDs and associated cookies are not destroyed on logoff or browser
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -26030,7 +26033,7 @@ If the session testing results indicate application session IDs are re-used afte
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -26155,7 +26158,7 @@ If the application is not configured to validate user session identifiers, this 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -26288,7 +26291,7 @@ If the framework or the application is configured to transmit cookies within the
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -26425,7 +26428,7 @@ If the session testing results indicate application session IDs are re-used afte
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -26560,7 +26563,7 @@ If the application does not use FIPS 140-2-approved encryption algorithms, this 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -26699,7 +26702,7 @@ If the application utilizes PKI certificates other than DoD-approved PKI and ECA
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -26848,7 +26851,7 @@ If the application fails in such a way that the application security controls ar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -26975,7 +26978,7 @@ If the application does not log the data required to determine root cause of app
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -27114,7 +27117,7 @@ If the application processes classified data or if the data owner has specified 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -27253,7 +27256,7 @@ Encrypt data according to DoD policy or data owner requirements.</ATTRIBUTE_DATA
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -27394,7 +27397,7 @@ Encrypt classified data using Type 1, Suite B, or other NSA-approved encryption 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -27525,7 +27528,7 @@ If the application does not protect security functions that enforce security pol
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -27652,7 +27655,7 @@ If the application does not maintain a separate execution domain for each execut
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -27781,7 +27784,7 @@ If the application does not prevent unauthorized and unintended information tran
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -27928,7 +27931,7 @@ If the application administrator cannot demonstrate how these protections are im
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -28067,7 +28070,7 @@ If the test results indicate the application is susceptible to DoS attacks or ca
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -28206,7 +28209,7 @@ If the application has been designated as high availability but the architecture
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -28345,7 +28348,7 @@ If the application does not utilize TLS, IPsec or other approved encryption mech
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -28482,7 +28485,7 @@ If the application is not configured to provide cryptographic protections to app
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -28611,7 +28614,7 @@ If the application does not utilize TLS to protect the confidentiality and integ
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -28740,7 +28743,7 @@ If the application does not utilize TLS to protect the confidentiality and integ
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -28873,7 +28876,7 @@ If the application displays any application technical data such as database vers
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -29004,7 +29007,7 @@ Encrypt sensitive information stored in hidden fields using DoD-approved encrypt
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -29158,7 +29161,7 @@ Develop your application using a web template system or a web application develo
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -29295,7 +29298,7 @@ If application scan results show an unremediated CSRF vulnerability, or if no sc
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -29448,7 +29451,7 @@ If testing results are not provided demonstrating the vulnerability does not exi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -29603,7 +29606,7 @@ Security checks should be carried out after decoding is completed. Moreover, it 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -29750,7 +29753,7 @@ If test results include input validation errors, or if no test results exist, th
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -29899,7 +29902,7 @@ If the application is vulnerable to SQL injection attack, contains SQL injection
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -30044,7 +30047,7 @@ Patch the application components when vulnerabilities are discovered.</ATTRIBUTE
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -30207,7 +30210,7 @@ Remediate identified vulnerabilities and obtain documented risk acceptance for t
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -30340,7 +30343,7 @@ Use generic error messages.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -30477,7 +30480,7 @@ Use generic error messages for non-privileged users.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -30623,7 +30626,7 @@ Patch applications when overflows are identified in vendor products.</ATTRIBUTE_
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -30748,7 +30751,7 @@ If old versions of the application or components are still installed on the syst
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -30879,7 +30882,7 @@ If application updates are not checked on at least on a weekly basis and applied
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -31010,7 +31013,7 @@ If the application is designed to perform security function testing and does not
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -31143,7 +31146,7 @@ If the application is designed to perform security function testing and does not
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -31280,7 +31283,7 @@ If the application is designed to perform security function testing and does not
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -31425,7 +31428,7 @@ If the code has not been signed or the application warns that a control cannot b
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -31548,7 +31551,7 @@ If a documented account management process does not exist or unauthorized users 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -31704,7 +31707,7 @@ If the application is tiered and the network infrastructure hosting the applicat
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -31825,7 +31828,7 @@ If audit logs have not been retained for one year or five years for SAMI data, t
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -31948,7 +31951,7 @@ Maintain a log or records of dates and times audit logs are reviewed.</ATTRIBUTE
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -32069,7 +32072,7 @@ If there is no policy for reporting IA violations, this is a finding.</ATTRIBUTE
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -32218,7 +32221,7 @@ Address discovered vulnerabilities.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -32355,7 +32358,7 @@ If deadlock issues are not being addressed via documented web service configurat
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -32488,7 +32491,7 @@ If the application user data is located in the same directory as the application
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -32624,7 +32627,7 @@ or vendor literature and lock down guides, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -32766,7 +32769,7 @@ Verify that all ports, protocols, and services are used in accordance with the D
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -32887,7 +32890,7 @@ If the application requires registration, and is not registered or all ports use
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -33020,7 +33023,7 @@ If CM repository is not at the latest security patch level and is not operating 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -33157,7 +33160,7 @@ If CM access privileges have not been reviewed within the last three months, thi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -33423,7 +33426,7 @@ If the CMR does not audit for modifications, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -33558,7 +33561,7 @@ If there is no evidence of CCB activity or meetings prior to the last release cy
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -33681,7 +33684,7 @@ If the application environment is not compliant with all DoD IPv6 Standards Prof
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -33806,7 +33809,7 @@ If a mission critical application is deployed onto the same server as non-missio
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -33933,7 +33936,7 @@ If the disaster recovery/continuity plan does not exist or does not meet the sev
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -34060,7 +34063,7 @@ If the application is not part of the site’s disaster recovery plan, or if any
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -34209,7 +34212,7 @@ If any of the requirements above for the associated risk level of the applicatio
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -34340,7 +34343,7 @@ If back-up copies of the application software or source code are not stored in a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -34463,7 +34466,7 @@ If backup and restoration devices are not included in the recovery procedures, t
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -34588,7 +34591,7 @@ If the application does not implement encryption for key exchange, this is a fin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -34715,7 +34718,7 @@ The finding details should note specifically where the offending credentials or 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -34854,7 +34857,7 @@ After completing the test, destroy all printed output using the site’s preferr
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -34979,7 +34982,7 @@ If test plans, procedures, and results do not exist, or are not updated for each
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -35124,7 +35127,7 @@ Application Admins validate cryptographic hashes prior to deploying the applicat
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -35251,7 +35254,7 @@ If the organization has not designated personnel to conduct security testing, th
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -35378,7 +35381,7 @@ If annual testing procedures do not exist, or if administrators are unable to pr
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -35539,7 +35542,7 @@ If the organization does not conduct code reviews on the application that attemp
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -35674,7 +35677,7 @@ If these code coverage statistics do not exist, this is a finding.</ATTRIBUTE_DA
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -35801,7 +35804,7 @@ If there is no configuration management repository or the code review flaws are 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -35926,7 +35929,7 @@ If IA impact analysis is not performed, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -36055,7 +36058,7 @@ If security flaws are not addressed in the project plan or there is no process t
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -36197,7 +36200,7 @@ Include programming best practices based on the languages being used for applica
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -36348,7 +36351,7 @@ If the design document is incomplete, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -36503,7 +36506,7 @@ If the described threat model documentation does not exist, this is a finding.</
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -36634,7 +36637,7 @@ If no test results are available for review, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -36778,7 +36781,7 @@ If the application incident response plan does not exist and at a minimum does n
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -36911,7 +36914,7 @@ If any of the software components are not supported by a COTS vendor or a GOTS o
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -37034,7 +37037,7 @@ If the application or any of the application components are not being maintained
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -37157,7 +37160,7 @@ If provisions are not in place to notify users when an application is decommissi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -37288,7 +37291,7 @@ If these accounts are not necessary to run the application, or if the accounts a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -37411,7 +37414,7 @@ If authentication is successful, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -37586,7 +37589,7 @@ Verify the application configuration guide is distributed along  with the applic
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -37731,7 +37734,7 @@ If the security classification guide does not exist, or does not contain applica
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -37888,7 +37891,7 @@ If uncategorized mobile code types are found, ask the application administrator 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -38015,7 +38018,7 @@ If any database exports include sensitive data and that data is not sanitized or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -38142,7 +38145,7 @@ If mitigations for DoS attacks are identified in the threat model but are not im
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -38265,7 +38268,7 @@ If this monitoring capability does not exist, this is a finding.</ATTRIBUTE_DATA
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -38390,7 +38393,7 @@ If no deployment personnel are registered to receive the alerts, this is a findi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -38525,7 +38528,7 @@ Include a description of the issue, a summary of risk as well as potential mitig
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -38646,7 +38649,7 @@ If the application is publicly accessible and traffic is not being routed throug
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -38775,7 +38778,7 @@ If the application does not create an audit record when concurrent logons occur 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -38917,7 +38920,7 @@ If there is no evidence of security training, this is a finding.</ATTRIBUTE_DATA
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
@@ -39088,7 +39091,7 @@ Implement NSA-validated type-1 encryption of all SAMI data stored in the enclave
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIG_UUID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>a9671811-692a-4d22-ab65-341e130d2dad</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>LEGACY_ID</VULN_ATTRIBUTE>
