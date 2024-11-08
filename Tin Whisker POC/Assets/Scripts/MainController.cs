@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class MainController : MonoBehaviour
 {
     public GameObject MonteCarloSimulationObject;
-    public int SimNumber = 0;
+    public int SimNumber = 1; // One start so easier to understand for the average user
     public SimState simState;
     public WhiskerSim whiskerSim;
     private MonteCarloSim monteCarloSim;
