@@ -33,7 +33,10 @@ public class MainController : MonoBehaviour
     public TMP_InputField SimQuantityText;
     public TMP_InputField xTiltText;
     public TMP_InputField zTiltText;
+    
     public Button SimulationSettingsButton;
+    public Button BoardSettingsButton;
+
     public Button EndSimEarlyButton;
     public Canvas MonteCarloWaitScreen;
     public Button InspectionModeButton;
@@ -407,16 +410,14 @@ public class MainController : MonoBehaviour
 
     public void ui_lock()
     {
-
         SimulationSettingsButton.interactable = false;
-
+        BoardSettingsButton.interactable = false;
     }
 
     public void ui_unlock()
     {
-
         SimulationSettingsButton.interactable = true;
-
+        BoardSettingsButton.interactable = true;
     }
 
     public void RunSimulation()

@@ -35,7 +35,7 @@ using Unity.VisualScripting;
 
 public class LoadFile : MonoBehaviour
 {
-    public GameObject Modle; //Load OBJ Model
+    public GameObject Model; //Load OBJ Model
     public GameObject MainController;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -97,13 +97,13 @@ public class LoadFile : MonoBehaviour
     // Function to change the height of the loaded object
     private void SetPosition(float xPos, float yPos, float zPos)
     {
-        if (Modle != null)
+        if (Model != null)
         {
-            Vector3 newPosition = Modle.transform.position;
+            Vector3 newPosition = Model.transform.position;
             newPosition.x = xPos;
             newPosition.y = yPos;
             newPosition.z = zPos;
-            Modle.transform.position = newPosition;
+            Model.transform.position = newPosition;
         }
     }
 
@@ -122,40 +122,40 @@ public class LoadFile : MonoBehaviour
         {
             MemoryStream textStream = new MemoryStream(Encoding.UTF8.GetBytes(www.downloadHandler.text));
             MemoryStream MTLStream = new MemoryStream(Encoding.UTF8.GetBytes(mmm.downloadHandler.text));
-            if (Modle != null)
+            if (Model != null)
             {
-                Destroy(Modle);
+                Destroy(Model);
             }
-            Modle = new OBJLoader().Load(textStream, MTLStream);
-            if (Modle == null)
+            Model = new OBJLoader().Load(textStream, MTLStream);
+            if (Model == null)
             {
                 // TODO: Flash message to user
                 Debug.Log("Error loading OBJ model.");
                 yield break; // Exit the coroutine early if loading OBJ model fails
             }
-            SetPosition(0, -13.7f, 0);
-            Modle.name = "MainCiruitBoard";
+            SetPosition(0, 0, 0);
+            Model.name = "MainCiruitBoard";
 
             
             // Usage:
-            SetLayerRecursively(Modle, LayerMask.NameToLayer("Attachables"));
+            SetLayerRecursively(Model, LayerMask.NameToLayer("Attachables"));
 
-            Modle.tag = "Board";
+            Model.tag = "Board";
 
             // Add sine wave movement to the loaded model
-            Modle.AddComponent<SineWaveMovement>();
+            Model.AddComponent<SineWaveMovement>();
 
-            // set Gravity off for Modle rigidbody
-            Modle.GetComponent<Rigidbody>().useGravity = false;
+            // set Gravity off for Model rigidbody
+            Model.GetComponent<Rigidbody>().useGravity = false;
 
             //change rigid body collision detection to continuous
-            Modle.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            Model.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
             //Change the behavior to extrapolate
-            Modle.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Extrapolate;
+            Model.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Extrapolate;
             int i = 0;
             // Iterate through all the children of the parent model
-            foreach (Transform child in Modle.transform)
+            foreach (Transform child in Model.transform)
             {
                 // Add a kinematic rigidbody to the child
                 Rigidbody rb = child.gameObject.AddComponent<Rigidbody>();
