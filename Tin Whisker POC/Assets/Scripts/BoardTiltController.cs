@@ -7,9 +7,9 @@ public class BoardTiltController : MonoBehaviour
     public TMP_InputField xTiltInput; // Input field for X-axis tilt
     public TMP_InputField zTiltInput; // Input field for Z-axis tilt
     private GameObject board; // The board object that will be tilted
-    private GameObject scaleGrid; // The ScaleGrid object that will also be tilted
+    // private GameObject scaleGrid; // The ScaleGrid object that will also be tilted
     private bool boardLoaded = false;
-    private bool scaleGridLoaded = false;
+    // private bool scaleGridLoaded = false;
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class BoardTiltController : MonoBehaviour
     {
         // When the panel is enabled, start looking for the objects again
         StartCoroutine(WaitForBoardToLoad());
-        StartCoroutine(WaitForScaleGridToLoad());
+        // StartCoroutine(WaitForScaleGridToLoad());
     }
 
     // Coroutine to wait until the board object is loaded
@@ -52,30 +52,30 @@ public class BoardTiltController : MonoBehaviour
     }
 
     // Coroutine to wait until the ScaleGrid object is loaded
-    IEnumerator WaitForScaleGridToLoad()
-    {
-        while (scaleGrid == null)
-        {
-            // Keep trying to find the ScaleGrid tagged as "ScaleGrid"
-            scaleGrid = GameObject.FindWithTag("ScaleGrid");
+    // IEnumerator WaitForScaleGridToLoad()
+    // {
+    //     while (scaleGrid == null)
+    //     {
+    //         // Keep trying to find the ScaleGrid tagged as "ScaleGrid"
+    //         scaleGrid = GameObject.FindWithTag("ScaleGrid");
 
-            if (scaleGrid != null)
-            {
-                scaleGridLoaded = true;
-                Debug.Log("ScaleGrid found, applying tilt.");
+    //         if (scaleGrid != null)
+    //         {
+    //             scaleGridLoaded = true;
+    //             Debug.Log("ScaleGrid found, applying tilt.");
 
-                // Apply the initial tilt based on current input field values
-                TiltObjects();
-            }
-            else
-            {
-                Debug.Log("Waiting for the ScaleGrid to be loaded...");
-            }
+    //             // Apply the initial tilt based on current input field values
+    //             TiltObjects();
+    //         }
+    //         else
+    //         {
+    //             Debug.Log("Waiting for the ScaleGrid to be loaded...");
+    //         }
 
-            // Wait for the next frame and try again
-            yield return null;
-        }
-    }
+    //         // Wait for the next frame and try again
+    //         yield return null;
+    //     }
+    // }
 
     // Method to tilt both the board and ScaleGrid based on input field values
     public void TiltObjects()
@@ -91,14 +91,14 @@ public class BoardTiltController : MonoBehaviour
         }
 
         // Tilt the ScaleGrid if it is loaded
-        if (scaleGridLoaded && scaleGrid != null)
-        {
-            float xTilt = ParseInputField(xTiltInput);
-            float zTilt = ParseInputField(zTiltInput);
+        // if (scaleGridLoaded && scaleGrid != null)
+        // {
+        //     float xTilt = ParseInputField(xTiltInput);
+        //     float zTilt = ParseInputField(zTiltInput);
 
-            // Apply the tilt to the ScaleGrid (preserving the Y rotation)
-            scaleGrid.transform.rotation = Quaternion.Euler(xTilt, scaleGrid.transform.rotation.eulerAngles.y, zTilt);
-        }
+        //     // Apply the tilt to the ScaleGrid (preserving the Y rotation)
+        //     scaleGrid.transform.rotation = Quaternion.Euler(xTilt, scaleGrid.transform.rotation.eulerAngles.y, zTilt);
+        // }
     }
 
     // Helper function to parse the input field value and return a float

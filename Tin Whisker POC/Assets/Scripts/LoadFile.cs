@@ -28,6 +28,7 @@ using TMPro;
 using UnityEngine.Networking;
 using Dummiesman; //Load OBJ Model
 using SimInfo;
+using Unity.VisualScripting;
 
 
 
@@ -94,12 +95,14 @@ public class LoadFile : MonoBehaviour
     }
 
     // Function to change the height of the loaded object
-    private void ChangeHeight(float heightPos)
+    private void SetPosition(float xPos, float yPos, float zPos)
     {
         if (Modle != null)
         {
             Vector3 newPosition = Modle.transform.position;
-            newPosition.y = heightPos;
+            newPosition.x = xPos;
+            newPosition.y = yPos;
+            newPosition.z = zPos;
             Modle.transform.position = newPosition;
         }
     }
@@ -130,9 +133,7 @@ public class LoadFile : MonoBehaviour
                 Debug.Log("Error loading OBJ model.");
                 yield break; // Exit the coroutine early if loading OBJ model fails
             }
-            ChangeHeight(-13.7f);
-            Modle.transform.localScale = new Vector3(150f, 50f, 150f);
-            Modle.transform.Rotate(0f, 0f, 0f, Space.Self);
+            SetPosition(0, -13.7f, 0);
             Modle.name = "MainCiruitBoard";
 
             
