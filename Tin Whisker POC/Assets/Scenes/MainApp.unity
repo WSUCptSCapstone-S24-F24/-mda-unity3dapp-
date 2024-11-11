@@ -13465,6 +13465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434adf485e2ee714a940ca2a4c940150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCircuitBoard: {fileID: 0}
 --- !u!1 &917949716
 GameObject:
   m_ObjectHideFlags: 0
@@ -16871,6 +16872,12 @@ MonoBehaviour:
   SimQuantityText: {fileID: 705666963}
   xTiltText: {fileID: 1314441406}
   zTiltText: {fileID: 13277903}
+  BoardXSize: {fileID: 875778792}
+  BoardYSize: {fileID: 779128367}
+  BoardZSize: {fileID: 1764918863}
+  BoardXPos: {fileID: 25861166}
+  BoardYPos: {fileID: 616358755}
+  BoardZPos: {fileID: 1181562998}
   SimulationSettingsButton: {fileID: 498169986}
   BoardSettingsButton: {fileID: 1477229831}
   EndSimEarlyButton: {fileID: 1444597790}

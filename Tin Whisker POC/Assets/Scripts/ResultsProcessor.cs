@@ -110,15 +110,11 @@ public class ResultsProcessor : MonoBehaviour
             Directory.CreateDirectory(Path.GetDirectoryName(whiskersLogPath));
             Directory.CreateDirectory(Path.GetDirectoryName(bridgedLogPath));
 
-            // Get the board size from PCBSize
-            PCBSize pcbSize = GameObject.FindObjectOfType<PCBSize>();
-            Vector3 boardSizeInCm = pcbSize != null ? pcbSize.GetBoardSizeInCm() : Vector3.zero;
-
             // Prepare new data to be written (added xTilt, zTilt, and board size)
-            string line1 = $"WhiskerAmount,,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),,BoardSizeX (cm),BoardSizeY (cm),BoardSizeZ (cm),\n";
-            string line2 = $"{simState.whiskerAmount},,{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},,{boardSizeInCm.x},{boardSizeInCm.y},{boardSizeInCm.z}\n";
-            string line3 = $"LengthMu,LengthSigma,SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm)\n";
-            string line4 = $"{simState.LengthMu},{simState.LengthSigma},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ}\n";
+            string line1 = $"WhiskerAmount,,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),,BoardSizeX (cm),BoardSizeY (cm),BoardSizeZ (cm)\n";
+            string line2 = $"{simState.whiskerAmount},,{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},,{simState.boardXSize},{simState.boardYSize},{simState.boardZSize}\n";
+            string line3 = $"LengthMu,LengthSigma,SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),,BoardPosX (cm),BoardPosY (cm),BoardPosZ (cm)\n";
+            string line4 = $"{simState.LengthMu},{simState.LengthSigma},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},,{simState.boardXPos},{simState.boardYPos},{simState.boardZPos}\n";
             string line5 = $"WidthMu,WidthSigma\n";
             string line6 = $"{simState.WidthMu},{simState.WidthSigma}\n";
             string line7 = $"SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,xTilt,zTilt\n";
@@ -395,15 +391,11 @@ public class ResultsProcessor : MonoBehaviour
             // Ensure the directories exist
             Directory.CreateDirectory(Path.GetDirectoryName(monteCarloLogPath));
 
-            // Get the board size from PCBSize
-            PCBSize pcbSize = GameObject.FindObjectOfType<PCBSize>();
-            Vector3 boardSizeInCm = pcbSize != null ? pcbSize.GetBoardSizeInCm() : Vector3.zero;
-
             // Prepare new data to be written, now including vibration, shock, tilt, and board size
             string line1 = $"WhiskerAmount,,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),,BoardSizeX (cm),BoardSizeY (cm),BoardSizeZ (cm),\n";
-            string line2 = $"{simState.whiskerAmount},,{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},,{boardSizeInCm.x},{boardSizeInCm.y},{boardSizeInCm.z}\n";
-            string line3 = $"LengthMu,LengthSigma,SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm)\n";
-            string line4 = $"{simState.LengthMu},{simState.LengthSigma},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ}\n";
+            string line2 = $"{simState.whiskerAmount},,{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},,{simState.boardXSize},{simState.boardYSize},{simState.boardZSize}\n";
+            string line3 = $"LengthMu,LengthSigma,SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),,BoardPosX (cm),BoardPosY (cm),BoardPosZ (cm)\n";
+            string line4 = $"{simState.LengthMu},{simState.LengthSigma},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},,{simState.boardXPos},{simState.boardYPos},{simState.boardZPos}\n";
             string line5 = $"WidthMu,WidthSigma\n";
             string line6 = $"{simState.WidthMu},{simState.WidthSigma}\n";
             string line7 = $"SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,xTilt,zTilt\n";
