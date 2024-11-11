@@ -3697,9 +3697,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 278243663}
-  - component: {fileID: 278243664}
   m_Layer: 5
-  m_Name: BoardTilter
+  m_Name: BoardTiltInputs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3729,20 +3728,6 @@ RectTransform:
   m_AnchoredPosition: {x: 31, y: -150}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &278243664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 278243662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90e0451d98afa9c40b780857fc59646b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xTiltInput: {fileID: 1314441406}
-  zTiltInput: {fileID: 13277903}
 --- !u!1 &284942987
 GameObject:
   m_ObjectHideFlags: 0
@@ -10448,6 +10433,7 @@ Transform:
   - {fileID: 135098059}
   - {fileID: 415277289}
   - {fileID: 1553522532}
+  - {fileID: 2110826104}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26132,6 +26118,58 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &2110826103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2110826104}
+  - component: {fileID: 2110826105}
+  m_Layer: 0
+  m_Name: BoardController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2110826104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110826103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 728696397}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2110826105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110826103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079142db17cbb4c47888c58dd45e022b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xTiltInput: {fileID: 1314441406}
+  zTiltInput: {fileID: 13277903}
+  BoardXSize: {fileID: 875778792}
+  BoardYSize: {fileID: 779128367}
+  BoardZSize: {fileID: 1764918863}
+  BoardXPos: {fileID: 25861166}
+  BoardYPos: {fileID: 616358755}
+  BoardZPos: {fileID: 1181562998}
 --- !u!1 &2113649982
 GameObject:
   m_ObjectHideFlags: 0

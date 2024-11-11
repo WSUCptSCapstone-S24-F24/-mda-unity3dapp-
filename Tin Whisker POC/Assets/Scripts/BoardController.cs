@@ -5,6 +5,7 @@ using System.Collections;
 
 public class BoardController : MonoBehaviour
 {
+    public static Vector3 BoardSize;
     public TMP_InputField xTiltInput;
     public TMP_InputField zTiltInput;
     public TMP_InputField BoardXSize;
@@ -16,8 +17,9 @@ public class BoardController : MonoBehaviour
     private GameObject board;
     private GameObject previousBoard;  // Track the previously loaded board
     private bool boardLoaded = false;
-    private float scaler = 1;
+    private float scaler = 10;
 
+    private Vector3 unitsScaledBoardSize;
     private Vector3 originalBoardScale; // To store the original scale of the board
     private float yToXRatio;
     private float zToXRatio;
@@ -37,19 +39,23 @@ public class BoardController : MonoBehaviour
         while (true)
         {
             board = GameObject.FindWithTag("Board");
-            
+
             // Check if the board has changed
             if (board != previousBoard)
             {
                 previousBoard = board;
-                
+
                 if (board != null)
                 {
                     boardLoaded = true;
-                    originalBoardScale = board.transform.localScale;
-                    yToXRatio = originalBoardScale.y / originalBoardScale.x;
-                    zToXRatio = originalBoardScale.z / originalBoardScale.x;
-                    
+                    originalBoardScale = BoundingBoxCalculator.CalculateTotalBounds(board);
+                    float toOneXChangeScale = 1 / originalBoardScale.x;
+                    unitsScaledBoardSize = new Vector3(board.transform.localScale.x * toOneXChangeScale,
+                                                        board.transform.localScale.y * toOneXChangeScale,
+                                                        board.transform.localScale.z * toOneXChangeScale);
+                    UpdateSizes(unitsScaledBoardSize.x, unitsScaledBoardSize.y, unitsScaledBoardSize.z);
+                    yToXRatio = unitsScaledBoardSize.y / unitsScaledBoardSize.x;
+                    zToXRatio = unitsScaledBoardSize.z / unitsScaledBoardSize.x;
                     UpdateBoardProperties();
                 }
                 else
@@ -72,7 +78,6 @@ public class BoardController : MonoBehaviour
         BoardXPos.onEndEdit.AddListener(delegate { OnValueChanged(BoardXPos); });
         BoardYPos.onEndEdit.AddListener(delegate { OnValueChanged(BoardYPos); });
         BoardZPos.onEndEdit.AddListener(delegate { OnValueChanged(BoardZPos); });
-
         UpdateBoardProperties();
     }
 
@@ -105,10 +110,10 @@ public class BoardController : MonoBehaviour
                 UpdateSizes(size, size * yToXRatio, size * zToXRatio);
                 break;
             case "Y":
-                UpdateSizes(size / yToXRatio, size, (size / yToXRatio) * zToXRatio);
+                UpdateSizes(size / yToXRatio, size, size / yToXRatio * zToXRatio);
                 break;
             case "Z":
-                UpdateSizes(size / zToXRatio, (size / zToXRatio) * yToXRatio, size);
+                UpdateSizes(size / zToXRatio, size / zToXRatio * yToXRatio, size);
                 break;
         }
 

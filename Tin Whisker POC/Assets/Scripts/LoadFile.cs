@@ -78,12 +78,12 @@ public class LoadFile : MonoBehaviour
     {
         StartCoroutine(OutputRoutineOpen(objPath, mtlPath));
     }
-    
+
     private static void SetLayerRecursively(GameObject obj, int newLayer)
     {
         if (obj == null)
             return;
-        
+
         obj.layer = newLayer;
 
         foreach (Transform child in obj.transform)
@@ -94,7 +94,6 @@ public class LoadFile : MonoBehaviour
         }
     }
 
-    // Function to change the height of the loaded object
     private void SetPosition(float xPos, float yPos, float zPos)
     {
         if (Model != null)
@@ -134,9 +133,9 @@ public class LoadFile : MonoBehaviour
                 yield break; // Exit the coroutine early if loading OBJ model fails
             }
             SetPosition(0, 0, 0);
+            Model.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             Model.name = "MainCiruitBoard";
 
-            
             // Usage:
             SetLayerRecursively(Model, LayerMask.NameToLayer("Attachables"));
 
@@ -159,8 +158,8 @@ public class LoadFile : MonoBehaviour
             {
                 // Add a kinematic rigidbody to the child
                 Rigidbody rb = child.gameObject.AddComponent<Rigidbody>();
-                child.gameObject.name = "CO"+i.ToString();
-                if(i != 0) { child.gameObject.tag = "Part"; }
+                child.gameObject.name = "CO" + i.ToString();
+                if (i != 0) { child.gameObject.tag = "Part"; }
                 rb.isKinematic = true;
                 rb.useGravity = false;  // Turn off gravity
                 rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
@@ -176,7 +175,7 @@ public class LoadFile : MonoBehaviour
             // Save the file path to the scene handler, to be used in the Monte Carlo simulation
             MainController.GetComponent<MainController>().objfilePath = url;
             MainController.GetComponent<MainController>().mtlfilePath = mtl;
-            
+
             MainController.GetComponent<MainController>().PCBloaded = true;
             MainController.GetComponent<MainController>().ui_unlock();
         }
