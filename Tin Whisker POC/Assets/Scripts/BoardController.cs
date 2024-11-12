@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using System.Collections;
+using System.Drawing;
 
 public class BoardController : MonoBehaviour
 {
@@ -18,11 +19,15 @@ public class BoardController : MonoBehaviour
     private GameObject previousBoard;  // Track the previously loaded board
     private bool boardLoaded = false;
     private float scaler = 10;
+    private float unityBoardSize = 1;
+    private float unityXOneSize;
+    private float unityYOneSize;
+    private float unityZOneSize;
 
-    private Vector3 unitsScaledBoardSize;
-    private Vector3 originalBoardScale; // To store the original scale of the board
-    private float yToXRatio;
-    private float zToXRatio;
+    private Vector3 xOneBoardSize;
+    private Vector3 yOneBoardSize;
+    private Vector3 zOneBoardSize;
+    private Vector3 originalBoardSize; // To store the original scale of the board
 
     void Start()
     {
@@ -48,14 +53,30 @@ public class BoardController : MonoBehaviour
                 if (board != null)
                 {
                     boardLoaded = true;
-                    originalBoardScale = BoundingBoxCalculator.CalculateTotalBounds(board);
-                    float toOneXChangeScale = 1 / originalBoardScale.x;
-                    unitsScaledBoardSize = new Vector3(board.transform.localScale.x * toOneXChangeScale,
-                                                        board.transform.localScale.y * toOneXChangeScale,
-                                                        board.transform.localScale.z * toOneXChangeScale);
-                    UpdateSizes(unitsScaledBoardSize.x, unitsScaledBoardSize.y, unitsScaledBoardSize.z);
-                    yToXRatio = unitsScaledBoardSize.y / unitsScaledBoardSize.x;
-                    zToXRatio = unitsScaledBoardSize.z / unitsScaledBoardSize.x;
+                    originalBoardSize = BoundingBoxCalculator.CalculateTotalBounds(board);
+
+                    float toOneXChangeScale = 1 / originalBoardSize.x;
+                    xOneBoardSize = new Vector3(originalBoardSize.x * toOneXChangeScale,
+                                                originalBoardSize.y * toOneXChangeScale,
+                                                originalBoardSize.z * toOneXChangeScale);
+
+                    float toOneYChangeScale = 1 / originalBoardSize.y;
+                    yOneBoardSize = new Vector3(originalBoardSize.x * toOneYChangeScale,
+                                                originalBoardSize.y * toOneYChangeScale,
+                                                originalBoardSize.z * toOneYChangeScale);
+
+
+                    float toOneZChangeScale = 1 / originalBoardSize.z;
+                    zOneBoardSize = new Vector3(originalBoardSize.x * toOneZChangeScale,
+                                                originalBoardSize.y * toOneZChangeScale,
+                                                originalBoardSize.z * toOneZChangeScale);
+
+                    unityYOneSize = 10 / originalBoardSize.y;
+                    unityZOneSize = 10 / originalBoardSize.z;
+                    // Default will be x one board
+                    unityXOneSize = 10 / originalBoardSize.x;
+                    BoardSize = xOneBoardSize; 
+                    UpdateSizes(BoardSize.x, BoardSize.y, BoardSize.z);
                     UpdateBoardProperties();
                 }
                 else
@@ -103,20 +124,33 @@ public class BoardController : MonoBehaviour
             return;
         }
 
-        // Update board size based on the changed field and preserve ratios
+        // Preserving aspect ratio based on the initial board scale
+        float changeScale;
         switch (field)
         {
             case "X":
-                UpdateSizes(size, size * yToXRatio, size * zToXRatio);
+                changeScale = size / xOneBoardSize.x;
+                BoardSize = new Vector3(size,
+                                        xOneBoardSize.y * changeScale,
+                                        xOneBoardSize.z * changeScale);
+                unityBoardSize = unityXOneSize * size;
                 break;
             case "Y":
-                UpdateSizes(size / yToXRatio, size, size / yToXRatio * zToXRatio);
+                changeScale = size / xOneBoardSize.y;
+                BoardSize = new Vector3(xOneBoardSize.x * changeScale,
+                                        size,
+                                        xOneBoardSize.z * changeScale);
+                unityBoardSize = unityYOneSize * size;
                 break;
             case "Z":
-                UpdateSizes(size / zToXRatio, size / zToXRatio * yToXRatio, size);
+                changeScale = size / xOneBoardSize.z;
+                BoardSize = new Vector3(xOneBoardSize.x * changeScale,
+                                        xOneBoardSize.y * changeScale,
+                                        size);
+                unityBoardSize = unityZOneSize * size;
                 break;
         }
-
+        UpdateSizes(BoardSize.x, BoardSize.y, BoardSize.z);
         UpdateBoardProperties();
     }
 
@@ -149,7 +183,7 @@ public class BoardController : MonoBehaviour
 
         if (boardLoaded && board != null)
         {
-            board.transform.localScale = new Vector3(boardXSize * scaler, boardYSize * scaler, boardZSize * scaler);
+            board.transform.localScale = new Vector3(unityBoardSize, unityBoardSize, unityBoardSize);
             board.transform.position = new Vector3(boardXPos * scaler, boardYPos * scaler, boardZPos * scaler);
             board.transform.rotation = Quaternion.Euler(xTilt, board.transform.rotation.eulerAngles.y, zTilt);
         }
