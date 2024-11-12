@@ -9,6 +9,7 @@ TagManager:
   - Board
   - ResultsMenu
   - ScaleGrid
+  - Conductive
   layers:
   - Default
   - TransparentFX
