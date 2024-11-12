@@ -73,8 +73,9 @@ public class BoardController : MonoBehaviour
 
                     unityYOneSize = 10 / originalBoardSize.y;
                     unityZOneSize = 10 / originalBoardSize.z;
-                    // Default will be x one board
                     unityXOneSize = 10 / originalBoardSize.x;
+                    // Default will be x one board
+                    unityBoardSize = unityXOneSize;
                     BoardSize = xOneBoardSize; 
                     UpdateSizes(BoardSize.x, BoardSize.y, BoardSize.z);
                     UpdateBoardProperties();
