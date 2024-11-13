@@ -33,12 +33,6 @@ public class ConductiveMaterialsController : MonoBehaviour
         // Add material to the dictionary
         conductiveMaterials[material] = false;
 
-        // Initialize default color if not set
-        if (!matColors.ContainsKey(material))
-        {
-            matColors[material] = Color.white; // Default to white
-        }
-
         // Create a new toggle from the template
         GameObject newToggle = Instantiate(toggleTemplate, contentParent);
         newToggle.name = material + " Toggle";
@@ -55,11 +49,11 @@ public class ConductiveMaterialsController : MonoBehaviour
         // Add listener to update dictionary when toggle changes
         toggleComponent.onValueChanged.AddListener(isOn =>
         {
-            conductiveMaterials[material] = isOn;
-        });
+            HandleConductiveChange(material, isOn);
+        });        
     }
 
-    public void SetConductive(string material)
+    public void HandleConductiveChange(string material, bool isOn)
     {
         if (!conductiveMaterials.ContainsKey(material))
         {
@@ -70,60 +64,22 @@ public class ConductiveMaterialsController : MonoBehaviour
         List<GameObject> materialComponents = ComponentsContainer.GetComponentsByMaterial(material);
         foreach (var comp in materialComponents)
         {
-            comp.tag = "Conductive";
             var renderer = comp.GetComponent<Renderer>();
             if (renderer != null)
             {
-                renderer.material.color = Color.red;
+                if (!matColors.ContainsKey(material)) {
+                    matColors[material] = renderer.material.color;
+                }
+                if (isOn) {
+                    renderer.material.color = Color.red;
+                    conductiveMaterials[material] = true;
+                    comp.tag = "Conductive";
+                } else {
+                    renderer.material.color = matColors[material];
+                    conductiveMaterials[material] = false;
+                    comp.tag = "Part";
+                }
             }
-        }
-
-        // Update the dictionary
-        conductiveMaterials[material] = true;
-
-        // Find the corresponding toggle and set it to true
-        Transform toggleTransform = contentParent.Find(material + " Toggle");
-        if (toggleTransform != null)
-        {
-            Toggle toggleComponent = toggleTransform.GetComponent<Toggle>();
-            toggleComponent.isOn = true;
-        }
-    }
-
-    public void SetNonConductive(string material)
-    {
-        if (!conductiveMaterials.ContainsKey(material))
-        {
-            Debug.LogError($"Material {material} does not exist.");
-            return;
-        }
-
-        if (!matColors.ContainsKey(material))
-        {
-            Debug.LogError($"Material color for {material} not found.");
-            return;
-        }
-
-        List<GameObject> materialComponents = ComponentsContainer.GetComponentsByMaterial(material);
-        foreach (var comp in materialComponents)
-        {
-            comp.tag = "Untagged";
-            var renderer = comp.GetComponent<Renderer>();
-            if (renderer != null)
-            {
-                renderer.material.color = matColors[material];
-            }
-        }
-
-        // Update the dictionary
-        conductiveMaterials[material] = false;
-
-        // Find the corresponding toggle and set it to false
-        Transform toggleTransform = contentParent.Find(material + " Toggle");
-        if (toggleTransform != null)
-        {
-            Toggle toggleComponent = toggleTransform.GetComponent<Toggle>();
-            toggleComponent.isOn = false;
         }
     }
 }
