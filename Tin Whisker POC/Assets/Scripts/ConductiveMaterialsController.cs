@@ -15,6 +15,14 @@ public class ConductiveMaterialsController : MonoBehaviour
         conductiveMaterials.Clear();
         matColors.Clear();
 
+        foreach (Transform child in contentParent)
+        {
+            if (child.gameObject != toggleTemplate)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
         List<string> allMaterials = ComponentsContainer.GetAllMaterials();
         foreach (var mat in allMaterials)
         {
@@ -50,7 +58,7 @@ public class ConductiveMaterialsController : MonoBehaviour
         toggleComponent.onValueChanged.AddListener(isOn =>
         {
             HandleConductiveChange(material, isOn);
-        });        
+        });
     }
 
     public void HandleConductiveChange(string material, bool isOn)
@@ -67,14 +75,18 @@ public class ConductiveMaterialsController : MonoBehaviour
             var renderer = comp.GetComponent<Renderer>();
             if (renderer != null)
             {
-                if (!matColors.ContainsKey(material)) {
+                if (!matColors.ContainsKey(material))
+                {
                     matColors[material] = renderer.material.color;
                 }
-                if (isOn) {
+                if (isOn)
+                {
                     renderer.material.color = Color.red;
                     conductiveMaterials[material] = true;
                     comp.tag = "Conductive";
-                } else {
+                }
+                else
+                {
                     renderer.material.color = matColors[material];
                     conductiveMaterials[material] = false;
                     comp.tag = "Part";
