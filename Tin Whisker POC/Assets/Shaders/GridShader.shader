@@ -11,8 +11,8 @@ Shader "Custom/GridShader" {
         LOD 200
         
         Pass {
-            ZWrite On
-            ZTest Always // Always render the grid regardless of depth
+            // ZWrite On
+            // ZTest Always // Always render the grid regardless of depth
             
             Blend SrcAlpha OneMinusSrcAlpha
             Cull Off // Disable backface culling to render both sides of the geometry

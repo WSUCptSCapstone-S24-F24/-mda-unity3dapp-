@@ -29,6 +29,12 @@ namespace SimInfo
         public float ShockDuration;
         public float xTilt; // New variable for x-axis tilt
         public float zTilt; // New variable for z-axis tilt
+        public float boardXSize;
+        public float boardYSize;
+        public float boardZSize;
+        public float boardXPos;
+        public float boardYPos;
+        public float boardZPos;
 
         public SimState()
         {
@@ -51,12 +57,19 @@ namespace SimInfo
             this.ShockDuration = 0.025f;
             this.xTilt = 0.0f; // Default x tilt value
             this.zTilt = 0.0f; // Default z tilt value
+            this.boardXSize = 1.0f;
+            this.boardYSize = 1.0f;
+            this.boardZSize = 1.0f;
+            this.boardXPos = 0.0f;
+            this.boardYPos = 0.0f;
+            this.boardYPos = 0.0f;
         }
 
         public SimState(int whiskerAmount, float spawnAreaSizeX, float spawnAreaSizeY, float spawnAreaSizeZ,
                         float spawnPositionX, float spawnPositionY, float spawnPositionZ, float LengthMu,
                         float LengthSigma, float WidthMu, float WidthSigma, int simNumber, float vibrationAmplitude,
-                        float vibrationSpeed, float ShockIntensity, float ShockDuration, float xTilt, float zTilt)
+                        float vibrationSpeed, float ShockIntensity, float ShockDuration, float xTilt, float zTilt,
+                        float boardXSize, float boardYSize, float boardZSize, float boardXPos, float boardYPos, float boardZPos)
         {
             this.whiskerAmount = whiskerAmount;
             this.spawnAreaSizeX = spawnAreaSizeX;
@@ -76,6 +89,12 @@ namespace SimInfo
             this.ShockDuration = ShockDuration;
             this.xTilt = xTilt;
             this.zTilt = zTilt;
+            this.boardXSize = boardXSize;
+            this.boardYSize = boardYSize;
+            this.boardZSize = boardZSize;
+            this.boardXPos = boardXPos;
+            this.boardYPos = boardYPos;
+            this.boardYPos = boardZPos;
         }
 
         public void SaveSimToJSON(string jsonPath)

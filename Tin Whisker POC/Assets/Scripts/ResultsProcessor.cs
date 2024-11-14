@@ -110,13 +110,18 @@ public class ResultsProcessor : MonoBehaviour
             Directory.CreateDirectory(Path.GetDirectoryName(whiskersLogPath));
             Directory.CreateDirectory(Path.GetDirectoryName(bridgedLogPath));
 
-            // Get the board size from PCBSize
-            PCBSize pcbSize = GameObject.FindObjectOfType<PCBSize>();
-            Vector3 boardSizeInCm = pcbSize != null ? pcbSize.GetBoardSizeInCm() : Vector3.zero;
-
             // Prepare new data to be written (added xTilt, zTilt, and board size)
-            string newData = $"WhiskerAmount,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,ShockIntensity,ShockDuration,xTilt,zTilt,BoardSizeX (cm),BoardSizeY (cm),BoardSizeZ (cm)\n" +
-                            $"{simState.whiskerAmount},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.ShockIntensity},{simState.ShockDuration},{simState.xTilt},{simState.zTilt},{boardSizeInCm.x},{boardSizeInCm.y},{boardSizeInCm.z}\n";
+            string line1 = $"WhiskerAmount,,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),,BoardSizeX (cm),BoardSizeY (cm),BoardSizeZ (cm)\n";
+            string line2 = $"{simState.whiskerAmount},,{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},,{simState.boardXSize},{simState.boardYSize},{simState.boardZSize}\n";
+            string line3 = $"LengthMu,LengthSigma,SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),,BoardPosX (cm),BoardPosY (cm),BoardPosZ (cm)\n";
+            string line4 = $"{simState.LengthMu},{simState.LengthSigma},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},,{simState.boardXPos},{simState.boardYPos},{simState.boardZPos}\n";
+            string line5 = $"WidthMu,WidthSigma\n";
+            string line6 = $"{simState.WidthMu},{simState.WidthSigma}\n";
+            string line7 = $"SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,xTilt,zTilt\n";
+            string line8 = $"{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.xTilt},{simState.zTilt}\n";
+            string line9 = $",,ShockIntensity,ShockDuration\n";
+            string line10 = $",,{simState.ShockIntensity},{simState.ShockDuration}\n";
+            string newData = line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + line10;     
 
             // Read existing content of whiskers log file
             List<string> whiskersLines = new List<string>();
@@ -258,7 +263,6 @@ public class ResultsProcessor : MonoBehaviour
 
     public static void LogMonteCarloResults(int beginningSimNumber, int numSims)
     {
-        // TODO: CHANGE ORDER
         // Define the path where you want to save the results
         string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults");
 
@@ -333,15 +337,21 @@ public class ResultsProcessor : MonoBehaviour
         using (StreamWriter writer = new StreamWriter(outFullPath, true))
         {
             writer.WriteLine();
-            writer.WriteLine($"% sims with bridge: {percentageWithBridgedComponents:F2}%");
+            writer.WriteLine($"Total # of sims");
+            writer.WriteLine($"{numSims}");
+            writer.WriteLine($"# of sims with one or more bridges");
+            writer.WriteLine($"{totalSimsWithBridgedComponents}");
+            writer.WriteLine($"% sims with bridge");
+            writer.WriteLine($"{percentageWithBridgedComponents:F2}%");
 
             writer.WriteLine();
             writer.WriteLine("Histogram of bridges densities");
+            writer.WriteLine("(# with bridges),# of sims");
             for (int i = 0; i < buckets.Length; i++)
             {
                 int bucketStart = min + i * bucketWidth;
                 int bucketEnd = bucketStart + bucketWidth - 1;
-                writer.WriteLine($"({bucketStart} - {bucketEnd}): {buckets[i]}");
+                writer.WriteLine($"({bucketStart} - {bucketEnd}), {buckets[i]}");
             }
 
             writer.WriteLine();
@@ -381,13 +391,18 @@ public class ResultsProcessor : MonoBehaviour
             // Ensure the directories exist
             Directory.CreateDirectory(Path.GetDirectoryName(monteCarloLogPath));
 
-            // Get the board size from PCBSize
-            PCBSize pcbSize = GameObject.FindObjectOfType<PCBSize>();
-            Vector3 boardSizeInCm = pcbSize != null ? pcbSize.GetBoardSizeInCm() : Vector3.zero;
-
             // Prepare new data to be written, now including vibration, shock, tilt, and board size
-            string newData = $"WhiskerAmount,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),LengthMu,LengthSigma,WidthMu,WidthSigma,SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,ShockIntensity,ShockDuration,xTilt,zTilt,BoardSizeX (cm),BoardSizeY (cm),BoardSizeZ (cm)\n" +
-                            $"{simState.whiskerAmount},{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},{simState.LengthMu},{simState.LengthSigma},{simState.WidthMu},{simState.WidthSigma},{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.ShockIntensity},{simState.ShockDuration},{simState.xTilt},{simState.zTilt},{boardSizeInCm.x},{boardSizeInCm.y},{boardSizeInCm.z}\n";
+            string line1 = $"WhiskerAmount,,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),,BoardSizeX (cm),BoardSizeY (cm),BoardSizeZ (cm),\n";
+            string line2 = $"{simState.whiskerAmount},,{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},,{simState.boardXSize},{simState.boardYSize},{simState.boardZSize}\n";
+            string line3 = $"LengthMu,LengthSigma,SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),,BoardPosX (cm),BoardPosY (cm),BoardPosZ (cm)\n";
+            string line4 = $"{simState.LengthMu},{simState.LengthSigma},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},,{simState.boardXPos},{simState.boardYPos},{simState.boardZPos}\n";
+            string line5 = $"WidthMu,WidthSigma\n";
+            string line6 = $"{simState.WidthMu},{simState.WidthSigma}\n";
+            string line7 = $"SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,xTilt,zTilt\n";
+            string line8 = $"{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.xTilt},{simState.zTilt}\n";
+            string line9 = $",,ShockIntensity,ShockDuration\n";
+            string line10 = $",,{simState.ShockIntensity},{simState.ShockDuration}\n";
+            string newData = line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + line10;     
 
             // Read existing content of whiskers log file
             List<string> whiskersLines = new List<string>();

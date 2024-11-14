@@ -9,7 +9,7 @@ public class WhiskerCollider : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Part"))
+        if (collision.gameObject.CompareTag("Conductive"))
         {
             currentlyCollidingObjects.Add(collision.gameObject);
             // Renderer objectRenderer = GetComponent<Renderer>();
@@ -19,7 +19,7 @@ public class WhiskerCollider : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Part"))
+        if (collision.gameObject.CompareTag("Conductive"))
         {
             currentlyCollidingObjects.Remove(collision.gameObject);
             // Renderer objectRenderer = GetComponent<Renderer>();

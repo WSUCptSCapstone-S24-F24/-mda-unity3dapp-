@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class MainController : MonoBehaviour
 {
     public GameObject MonteCarloSimulationObject;
-    public int SimNumber = 0;
+    public int SimNumber = 1; // One start so easier to understand for the average user
     public SimState simState;
     public WhiskerSim whiskerSim;
     private MonteCarloSim monteCarloSim;
@@ -33,7 +33,16 @@ public class MainController : MonoBehaviour
     public TMP_InputField SimQuantityText;
     public TMP_InputField xTiltText;
     public TMP_InputField zTiltText;
+    public TMP_InputField BoardXSize;
+    public TMP_InputField BoardYSize;
+    public TMP_InputField BoardZSize;
+    public TMP_InputField BoardXPos;
+    public TMP_InputField BoardYPos;
+    public TMP_InputField BoardZPos;
+    
     public Button SimulationSettingsButton;
+    public Button BoardSettingsButton;
+
     public Button EndSimEarlyButton;
     public Canvas MonteCarloWaitScreen;
     public Button InspectionModeButton;
@@ -65,22 +74,6 @@ public class MainController : MonoBehaviour
         monteCarloSim = MonteCarloSimulationObject.GetComponent<MonteCarloSim>();
 
         ParameterSetup();
-    }
-
-    private void ResetBoardPosition()
-    {
-        GameObject board = GameObject.FindWithTag("Board");
-        if (board != null)
-        {
-            Vector3 originalPosition = board.transform.position;
-            originalPosition.y = -13.7f; // This is the height set in LoadFile script
-            board.transform.position = originalPosition;
-            Debug.Log("Board position reset to: " + originalPosition);
-        }
-        else
-        {
-            Debug.LogError("Cannot reset board position. Board not found.");
-        }
     }
 
     public void ShowDebugMessage(string message)
@@ -139,15 +132,22 @@ public class MainController : MonoBehaviour
         SpawnPositionYText.text = simState.spawnPositionY.ToString();
         SpawnPositionZText.text = simState.spawnPositionZ.ToString();
 
+        SimDurationText.text = simState.simDuration.ToString();
+
         VibrationSpeedText.text = simState.vibrationSpeed.ToString();
         VibrationAmplitudeText.text = simState.vibrationAmplitude.ToString();
         ShockIntensityText.text = simState.ShockIntensity.ToString();
         ShockDurationText.text = simState.ShockDuration.ToString();
 
-        // Initialize new tilt input fields
         xTiltText.text = simState.xTilt.ToString();
         zTiltText.text = simState.zTilt.ToString();
 
+        BoardXPos.text = simState.boardXPos.ToString();
+        BoardYPos.text = simState.boardYPos.ToString();
+        BoardZPos.text = simState.boardZPos.ToString();
+        BoardXSize.text = simState.boardXSize.ToString();
+        BoardYSize.text = simState.boardYSize.ToString();
+        BoardZSize.text = simState.boardZSize.ToString();
 
         // Get the float value from the text field
         GetSimInputs();
@@ -403,20 +403,36 @@ public class MainController : MonoBehaviour
 
         if (float.TryParse(zTiltText.text, out float result19))
             simState.zTilt = result19;
+
+        if (float.TryParse(BoardXSize.text, out float result20))
+            simState.boardXSize = result20;
+
+        if (float.TryParse(BoardYSize.text, out float result21))
+            simState.boardYSize = result21;
+        
+        if (float.TryParse(BoardZSize.text, out float result22))
+            simState.boardZSize = result22;
+        
+        if (float.TryParse(BoardXPos.text, out float result23))
+            simState.boardXPos = result23;
+
+        if (float.TryParse(BoardYPos.text, out float result24))
+            simState.boardYPos = result24;
+
+        if (float.TryParse(BoardZPos.text, out float result25))
+            simState.boardZPos = result25;
     }
 
     public void ui_lock()
     {
-
         SimulationSettingsButton.interactable = false;
-
+        BoardSettingsButton.interactable = false;
     }
 
     public void ui_unlock()
     {
-
         SimulationSettingsButton.interactable = true;
-
+        BoardSettingsButton.interactable = true;
     }
 
     public void RunSimulation()

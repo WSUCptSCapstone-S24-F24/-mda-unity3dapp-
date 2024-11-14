@@ -28,13 +28,14 @@ using TMPro;
 using UnityEngine.Networking;
 using Dummiesman; //Load OBJ Model
 using SimInfo;
+using Unity.VisualScripting;
 
 
 
 
 public class LoadFile : MonoBehaviour
 {
-    public GameObject Modle; //Load OBJ Model
+    public GameObject Model; //Load OBJ Model
     public GameObject MainController;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -77,12 +78,12 @@ public class LoadFile : MonoBehaviour
     {
         StartCoroutine(OutputRoutineOpen(objPath, mtlPath));
     }
-    
+
     private static void SetLayerRecursively(GameObject obj, int newLayer)
     {
         if (obj == null)
             return;
-        
+
         obj.layer = newLayer;
 
         foreach (Transform child in obj.transform)
@@ -93,14 +94,15 @@ public class LoadFile : MonoBehaviour
         }
     }
 
-    // Function to change the height of the loaded object
-    private void ChangeHeight(float heightPos)
+    private void SetPosition(float xPos, float yPos, float zPos)
     {
-        if (Modle != null)
+        if (Model != null)
         {
-            Vector3 newPosition = Modle.transform.position;
-            newPosition.y = heightPos;
-            Modle.transform.position = newPosition;
+            Vector3 newPosition = Model.transform.position;
+            newPosition.x = xPos;
+            newPosition.y = yPos;
+            newPosition.z = zPos;
+            Model.transform.position = newPosition;
         }
     }
 
@@ -119,47 +121,46 @@ public class LoadFile : MonoBehaviour
         {
             MemoryStream textStream = new MemoryStream(Encoding.UTF8.GetBytes(www.downloadHandler.text));
             MemoryStream MTLStream = new MemoryStream(Encoding.UTF8.GetBytes(mmm.downloadHandler.text));
-            if (Modle != null)
+            if (Model != null)
             {
-                Destroy(Modle);
+                Destroy(Model);
             }
-            Modle = new OBJLoader().Load(textStream, MTLStream);
-            if (Modle == null)
+            Model = new OBJLoader().Load(textStream, MTLStream);
+            if (Model == null)
             {
                 // TODO: Flash message to user
                 Debug.Log("Error loading OBJ model.");
                 yield break; // Exit the coroutine early if loading OBJ model fails
             }
-            ChangeHeight(-13.7f);
-            Modle.transform.localScale = new Vector3(150f, 50f, 150f);
-            Modle.transform.Rotate(0f, 0f, 0f, Space.Self);
-            Modle.name = "MainCiruitBoard";
+            ComponentsContainer.ClearAllComponents();
+            SetPosition(0, 0, 0);
+            Model.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            Model.name = "MainCiruitBoard";
 
-            
             // Usage:
-            SetLayerRecursively(Modle, LayerMask.NameToLayer("Attachables"));
+            SetLayerRecursively(Model, LayerMask.NameToLayer("Attachables"));
 
-            Modle.tag = "Board";
+            Model.tag = "Board";
 
             // Add sine wave movement to the loaded model
-            Modle.AddComponent<SineWaveMovement>();
+            Model.AddComponent<SineWaveMovement>();
 
-            // set Gravity off for Modle rigidbody
-            Modle.GetComponent<Rigidbody>().useGravity = false;
+            // set Gravity off for Model rigidbody
+            Model.GetComponent<Rigidbody>().useGravity = false;
 
             //change rigid body collision detection to continuous
-            Modle.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            Model.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
             //Change the behavior to extrapolate
-            Modle.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Extrapolate;
+            Model.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Extrapolate;
             int i = 0;
             // Iterate through all the children of the parent model
-            foreach (Transform child in Modle.transform)
+            foreach (Transform child in Model.transform)
             {
                 // Add a kinematic rigidbody to the child
                 Rigidbody rb = child.gameObject.AddComponent<Rigidbody>();
-                child.gameObject.name = "CO"+i.ToString();
-                if(i != 0) { child.gameObject.tag = "Part"; }
+                child.gameObject.name = "CO" + i.ToString();
+                if (i != 0) { child.gameObject.tag = "Part"; }
                 rb.isKinematic = true;
                 rb.useGravity = false;  // Turn off gravity
                 rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
@@ -170,12 +171,15 @@ public class LoadFile : MonoBehaviour
                 mc.sharedMesh = child.GetComponent<MeshFilter>().sharedMesh;
                 i++;
                 child.gameObject.layer = 6;
+                
+                string materialName = child.GetComponent<MeshRenderer>().material.name;
+                ComponentsContainer.AddComponent(materialName, child.gameObject);
             }
 
             // Save the file path to the scene handler, to be used in the Monte Carlo simulation
             MainController.GetComponent<MainController>().objfilePath = url;
             MainController.GetComponent<MainController>().mtlfilePath = mtl;
-            
+
             MainController.GetComponent<MainController>().PCBloaded = true;
             MainController.GetComponent<MainController>().ui_unlock();
         }
