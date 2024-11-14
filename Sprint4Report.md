@@ -56,7 +56,7 @@ Here are links to the issues that we completed in this sprint:
 The STEP file integration was partially completed. The STEP files need to be processed into object files through a separate software application (e.g., Blender). The Monte Carlo simulation details were not completed because the regular simulation was not fully completed until the end, and the Monte Carlo simulations build off of the regular simulations. Lastly, the tutorial page was not completed because the assignee, John, was unable to complete it.
 
 ## Code Files for Review
-All of the code files for this project can be found here [WSUCapstoneS2024-mda-unity3dapp](https://github.com/WSUCptSCapstone-S24-F24/-mda-unity3dapp-).
+All of the code files for this project can be found here [WSUCapstone2024-mda-unity3dapp](https://github.com/WSUCptSCapstone-S24-F24/-mda-unity3dapp-).
  
 ## Retrospective Summary
 Here's what went well:

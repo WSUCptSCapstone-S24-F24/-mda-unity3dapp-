@@ -12,7 +12,8 @@ Our team’s primary objective with this project is to develop a software tool t
 * [Sprint 3 Demo Video](https://youtu.be/iONjIvFagGM)
 * [Sprint 4 Demo Video](https://youtu.be/_qFKNdXabYY)
 * [Sprint 5 Demo Video](Sprint5Demo.mp4)
-* [Sprint 6 Demo Video]()
+* [Sprint 6 Demo Video](https://youtu.be/t8q2omL2D8Y)
+* [Sprint 7 Demo Video](https://youtu.be/_-hm3ye_4Jg)
 
 
 ## Installation
@@ -38,11 +39,6 @@ Once satisfied by the parameters, click the `Run Sim` button or `Run` under the 
 
 After the simulation has run, the "Preview Results" button will show options to preview different simulation outputs (along with the input parameters for the simulation). The actual results files can be found in the 'SimulationResults' folder. 
 
-
-## Known Problems
-
-If the program will not close, press Alt-F4.
-
 ## Additional Documentation
   * [LICENSE](LICENSE.txt)
   * [Client Reports](ClientReports.md)
@@ -52,3 +48,4 @@ If the program will not close, press Alt-F4.
   * [Sprint 4 Report](Sprint4Report.md)
   * [Sprint 5 Report](Sprint5Report.md)
   * [Sprint 6 Report](Sprint6Report.md)
+  * [Sprint 7 Report](Sprint7Report.md)
