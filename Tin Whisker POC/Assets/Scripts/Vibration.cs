@@ -9,7 +9,7 @@ public class Vibration : MonoBehaviour
     private MainController MainController;
     public float twitchFrequency = 10f;
     private bool isTwitching = false;
-    private bool isVibrationActive = false;
+    public bool isVibrationActive = false;
     private Coroutine vibrationCoroutine;
 
     public void Start()

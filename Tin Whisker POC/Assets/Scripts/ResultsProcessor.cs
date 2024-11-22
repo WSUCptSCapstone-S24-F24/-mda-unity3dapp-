@@ -91,8 +91,27 @@ public class ResultsProcessor : MonoBehaviour
         }
     }
 
+    
     public static void LogSimState(SimState simState, int simNumber)
     {
+        // Access the isVibrationActive and isShocking states directly from their respective scripts
+        bool isVibrationActive = false;
+        bool isShocking = false;
+
+        // Find the VibrationObject and ShockerObject in the scene
+        Vibration vibrationScript = GameObject.FindObjectOfType<Vibration>();
+        Shock shockScript = GameObject.FindObjectOfType<Shock>();
+
+        if (vibrationScript != null)
+        {
+            isVibrationActive = vibrationScript.isVibrationActive;
+        }
+
+        if (shockScript != null)
+        {
+            isShocking = shockScript.isShocking;
+        }
+
         // Clear directory if not cleared
         if (!cleared)
         {
@@ -102,73 +121,55 @@ public class ResultsProcessor : MonoBehaviour
 
         // Creating the file paths for whiskers and bridged components logs
         string whiskersLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"whiskers_log_{simNumber}.csv");
-        string bridgedLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"bridgedcomponents_log_{simNumber}.csv");
 
         try
         {
             // Ensure the directories exist
             Directory.CreateDirectory(Path.GetDirectoryName(whiskersLogPath));
-            Directory.CreateDirectory(Path.GetDirectoryName(bridgedLogPath));
 
-            // Prepare new data to be written (added xTilt, zTilt, and board size)
-            string line1 = $"WhiskerAmount,,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),,BoardSizeX (cm),BoardSizeY (cm),BoardSizeZ (cm)\n";
-            string line2 = $"{simState.whiskerAmount},,{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},,{simState.boardXSize},{simState.boardYSize},{simState.boardZSize}\n";
-            string line3 = $"LengthMu,LengthSigma,SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),,BoardPosX (cm),BoardPosY (cm),BoardPosZ (cm)\n";
-            string line4 = $"{simState.LengthMu},{simState.LengthSigma},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},,{simState.boardXPos},{simState.boardYPos},{simState.boardZPos}\n";
-            string line5 = $"WidthMu,WidthSigma\n";
-            string line6 = $"{simState.WidthMu},{simState.WidthSigma}\n";
-            string line7 = $"SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,xTilt,zTilt\n";
-            string line8 = $"{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.xTilt},{simState.zTilt}\n";
-            string line9 = $",,ShockIntensity,ShockDuration\n";
-            string line10 = $",,{simState.ShockIntensity},{simState.ShockDuration}\n";
-            string newData = line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + line10;     
+            // Prepare new data to be written
+            string newData = "";
+            newData += $"WhiskerAmount,,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),,BoardSizeX (cm),BoardSizeY (cm),BoardSizeZ (cm)\n";
+            newData += $"{simState.whiskerAmount},,{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},,{simState.boardXSize},{simState.boardYSize},{simState.boardZSize}\n";
+            newData += $"LengthMu,LengthSigma,SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),,BoardPosX (cm),BoardPosY (cm),BoardPosZ (cm)\n";
+            newData += $"{simState.LengthMu},{simState.LengthSigma},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},,{simState.boardXPos},{simState.boardYPos},{simState.boardZPos}\n";
+            newData += $"WidthMu,WidthSigma\n";
+            newData += $"{simState.WidthMu},{simState.WidthSigma}\n";
+            newData += $"SimNumber,SimDuration (sec),xTilt,zTilt";
 
-            // Read existing content of whiskers log file
-            List<string> whiskersLines = new List<string>();
-            if (File.Exists(whiskersLogPath))
+            // Conditionally append vibration and shock parameters
+            if (isVibrationActive)
             {
-                whiskersLines.AddRange(File.ReadAllLines(whiskersLogPath));
+                newData += $",vibrationAmplitude,vibrationSpeed";
             }
-
-            // Read existing content of bridged components log file
-            List<string> bridgedLines = new List<string>();
-            if (File.Exists(bridgedLogPath))
+            if (isShocking)
             {
-                bridgedLines.AddRange(File.ReadAllLines(bridgedLogPath));
+                newData += $",ShockIntensity,ShockDuration";
             }
+            newData += "\n";
 
-            // Prepare to write to the whiskers log file
-            using (StreamWriter whiskersWriter = new StreamWriter(whiskersLogPath, false)) // false to overwrite
+            newData += $"{simState.simNumber},{simState.simDuration},{simState.xTilt},{simState.zTilt}";
+            if (isVibrationActive)
             {
-                // Write new data first
-                whiskersWriter.WriteLine(newData);
-
-                // Write back existing data
-                foreach (string line in whiskersLines)
-                {
-                    whiskersWriter.WriteLine(line);
-                }
+                newData += $",{simState.vibrationAmplitude},{simState.vibrationSpeed}";
             }
-
-            // Prepare to write to the bridged components log file
-            using (StreamWriter bridgedWriter = new StreamWriter(bridgedLogPath, false)) // false to overwrite
+            if (isShocking)
             {
-                // Write new data first
-                bridgedWriter.WriteLine(newData);
+                newData += $",{simState.ShockIntensity},{simState.ShockDuration}";
+            }
+            newData += "\n";
 
-                // Write back existing data
-                foreach (string line in bridgedLines)
-                {
-                    bridgedWriter.WriteLine(line);
-                }
+            // Write data to file
+            using (StreamWriter writer = new StreamWriter(whiskersLogPath, false))
+            {
+                writer.WriteLine(newData);
             }
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Failed to write sim state to the beginning of {whiskersLogPath} or {bridgedLogPath}: {ex.Message}");
+            Debug.LogError($"Failed to write sim state to {whiskersLogPath}: {ex.Message}");
         }
     }
-
 
 
 
@@ -381,9 +382,27 @@ public class ResultsProcessor : MonoBehaviour
     }
 
 
-    public static void LogSimStateToMonteCarlo(SimState simState, int beginningSimNumber, int numSims)
+        public static void LogSimStateToMonteCarlo(SimState simState, int beginningSimNumber, int numSims)
     {
-        // Creating the file paths for whiskers and bridged components logs
+        // Access the isVibrationActive and isShocking states directly from their respective scripts
+        bool isVibrationActive = false;
+        bool isShocking = false;
+
+        // Find the VibrationObject and ShockerObject in the scene
+        Vibration vibrationScript = GameObject.FindObjectOfType<Vibration>();
+        Shock shockScript = GameObject.FindObjectOfType<Shock>();
+
+        if (vibrationScript != null)
+        {
+            isVibrationActive = vibrationScript.isVibrationActive;
+        }
+
+        if (shockScript != null)
+        {
+            isShocking = shockScript.isShocking;
+        }
+
+        // Creating the file paths for Monte Carlo log
         string monteCarloLogPath = Path.Combine(Application.dataPath, "..", "SimulationResults", $"montecarlo_log_{beginningSimNumber + numSims - 1}.csv");
 
         try
@@ -391,44 +410,50 @@ public class ResultsProcessor : MonoBehaviour
             // Ensure the directories exist
             Directory.CreateDirectory(Path.GetDirectoryName(monteCarloLogPath));
 
-            // Prepare new data to be written, now including vibration, shock, tilt, and board size
-            string line1 = $"WhiskerAmount,,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),,BoardSizeX (cm),BoardSizeY (cm),BoardSizeZ (cm),\n";
-            string line2 = $"{simState.whiskerAmount},,{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},,{simState.boardXSize},{simState.boardYSize},{simState.boardZSize}\n";
-            string line3 = $"LengthMu,LengthSigma,SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),,BoardPosX (cm),BoardPosY (cm),BoardPosZ (cm)\n";
-            string line4 = $"{simState.LengthMu},{simState.LengthSigma},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},,{simState.boardXPos},{simState.boardYPos},{simState.boardZPos}\n";
-            string line5 = $"WidthMu,WidthSigma\n";
-            string line6 = $"{simState.WidthMu},{simState.WidthSigma}\n";
-            string line7 = $"SimNumber,SimDuration (sec),vibrationAmplitude,vibrationSpeed,xTilt,zTilt\n";
-            string line8 = $"{simState.simNumber},{simState.simDuration},{simState.vibrationAmplitude},{simState.vibrationSpeed},{simState.xTilt},{simState.zTilt}\n";
-            string line9 = $",,ShockIntensity,ShockDuration\n";
-            string line10 = $",,{simState.ShockIntensity},{simState.ShockDuration}\n";
-            string newData = line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + line10;     
+            // Prepare new data to be written
+            string newData = "";
+            newData += $"WhiskerAmount,,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),,BoardSizeX (cm),BoardSizeY (cm),BoardSizeZ (cm),\n";
+            newData += $"{simState.whiskerAmount},,{simState.spawnAreaSizeX},{simState.spawnAreaSizeY},{simState.spawnAreaSizeZ},,{simState.boardXSize},{simState.boardYSize},{simState.boardZSize}\n";
+            newData += $"LengthMu,LengthSigma,SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),,BoardPosX (cm),BoardPosY (cm),BoardPosZ (cm)\n";
+            newData += $"{simState.LengthMu},{simState.LengthSigma},{simState.spawnPositionX},{simState.spawnPositionY},{simState.spawnPositionZ},,{simState.boardXPos},{simState.boardYPos},{simState.boardZPos}\n";
+            newData += $"WidthMu,WidthSigma\n";
+            newData += $"{simState.WidthMu},{simState.WidthSigma}\n";
+            newData += $"SimNumber,SimDuration (sec),xTilt,zTilt";
 
-            // Read existing content of whiskers log file
-            List<string> whiskersLines = new List<string>();
-            if (File.Exists(monteCarloLogPath))
+            // Conditionally append vibration and shock parameters
+            if (isVibrationActive)
             {
-                whiskersLines.AddRange(File.ReadAllLines(monteCarloLogPath));
+                newData += $",vibrationAmplitude,vibrationSpeed";
             }
-
-            // Prepare to write to the whiskers log file
-            using (StreamWriter whiskersWriter = new StreamWriter(monteCarloLogPath, false)) // false to overwrite
+            if (isShocking)
             {
-                // Write new data first
-                whiskersWriter.WriteLine(newData);
+                newData += $",ShockIntensity,ShockDuration";
+            }
+            newData += "\n";
 
-                // Write back existing data
-                foreach (string line in whiskersLines)
-                {
-                    whiskersWriter.WriteLine(line);
-                }
+            newData += $"{simState.simNumber},{simState.simDuration},{simState.xTilt},{simState.zTilt}";
+            if (isVibrationActive)
+            {
+                newData += $",{simState.vibrationAmplitude},{simState.vibrationSpeed}";
+            }
+            if (isShocking)
+            {
+                newData += $",{simState.ShockIntensity},{simState.ShockDuration}";
+            }
+            newData += "\n";
+
+            // Write data to file
+            using (StreamWriter writer = new StreamWriter(monteCarloLogPath, false))
+            {
+                writer.WriteLine(newData);
             }
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Failed to write sim state to the beginning of {monteCarloLogPath}: {ex.Message}");
+            Debug.LogError($"Failed to write sim state to {monteCarloLogPath}: {ex.Message}");
         }
     }
+
 
 
 
