@@ -6,7 +6,7 @@ using SimInfo;
 public class Shock : MonoBehaviour
 {
     private MainController MainController;
-    private bool isShocking = false; // Determines whether shocking is enabled
+    public bool isShocking = false; // Determines whether shocking is enabled
     private float shockTimer = 0f;   // Tracks the time left until the next shock
     private float shockDuration = 0f; // Caches the ShockDuration from SimState
 
