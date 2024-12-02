@@ -4,29 +4,35 @@ using UnityEngine.UI;
 
 public class ConductiveMaterialsController : MonoBehaviour
 {
-    private Dictionary<string, bool> conductiveMaterials = new Dictionary<string, bool>();
-    private Dictionary<string, Color> matColors = new Dictionary<string, Color>();
+    private int boardNum = -1;
+    private static Dictionary<string, bool> conductiveMaterials = new Dictionary<string, bool>();
+    private static Dictionary<string, Color> matColors = new Dictionary<string, Color>();
 
     [SerializeField] private Transform contentParent; // Assign the "Content" GameObject from the Scroll View hierarchy
     [SerializeField] private GameObject toggleTemplate; // Assign the disabled Toggle Template GameObject
 
     public void OnEnable()
     {
-        conductiveMaterials.Clear();
-        matColors.Clear();
-
-        foreach (Transform child in contentParent)
+        int currentBoardNum = LoadFile.LoadNumber;
+        if (currentBoardNum != boardNum)
         {
-            if (child.gameObject != toggleTemplate)
+            boardNum = currentBoardNum;
+            conductiveMaterials.Clear();
+            matColors.Clear();
+
+            foreach (Transform child in contentParent)
             {
-                Destroy(child.gameObject);
+                if (child.gameObject != toggleTemplate)
+                {
+                    Destroy(child.gameObject);
+                }
             }
-        }
 
-        List<string> allMaterials = ComponentsContainer.GetAllMaterials();
-        foreach (var mat in allMaterials)
-        {
-            AddMaterial(mat);
+            List<string> allMaterials = ComponentsContainer.GetAllMaterials();
+            foreach (var mat in allMaterials)
+            {
+                AddMaterial(mat);
+            }
         }
     }
 

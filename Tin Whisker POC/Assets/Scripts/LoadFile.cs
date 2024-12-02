@@ -35,6 +35,7 @@ using Unity.VisualScripting;
 
 public class LoadFile : MonoBehaviour
 {
+    public static int LoadNumber = 0;
     public GameObject Model; //Load OBJ Model
     public GameObject MainController;
 
@@ -119,6 +120,7 @@ public class LoadFile : MonoBehaviour
         }
         else
         {
+            LoadNumber++;
             MemoryStream textStream = new MemoryStream(Encoding.UTF8.GetBytes(www.downloadHandler.text));
             MemoryStream MTLStream = new MemoryStream(Encoding.UTF8.GetBytes(mmm.downloadHandler.text));
             if (Model != null)

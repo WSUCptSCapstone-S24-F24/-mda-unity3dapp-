@@ -7615,6 +7615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   twitchFrequency: 10
+  isVibrationActive: 0
 --- !u!4 &570358061
 Transform:
   m_ObjectHideFlags: 0
@@ -7848,7 +7849,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 933832137}
   m_HandleRect: {fileID: 933832136}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -16717,7 +16718,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Brightness Text
+  m_text: 'Brightness Level
 
 '
   m_isRightToLeft: 0
@@ -23105,6 +23106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ec20bde24212c469317bb11d67d284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isShocking: 0
 --- !u!4 &1660062882
 Transform:
   m_ObjectHideFlags: 0
@@ -26599,7 +26601,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 711012006}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999964
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
